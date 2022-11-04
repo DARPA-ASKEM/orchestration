@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium: webapp
+  name: webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium: webapp
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium: webapp
+    spec:
+      containers:
+        - image: ghcr.io/darpa-askem/webapp:dev
+          name: webapp
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always
+status: {}

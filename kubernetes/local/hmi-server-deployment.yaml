@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium: hmi-server
+  name: hmi-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium: hmi-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium: hmi-server
+    spec:
+      containers:
+        - image: ghcr.io/darpa-askem/hmi-server:dev
+          name: hmi-server
+          env:
+            - name: data-service
+              value: host.docker.internal
+            - name: keycloak-service
+              value: host.docker.internal
+          ports:
+            - containerPort: 3000
+          resources: {}
+      restartPolicy: Always
+status: {}
