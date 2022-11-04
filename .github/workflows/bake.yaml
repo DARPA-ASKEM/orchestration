@@ -1,3 +1,4 @@
+---
 # Automatically build Docker images on changes to main and push them to the GitHub
 # Container Registry using HCL Bake file.
 #

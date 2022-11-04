@@ -1,3 +1,4 @@
+---
 # Automatically tag the latest versions of the images with the appropriate version
 # tag. This works by scanning the specified bake file for all images associated with
 # it and pulls them locally, re-tag the, and finally push.
