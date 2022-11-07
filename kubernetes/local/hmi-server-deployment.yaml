@@ -25,6 +25,8 @@ spec:
               value: host.docker.internal
             - name: keycloak-service
               value: host.docker.internal
+            - name: oidc-secret
+              value: jtbQhs6SlfynqJaygVpwav2kLzAme2b4
           ports:
             - containerPort: 3000
           resources: {}
