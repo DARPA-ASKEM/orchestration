@@ -13,17 +13,42 @@ on:
 
 jobs:
   lintYaml:
+    name: Lint YAML Files
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
 
       - name: yaml-lint
+        id: ymllint
         uses: ibiqlik/action-yamllint@2576378a8e339169678f9939646ee3ee325e845c
 
-      - run: echo ${{ steps.yaml-lint.outputs.logfile }}
+      - name: Update Pull Request
+        uses: actions/github-script@v6
+        if: always() && github.event_name == 'pull_request'
+        with:
+          script: |
+            const fs = require('fs');
+            try {
+              const log = fs.readFileSync('${{steps.ymllint.outputs.logfile}}', 'utf-8');
+              const output = `
+              #### YAML Lint:
+              \`\`\`
+              ${log}
+              \`\`\`
+              `;
+
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+              })
+            } catch (err) {
+              console.error(err);
+            }
 
   lintDocker:
-    name: Lint Docker files
+    name: Lint Docker Files
     runs-on: ubuntu-22.04
     env:
       HADOLINT_RECURSIVE: true
