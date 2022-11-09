@@ -38,7 +38,7 @@ jobs:
         with:
           dockerfile: Dockerfile
           recursive: true
-          # format: 'json'
+          format: 'json'
       # - name: Lint Dockerfiles
       #   id: hadolint
       #   uses: jbergstroem/hadolint-gh-action@v1
@@ -47,31 +47,54 @@ jobs:
       #     output_format: 'json'
 
       # 3 - if its a pull request update with output
-      - name: Generate PR Message
-        if: failure() && github.event_name == 'pull_request'
-        run: |
-          echo "${{ steps.hadolint.outputs.results }}"
-          SCRIPT_OUTPUT="#### HadoLint: ${{ steps.hadolint.outcome }}\n\`\`\`\n${{ steps.hadolint.outputs.results }}\n\`\`\`";
-          echo "${SCRIPT_OUTPUT}"
+      # - name: Generate PR Message
+      #   if: failure() && github.event_name == 'pull_request'
+      #   run: |
+      #     echo "${{ steps.hadolint.outputs.results }}"
+      #     SCRIPT_OUTPUT='#### HadoLint: ${{ steps.hadolint.outcome }}
+      #     \`\`\`json
+      #     ${{ steps.hadolint.outputs.results }}
+      #     \`\`\`
+      #     ';
+      #     echo "${SCRIPT_OUTPUT}"
 
-          # echo "BODY=${TEXT}" >> ${GITHUB_ENV}
-          echo "SCRIPT_OUTPUT<<EOF" >> $GITHUB_ENV
-          echo "$SCRIPT_OUTPUT" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+      #     # echo "BODY=${TEXT}" >> ${GITHUB_ENV}
+      #     echo "SCRIPT_OUTPUT<<EOF" >> $GITHUB_ENV
+      #     echo "$SCRIPT_OUTPUT" >> $GITHUB_ENV
+      #     echo "EOF" >> $GITHUB_ENV
 
-      - if: failure() && github.event_name == 'pull_request'
-        run: |
-          echo "${{env.SCRIPT_OUTPUT}}"
-          echo $SCRIPT_OUTPUT
+      # - if: failure() && github.event_name == 'pull_request'
+      #   run: |
+      #     echo "${{env.SCRIPT_OUTPUT}}"
+      #     echo $SCRIPT_OUTPUT
 
-      - name: Update PR
-        if: failure() && github.event_name == 'pull_request'
+      # - name: Update PR
+      #   if: failure() && github.event_name == 'pull_request'
+      #   uses: actions/github-script@v6
+      #   with:
+      #     script: |
+      #       github.rest.issues.createComment({
+      #         issue_number: context.issue.number,
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         body: ${{env.SCRIPT_OUTPUT}}
+      #       })
+
+      - name: Update Pull Request
         uses: actions/github-script@v6
+        if: failure() && github.event_name == 'pull_request'
         with:
           script: |
+            const output = `
+            #### Hadolint: \`${{ steps.hadolint.outcome }}\`
+            \`\`\`json
+            ${{ steps.hadolint.outputs.results }}
+            \`\`\`
+            `;
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `${{env.SCRIPT_OUTPUT}}`
+              body: output
             })
