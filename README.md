@@ -21,7 +21,9 @@ NAME                                READY   STATUS    RESTARTS   AGE
 
 ### Pulling required containers
 
-TODO: talk about `kubectl create secret docker-registry <name> ...`
+The application consists of a number of docker images some public and some that are restricted to members of the the organization. If you are a member you can login to the registry by following the instructions described [here](CONTRIBUTING.md#login-to-registry).
+
+Some secrets may be required to be given to the kubernetes cluster so that it can pull on your behalf. To do so follow the following instructions [here](CONTRIBUTING.md#kubernetes)
 
 TODO: edit deployment files to use docker-registry
 
