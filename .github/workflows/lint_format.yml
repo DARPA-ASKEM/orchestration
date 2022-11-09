@@ -1,0 +1,57 @@
+---
+# Lint and Format files.
+# Currently only linting YAML files but others can be added as needed in the future
+
+name: Lint & Format
+on:
+  workflow_call:
+
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  lintYaml:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: yaml-lint
+        uses: ibiqlik/action-yamllint@2576378a8e339169678f9939646ee3ee325e845c
+
+  lintDocker:
+    name: Lint Docker files
+    runs-on: ubuntu-22.04
+    env:
+      HADOLINT_RECURSIVE: 'true'
+    steps:
+      # 1 - checkout the request
+      - uses: actions/checkout@v3
+
+      # 2 - lint all dockerfiles found
+      - name: Lint using hadolint
+        uses: hadolint/hadolint-action@f988afea3da57ee48710a9795b6bb677cc901183
+        with:
+          dockerfile: Dockerfile
+
+      # 3 - if its a pull request update with output
+      - name: Update Pull Request
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const output = `
+            #### Hadolint: \`${{ steps.hadolint.outcome }}\`
+            \`\`\`
+            ${process.env.HADOLINT_RESULTS}
+            \`\`\`
+            `;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+
