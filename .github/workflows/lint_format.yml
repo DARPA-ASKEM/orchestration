@@ -20,6 +20,8 @@ jobs:
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@2576378a8e339169678f9939646ee3ee325e845c
 
+      - run: echo ${{ steps.yaml-lint.outputs.logfile }}
+
   lintDocker:
     name: Lint Docker files
     runs-on: ubuntu-22.04
@@ -48,10 +50,11 @@ jobs:
             \`\`\`
             `;
 
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: output
-            })
-
+            if [[ -n $output ]]; then
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+              })
+            fi
