@@ -1,0 +1,48 @@
+---
+# This is a reusable workflow for linting Docker files.
+# By default if run on PR will generate a comment if failures are detected
+
+on:
+  workflow_call:
+    inputs:
+      comment:
+        description: 'Should a comment be generated in the PR on failure'
+        type: boolean
+        default: true
+        required: false
+
+jobs:
+  lintDocker:
+    name: Lint Docker Files
+    runs-on: ubuntu-22.04
+    env:
+      HADOLINT_RECURSIVE: true
+
+    steps:
+      # 1 - checkout the request
+      - uses: actions/checkout@v3
+
+      # 2 - lint all dockerfiles found
+      - name: Lint Dockerfiles
+        id: hadolint
+        uses: hadolint/hadolint-action@f988afea3da57ee48710a9795b6bb677cc901183
+        with:
+          dockerfile: Dockerfile
+          recursive: true
+
+      # 3 - Add PR comment on failure
+      - name: Update Pull Request
+        uses: actions/github-script@v6
+        if: failure() && github.event_name == 'pull_request' && inputs.comment
+        with:
+          script: |
+            const buildMessage = require('.github/workflows/messageBuilder.js')
+            const output = buildMessage('Docker Lint Errors', `${process.env.HADOLINT_RESULTS}`, 'https://github.com/hadolint/hadolint');
+            console.log(output)
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })

@@ -1,0 +1,59 @@
+---
+# This is a reusable workflow for linting YAML files.
+# By default if run on PR will generate a comment if failures are detected
+
+on:
+  workflow_call:
+    inputs:
+      comment:
+        description: 'Should a comment be generated in the PR on failure'
+        type: boolean
+        default: true
+        required: false
+      strict:
+        description: 'Consider Warnings as Errors'
+        type: boolean
+        default: false
+        required: false
+
+jobs:
+  lintYaml:
+    name: Lint YAML Files
+    runs-on: ubuntu-22.04
+    steps:
+      # 1 - checkout branch
+      - uses: actions/checkout@v3
+
+      # 2 - Lint YAML files
+      - name: Lint Yaml
+        id: yaml-lint
+        uses: ibiqlik/action-yamllint@2576378a8e339169678f9939646ee3ee325e845c
+        with:
+          strict: ${{ inputs.strict }}
+
+      # 3 - Add comment to PR on failure
+      - name: Update Pull Request
+        uses: actions/github-script@v6
+        if: failure() && github.event_name == 'pull_request' && inputs.comment
+        with:
+          script: |
+            const fs = require('fs');
+            const buildMessage = require('.github/workflows/messageBuilder.js')
+            try {
+              const log = fs.readFileSync('${{steps.yaml-lint.outputs.logfile}}', 'utf-8');
+
+              // bail out if empty
+              if (!log) return;
+
+              const output = buildMessage('YAML Lint Errors', log, 'https://yamllint.readthedocs.io/en/stable/');
+              console.log(output)
+
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+              })
+            } catch (err) {
+              console.error(err);
+            }
