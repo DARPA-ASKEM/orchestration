@@ -45,7 +45,7 @@ jobs:
   bake:
     needs:
       - verify
-      - tag-generatore
+      - tag-generator
     uses: ./.github/workflows/bake-publish.yml
     with:
       file: 'docker-bake.hcl'
