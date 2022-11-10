@@ -17,41 +17,17 @@ jobs:
       # Uncomment this if you want to validate all commits in this PR not just the PR comment
       # with:
       #   fetch-depth: 0
-      # - name: Use Node.js 18.8.0
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 18.8.0
-      #     cache: yarn
-
-      # - name: Install CommitLint Dependency
-      #   run: yarn add @commitlint/config-conventional
-      # # Uncomment this if you want to validate all commits in this PR not just the PR comment
-      # # - uses: wagoid/commitlint-github-action@v5
-      # - name: Lint the PR message
-      #   uses: JulienKode/pull-request-name-linter-action@8c05fb989d9f156ce61e33754f9802c9d3cffa58
-      #   with:
-      #     configuration-path: ./.commitlintrc.yml
-
-      - name: Lint pull request title
-        uses: jef/conventional-commits-pr-action@v1
+      - name: Use Node.js 18.8.0
+        uses: actions/setup-node@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          node-version: 18.8.0
+          cache: yarn
 
-      # - name: Update Pull Request
-      #   uses: actions/github-script@v6
-      #   if: failure() && github.event_name == 'pull_request'
-      #   with:
-      #     script: |
-      #       const output = `
-      #       #### Hadolint: \`${{ steps.hadolint.outcome }}\`
-      #       \`\`\`
-      #       ${{ steps.hadolint.outputs.results }}
-      #       \`\`\`
-      #       `;
-
-      #       github.rest.issues.createComment({
-      #         issue_number: context.issue.number,
-      #         owner: context.repo.owner,
-      #         repo: context.repo.repo,
-      #         body: output
-      #       })
+      - name: Install CommitLint Dependency
+        run: yarn add @commitlint/config-conventional
+      # Uncomment this if you want to validate all commits in this PR not just the PR comment
+      # - uses: wagoid/commitlint-github-action@v5
+      - name: Lint the PR message
+        uses: JulienKode/pull-request-name-linter-action@8c05fb989d9f156ce61e33754f9802c9d3cffa58
+        with:
+          configuration-path: ./.commitlintrc.yml

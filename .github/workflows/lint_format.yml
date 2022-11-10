@@ -16,12 +16,15 @@ jobs:
     name: Lint YAML Files
     runs-on: ubuntu-22.04
     steps:
+      # 1 - checkout branch
       - uses: actions/checkout@v3
 
+      # 2 - Lint YAML files
       - name: yaml-lint
         id: ymllint
         uses: ibiqlik/action-yamllint@2576378a8e339169678f9939646ee3ee325e845c
 
+      # 3 - Add comment to PR on failure
       - name: Update Pull Request
         uses: actions/github-script@v6
         if: always() && github.event_name == 'pull_request'
@@ -64,6 +67,7 @@ jobs:
           dockerfile: Dockerfile
           recursive: true
 
+      # 3 - Add PR comment on failure
       - name: Update Pull Request
         uses: actions/github-script@v6
         if: failure() && github.event_name == 'pull_request'
