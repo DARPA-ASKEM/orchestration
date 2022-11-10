@@ -1,3 +1,5 @@
+[![Lint & Format](https://github.com/DARPA-ASKEM/orchestration/actions/workflows/lint_format.yml/badge.svg)](https://github.com/DARPA-ASKEM/orchestration/actions/workflows/lint_format.yml)
+[![Build Docker Images](https://github.com/DARPA-ASKEM/orchestration/actions/workflows/publish.yaml/badge.svg)](https://github.com/DARPA-ASKEM/orchestration/actions/workflows/publish.yaml)
 # Orchestration
 Scripts and deployment information needed to setup and run TERArium
 
