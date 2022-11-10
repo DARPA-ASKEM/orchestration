@@ -19,16 +19,37 @@ jobs:
   verify:
     uses: ./.github/workflows/lint.yml
 
+  tag:
+    name: Determine image tag
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Generate apprropriate tag
+        run: |
+          if [[ '${{ github.ref_type }}' == 'branch' && '${{ github.ref_name }}' == 'main' ]]; then
+            TAG=latest
+          else
+            SEMVER=$( echo ${{ github.ref_name }} | sed -nre 's/^v[^0-9]*(([0-9]+\.)*[0-9]+(-[a-z]+)?).*/\1/p')
+            if [[ -n $SEMVER ]]; then
+              TAG=${SEMVER}
+            else
+              TAG=${{ github.ref_name }}
+            fi
+          fi
+
+          echo "$TAG"
+          echo "IMAGE_TAG=${TAG,,}" >> ${GITHUB_ENV}
+
   bake:
     needs:
       - verify
+      - tag
     uses: ./.github/workflows/bake-publish.yml
     with:
       file: 'docker-bake.hcl'
       group: 'prod'
       registry: 'ghcr.io'
       organization: ${{ github.repository_owner }}
-      tag: 'foo'
+      tag: ${{ env.IMAGE_TAG }}
     secrets:
       username: ${{ github.repository_owner }}
       password: ${{ secrets.GITHUB_TOKEN }}
