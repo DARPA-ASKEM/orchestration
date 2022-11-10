@@ -46,6 +46,10 @@ jobs:
             const fs = require('fs');
             try {
               const log = fs.readFileSync('${{steps.yaml-lint.outputs.logfile}}', 'utf-8');
+
+              // bail out if empty
+              if (!log) return;
+
               const output = `
               #### YAML Lint Warnings/Errors:
               \`\`\`
