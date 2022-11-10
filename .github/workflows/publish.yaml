@@ -9,7 +9,7 @@
 # something is pushed to main. A separate workflow is then triggered on tag pushes
 # to automatically re-tag the built image and deploy.
 
-name: Build Docker Images from Bake file
+name: Build Docker Images
 
 on:
   workflow_dispatch:
@@ -83,12 +83,20 @@ jobs:
       # NOTE: this overrides the defaults and should be specific to this deployment
       - name: set env variables for bakefile
         run: |
-          if [[ '${{ github.ref_type' == 'branch' ]]; then
+          if [[ '${{ github.ref_type }}' == 'branch' ]]; then
             TAG=latest
           else
-            TAG= ${{ github.ref_name}}
+            SEMVER=$( echo ${{ github.ref_name }} | sed -nre 's/^v[^0-9]*(([0-9]+\.)*[0-9]+).*/\1/p')
+            if [[ -n $SEMVER ]]; then
+              TAG=${SEMVER}
+            else
+              TAG=${{ github.ref_name }}
+            fi
+          fi
 
-          echo "VERSION=${TAG,,}" >>${GITHUB_ENV}
+          echo "$TAG"
+
+          echo "VERSION=${TAG,,}" >> ${GITHUB_ENV}
           echo "DOCKER_REGISTRY=${{ env.REGISTRY }}" >> ${GITHUB_ENV}
           # Lowercase the owner for docker image naming conventions
           echo "DOCKER_ORG=${OWNER,,}" >> ${GITHUB_ENV}
@@ -115,7 +123,7 @@ jobs:
         with:
           files: ./${{ env.BAKE_FILE }}
           targets: ${{ matrix.target }}
-          push: true
+          push: false
           set: |
             *.cache-from=type=gha,scope=build-${{ matrix.target }}
             *.cache-to=type=gha,scope=build-${{ matrix.target }},mode=max
