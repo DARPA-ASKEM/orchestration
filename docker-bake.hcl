@@ -42,5 +42,5 @@ target "theme" {
   inherits = ["_platforms"]
 	context = "keycloak-theme"
 	dockerfile = "Dockerfile"
-	tags = tag("terarium-theme", "", "")
+	tags = tag("terarium-login-theme", "", "")
 }

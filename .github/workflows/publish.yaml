@@ -26,8 +26,6 @@ env:
   OWNER: ${{ github.repository_owner }}
   BAKE_FILE: docker-bake.hcl
   BAKE_GROUP: prod
-  # will be either `main` or the tag
-  CURRENT_TAG: ${{ github.ref_name }}
 
 jobs:
   # Call the Lint & Format workflow before publishing
