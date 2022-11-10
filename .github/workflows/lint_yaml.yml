@@ -10,11 +10,6 @@ on:
         type: boolean
         default: true
         required: false
-      no_warnings:
-        description: 'Output warnings'
-        type: boolean
-        default: true
-        required: false
       strict:
         description: 'Consider Warnings as Errors'
         type: boolean
@@ -35,12 +30,11 @@ jobs:
         uses: ibiqlik/action-yamllint@2576378a8e339169678f9939646ee3ee325e845c
         with:
           strict: ${{ inputs.strict }}
-          no_warnings: ${{ inputs.no_warnings }}
 
       # 3 - Add comment to PR on failure
       - name: Update Pull Request
         uses: actions/github-script@v6
-        if: always() && github.event_name == 'pull_request' && inputs.comment
+        if: failure() && github.event_name == 'pull_request' && inputs.comment
         with:
           script: |
             const fs = require('fs');
