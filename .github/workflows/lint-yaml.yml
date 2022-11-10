@@ -2,6 +2,7 @@
 # This is a reusable workflow for linting YAML files.
 # By default if run on PR will generate a comment if failures are detected
 
+name: Lint YAML
 on:
   workflow_call:
     inputs:

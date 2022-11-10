@@ -7,7 +7,7 @@
 # precedence.
 
 # Global Owners. Unless a later match takes precedence
-* @dgauldie @mwdchang @YohannParis @bencodrington
+* @dgauldie @YohannParis
 
 # CODEOWNERS prevent renovate automerge since it will automatically ask for review
 # See documentation for more details: https://docs.renovatebot.com/key-concepts/automerge/#codeowners

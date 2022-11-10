@@ -19,6 +19,7 @@ jobs:
   verify:
     uses: ./.github/workflows/lint.yml
 
+  # Generate a more robust tag for the image
   tag-generator:
     name: Determine image tag
     runs-on: ubuntu-22.04
@@ -45,6 +46,7 @@ jobs:
       - name: Show Generated Tag
         run: echo ${{ steps.generate.outputs.tag }}
 
+  # Build and Publish all targets associated with specified group
   bake:
     needs:
       - verify
