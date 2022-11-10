@@ -1,0 +1,145 @@
+---
+# This is a reusable workflow for building and publishing Docker images
+# using a bake file.
+
+on:
+  workflow_call:
+    inputs:
+      file:
+        description: 'The file name of the bake file to use. If not provided will use default.'
+        type: string
+        default: 'docker-bake.hcl'
+        required: false
+      group:
+        description: 'Group to use from the bake file.'
+        type: string
+        default: ''
+        required: true
+      registry:
+        description: 'The docker registry to use.'
+        type: string
+        default: 'ghcr.io'
+        required: false
+      organization:
+        description: 'The organization to use for the docker image'
+        type: string
+        required: true
+      tag:
+        description: 'Image version tag'
+        type: string
+        default: 'latest'
+        required: false
+    secrets:
+      username:
+        description: 'Username for the docker registry'
+        required: true
+      password:
+        description: 'Password for the docker registry'
+        required: true
+
+jobs:
+  # Generate a matrix based on all the targets defined in the
+  # bake file.
+  targets:
+    name: Generate targets list from provided bake file
+    runs-on: ubuntu-22.04
+    outputs:
+      matrix: ${{ steps.targets.outputs.matrix }}
+    steps:
+      # 1.1 - checkout the files
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # 1.2 - Generate a matrix output of all the targets for the specified group
+      - name: Create matrix
+        id: targets
+        run: |
+          echo "matrix=$(docker buildx bake ${{ inputs.group }} -f ${{ inputs.file }} --print | jq -cr '.group.default.targets')" >> $GITHUB_OUTPUT
+
+      # 1.3 (optional) - output the generated target list for verification
+      - name: Show matrix
+        run: |
+          echo ${{ steps.targets.outputs.matrix }}
+
+  build-push:
+    # NOTE: this name is used for waiting on in the retag workflow
+    name: build-bake-push
+    runs-on: ubuntu-22.04
+    permissions:
+      packages: write
+      contents: read
+    # this job depends on the 'targets' job
+    needs:
+      - targets
+
+    # 2.0 - Build a matrix strategy from the retrieved target list
+    strategy:
+      fail-fast: true
+      matrix:
+        target: ${{ fromJson(needs.targets.outputs.matrix) }}
+
+    steps:
+      # 2.1 - Checkout the repository
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      # 2.2 - Set environment variables to be used within the bake file
+      # NOTE: this overrides the defaults and should be specific to this deployment
+      # TAG is determined by the following
+      #   - if coming from 'main' tag as latest
+      #   - if semantic versioned with 'v' prefix, strip v
+      #   - else use tag as is
+      - name: set env variables for bakefile
+        run: |
+          if [[ '${{ github.ref_type }}' == 'branch' && '${{ github.ref_name }}' == 'main' ]]; then
+            TAG=latest
+          else
+            SEMVER=$( echo ${{ github.ref_name }} | sed -nre 's/^v[^0-9]*(([0-9]+\.)*[0-9]+(-[a-z]+)?).*/\1/p')
+            if [[ -n $SEMVER ]]; then
+              TAG=${SEMVER}
+            else
+              TAG=${{ github.ref_name }}
+            fi
+          fi
+
+          echo "$TAG"
+
+          # Lowercase the inputs for Docker image naming conventions
+          TAG=${{ inputs.tag }}
+          ORG=${{ inputs.organization }}
+          REG=${{ inputs.registry }}
+
+          echo "$TAG"
+          echo "$ORG"
+          echo "$REG"
+
+          echo "VERSION=${TAG,,}" >> ${GITHUB_ENV}
+          echo "DOCKER_REGISTRY=${REG,,}" >> ${GITHUB_ENV}
+          echo "DOCKER_ORG=${ORG,,}" >> ${GITHUB_ENV}
+
+      # 2.3 - Login against the docker registry
+      - name: Login to registry ${{ inputs.registry }}
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ inputs.registry }}
+          username: ${{ secrets.username }}
+          password: ${{ secrets.password }}
+
+      # 2.4 - Setup QEMU for platform emulation
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      # 2.5 - Setup Docker BuildX for multi platform building
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # 2.6 - Build and push Docker Images
+      - name: Build Images using BuildX Bake
+        uses: docker/bake-action@v2
+        with:
+          files: ./${{ inputs.file }}
+          targets: ${{ matrix.target }}
+          push: false
+          set: |
+            *.cache-from=type=gha,scope=build-${{ matrix.target }}
+            *.cache-to=type=gha,scope=build-${{ matrix.target }},mode=max
