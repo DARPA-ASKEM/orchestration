@@ -16,7 +16,7 @@ on:
         default: ''
         required: true
       registry:
-        description: 'The docker registry to use.'
+        description: 'The container registry to use.'
         type: string
         default: 'ghcr.io'
         required: false
