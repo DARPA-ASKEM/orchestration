@@ -30,7 +30,7 @@ env:
 jobs:
   # Call the Lint & Format workflow before publishing
   verify:
-    uses: ./.github/workflows/lint_format.yml
+    uses: ./.github/workflows/lint.yml
 
   # Generate a matrix based on all the targets defined in the
   # bake file.

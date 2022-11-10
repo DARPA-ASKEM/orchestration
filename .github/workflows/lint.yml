@@ -14,13 +14,13 @@ on:
 jobs:
   lintYaml:
     name: Lint YAML Files
-    uses: ./.github/workflows/lint_yaml.yml
+    uses: ./.github/workflows/lint-yaml.yml
     with:
       strict: false
 
   lintDocker:
     name: Lint Docker Files
-    uses: ./.github/workflows/lint_docker.yml
+    uses: ./.github/workflows/lint-docker.yml
 
   kubeconform:
     name: Validate K8 Configs
