@@ -1,0 +1,51 @@
+---
+# This is a reusable workflow for linting YAML files.
+# By default if run on PR will generate a comment if failures are detected
+
+on:
+  workflow_call:
+    inputs:
+      comment:
+        description: 'Should a comment be generated in the PR on failure'
+        type: boolean
+        default: true
+        required: false
+
+jobs:
+  lintYaml:
+    name: Lint YAML Files
+    runs-on: ubuntu-22.04
+    steps:
+      # 1 - checkout branch
+      - uses: actions/checkout@v3
+
+      # 2 - Lint YAML files
+      - name: Lint Yaml
+        id: yaml-lint
+        uses: ibiqlik/action-yamllint@2576378a8e339169678f9939646ee3ee325e845c
+
+      # 3 - Add comment to PR on failure
+      - name: Update Pull Request
+        uses: actions/github-script@v6
+        if: always() && github.event_name == 'pull_request' && inputs.comment
+        with:
+          script: |
+            const fs = require('fs');
+            try {
+              const log = fs.readFileSync('${{steps.yaml-lint.outputs.logfile}}', 'utf-8');
+              const output = `
+              #### YAML Lint Warnings/Errors:
+              \`\`\`
+              ${log}
+              \`\`\`
+              `;
+
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+              })
+            } catch (err) {
+              console.error(err);
+            }
