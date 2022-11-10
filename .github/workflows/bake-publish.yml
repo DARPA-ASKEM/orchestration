@@ -96,10 +96,6 @@ jobs:
           ORG=${{ inputs.organization }}
           REG=${{ inputs.registry }}
 
-          echo "$TAG"
-          echo "$ORG"
-          echo "$REG"
-
           echo "VERSION=${TAG,,}" >> ${GITHUB_ENV}
           echo "DOCKER_REGISTRY=${REG,,}" >> ${GITHUB_ENV}
           echo "DOCKER_ORG=${ORG,,}" >> ${GITHUB_ENV}
@@ -126,7 +122,7 @@ jobs:
         with:
           files: ./${{ inputs.file }}
           targets: ${{ matrix.target }}
-          push: false
+          push: true
           set: |
             *.cache-from=type=gha,scope=build-${{ matrix.target }}
             *.cache-to=type=gha,scope=build-${{ matrix.target }},mode=max
