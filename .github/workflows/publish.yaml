@@ -42,6 +42,9 @@ jobs:
           echo "$TAG"
           echo "tag=${TAG,,}" >> ${GITHUB_OUTPUT}
 
+      - name: Show Generated Tag
+        run: echo ${{ steps.generate.outputs.tag }}
+
   bake:
     needs:
       - verify
@@ -52,7 +55,7 @@ jobs:
       group: 'prod'
       registry: 'ghcr.io'
       organization: ${{ github.repository_owner }}
-      tag: ${{ needs.tag-generator.outputs.tag }}
+      tag: ${{ needs.tag-generator.outputs.image-tag }}
     secrets:
       username: ${{ github.repository_owner }}
       password: ${{ secrets.GITHUB_TOKEN }}
