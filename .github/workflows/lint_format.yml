@@ -111,4 +111,4 @@ jobs:
         uses: docker://ghcr.io/yannh/kubeconform:master
         with:
           entrypoint: '/kubeconform'
-          args: '-summary -output json ./kubernetes/local'
+          args: '-summary -output json ./kubernetes'

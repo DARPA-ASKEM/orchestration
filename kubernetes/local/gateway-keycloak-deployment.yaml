@@ -1,6 +1,6 @@
 ---
 apiVersion: apps/v1
-kind: Deployment3
+kind: Deployment
 metadata:
   labels:
     software.uncharted.terarium: gateway-keycloak
