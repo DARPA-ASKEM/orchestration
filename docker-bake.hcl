@@ -7,19 +7,21 @@ variable "DOCKER_ORG" {
 variable "VERSION" {
   default = "local"
 }
-variable "PREFIX" {
-  default = ""
-}
 
 # ---------------------------------
 function "tag" {
-  params = [image_name]
-  result = [ "${DOCKER_REGISTRY}/${DOCKER_ORG}/${image_name}:${check_prefix(PREFIX)}${VERSION}" ]
+  params = [image_name, prefix, suffix]
+  result = [ "${DOCKER_REGISTRY}/${DOCKER_ORG}/${image_name}:${check_prefix(prefix)}${VERSION}${check_suffix(suffix)}" ]
 }
 
 function "check_prefix" {
   params = [tag]
   result = notequal("",tag) ? "${tag}-": ""
+}
+
+function "check_suffix" {
+  params = [tag]
+  result = notequal("",tag) ? "-${tag}": ""
 }
 
 # ---------------------------------
@@ -34,11 +36,11 @@ group "default" {
 # ---------------------------------
 target "_platforms" {
   platforms = ["linux/amd64", "linux/arm64"]
-	dockerfile = "Dockerfile"
 }
 
 target "theme" {
   inherits = ["_platforms"]
 	context = "keycloak-theme"
-	tags = tag("terarium-theme")
+	dockerfile = "Dockerfile"
+	tags = tag("terarium-login-theme", "", "")
 }

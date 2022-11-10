@@ -1,26 +1,41 @@
 ---
-# Automatically build Docker images on changes to main and push them to the GitHub
-# Container Registry using HCL Bake file.
-#
-# NOTE: Ideally this workflow would be triggered only on pushes to the tag and not
-# to main. However due to a current limitation the caching does not work properly
-# when trigged on a tag (https://github.com/docker/build-push-action/issues/433). So
-# until such time as that is fixed this workflow will build a new image every time
-# something is pushed to main. A separate workflow is then triggered on tag pushes
-# to automatically re-tag the built image and deploy.
-
-name: Build Docker Images from Bake file
+# This is a reusable workflow for building and publishing Docker images
+# using a bake file.
 
 on:
-  push:
-    branches: ['main']
-
-env:
-  REGISTRY: ghcr.io
-  OWNER: ${{ github.repository_owner }}
-  BAKE_FILE: docker-bake.hcl
-  BAKE_GROUP: prod
-  CURRENT_TAG: latest
+  workflow_call:
+    inputs:
+      file:
+        description: 'The file name of the bake file to use. If not provided will use default.'
+        type: string
+        default: 'docker-bake.hcl'
+        required: false
+      group:
+        description: 'Group to use from the bake file.'
+        type: string
+        default: ''
+        required: true
+      registry:
+        description: 'The container registry to use.'
+        type: string
+        default: 'ghcr.io'
+        required: false
+      organization:
+        description: 'The organization to use for the docker image'
+        type: string
+        required: true
+      tag:
+        description: 'Image version tag'
+        type: string
+        default: 'latest'
+        required: false
+    secrets:
+      username:
+        description: 'Username for the docker registry'
+        required: true
+      password:
+        description: 'Password for the docker registry'
+        required: true
 
 jobs:
   # Generate a matrix based on all the targets defined in the
@@ -39,7 +54,7 @@ jobs:
       - name: Create matrix
         id: targets
         run: |
-          echo "matrix=$(docker buildx bake ${{ env.BAKE_GROUP }} -f ${{ env.BAKE_FILE }} --print | jq -cr '.group.default.targets')" >> $GITHUB_OUTPUT
+          echo "matrix=$(docker buildx bake ${{ inputs.group }} -f ${{ inputs.file }} --print | jq -cr '.group.default.targets')" >> $GITHUB_OUTPUT
 
       # 1.3 (optional) - output the generated target list for verification
       - name: Show matrix
@@ -70,20 +85,28 @@ jobs:
 
       # 2.2 - Set environment variables to be used within the bake file
       # NOTE: this overrides the defaults and should be specific to this deployment
+      # TAG is determined by the following
+      #   - if coming from 'main' tag as latest
+      #   - if semantic versioned with 'v' prefix, strip v
+      #   - else use tag as is
       - name: set env variables for bakefile
         run: |
-          echo "VERSION=${{ env.CURRENT_TAG }}" >>${GITHUB_ENV}
-          echo "DOCKER_REGISTRY=${{ env.REGISTRY }}" >> ${GITHUB_ENV}
-          # Lowercase the owner for docker image naming conventions
-          echo "DOCKER_ORG=${OWNER,,}" >> ${GITHUB_ENV}
+          # Lowercase the inputs for Docker image naming conventions
+          TAG=${{ inputs.tag }}
+          ORG=${{ inputs.organization }}
+          REG=${{ inputs.registry }}
+
+          echo "VERSION=${TAG,,}" >> ${GITHUB_ENV}
+          echo "DOCKER_REGISTRY=${REG,,}" >> ${GITHUB_ENV}
+          echo "DOCKER_ORG=${ORG,,}" >> ${GITHUB_ENV}
 
       # 2.3 - Login against the docker registry
-      - name: Login to registry ${{ env.REGISTRY }}
+      - name: Login to registry ${{ inputs.registry }}
         uses: docker/login-action@v2
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ${{ inputs.registry }}
+          username: ${{ secrets.username }}
+          password: ${{ secrets.password }}
 
       # 2.4 - Setup QEMU for platform emulation
       - name: Set up QEMU
@@ -97,7 +120,7 @@ jobs:
       - name: Build Images using BuildX Bake
         uses: docker/bake-action@v2
         with:
-          files: ./${{ env.BAKE_FILE }}
+          files: ./${{ inputs.file }}
           targets: ${{ matrix.target }}
           push: true
           set: |

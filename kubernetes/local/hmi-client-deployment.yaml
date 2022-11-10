@@ -3,25 +3,27 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    software.uncharted.terarium: webapp
-  name: webapp
+    software.uncharted.terarium: hmi-client
+  name: hmi-client
 spec:
   replicas: 1
   selector:
     matchLabels:
-      software.uncharted.terarium: webapp
+      software.uncharted.terarium: hmi-client
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        software.uncharted.terarium: webapp
+        software.uncharted.terarium: hmi-client
     spec:
       containers:
         - image: ghcr.io/darpa-askem/webapp:dev
-          name: webapp
+          name: hmi-client
           ports:
             - containerPort: 80
           resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
       restartPolicy: Always
 status: {}

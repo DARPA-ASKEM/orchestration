@@ -3,12 +3,13 @@
 
 if [[ ${1} == "up" ]]; then
 
-		# Manually pulling images here, as the K8s sometimes timeout
-		docker pull ghcr.io/unchartedsoftware/httpd-openidc:0.1.2
-		docker pull ghcr.io/unchartedsoftware/keycloak:0.1.2
-		docker pull docker.uncharted.software/auth/terarium-theme:0.0.1
-		docker pull ghcr.io/darpa-askem/hmi-server:dev
-		docker pull ghcr.io/darpa-askem/webapp:dev
+		# # Manually pulling images here, as the K8s sometimes timeout
+		# docker pull ghcr.io/unchartedsoftware/httpd-openidc:0.1.2
+		# docker pull ghcr.io/unchartedsoftware/keycloak:0.1.2
+		# docker pull ghcr.io/darpa-askem/terarium-login-theme:0.0.1
+		# docker pull ghcr.io/darpa-askem/hmi-server:dev
+		# # TODO: switch to hmi-client when image is available
+		# docker pull ghcr.io/darpa-askem/webapp:dev
 
     kubectl apply \
     -f gateway-postgres-service.yaml \
@@ -22,8 +23,8 @@ if [[ ${1} == "up" ]]; then
     -f gateway-httpd-deployment.yaml \
     -f hmi-server-service.yaml \
     -f hmi-server-deployment.yaml \
-    -f webapp-service.yaml \
-    -f webapp-deployment.yaml
+    -f hmi-client-service.yaml \
+    -f hmi-client-deployment.yaml
 
     exit 0
 fi
@@ -41,8 +42,8 @@ if [[ ${1} == "down" ]]; then
     -f gateway-httpd-deployment.yaml \
     -f hmi-server-service.yaml \
     -f hmi-server-deployment.yaml \
-    -f webapp-service.yaml \
-    -f webapp-deployment.yaml
+    -f hmi-client-service.yaml \
+    -f hmi-client-deployment.yaml
 
     exit 0
 fi

@@ -1,0 +1,48 @@
+---
+# Lint and Format files.
+# Linting YAML/YML
+
+name: Lint & Format
+on:
+  workflow_call:
+
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  lintYaml:
+    name: Lint YAML Files
+    uses: ./.github/workflows/lint-yaml.yml
+    with:
+      strict: false
+
+  lintDocker:
+    name: Lint Docker Files
+    uses: ./.github/workflows/lint-docker.yml
+
+  kubeconform:
+    name: Validate K8 Configs
+    runs-on: ubuntu-latest
+    env:
+      REGISTRY: ghcr.io
+    steps:
+      # 1 - Checkout the repository
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      # 2 - Login to GHCR
+      - name: Login to registry ${{ env.REGISTRY }}
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # 3 - Validate Kubernetes Configs
+      - name: Validate K8s Config
+        uses: docker://ghcr.io/yannh/kubeconform:master
+        with:
+          entrypoint: '/kubeconform'
+          args: '-summary -output json ./kubernetes'

@@ -21,11 +21,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.8.0
+
       - name: Install CommitLint Dependency
         run: yarn add @commitlint/config-conventional
       # Uncomment this if you want to validate all commits in this PR not just the PR comment
       # - uses: wagoid/commitlint-github-action@v5
       - name: Lint the PR message
-        uses: JulienKode/pull-request-name-linter-action@v0.5.0
+        uses: JulienKode/pull-request-name-linter-action@8c05fb989d9f156ce61e33754f9802c9d3cffa58
         with:
           configuration-path: ./.commitlintrc.yml

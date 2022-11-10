@@ -41,7 +41,7 @@ spec:
               mountPath: /opt/keycloak/themes/terarium
           resources: {}
       initContainers:
-        - image: docker.uncharted.software/auth/terarium-theme:0.0.1
+        - image: ghcr.io/darpa-askem/terarium-login-theme:0.0.1
           name: gateway-terarium-theme
           command: ['/bin/sh']
           args: ['-c', 'cp -r /terarium/* /shared']
