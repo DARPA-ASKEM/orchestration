@@ -18,10 +18,12 @@ spec:
         software.uncharted.terarium: hmi-client
     spec:
       containers:
-        - image: ghcr.io/darpa-askem/hmi-client:dev
+        - image: ghcr.io/darpa-askem/webapp:dev
           name: hmi-client
           ports:
             - containerPort: 80
           resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
       restartPolicy: Always
 status: {}

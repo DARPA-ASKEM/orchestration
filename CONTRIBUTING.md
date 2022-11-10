@@ -49,7 +49,7 @@ To have Kubernetes access a private container image or repository it needs to ha
 #### Create Secret
 To create the secret for kubernetes use the following command:
 ```sh
-kubectl create secret docker-registry ghrc_cred \ 
+kubectl create secret docker-registry ghcr-cred \ 
 	--docker-server=<your-registry-server> \
 	--docker-username=<your-name> \
 	--docker-password=<your-pword> \
@@ -61,12 +61,12 @@ where:
 - `<your-pword>` is your GitHub PAT.
 - `<your-email>` is your email (optional)
 
-You have successfully set your credentials in the cluster as a Secret called `ghrc_cred`.
+You have successfully set your credentials in the cluster as a Secret called `ghcr-cred`.
 
 #### Verify Secret
 To verify that the secret was generated use:
 ```sh
-kubectl get secret ghrc_cred --output=yaml
+kubectl get secret ghcr-cred --output=yaml
 ```
 
 #### Use Secret In Pod
@@ -83,7 +83,7 @@ spec:
   - name: private-reg-container
     image: <your-private-image>
   imagePullSecrets:
-  - name: regcred
+  - name: ghcr-cred
 ```
 
 
