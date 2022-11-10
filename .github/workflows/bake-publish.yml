@@ -2,6 +2,7 @@
 # This is a reusable workflow for building and publishing Docker images
 # using a bake file.
 
+name: Simple Bake & Publish
 on:
   workflow_call:
     inputs:

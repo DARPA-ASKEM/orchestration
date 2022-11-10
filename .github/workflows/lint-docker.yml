@@ -2,6 +2,7 @@
 # This is a reusable workflow for linting Docker files.
 # By default if run on PR will generate a comment if failures are detected
 
+name: Lint Docker
 on:
   workflow_call:
     inputs:
@@ -10,7 +11,11 @@ on:
         type: boolean
         default: true
         required: false
-
+      failure-threshold:
+        description: 'Rule severity threshold for pipeline failure. One of [error | warning | info | style | ignore]'
+        type: string
+        default: 'info'
+        required: false
 jobs:
   lintDocker:
     name: Lint Docker Files
@@ -29,6 +34,7 @@ jobs:
         with:
           dockerfile: Dockerfile
           recursive: true
+          failure-threshold: ${{ inputs.failure-threshold }}
 
       # 3 - Add PR comment on failure
       - name: Update Pull Request
