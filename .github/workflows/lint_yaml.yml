@@ -44,18 +44,15 @@ jobs:
         with:
           script: |
             const fs = require('fs');
+            const buildMessage = require('.github/workflows/messageBuilder.js')
             try {
               const log = fs.readFileSync('${{steps.yaml-lint.outputs.logfile}}', 'utf-8');
 
               // bail out if empty
               if (!log) return;
 
-              const output = `
-              #### YAML Lint Warnings/Errors:
-              \`\`\`
-              ${log}
-              \`\`\`
-              `;
+              const output = buildMessage('YAML Lint Errors', log, 'https://yamllint.readthedocs.io/en/stable/');
+              console.log(output)
 
               github.rest.issues.createComment({
                 issue_number: context.issue.number,
