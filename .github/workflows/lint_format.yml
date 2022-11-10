@@ -71,7 +71,7 @@ jobs:
       # 3 - Add PR comment on failure
       - name: Update Pull Request
         uses: actions/github-script@v6
-        if: steps.hadolint.outcome == 'failure' && github.event_name == 'pull_request'
+        if: failure() && github.event_name == 'pull_request'
         with:
           script: |
             const output = `
