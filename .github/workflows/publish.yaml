@@ -19,11 +19,14 @@ jobs:
   verify:
     uses: ./.github/workflows/lint.yml
 
-  tag:
+  tag-generator:
     name: Determine image tag
     runs-on: ubuntu-22.04
+    outputs:
+      image-tag: ${{ steps.generate.outputs.tag }}
     steps:
       - name: Generate apprropriate tag
+        id: generate
         run: |
           if [[ '${{ github.ref_type }}' == 'branch' && '${{ github.ref_name }}' == 'main' ]]; then
             TAG=latest
@@ -37,19 +40,19 @@ jobs:
           fi
 
           echo "$TAG"
-          echo "IMAGE_TAG=${TAG,,}" >> ${GITHUB_ENV}
+          echo "tag=${TAG,,}" >> ${GITHUB_OUTPUT}
 
   bake:
     needs:
       - verify
-      - tag
+      - tag-generatore
     uses: ./.github/workflows/bake-publish.yml
     with:
       file: 'docker-bake.hcl'
       group: 'prod'
       registry: 'ghcr.io'
       organization: ${{ github.repository_owner }}
-      tag: ${{ env.IMAGE_TAG }}
+      tag: ${{ needs.tag-generator.outputs.tag }}
     secrets:
       username: ${{ github.repository_owner }}
       password: ${{ secrets.GITHUB_TOKEN }}
