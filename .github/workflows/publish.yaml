@@ -1,13 +1,6 @@
 ---
-# Automatically build Docker images on changes to main and push them to the GitHub
+# Automatically build Docker images on changes to main and push them to a
 # Container Registry using HCL Bake file.
-#
-# NOTE: Ideally this workflow would be triggered only on pushes to the tag and not
-# to main. However due to a current limitation the caching does not work properly
-# when trigged on a tag (https://github.com/docker/build-push-action/issues/433). So
-# until such time as that is fixed this workflow will build a new image every time
-# something is pushed to main. A separate workflow is then triggered on tag pushes
-# to automatically re-tag the built image and deploy.
 
 name: Build Docker Images
 
@@ -21,18 +14,14 @@ on:
     tags:
       - '*'
 
-env:
-  REGISTRY: ghcr.io
-  OWNER: ${{ github.repository_owner }}
-  BAKE_FILE: docker-bake.hcl
-  BAKE_GROUP: prod
-
 jobs:
   # Call the Lint & Format workflow before publishing
   verify:
     uses: ./.github/workflows/lint.yml
 
   bake:
+    needs:
+      - verify
     uses: ./.github/workflows/bake-publish.yml
     with:
       file: 'docker-bake.hcl'
@@ -43,4 +32,3 @@ jobs:
     secrets:
       username: ${{ github.repository_owner }}
       password: ${{ secrets.GITHUB_TOKEN }}
-
