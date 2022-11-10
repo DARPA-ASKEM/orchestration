@@ -1,4 +1,4 @@
-FROM docker.uncharted.software/alpine:3.16
+FROM alpine:3.16
 
 LABEL org.opencontainers.image.title="TERArium Keycloak Theme"
 LABEL org.opencontainers.image.description="Custom TERArium theme for Keycloak authentication"
