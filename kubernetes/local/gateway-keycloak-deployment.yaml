@@ -71,6 +71,8 @@ spec:
               mountPath: /data
           resources: {}
       restartPolicy: Always
+      imagePullSecrets:
+        - name: ghcr-cred
       volumes:
         - name: realm-volume
           configMap:
