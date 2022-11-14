@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mock-data-service
+spec:
+  ports:
+    - name: 3020-tcp
+      port: 3020
+      protocol: TCP
+      targetPort: 3020
+  selector:
+    software.uncharted.terarium: mock-data-service
+  type: LoadBalancer
+status:
+  loadBalancer: {}

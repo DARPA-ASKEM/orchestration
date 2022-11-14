@@ -16,7 +16,9 @@ if [[ ${1} == "up" ]]; then
     -f hmi-server-service.yaml \
     -f hmi-server-deployment.yaml \
     -f hmi-client-service.yaml \
-    -f hmi-client-deployment.yaml
+    -f hmi-client-deployment.yaml \
+    -f mock-data-service-service.yaml \
+    -f mock-data-service-deployment.yaml
 
     exit 0
 fi
@@ -35,7 +37,9 @@ if [[ ${1} == "down" ]]; then
     -f hmi-server-service.yaml \
     -f hmi-server-deployment.yaml \
     -f hmi-client-service.yaml \
-    -f hmi-client-deployment.yaml
+    -f hmi-client-deployment.yaml \
+    -f mock-data-service-service.yaml \
+    -f mock-data-service-deployment.yaml
 
     exit 0
 fi
