@@ -2631,7 +2631,7 @@ data:
             "ownerManagedAccess" : false,
             "attributes" : { },
             "_id" : "5a29fc2e-366a-4a9b-9b86-e020d1e62213",
-            "uris" : [ "/api/user/*", "/api/model/*" ],
+            "uris" : [ "/api/user/*", "/api/model/*", "/api/document/*" ],
             "scopes" : [ {
               "name" : "user"
             } ],
