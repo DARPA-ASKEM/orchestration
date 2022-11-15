@@ -2700,7 +2700,8 @@ data:
           "secret": "jtbQhs6SlfynqJaygVpwav2kLzAme2b4",
           "redirectUris": [
             "http://localhost:8078/*",
-            "http://localhost:8078/redirect_uri"
+            "http://localhost:8078/redirect_uri",
+            "https://oauth.pstmn.io/v1/callback"
           ],
           "webOrigins": [],
           "notBefore": 0,
