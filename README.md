@@ -41,6 +41,13 @@ Running `./deploy-terarium.sh status` will show the status of the various TERAri
 
 To bring the TERArium stack down, simply run `./deploy-terarium.sh down` and all the services will be torn down.
 
+To only launch the services you need:
+```shell
+$ ./deploy-terarium.sh dev               # launches only the Gateway and Authentication services"
+$ ./deploy-terarium.sh dev:hmi-server    # launches TERArium without hmi-server"
+$ ./deploy-terarium.sh dev:hmi-client    # launches TERArium without hmi-client"
+```
+
 ### Private Registries
 If the deployments access private registries, Kubernetes will not be able to automatically pull those images for you. To do so, a secret with the required credentials is required and used for the deployment. To do this refer to the [registry documentation](./CONTRIBUTING.md#kubernetes).
 
