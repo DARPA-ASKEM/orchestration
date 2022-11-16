@@ -43,9 +43,9 @@ To bring the TERArium stack down, simply run `./deploy-terarium.sh down` and all
 
 To only launch the services you need:
 ```shell
-$ ./deploy-terarium.sh dev               # launches only the Gateway and Authentication services"
-$ ./deploy-terarium.sh dev:hmi-server    # launches TERArium without hmi-server"
-$ ./deploy-terarium.sh dev:hmi-client    # launches TERArium without hmi-client"
+$ ./deploy-terarium.sh dev                  # Launches only the Gateway and Authentication services
+$ ./deploy-terarium.sh dev:no-hmi-server    # Launches TERArium without the hmi-server
+$ ./deploy-terarium.sh dev:no-hmi-client    # Launches TERArium without the hmi-client
 ```
 
 ### Private Registries
