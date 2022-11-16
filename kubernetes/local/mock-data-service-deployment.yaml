@@ -3,32 +3,30 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    software.uncharted.terarium: hmi-server
-  name: hmi-server
+    software.uncharted.terarium: mock-data-service
+  name: mock-data-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      software.uncharted.terarium: hmi-server
+      software.uncharted.terarium: mock-data-service
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        software.uncharted.terarium: hmi-server
+        software.uncharted.terarium: mock-data-service
     spec:
       containers:
-        - image: ghcr.io/darpa-askem/hmi-server:0.0.0
-          name: hmi-server
+        - image: ghcr.io/darpa-askem/mock-data-service:0.0.0
+          name: mock-data-service
           env:
             - name: data-service
               value: host.docker.internal
             - name: keycloak-service
               value: host.docker.internal
-            - name: oidc-secret
-              value: jtbQhs6SlfynqJaygVpwav2kLzAme2b4
           ports:
-            - containerPort: 3000
+            - containerPort: 3020
           resources: {}
       imagePullSecrets:
         - name: ghcr-cred

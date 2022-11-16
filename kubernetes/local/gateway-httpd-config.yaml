@@ -30,6 +30,7 @@ data:
       OIDCScope "openid email profile"
       OIDCXForwardedHeaders X-Forwarded-Host X-Forwarded-Port X-Forwarded-Proto
       OIDCPassClaimsAs headers
+      OIDCSessionInactivityTimeout 400
 
       OIDCRemoteUserClaim sub
       OIDCPassClaimsAs environment
