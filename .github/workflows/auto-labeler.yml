@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: Determine Label
         run: |
-          TITLE=${{ github.event.issue.title }}
+          TITLE="${{ github.event.issue.title }}""
           if [[ $TITLE =~ ^\[?[Ff][Ee][Aa][Tt]\]?: ]]; then
             echo "LABEL=feature" >> $GITHUB_ENV
           elif [[ $TITLE =~ ^\[?[Tt][Aa][Ss][Kk]\]?: ]]; then
