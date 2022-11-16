@@ -14,7 +14,13 @@ function start_hmi-client() {
     kubectl apply --filename 'hmi-client-*.yaml'
 }
 
-# launches TERArium
+# Displays the status of all services
+if [[ ${1} == "status" ]]; then
+    kubectl get po,svc,configMap
+    exit 0
+fi
+
+# Launches TERArium
 if [[ ${1} == "up" ]]; then
     start_gateway && \
     start_hmi-server && \
@@ -22,7 +28,7 @@ if [[ ${1} == "up" ]]; then
     exit 0
 fi
 
-# tears down TERArium
+# Tears down TERArium
 if [[ ${1} == "down" ]]; then
     kubectl delete \
     --filename 'gateway-*.yaml' \
@@ -32,26 +38,20 @@ if [[ ${1} == "down" ]]; then
     exit 0
 fi
 
-# displays the status of all services
-if [[ ${1} == "status" ]]; then
-    kubectl get po,svc,configMap
-    exit 0
-fi
-
-# launches only the Gateway and Authentication services
+# Launches only the Gateway and Authentication services
 if [[ ${1} == "dev" ]]; then
     start_gateway
     exit 0
 fi
 
-# launches TERArium without hmi-server
+# Launches TERArium without the hmi-server
 if [[ ${1} == "dev:hmi-server" ]]; then
     start_gateway && \
     start_hmi-client
     exit 0
 fi
 
-# launches TERArium without hmi-client
+# Launches TERArium without the hmi-client
 if [[ ${1} == "dev:hmi-client" ]]; then
     start_gateway && \
     start_hmi-server
@@ -59,10 +59,10 @@ if [[ ${1} == "dev:hmi-client" ]]; then
 fi
 
 echo "Usage:"
-echo "    ${0} status            displays the status of all services"
-echo "    ${0} up                launches TERArium"
-echo "    ${0} down              tears down TERArium"
-echo "    ${0} dev               launches only the Gateway and Authentication services"
-echo "    ${0} dev:hmi-server    launches TERArium without hmi-server"
-echo "    ${0} dev:hmi-client    launches TERArium without hmi-client"
+echo "    ${0} status               Displays the status of all services"
+echo "    ${0} up                   Launches TERArium"
+echo "    ${0} down                 Tears down TERArium"
+echo "    ${0} dev                  Launches only the Gateway and Authentication services"
+echo "    ${0} dev:no-hmi-server    Launches TERArium without the hmi-server"
+echo "    ${0} dev:no-hmi-client    Launches TERArium without the hmi-client"
 
