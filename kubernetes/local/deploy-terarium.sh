@@ -45,14 +45,14 @@ if [[ ${1} == "dev" ]]; then
 fi
 
 # Launches TERArium without the hmi-server
-if [[ ${1} == "dev:hmi-server" ]]; then
+if [[ ${1} == "dev:no-hmi-server" ]]; then
     start_gateway && \
     start_hmi-client
     exit 0
 fi
 
 # Launches TERArium without the hmi-client
-if [[ ${1} == "dev:hmi-client" ]]; then
+if [[ ${1} == "dev:no-hmi-client" ]]; then
     start_gateway && \
     start_hmi-server
     exit 0
