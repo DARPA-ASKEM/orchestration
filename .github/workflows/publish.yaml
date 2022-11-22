@@ -51,7 +51,7 @@ jobs:
     needs:
       - verify
       - tag-generator
-    uses: ./.github/workflows/bake-publish.yml
+    uses: darpa-askem/.github/workflows/bake-publish.yml
     with:
       file: 'docker-bake.hcl'
       group: 'prod'
