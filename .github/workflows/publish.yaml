@@ -24,14 +24,6 @@ jobs:
   lint:
     uses: ./.github/workflows/lint.yml
 
-  # Run yaml file lint
-  lint-yaml:
-    uses: ./.github/workflows/lint-yaml.yml
-
-  # Run docker file lint
-  lint-docker:
-    uses: ./.github/workflows/lint-docker.yml
-
   # 1.0 - Generate a matrix based on all the targets defined in the
   # bake file.
   targets:
@@ -69,8 +61,6 @@ jobs:
     needs:
       - targets
       - lint
-      - lint-yaml
-      - lint-docker
 
     # 2.0 - Build a matrix strategy from the retrieved target list
     strategy:
