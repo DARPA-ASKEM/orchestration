@@ -49,17 +49,11 @@ To have Kubernetes access a private container image or repository it needs to ha
 #### Create Secret
 To create the secret for kubernetes use the following command:
 ```sh
-kubectl create secret docker-registry ghcr-cred \ 
-	--docker-server=<your-registry-server> \
-	--docker-username=<your-name> \
-	--docker-password=<your-pword> \
-	--docker-email=<your-email>
+kubectl create secret docker-registry ghcr-cred --docker-server=ghcr.io --docker-password=$CR_PAT --docker-username=<your-GitHub-username>
 ```
 where:
-- `<your-registry-server>` is `ghcr.io` for the GitHub Registry
-- `<your-name>` is your GitHub username.
-- `<your-pword>` is your GitHub PAT.
-- `<your-email>` is your email (optional)
+- `<your-GitHub-username>` is your GitHub username.
+- `$CR_PAT` is your GitHub PAT.
 
 You have successfully set your credentials in the cluster as a Secret called `ghcr-cred`.
 
