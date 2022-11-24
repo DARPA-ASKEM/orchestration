@@ -18,7 +18,7 @@ spec:
         software.uncharted.terarium: hmi-client
     spec:
       containers:
-        - image: ghcr.io/darpa-askem/hmi-client:0.0.0
+        - image: ghcr.io/darpa-askem/hmi-client:latest
           name: hmi-client
           ports:
             - containerPort: 80
