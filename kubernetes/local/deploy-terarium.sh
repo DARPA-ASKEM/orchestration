@@ -7,7 +7,7 @@ function start_gateway() {
 function start_hmi-server() {
     # Wait for Keyclock, the hmi-server test its existence on start
     kubectl rollout status --filename 'gateway-keycloak-*.yaml'
-    kubectl apply --filename 'hmi-server-*.yaml','mock-data-service-*.yaml'
+    kubectl apply --filename 'hmi-server-*.yaml','data-service-*.yaml'
 }
 
 function start_hmi-client() {
@@ -33,7 +33,7 @@ if [[ ${1} == "down" ]]; then
     kubectl delete \
     --filename 'gateway-*.yaml' \
     --filename 'hmi-server-*.yaml' \
-    --filename 'mock-data-service-*.yaml' \
+    --filename 'data-service-*.yaml' \
     --filename 'hmi-client-*.yaml'
     exit 0
 fi
