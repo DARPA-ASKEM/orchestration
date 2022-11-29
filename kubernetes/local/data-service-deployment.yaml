@@ -44,6 +44,3 @@ spec:
         - name: ghcr-cred
       restartPolicy: Always
 status: {}
-
-
-
