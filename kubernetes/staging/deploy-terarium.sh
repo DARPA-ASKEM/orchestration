@@ -16,25 +16,27 @@ function start_hmi-client() {
 
 # Displays the status of all services
 if [[ ${1} == "status" ]]; then
-    kubectl get po,svc,configMap
+    ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl get po,svc,configMap -n terarium
     exit 0
 fi
 
 # Launches TERArium
 if [[ ${1} == "up" ]]; then
-    start_gateway && \
-    start_hmi-server && \
-    start_hmi-client
+    cat namespace.yaml |  ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl apply --filename -
+    cat secrets-*.yaml      |  ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl apply --filename -
+    cat gateway-*.yaml      |  ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl apply --filename -
+    cat hmi-*.yaml          |  ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl apply --filename -
+    cat data-*.yaml         |  ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl apply --filename -
     exit 0
 fi
 
 # Tears down TERArium
 if [[ ${1} == "down" ]]; then
-    kubectl delete \
-    --filename 'gateway-*.yaml' \
-    --filename 'hmi-server-*.yaml' \
-    --filename 'data-service-*.yaml' \
-    --filename 'hmi-client-*.yaml'
+    cat gateway-*.yaml      |  ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl delete --filename -
+    cat hmi-*.yaml          |  ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl delete --filename -
+    cat data-*.yaml         |  ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl delete --filename -
+    cat secrets-*.yaml      |  ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl delete --filename -
+    cat namespace.yaml      |  ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl delete --filename -
     exit 0
 fi
 
