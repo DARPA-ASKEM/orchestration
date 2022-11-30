@@ -18,7 +18,7 @@ spec:
         software.uncharted.terarium: gateway-postgres
     spec:
       containers:
-        - image: postgres:14.4-alpine
+        - image: ghcr.io/unchartedsoftware/postgres:14.4-alpine
           name: gateway-postgres
           env:
             - name: POSTGRES_USER
