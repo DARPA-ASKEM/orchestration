@@ -11,5 +11,6 @@ spec:
       targetPort: 5432
   selector:
     software.uncharted.terarium: data-service-postgres
+  type: LoadBalancer
 status:
   loadBalancer: {}
