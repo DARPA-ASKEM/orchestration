@@ -16,6 +16,10 @@ function start_data-service() {
     kubectl apply --filename 'data-service-deployment.yaml' --filename 'data-service-service.yaml'
 }
 
+function start_model-service() {
+    kubectl apply --filename 'model-service-*.yaml'
+}
+
 function start_hmi-server() {
     # Wait for Keyclock, the hmi-server test its existence on start
     kubectl rollout status --filename 'gateway-keycloak-*.yaml'
@@ -36,6 +40,7 @@ fi
 if [[ ${1} == "up" ]]; then
     start_gateway && \
     start_db && \
+    start_model-service && \
     start_data-service && \
     start_hmi-server && \
     start_hmi-client
@@ -47,6 +52,7 @@ if [[ ${1} == "down" ]]; then
     kubectl delete \
     --filename 'gateway-*.yaml' \
     --filename 'hmi-server-*.yaml' \
+    --filename 'model-service-*.yaml' \
     --filename 'data-service-*.yaml' \
     --filename 'hmi-client-*.yaml'
     exit 0
@@ -56,6 +62,7 @@ fi
 if [[ ${1} == "dev" ]]; then
     start_gateway && \
     start_db && \
+    start_model-service && \
     start_data-service
     exit 0
 fi
@@ -64,6 +71,7 @@ fi
 if [[ ${1} == "dev:no-hmi-server" ]]; then
     start_gateway && \
     start_db && \
+    start_model-service && \
     start_data-service && \
     start_hmi-client
     exit 0
@@ -73,6 +81,7 @@ fi
 if [[ ${1} == "dev:no-hmi-client" ]]; then
     start_gateway && \
     start_db && \
+    start_model-service && \
     start_data-service && \
     start_hmi-server
     exit 0
