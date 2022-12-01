@@ -13,13 +13,13 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   lintYaml:
     name: Lint YAML Files
-    uses: ./.github/workflows/lint-yaml.yml
+    uses: ./.github/workflows/lint-yaml.yaml
     with:
       strict: false
 
   lintDocker:
     name: Lint Docker Files
-    uses: ./.github/workflows/lint-docker.yml
+    uses: ./.github/workflows/lint-docker.yaml
 
   kubeconform:
     name: Validate K8 Configs

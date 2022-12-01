@@ -17,7 +17,7 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   # Call the Lint & Format workflow before publishing
   verify:
-    uses: ./.github/workflows/lint.yml
+    uses: ./.github/workflows/lint.yaml
 
   # Generate a more robust tag for the image
   tag-generator:
@@ -51,7 +51,7 @@ jobs:
     needs:
       - verify
       - tag-generator
-    uses: darpa-askem/.github/.github/workflows/bake-publish.yml@main
+    uses: darpa-askem/.github/.github/workflows/bake-publish.yaml@main
     with:
       file: 'docker-bake.hcl'
       group: 'prod'

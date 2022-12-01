@@ -3,7 +3,8 @@
 # By default if run on PR will generate a comment if failures are detected
 
 name: Lint Docker
-on:  # yamllint disable-line rule:truthy
+# yamllint disable-line rule:truthy
+on:
   workflow_call:
     inputs:
       comment:
