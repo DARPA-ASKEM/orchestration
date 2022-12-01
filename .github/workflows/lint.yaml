@@ -3,9 +3,7 @@
 # Linting YAML/YML
 
 name: Lint & Format
-on:
-  workflow_call:
-
+on:  # yamllint disable-line rule:truthy
   push:
     branches: ['main']
   pull_request:

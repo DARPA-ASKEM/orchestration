@@ -3,7 +3,7 @@
 # By default if run on PR will generate a comment if failures are detected
 
 name: Lint YAML
-on:
+on:  # yamllint disable-line rule:truthy
   workflow_call:
     inputs:
       comment:
