@@ -21,8 +21,6 @@ spec:
         - image: ghcr.io/darpa-askem/data-service:latest
           name: data-service
           env:
-            - name: data-service
-              value: host.docker.internal
             - name: SQL_URL
               value: data-service-postgres
             - name: SQL_PORT
