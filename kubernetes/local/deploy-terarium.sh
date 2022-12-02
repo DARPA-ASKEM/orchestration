@@ -67,38 +67,23 @@ if [[ ${1} == "dev" ]]; then
     exit 0
 fi
 
-# Launches TERArium without the hmi-server
-if [[ ${1} == "dev:no-hmi-server" ]]; then
-    start_gateway && \
-    start_db && \
-    start_model-service && \
-    start_data-service && \
-    start_hmi-client
-    exit 0
-fi
-
-# Launches TERArium without the hmi-client
-if [[ ${1} == "dev:no-hmi-client" ]]; then
-    start_gateway && \
-    start_db && \
-    start_model-service && \
-    start_data-service && \
-    start_hmi-server
-    exit 0
-fi
-
 # Launches only the Gateway and Authentication services
 if [[ ${1} == "auth-only" ]]; then
     start_gateway
     exit 0
 fi
 
+# Stop the specified service only. i.e. stop hmi-client
+if [[ ${1} == "stop" ]]; then
+    kubectl delete --filename "$2-*.yaml"
+    exit 0
+fi
+
+
 echo "Usage:"
 echo "    ${0} status               Displays the status of all services"
 echo "    ${0} up                   Launches TERArium"
 echo "    ${0} down                 Tears down TERArium"
 echo "    ${0} dev                  Launches TERArium without the hmi-server and hmi-client"
-echo "    ${0} dev:no-hmi-server    Launches TERArium without the hmi-server"
-echo "    ${0} dev:no-hmi-client    Launches TERArium without the hmi-client"
 echo "    ${0} gateway              Launches only the Gateway and Authentication services"
-
+echo "    ${0} stop [service]       Stop the specified service only. i.e. stop hmi-client"
