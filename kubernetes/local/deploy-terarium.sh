@@ -88,7 +88,7 @@ if [[ ${1} == "dev:no-hmi-client" ]]; then
 fi
 
 # Launches only the Gateway and Authentication services
-if [[ ${1} == "auth-only" ]]; then
+if [[ ${1} == "gateway" ]]; then
     start_gateway
     exit 0
 fi
