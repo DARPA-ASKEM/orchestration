@@ -41,11 +41,13 @@ Running `./deploy-terarium.sh status` will show the status of the various TERAri
 
 To bring the TERArium stack down, simply run `./deploy-terarium.sh down` and all the services will be torn down.
 
+To stop only one service, for example to work on the hmi-client, run `./deploy-terarium.sh stop hmi-client`.
+Or for the _Data Service_ `./deploy-terarium.sh stop data-service`.
+
 To only launch the services you need:
 ```shell
-$ ./deploy-terarium.sh dev                  # Launches only the Gateway and Authentication services
-$ ./deploy-terarium.sh dev:no-hmi-server    # Launches TERArium without the hmi-server
-$ ./deploy-terarium.sh dev:no-hmi-client    # Launches TERArium without the hmi-client
+$ ./deploy-terarium.sh dev                  # Launches TERArium without the hmi-server and hmi-client
+$ ./deploy-terarium.sh stop hmi-client      # Stop the hmi-client
 ```
 
 ### Private Registries
