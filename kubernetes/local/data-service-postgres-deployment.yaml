@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium: data-service-postgres
+  name: data-service-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium: data-service-postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium: data-service-postgres
+    spec:
+      containers:
+        - image: ghcr.io/darpa-askem/data-service-dev-db:latest
+          name: data-service-postgres
+          env:
+            - name: POSTGRES_USER
+              value: dev
+            - name: POSTGRES_PASSWORD
+              value: dev
+            - name: POSTGRES_DB
+              value: askem
+          ports:
+            - containerPort: 5432
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}
