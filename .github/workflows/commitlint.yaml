@@ -5,6 +5,7 @@
 #   See: https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional
 
 name: Lint PR Commit Messages
+# yamllint disable-line rule:truthy
 on:
   pull_request:
     types: ['opened', 'edited', 'reopened', 'synchronize']
@@ -29,4 +30,4 @@ jobs:
       - name: Lint the PR message
         uses: JulienKode/pull-request-name-linter-action@8c05fb989d9f156ce61e33754f9802c9d3cffa58
         with:
-          configuration-path: ./.commitlintrc.yml
+          configuration-path: ./.commitlintrc.yaml
