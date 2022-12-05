@@ -44,4 +44,4 @@ jobs:
         uses: docker://ghcr.io/yannh/kubeconform:master
         with:
           entrypoint: '/kubeconform'
-          args: '-summary -output json -ignore-filename-patterrn ./kubernetes/staging ./kubernetes'
+          args: '-summary -output json -ignore-filename-pattern ./kubernetes/staging ./kubernetes'
