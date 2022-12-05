@@ -23,10 +23,14 @@ spec:
           env:
             - name: data-service
               value: host.docker.internal
-            - name: keycloak-service
-              value: host.docker.internal
             - name: oidc-secret
               value: jtbQhs6SlfynqJaygVpwav2kLzAme2b4
+            - name: keycloak-service-protocol
+              value: http
+            - name: keycloak-service-fqdn
+              value: host.docker.internal
+            - name: keycloak-service-port
+              value: :8079
           ports:
             - containerPort: 3000
           resources: {}
