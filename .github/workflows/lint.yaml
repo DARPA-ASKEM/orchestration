@@ -10,6 +10,10 @@ on: # yamllint disable-line rule:truthy
   pull_request:
     branches: ['main']
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lintYaml:
     name: Lint YAML Files
