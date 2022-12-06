@@ -44,3 +44,6 @@ fi
 echo "Usage:"
 echo "    ${0} up      Launch TERArium"
 echo "    ${0} down    Tear-down TERArium"
+echo "    ${0} status  Display status of running TERArium"
+echo "    ${0} decrypt Decrypt secret files"
+echo "    ${0} encrypt Encrypt secret files"
