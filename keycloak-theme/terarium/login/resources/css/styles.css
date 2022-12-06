@@ -1,246 +1,191 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
-/* @import url('../../keycloak/lib/zocial/zocial.css'); */
 
-html {
-  --un-color-accent-darker: #133013ff;
+:root {
+    --un-color-accent-darker: #133013ff;
 	--un-color-accent-dark: #1C5A1Cff;
 	--un-color-accent: #2D8E2Dff;
 	--un-color-accent-light: #92E192ff;
 	--un-color-accent-lighter: #E4FAE4ff;
+
+    /* Uncharted Design Tokens */
+    /* https://github.com/unchartedsoftware/design-tokens/blob/main/build/css/uncharted-tokens.css */
+    
+    --un-color-black-100: #020203ff;
+    --un-color-black-90: #252526ff;
+    --un-color-black-80: #363738ff;
+    --un-color-black-70: #48494aff;
+    --un-color-black-60: #5a5b5cff;
+    --un-color-black-50: #747576ff;
+    --un-color-black-40: #9c9d9eff;
+    --un-color-black-30: #b3b4b5ff;
+    --un-color-black-20: #cacbccff;
+    --un-color-black-10: #e3e4e6ff;
+    --un-color-black-5: #f0f1f2ff;
+    --un-color-white: #ffffffff;
+    
+    --un-color-feedback-danger-darker: #3f1515ff;
+    --un-color-feedback-danger-dark: #840d0dff;
+    --un-color-feedback-danger: #de1b1bff;
+    --un-color-feedback-danger-light: #f9aeaeff;
+    --un-color-feedback-danger-lighter: #faf0f0ff;
+
+    --un-font-xlarge: 400 1.125rem/1.75rem IBM Plex Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --un-font-large: 400 1rem/1.5rem IBM Plex Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --un-font-body: 400 0.875rem/1.25rem IBM Plex Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --un-font-small: 400 0.75rem/1rem IBM Plex Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; 
+
+    --un-color-body-text-disabled: #747576ff;
+    --un-color-body-text-secondary: #48494aff;
+    --un-color-body-text-primary: #020203ff;
 }
 
-body {
-    /* font-family: ProximaNova, sans-serif;
-    font-family: BatterSeaSans, sans-serif; */
-    font-family: 'IBM Plex Sans', sans-serif;
-    margin: 0px;
+/* Hide unwanted element */
+#kc-header,
+hr {
+   display: none;
 }
 
-/*Get rid of keycloak title*/
-div#kc-header-wrapper {
-    display: none;
-}
+/* Reset Keycloack template CSS */'
 
-/*title banner size and colour*/
-div#kc-header {
-    width:100%;
-    height: 60px;
-    background-color: white;
-    background-image: url('../img/logo.png');
-    background-repeat: no-repeat;
-    background-size: 180px;
-    background-position: 2.5rem center;
-}
-
-/* Change content to change the title of the page
-div#kc-header::after {
-}*/
-
-.card-pf {
-    border-color: var(--un-color-accent);
-    margin: auto 2.5rem auto auto;
-    max-width: 400px;
+.login-pf body {
+    background: none;
 }
 
 .login-pf-page {
-    padding: 0%;
+    padding-top: 20px;
+    max-width: 25rem;
 }
 
-.login-pf body {
-    background: url("../img/terarium.svg") no-repeat -40% top fixed #f0f0f0;
-    background-size: 80%;
+
+/* TERArium design */
+
+body {    
+    color: var(--un-color-body-text-primary);
+    font: var(--un-font-body);
+    margin: 0;
+    min-height: 100vh;
 }
 
-@media (max-width: 767px) {
-    .login-pf-page .login-pf-page-header {
-        margin-bottom: 0%;
+@media (min-width: 750px) {
+    body {
+        display: flex;
     }
+}
 
-    .login-pf body {
-        background-image: none;
+aside,
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2em;
+}
+
+@media (min-width: 750px) {
+    aside,
+    main {
+        padding: 5vw;
     }
 }
 
-.login-pf a:hover {
-    color: var(--un-color-accent-darker)
+main {
+    flex-grow: 1;
 }
 
-.login-pf a {
-    color: var(--un-color-accent);
+aside {
+    background-color: var(--un-color-accent-lighter);
 }
 
-div#kc-form-options {
-    display: none;
+aside img {
+    max-width: 12rem;
+    display: block;
+    margin-bottom: 2rem;
 }
 
-/* header, #kc-content {
-    color: var(--uncharted-dark-gray);
-    margin: 2rem 3rem;
-} */
+aside p {
+    max-width: 33ch;
+}
+
+@media (min-width: 900px) {
+    aside p {
+        font: var(--un-font-xlarge);
+        margin: 1em 0 0;
+    }
+}
 
 h1 {
     font-weight: normal;
-    margin-bottom: 0%;
-}
-
-a {
-    font-weight: bold;
-}
-
-/* div#kc-form {
-} */
-
-form#kc-form-login {
-    margin-top: 3rem;
+    margin-bottom: 1em;
+    margin-top: 0;
 }
 
 /* label change Username, Password text*/
-div#kc-form label {
+label {
     display: block;
-    color: var(--un-color-accent-darker);
-    font-size: small;
+    color: var(--un-color-body-text-secondary);
+    margin-bottom: .33em;
+    margin-top: 1.66em;
 }
 
-/*fields and button*/
-input[type=text], input[type=password], input[type=submit] {
+input {
     box-sizing: border-box;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1rem;
-    border-radius: 3px;
+    color: var(--un-color-body-text-primary);
+    cursor: pointer;
+    font: var(--un-font-body);
+    border-radius: 4px;
+    width: 100%;
 }
 
-/*fields*/
-input[type=text], input[type=password] {
-    background-color: white;
-    padding: 10px;
+input[type=text],
+input[type=password] {
+    background-color: var(--un-color-white);
+    padding: .66em;
     border: 1px solid gray;
 }
 
-/*button*/
 input[type=submit].pf-c-button.pf-m-primary {
     border: none;
     background-color: var(--un-color-accent);
-    color: white;
-    font-weight: bold;
-    margin-top: 2rem;
-    padding: 15px;
+    color: var(--un-color-white);
+    padding: 0.66em;
 }
 
-input[type=submit]:hover.pf-c-button.pf-m-primary {
-    cursor: pointer;
+input[type=submit].pf-c-button.pf-m-primary:hover {
     background-color: var(--un-color-accent-light);
 }
 
-span#input-error {
+input[type=submit].pf-c-button.pf-m-primary:active {
+    background-color: var(--un-color-accent-dark);
+}
+
+#input-error {
     display: block;
-    color: darkred;
-    font-size: 1rem;
+    color: var(--un-color-feedback-danger);
 }
 
-/* Could be useful for later */
-/*
-div#social-login {
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
-    float: right;
-    width: 150px;
-    padding: 20px 0 200px 40px;
+/* Social logins */
+#kc-social-providers {
+    margin-top:  5em;
 }
 
-div.social-login span {
-    display: none;
-}
-
-a.zocial {
-    border: none;
-    background: -webkit-linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0.1)) !important;
-    background: -moz-linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0.1)) !important;
-    background: -ms-linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0.1)) !important;
-    background: -o-linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0.1)) !important;
-    box-shadow: 0px 0px 6px rgba(0,0,0,0.5);
-    color: rgba(0,0,0,0.6);
-    width: 130px;
-    text-shadow: none;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
-}
-
-div#kc-info {
-}
-
-div#info-area {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    margin-top: 45px;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 20px;
-    width: 99%;
-}
-
-div#info-area p {
-    margin-right: 30px;
-    display: inline;
-    text-shadow: none;
-    font-size: 20px;
-}
-
-div#kc-form-options div {
-    display: inline-block;
-    margin-right: 20px;
-    font-size: 25px;
-}
-
-div#kc-form-options div label {
-    font-size: 20px;
-}
-
-div#kc-feedback {
-    box-shadow: 0px 0px 6px rgba(0,0,0,0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-}
-
-div#kc-feedback-wrapper {
-    padding: 1em;
-}
-
-div.feedback-success {
-    background-color: rgba(155,155,255,0.1);
-}
-
-div.feedback-warning {
-    background-color: rgba(255,175,0,0.1);
-}
-
-div.feedback-error {
-    background-color: rgba(255,0,0,0.1);
-}
-
-div#kc-registration {
-    color: rgba(255, 255, 255, 0.7) !important;
-    font-size: 1.8em;
-    margin-bottom: 20px;
-    margin-top: 2em;
-}
-
-div#kc-social-providers ul {
+#kc-social-providers ul {
     list-style: none;
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 
-div#kc-social-providers ul li {
-    margin-bottom: 20px;
+
+#kc-social-providers a {
+    border: 1px solid var(--un-color-black-40);
+    display: block;
+    margin-top: 1rem;
+    color: black;
+    text-decoration: none;
+    padding: 1em;
+    border-radius: 4px;
 }
 
-div#kc-social-providers ul li span {
-    display: inline;
-    width: 100px;
+#kc-social-providers a:hover,
+#kc-social-providers a:active {
+    --pf-c-button--m-control--after--BorderBottomColor:  var(--un-color-accent);
 }
-*/
+
