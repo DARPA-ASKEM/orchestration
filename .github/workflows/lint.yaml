@@ -10,16 +10,20 @@ on: # yamllint disable-line rule:truthy
   pull_request:
     branches: ['main']
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   lintYaml:
     name: Lint YAML Files
-    uses: ./.github/workflows/lint-yaml.yaml
+    uses: darpa-askem/.github/.github/workflows/lint-yaml.yaml@main
     with:
       strict: false
 
   lintDocker:
     name: Lint Docker Files
-    uses: ./.github/workflows/lint-docker.yaml
+    uses: darpa-askem/.github/.github/workflows/lint-docker.yaml@main
 
   kubeconform:
     name: Validate K8 Configs
