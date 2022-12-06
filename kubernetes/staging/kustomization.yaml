@@ -6,7 +6,6 @@ resources:
 - data-service-graphdb-deployment.yaml
 - data-service-graphdb-service.yaml
 - gateway-httpd-deployment.yaml
-- gateway-httpd-ingress.yaml
 - gateway-httpd-service.yaml
 - gateway-keycloak-deployment.yaml
 - gateway-keycloak-service.yaml
