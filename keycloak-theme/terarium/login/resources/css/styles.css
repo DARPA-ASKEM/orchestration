@@ -9,118 +9,107 @@
 
     /* Uncharted Design Tokens */
     /* https://github.com/unchartedsoftware/design-tokens/blob/main/build/css/uncharted-tokens.css */
+    
+    --un-color-white: #ffffffff;
+    
+    --un-color-feedback-danger-darker: #3f1515ff;
+    --un-color-feedback-danger-dark: #840d0dff;
+    --un-color-feedback-danger: #de1b1bff;
+    --un-color-feedback-danger-light: #f9aeaeff;
+    --un-color-feedback-danger-lighter: #faf0f0ff;
+
     --un-font-xlarge: 400 1.125rem/1.75rem IBM Plex Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --un-font-large: 400 1rem/1.5rem IBM Plex Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --un-font-body: 400 0.875rem/1.25rem IBM Plex Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --un-font-small: 400 0.75rem/1rem IBM Plex Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; 
+
+    --un-color-body-text-disabled: #747576ff;
+    --un-color-body-text-secondary: #48494aff;
+    --un-color-body-text-primary: #020203ff;
 }
 
-body {
+/* Hide unwanted element */
+#kc-header {
+   display: none;
+}
+
+body {    
+    color: var(--un-color-body-text-primary);
+    display: flex;
     font: var(--un-font-body);
     margin: 0;
+    min-height: 100vh;
 }
 
-/*Get rid of keycloak title*/
-div#kc-header-wrapper,
-div#kc-header,
-.login-pf-page-header {
-    display: none;
-}
-
-.login-pf-page {
+aside,
+main {
     display: flex;
-    align-items: center;
-    height: 100%;
-}
-
-.login-pf-page::before {
-    content: "Welcome to theknowledge-modeling-simulationecosystem built for researchers.Empowered with the AI approachesand tools needed for the agile creation,sustainment, and enhancement ofcomplex models and simulators thatinform decision-making in diverse missionsand scientific domains.Evaluate and contribute toan accelerating scientific landscape.";
-    display: flex;
-    font-size: 1rem;
-    width: 50%;
-    height: 100%;
-    justify-content: center;
     flex-direction: column;
-    background: var(--un-color-accent-lighter);
-    padding: 2rem;
+    justify-content: center;
+    padding: 4em;
 }
 
-.login-pf body {
-    background: none;
+aside {
+    background-color: var(--un-color-accent-lighter);
 }
 
-@media (max-width: 767px) {
-    .login-pf-page .login-pf-page-header {
-        margin-bottom: 0%;
-    }
-
-    .login-pf body {
-        background: none;
-    }
+aside img {
+    max-width: 12rem;
+    display: block;
+    margin-bottom: 2rem;
 }
 
-.login-pf a:hover {
-    color: var(--un-color-accent-darker)
-}
-
-.login-pf a {
-    color: var(--un-color-accent);
-}
-
-.card-pf {
-    border: none;
-}
-
-div#kc-form-options {
-    display: none;
+aside p {
+    font: var(--un-font-xlarge);
+    margin: 1em 0 0;
+    max-width: 33ch;
 }
 
 h1 {
     font-weight: normal;
-    margin-bottom: 0%;
-}
-
-form#kc-form-login {
-    margin-top: 3rem;
 }
 
 /* label change Username, Password text*/
-div#kc-form label {
+label {
     display: block;
-    color: var(--un-color-accent-darker);
-    font-size: small;
+    color: var(--un-color-body-text-secondary);
+    margin-bottom: .33em;
+    margin-top: 1.66em;
 }
 
-/*fields and button*/
-input[type=text], input[type=password], input[type=submit] {
+input {
     box-sizing: border-box;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1rem;
-    border-radius: 3px;
+    color: var(--un-color-body-text-primary);
+    cursor: pointer;
+    font: var(--un-font-body);
+    border-radius: 4px;
+    width: 100%;
 }
 
-/*fields*/
-input[type=text], input[type=password] {
-    background-color: white;
-    padding: 10px;
+input[type=text],
+input[type=password] {
+    background-color: var(--un-color-white);
+    padding: .66em;
     border: 1px solid gray;
 }
 
-/*button*/
-input[type=submit].pf-c-button.pf-m-primary {
+input[type=submit] {
     border: none;
     background-color: var(--un-color-accent);
-    color: white;
-    cursor: pointer;
+    color: var(--un-color-white);
+    margin-top: 2em;
     padding: 0.66em;
 }
 
-input[type=submit]:hover.pf-c-button.pf-m-primary {
+input[type=submit]:hover {
     background-color: var(--un-color-accent-light);
 }
 
-span#input-error {
+input[type=submit]:active {
+    background-color: var(--un-color-accent-dark);
+}
+
+#input-error {
     display: block;
-    color: darkred;
-    font-size: 1rem;
+    color: var(--un-color-feedback-danger);
 }
