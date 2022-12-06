@@ -73,13 +73,13 @@ if [[ ${1} == "gateway" ]]; then
     exit 0
 fi
 
-# Start the specified service only. i.e. stop hmi-client
+# Start the specified service only. i.e. start model-service
 if [[ ${1} == "start" ]]; then
     kubectl apply --filename "$2-*.yaml"
     exit 0
 fi
 
-# Stop the specified service only. i.e. stop hmi-client
+# Stop the specified service only. i.e. stop hmi-server
 if [[ ${1} == "stop" ]]; then
     kubectl delete --filename "$2-*.yaml"
     exit 0
