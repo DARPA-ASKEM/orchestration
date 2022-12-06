@@ -73,6 +73,12 @@ if [[ ${1} == "gateway" ]]; then
     exit 0
 fi
 
+# Start the specified service only. i.e. stop hmi-client
+if [[ ${1} == "start" ]]; then
+    kubectl apply --filename "$2-*.yaml"
+    exit 0
+fi
+
 # Stop the specified service only. i.e. stop hmi-client
 if [[ ${1} == "stop" ]]; then
     kubectl delete --filename "$2-*.yaml"
@@ -86,4 +92,5 @@ echo "    ${0} up                   Launches TERArium"
 echo "    ${0} down                 Tears down TERArium"
 echo "    ${0} dev                  Launches TERArium without the hmi-server and hmi-client"
 echo "    ${0} gateway              Launches only the Gateway and Authentication services"
-echo "    ${0} stop [service]       Stop the specified service only. i.e. stop hmi-client"
+echo "    ${0} start [service]      Start the specified service only. i.e. start model-service"
+echo "    ${0} stop [service]       Stop the specified service only. i.e. stop hmi-server"
