@@ -7,15 +7,32 @@ elif [ "$unamestr" = 'FreeBSD' ] || [ "$unamestr" = 'Darwin' ]; then
   export $(grep -v '^#' .env | xargs -0)
 fi
 
+SECRET_FILES=( "secrets*.yaml" "gateway/keycloak/certificates/*.pem" "gateway/keycloak/realm/*.json" )
+
 decrypt() {
-    for SECRET_FILE in `ls -1 secrets*.yaml`; do
+    SECRET_FILE=${1}
+    if [[ ! -z ${SECRET_FILE} ]]; then
+        echo "decrypt on file ${SECRET_FILE}"
         sops --decrypt --in-place ${SECRET_FILE}
+        return
+    fi
+
+    DECRYPTED_FILES=()
+    for LOCATION in ${SECRET_FILES[@]}; do
+        for SECRET_FILE in `ls -1 ${LOCATION}`; do
+            echo "decrypting file ${SECRET_FILE}"
+            sops --decrypt --in-place ${SECRET_FILE}
+            STATUS=$?
+            if [[ ${STATUS} -eq 0 ]]; then
+                DECRYPTED_FILES+=( ${SECRET_FILE} )
+            fi
+        done
     done
-    for SECRET_FILE in `ls -1 gateway/keycloak/certificates/*.pem`; do
-        sops --decrypt --in-place ${SECRET_FILE}
-    done
-    for SECRET_FILE in `ls -1 gateway/keycloak/realm/*.json`; do
-        sops --decrypt --in-place ${SECRET_FILE}
+}
+
+restore() {
+    for SECRET_FILE in ${DECRYPTED_FILES[@]}; do
+        git restore ${SECRET_FILE}
     done
 }
 
@@ -78,10 +95,12 @@ case ${COMMAND} in
     up)
         decrypt
         kubectl kustomize . | ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl apply --filename -
+        restore
         ;;
     down)
         decrypt
         kubectl kustomize . | ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl delete --filename -
+        restore
         ;;
     status)
         ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl get po,svc,configMap -n terarium
@@ -91,10 +110,10 @@ case ${COMMAND} in
         cat $FILE | ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl apply -f -
         ;;
     decrypt)
-        decrypt
+        decrypt $FILE
         ;;
     encrypt)
-        encrypt
+        encrypt $FILE
         ;;
     help)
         echo "
@@ -102,7 +121,7 @@ NAME
     dt - deploy TERArium
 
 SYNOPSIS
-    dt [up | down | replace --file <yaml> | status | decrypt | encrypt]
+    dt [up | down | replace --file <yaml> | status | decrypt [--file <file>] | encrypt [--file <file>]]
 
 DESCRIPTION
   Launch commands:
@@ -116,7 +135,7 @@ DESCRIPTION
     decrypt           Decrypt secrets for editing
 
   Options: 
-    -f|--file <yaml>  the file to be replaced
+    -f|--file <file>  the file to be replaced, encrypted, or decrypted
 
   Environment Variables will be read from a '.env' file, the following can be set
     AGE_PUBLIC_KEY    the 'askem.agekey' file's public key
