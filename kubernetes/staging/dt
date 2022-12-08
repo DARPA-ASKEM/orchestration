@@ -1,15 +1,29 @@
 #!/bin/bash
+AGE_PUBLIC_KEY=age1q5q7lt6twttye7h5dx4zu0eek04pu6szqfx28w00vq3z6nmlc9dq7md4xd
+export SOPS_AGE_KEY_FILE=askem.agekey
 
 decrypt() {
-    ansible-vault decrypt --vault-id ~/askem-vault-id.txt secrets*.yaml
-    ansible-vault decrypt --vault-id ~/askem-vault-id.txt gateway/keycloak/certificates/*.pem
-    ansible-vault decrypt --vault-id ~/askem-vault-id.txt gateway/keycloak/realm/*.json
+    for SECRET_FILE in `ls -1 secrets*.yaml`; do
+        sops --decrypt --in-place ${SECRET_FILE}
+    done
+    for SECRET_FILE in `ls -1 gateway/keycloak/certificates/*.pem`; do
+        sops --decrypt --in-place ${SECRET_FILE}
+    done
+    for SECRET_FILE in `ls -1 gateway/keycloak/realm/*.json`; do
+        sops --decrypt --in-place ${SECRET_FILE}
+    done
 }
 
 encrypt() {
-    ansible-vault encrypt --vault-id ~/askem-vault-id.txt secrets*.yaml
-    ansible-vault encrypt --vault-id ~/askem-vault-id.txt gateway/keycloak/certificates/*.pem
-    ansible-vault encrypt --vault-id ~/askem-vault-id.txt gateway/keycloak/realm/*.json
+    for SECRET_FILE in `ls -1 secrets*.yaml`; do
+        sops --age=${AGE_PUBLIC_KEY} --encrypt --encrypted-regex '^(data|stringData)$' --in-place ${SECRET_FILE}
+    done
+    for SECRET_FILE in `ls -1 gateway/keycloak/certificates/*.pem`; do
+        sops --age=${AGE_PUBLIC_KEY} --encrypt --in-place ${SECRET_FILE}
+    done
+    for SECRET_FILE in `ls -1 gateway/keycloak/realm/*.json`; do
+        sops --age=${AGE_PUBLIC_KEY} --encrypt --in-place ${SECRET_FILE}
+    done
 }
 
 # Displays the status of all services
