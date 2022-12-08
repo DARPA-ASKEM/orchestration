@@ -1,6 +1,11 @@
 #!/bin/bash
-AGE_PUBLIC_KEY=age1q5q7lt6twttye7h5dx4zu0eek04pu6szqfx28w00vq3z6nmlc9dq7md4xd
-export SOPS_AGE_KEY_FILE=askem.agekey
+
+unamestr=$(uname)
+if [ "$unamestr" = 'Linux' ]; then
+  export $(grep -v '^#' .env | xargs -d '\n')
+elif [ "$unamestr" = 'FreeBSD' ] || [ "$unamestr" = 'Darwin' ]; then
+  export $(grep -v '^#' .env | xargs -0)
+fi
 
 decrypt() {
     for SECRET_FILE in `ls -1 secrets*.yaml`; do
@@ -26,38 +31,96 @@ encrypt() {
     done
 }
 
-# Displays the status of all services
-if [[ ${1} == "status" ]]; then
-    ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl get po,svc,configMap -n terarium
-    exit 0
+while [[ $# -gt 0 ]]; do
+    case ${1} in
+        -f|--file)
+            FILE="$2"
+            shift
+            ;;
+        -h|--help)
+            COMMAND="help"
+            ;;
+        up)
+            COMMAND="up"
+            ;;
+        down)
+            COMMAND="down"
+            ;;
+        status)
+            COMMAND="status"
+            ;;
+        encrypt)
+            COMMAND="encrypt"
+            ;;
+        decrypt)
+            COMMAND="decrypt"
+            ;;
+        replace)
+            COMMAND="replace"
+            ;;
+        *)
+            echo "dt: illegal option"
+            break
+            ;;
+    esac
+    shift
+done
+
+# Default COMMAND to help if empty
+COMMAND=${COMMAND:-help}
+
+if [[ ${COMMAND} == "replace" ]] && [[ -z ${FILE} ]]; then
+    echo "dt: replace command missing filename"
+    COMMAND="help";
 fi
 
-if [[ ${1} == "decrypt" ]]; then
-    decrypt
-    exit 0
-fi
-if [[ ${1} == "encrypt" ]]; then
-    encrypt
-    exit 0
-fi
+case ${COMMAND} in
+    up)
+        decrypt
+        kubectl kustomize . | ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl apply --filename -
+        ;;
+    down)
+        decrypt
+        kubectl kustomize . | ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl delete --filename -
+        ;;
+    status)
+        ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl get po,svc,configMap -n terarium
+        ;;
+    replace)
+        cat $FILE | ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl delete -f -
+        cat $FILE | ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl apply -f -
+        ;;
+    decrypt)
+        decrypt
+        ;;
+    encrypt)
+        encrypt
+        ;;
+    help)
+        echo "
+NAME
+    dt - deploy TERArium
 
-# Launches TERArium
-if [[ ${1} == "up" ]]; then
-    decrypt
-    kubectl kustomize . | ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl apply --filename -
-    exit 0
-fi
+SYNOPSIS
+    dt [up | down | replace --file <yaml> | status | decrypt | encrypt]
 
-# Tears down TERArium
-if [[ ${1} == "down" ]]; then
-    decrypt
-    kubectl kustomize . | ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl delete --filename -
-    exit 0
-fi
+DESCRIPTION
+  Launch commands:
+    up                Launches the entire TERArium stack
+    down              Tears down the entire TERArium stack
+    replace           Replaces a deployed yaml file with the latest
 
-echo "Usage:"
-echo "    ${0} up      Launch TERArium"
-echo "    ${0} down    Tear-down TERArium"
-echo "    ${0} status  Display status of running TERArium"
-echo "    ${0} decrypt Decrypt secret files"
-echo "    ${0} encrypt Encrypt secret files"
+  Other commands:
+    status            Displays the status of the TERArium cluster
+    encrypt           Encrypt secrets for adding to git repo
+    decrypt           Decrypt secrets for editing
+
+  Options: 
+    -f|--file <yaml>  the file to be replaced
+
+  Environment Variables will be read from a '.env' file, the following can be set
+    AGE_PUBLIC_KEY    the 'askem.agekey' file's public key
+    SOPS_AGE_KEY_FILE location of the file 'askem.agekey'
+        "
+        ;;
+esac
