@@ -30,17 +30,17 @@ This project uses GitHub Container Registry as its hub. In order to push and pul
 
 	For more information, see [Creating a personal access token for the command line](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line).
 
-2. Save your personal access token (classic). We recommend saving your token as an environment variable.
+2. Save your personal access token (classic). We recommend saving your username and token as an environment variable.
 
 	```sh
-	$ export CR_PAT=YOUR_TOKEN
+	export USERNAME=[your GitHub username]
+	export CR_PAT=[GitHub Personal Access Token]
 	```
 
 3. Using the CLI for your container type, sign in to the Container registry service at ghcr.io.
 
 	```sh
-	$ echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
-	> Login Succeeded
+	echo $CR_PAT | docker login ghcr.io -u $USERNAME --password-stdin
 	```
 
 ### Kubernetes
@@ -49,10 +49,10 @@ To have Kubernetes access a private container image or repository it needs to ha
 #### Create Secret
 To create the secret for kubernetes use the following command:
 ```sh
-kubectl create secret docker-registry ghcr-cred --docker-server=ghcr.io --docker-password=$CR_PAT --docker-username=<your-GitHub-username>
+kubectl create secret docker-registry ghcr-cred --docker-server=ghcr.io --docker-password=$CR_PAT --docker-username=$USERNAME
 ```
-where:
-- `<your-GitHub-username>` is your GitHub username.
+where those values have been defined in the previous step:
+- `$USERNAME` is your GitHub username.
 - `$CR_PAT` is your GitHub PAT.
 
 You have successfully set your credentials in the cluster as a Secret called `ghcr-cred`.
