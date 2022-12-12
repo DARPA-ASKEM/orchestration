@@ -34,6 +34,8 @@ spec:
               value: https
             - name: SERVICE_FQDN
               value: app.staging.terarium.ai
+            - name: KEYCLOAK_ADMIN_FQDN
+              value: admin.staging.terarium.ai
             - name: SERVICE_REDIRECT_URL_PATH
               value: /app/redirect_uri
             - name: OIDC_CRYPTO_PASS_PHRASE
