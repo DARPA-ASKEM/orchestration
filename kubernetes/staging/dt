@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# import enviroment variables (.env file)
 unamestr=$(uname)
 if [ "$unamestr" = 'Linux' ]; then
   export $(grep -v '^#' .env | xargs -d '\n')
@@ -72,9 +73,6 @@ while [[ $# -gt 0 ]]; do
         decrypt)
             COMMAND="decrypt"
             ;;
-        replace)
-            COMMAND="replace"
-            ;;
         *)
             echo "dt: illegal option"
             break
@@ -85,11 +83,6 @@ done
 
 # Default COMMAND to help if empty
 COMMAND=${COMMAND:-help}
-
-if [[ ${COMMAND} == "replace" ]] && [[ -z ${FILE} ]]; then
-    echo "dt: replace command missing filename"
-    COMMAND="help";
-fi
 
 case ${COMMAND} in
     up)
@@ -105,10 +98,6 @@ case ${COMMAND} in
     status)
         ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl get po,svc,configMap -n terarium
         ;;
-    replace)
-        cat $FILE | ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl delete -f -
-        cat $FILE | ssh uncharted-askem-staging-askem-staging-kube-manager-1 sudo kubectl apply -f -
-        ;;
     decrypt)
         decrypt $FILE
         ;;
@@ -121,13 +110,12 @@ NAME
     dt - deploy TERArium
 
 SYNOPSIS
-    dt [up | down | replace --file <yaml> | status | decrypt [--file <file>] | encrypt [--file <file>]]
+    dt [up | down | status | decrypt [--file <file>] | encrypt [--file <file>]]
 
 DESCRIPTION
   Launch commands:
     up                Launches the entire TERArium stack
     down              Tears down the entire TERArium stack
-    replace           Replaces a deployed yaml file with the latest
 
   Other commands:
     status            Displays the status of the TERArium cluster
