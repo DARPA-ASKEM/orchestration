@@ -7,6 +7,6 @@ metadata:
 spec:
   template:
     spec:
-      containers:
+      initContainers:
         - name: gateway-terarium-theme
           imagePullPolicy: IfNotPresent
