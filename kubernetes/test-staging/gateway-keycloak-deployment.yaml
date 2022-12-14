@@ -7,6 +7,54 @@ metadata:
 spec:
   template:
     spec:
+      containers:
+        - name: gateway-keycloak
+          image: docker.uncharted.software/auth/keycloak:local
+          args:
+            - -v
+            - start
+          env:
+            - name: KC_HOSTNAME_ADMIN
+              value: admin.private.local
+            - name: KC_DB_URL_HOST
+              valueFrom:
+                secretKeyRef: null
+                configMapKeyRef:
+                  name: rds-override
+                  key: url
+            - name: KC_DB_USERNAME
+              valueFrom:
+                secretKeyRef: null
+                configMapKeyRef:
+                  name: rds-override
+                  key: username
+            - name: KC_DB_PASSWORD
+              valueFrom:
+                secretKeyRef: null
+                configMapKeyRef:
+                  name: rds-override
+                  key: password
       initContainers:
         - name: gateway-terarium-theme
           imagePullPolicy: IfNotPresent
+        - name : init-gateway-keycloak
+          image: docker.uncharted.software/auth/keycloak:local
+          env:
+            - name: KC_DB_URL_HOST
+              valueFrom:
+                secretKeyRef: null
+                configMapKeyRef:
+                  name: rds-override
+                  key: url
+            - name: KC_DB_USERNAME
+              valueFrom:
+                secretKeyRef: null
+                configMapKeyRef:
+                  name: rds-override
+                  key: username
+            - name: KC_DB_PASSWORD
+              valueFrom:
+                secretKeyRef: null
+                configMapKeyRef:
+                  name: rds-override
+                  key: password

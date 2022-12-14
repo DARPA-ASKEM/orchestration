@@ -10,3 +10,28 @@ spec:
       containers:
         - name: data-service
           imagePullPolicy: IfNotPresent
+          env:
+            - name: SQL_URL
+              valueFrom:
+                secretKeyRef: null
+                configMapKeyRef:
+                  name: rds-override
+                  key: url
+            - name: SQL_PORT
+              valueFrom:
+                secretKeyRef: null
+                configMapKeyRef:
+                  name: rds-override
+                  key: port
+            - name: SQL_USER
+              valueFrom:
+                secretKeyRef: null
+                configMapKeyRef:
+                  name: rds-override
+                  key: username
+            - name: SQL_PASSWORD
+              valueFrom:
+                secretKeyRef: null
+                configMapKeyRef:
+                  name: rds-override
+                  key: password

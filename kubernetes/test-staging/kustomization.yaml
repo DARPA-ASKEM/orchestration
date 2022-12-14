@@ -4,8 +4,12 @@ kind: Kustomization
 namespace: terarium
 resources:
   - ../staging
+  - gateway-postgres-deployment.yaml
+  - gateway-postgres-service.yaml
+  - rds-override.yaml
 patchesStrategicMerge:
   - data-service-deployment.yaml
+  - gateway-httpd-service.yaml
   - gateway-keycloak-deployment.yaml
   - hmi-client-deployment.yaml
   - hmi-server-deployment.yaml

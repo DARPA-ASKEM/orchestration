@@ -96,7 +96,7 @@ case ${COMMAND} in
         restore
         ;;
     status)
-        kubectl get po,svc,configMap -n terarium
+        kubectl get po,svc,configMap,secrets -n terarium
         ;;
     decrypt)
         decrypt $FILE
