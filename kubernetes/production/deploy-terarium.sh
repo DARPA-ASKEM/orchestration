@@ -14,7 +14,7 @@ encrypt() {
 
 # Displays the status of all services
 if [[ ${1} == "status" ]]; then
-    ssh uncharted-askem-prod-askem-staging-kube-manager-1 sudo kubectl get po,svc,configMap -n terarium
+    ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl get po,svc,configMap -n terarium
     exit 0
 fi
 
@@ -30,14 +30,14 @@ fi
 # Launches TERArium
 if [[ ${1} == "up" ]]; then
     decrypt
-    kubectl kustomize . | ssh uncharted-askem-prod-askem-staging-kube-manager-1 sudo kubectl apply --filename -
+    kubectl kustomize . | ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl apply --filename -
     exit 0
 fi
 
 # Tears down TERArium
 if [[ ${1} == "down" ]]; then
     decrypt
-    kubectl kustomize . | ssh uncharted-askem-prod-askem-staging-kube-manager-1 sudo kubectl delete --filename -
+    kubectl kustomize . | ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl delete --filename -
     exit 0
 fi
 

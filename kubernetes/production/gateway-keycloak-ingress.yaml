@@ -3,15 +3,14 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   namespace: terarium
-  name: data-service
+  name: gateway-keycloak
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: instance
-    alb.ingress.kubernetes.io/security-groups: askem-staging-web-private
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:243706056861:certificate/21bdd919-59f3-4bd1-9b5d-6d54490eb0b4
+    alb.ingress.kubernetes.io/security-groups: askem-prod-web-private
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:243706056861:certificate/b8ac3aba-1bf7-4ebe-815b-21657eaf6023
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
-
 spec:
   ingressClassName: alb
   rules:
@@ -21,6 +20,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: data-service
+                name: gateway-keycloak
                 port:
-                  number: 3020
+                  number: 8079
