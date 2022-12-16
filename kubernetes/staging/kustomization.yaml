@@ -1,5 +1,6 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
+namespace: terarium
 kind: Kustomization
 resources:
   - data-service-deployment.yaml
@@ -16,7 +17,6 @@ resources:
   - hmi-server-service.yaml
   - model-service-deployment.yaml
   - model-service-service.yaml
-  - namespace.yaml
   - secrets-dkg.yaml
   - secrets-keycloak-admin-creds.yaml
   - secrets-neo4j-auth.yaml
