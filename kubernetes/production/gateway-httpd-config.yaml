@@ -81,4 +81,3 @@ data:
             Require valid-user
         </Location>
     </VirtualHost>
-
