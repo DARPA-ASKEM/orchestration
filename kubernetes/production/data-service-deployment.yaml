@@ -1,0 +1,66 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium: data-service
+  name: data-service
+  namespace: terarium
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium: data-service
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium: data-service
+    spec:
+      containers:
+        - image: ghcr.io/darpa-askem/data-service:latest
+          name: data-service
+          env:
+            - name: SQL_URL
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: url
+            - name: SQL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: port
+            - name: SQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: username
+            - name: SQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: password
+            - name: DKG_URL
+              valueFrom:
+                secretKeyRef:
+                  name: dkg
+                  key: url
+            - name: DKG_API_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: dkg
+                  key: api-port
+            - name: DKG_DESC_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: dkg
+                  key: desc-port
+          ports:
+            - containerPort: 8000
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}

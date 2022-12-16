@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium: hmi-server
+  name: hmi-server
+  namespace: terarium
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium: hmi-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium: hmi-server
+    spec:
+      containers:
+        - image: ghcr.io/darpa-askem/hmi-server:latest
+          name: hmi-server
+          env:
+            - name: data-service
+              value: data-service
+            - name: keycloak-service-protocol
+              value: https
+            - name: keycloak-service-fqdn
+              value: gateway-keycloak
+            - name: keycloak-service-port
+              value: ""
+            - name: quarkus_http_port
+              value: "8080"
+            - name: oidc-secret
+              valueFrom:
+                secretKeyRef:
+                  name: oidc
+                  key: client_secret
+          ports:
+            - containerPort: 8080
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}
