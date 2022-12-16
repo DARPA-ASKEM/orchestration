@@ -8,7 +8,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: instance
     alb.ingress.kubernetes.io/security-groups: askem-staging-web-private
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:537812167673:certificate/56689125-076b-42e6-b685-37ca2d081c9c
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:243706056861:certificate/21bdd919-59f3-4bd1-9b5d-6d54490eb0b4
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
 spec:
