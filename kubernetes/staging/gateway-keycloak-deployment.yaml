@@ -19,7 +19,7 @@ spec:
         software.uncharted.terarium: gateway-keycloak
     spec:
       containers:
-        - image: ghcr.io/unchartedsoftware/keycloak:0.1.2
+        - image: ghcr.io/unchartedsoftware/keycloak:0.1.3
           name: gateway-keycloak
           args:
             - start
@@ -86,7 +86,7 @@ spec:
           volumeMounts:
             - name: theme-volume
               mountPath: /shared
-        - image: ghcr.io/unchartedsoftware/keycloak:0.1.2
+        - image: ghcr.io/unchartedsoftware/keycloak:0.1.3
           name: init-gateway-keycloak
           args:
             - import
