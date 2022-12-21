@@ -24,4 +24,4 @@ spec:
                   number: 8078
   tls:
     - hosts:
-      - "gateway-httpd.staging.terarium.ai"
+        - "gateway-httpd.staging.terarium.ai"
