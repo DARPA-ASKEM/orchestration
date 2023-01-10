@@ -13,6 +13,8 @@ resources:
   - gateway-keycloak-service.yaml
   - hmi-client-deployment.yaml
   - hmi-client-service.yaml
+  - document-service-deployment.yaml
+  - document-service-service.yaml
   - hmi-server-deployment.yaml
   - hmi-server-service.yaml
   - model-service-deployment.yaml
