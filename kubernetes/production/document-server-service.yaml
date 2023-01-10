@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: document-server
+  name: document-service
 spec:
   ports:
     - name: 3030-tcp
@@ -10,7 +10,7 @@ spec:
       protocol: TCP
       targetPort: 3030
   selector:
-    software.uncharted.terarium: document-server
+    software.uncharted.terarium: document-service
   type: LoadBalancer
 status:
   loadBalancer: {}

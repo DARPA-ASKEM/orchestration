@@ -3,24 +3,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    software.uncharted.terarium: document-server
-  name: document-server
+    software.uncharted.terarium: document-service
+  name: document-service
   namespace: terarium
 spec:
   replicas: 1
   selector:
     matchLabels:
-      software.uncharted.terarium: document-server
+      software.uncharted.terarium: document-service
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        software.uncharted.terarium: document-server
+        software.uncharted.terarium: document-service
     spec:
       containers:
-        - image: ghcr.io/darpa-askem/document-server:latest
-          name: document-server
+        - image: ghcr.io/darpa-askem/document-service:latest
+          name: document-service
           ports:
             - containerPort: 3030
           resources: {}

@@ -20,8 +20,8 @@ function start_model-service() {
     kubectl apply --filename 'model-service-*.yaml'
 }
 
-function start_document-server() {
-    kubectl apply --filename 'document-server-*.yaml'
+function start_document-service() {
+    kubectl apply --filename 'document-service-*.yaml'
 }
 
 function start_hmi-server() {
@@ -46,7 +46,7 @@ if [[ ${1} == "up" ]]; then
     start_db && \
     start_model-service && \
     start_data-service && \
-    start_document-server && \
+    start_document-service && \
     start_hmi-server && \
     start_hmi-client
     exit 0
@@ -57,7 +57,7 @@ if [[ ${1} == "down" ]]; then
     kubectl delete \
     --filename 'gateway-*.yaml' \
     --filename 'hmi-server-*.yaml' \
-    --filename 'document-server-*.yaml' \
+    --filename 'document-service-*.yaml' \
     --filename 'model-service-*.yaml' \
     --filename 'data-service-*.yaml' \
     --filename 'hmi-client-*.yaml'
@@ -96,7 +96,7 @@ echo "Usage:"
 echo "    ${0} status               Displays the status of all services"
 echo "    ${0} up                   Launches TERArium"
 echo "    ${0} down                 Tears down TERArium"
-echo "    ${0} dev                  Launches TERArium without the document-server, hmi-server and hmi-client"
+echo "    ${0} dev                  Launches TERArium without the document-service, hmi-server and hmi-client"
 echo "    ${0} gateway              Launches only the Gateway and Authentication services"
 echo "    ${0} start [service]      Start the specified service only. i.e. start model-service"
 echo "    ${0} stop [service]       Stop the specified service only. i.e. stop hmi-server"
