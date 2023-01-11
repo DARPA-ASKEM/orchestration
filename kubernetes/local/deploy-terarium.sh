@@ -65,15 +65,6 @@ if [[ ${1} == "down" ]]; then
 fi
 
 # Launches only the Gateway and Authentication services
-if [[ ${1} == "dev" ]]; then
-    start_gateway && \
-    start_db && \
-    start_model-service && \
-    start_data-service
-    exit 0
-fi
-
-# Launches only the Gateway and Authentication services
 if [[ ${1} == "gateway" ]]; then
     start_gateway
     exit 0
@@ -96,7 +87,6 @@ echo "Usage:"
 echo "    ${0} status               Displays the status of all services"
 echo "    ${0} up                   Launches TERArium"
 echo "    ${0} down                 Tears down TERArium"
-echo "    ${0} dev                  Launches TERArium without the document-service, hmi-server and hmi-client"
 echo "    ${0} gateway              Launches only the Gateway and Authentication services"
 echo "    ${0} start [service]      Start the specified service only. i.e. start model-service"
 echo "    ${0} stop [service]       Stop the specified service only. i.e. stop hmi-server"
