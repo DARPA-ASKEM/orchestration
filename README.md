@@ -46,8 +46,8 @@ Or for the _Data Service_ `./deploy-terarium.sh stop data-service`.
 
 To only launch the services you need:
 ```shell
-$ ./deploy-terarium.sh dev                  # Launches TERArium without the hmi-server and hmi-client
-$ ./deploy-terarium.sh stop hmi-client      # Stop the hmi-client
+$ ./deploy-terarium.sh up                  # Launches TERArium
+$ ./deploy-terarium.sh stop hmi-client     # Stop the hmi-client
 ```
 
 ### Private Registries
