@@ -1,7 +1,12 @@
 #!/bin/bash
 
 function start_gateway() {
-    kubectl apply --filename 'gateway-*.yaml'
+    kubectl apply --filename 'gateway-httpd-*.yaml'
+    kubectl apply --filename 'gateway-postgres-*.yaml'
+
+    # Wait for the Database to be setup, keycloak needs it
+    kubectl rollout status --filename 'gateway-postgres-*.yaml'
+    kubectl apply --filename 'gateway-keycloak-*.yaml'
 }
 
 function start_db() {
