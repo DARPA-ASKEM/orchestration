@@ -7,6 +7,7 @@ function start_gateway() {
 function start_db() {
 	kubectl apply --filename 'data-service-postgres-*.yaml'
 	kubectl apply --filename 'data-service-graphdb-*.yaml'
+	kubectl apply --filename 'hmi-postgres-*.yaml'
 }
 
 function start_data-service() {
