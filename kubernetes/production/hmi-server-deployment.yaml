@@ -39,6 +39,26 @@ spec:
                 secretKeyRef:
                   name: oidc
                   key: client_secret
+            - name: terarium-db-host
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: url
+            - name: terarium-db-port
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: port
+            - name: terarium-db-user
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: username
+            - name: terarium-db-password
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: password
           ports:
             - containerPort: 8080
           resources: {}
