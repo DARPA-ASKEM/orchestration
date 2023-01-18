@@ -81,7 +81,7 @@ case ${COMMAND} in
         restore
         ;;
     status)
-        ssh uncharted-askem-prod-askem-staging-kube-manager-1 sudo kubectl get po,svc,configMap,deployments,secrets -n terarium
+        ssh uncharted-askem-prod-askem-staging-kube-manager-1 sudo kubectl get configMap,secrets,deployments,po,svc -n terarium
         ;;
     decrypt)
         decrypt $FILE
