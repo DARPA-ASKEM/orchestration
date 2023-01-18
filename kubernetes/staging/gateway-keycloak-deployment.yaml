@@ -19,7 +19,7 @@ spec:
         software.uncharted.terarium: gateway-keycloak
     spec:
       containers:
-        - image: ghcr.io/unchartedsoftware/keycloak:0.1.2
+        - image: ghcr.io/unchartedsoftware/keycloak:0.1.3
           name: gateway-keycloak
           args:
             - start
@@ -58,6 +58,9 @@ spec:
               value: app.staging.terarium.ai
             - name: KC_HOSTNAME_PORT
               value: "443"
+            - name: KC_HOSTNAME_ADMIN_URL
+              #value: https://app.staging.terarium.ai/auth
+              value: https://localhost:8443
             - name: KC_HOSTNAME_PATH
               value: /auth
             - name: KC_HTTP_ENABLED
@@ -86,7 +89,7 @@ spec:
           volumeMounts:
             - name: theme-volume
               mountPath: /shared
-        - image: ghcr.io/unchartedsoftware/keycloak:0.1.2
+        - image: ghcr.io/unchartedsoftware/keycloak:0.1.3
           name: init-gateway-keycloak
           args:
             - import
