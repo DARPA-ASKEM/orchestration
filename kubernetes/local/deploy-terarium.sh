@@ -1,9 +1,5 @@
 #!/bin/bash
 
-function start_gateway() {
-    kubectl apply --filename 'gateway-*.yaml'
-}
-
 # Displays the status of all services
 if [[ ${1} == "status" ]]; then
     kubectl get po,svc,configMap
@@ -24,7 +20,7 @@ fi
 
 # Launches only the Gateway and Authentication services
 if [[ ${1} == "gateway" ]]; then
-    start_gateway
+    kubectl kustomize gateway | kubectl apply --filename -
     exit 0
 fi
 
@@ -45,6 +41,6 @@ echo "Usage:"
 echo "    ${0} status               Displays the status of all services"
 echo "    ${0} up                   Launches TERArium"
 echo "    ${0} down                 Tears down TERArium"
-#echo "    ${0} gateway              Launches only the Gateway and Authentication services"
+echo "    ${0} gateway              Launches only the Gateway and Authentication services"
 echo "    ${0} start [service]      Start the specified service only. i.e. start model-service"
 echo "    ${0} stop [service]       Stop the specified service only. i.e. stop hmi-server"
