@@ -11,4 +11,4 @@ spec:
       protocol: TCP
       targetPort: 8443
   selector:
-    software.uncharted.terarium: gateway-keycloak
+    software.uncharted.terarium/name: gateway-keycloak

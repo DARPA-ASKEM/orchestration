@@ -46,3 +46,7 @@ configMapGenerator:
       - gateway/keycloak/certificates/cert.pem
       - gateway/keycloak/certificates/key.pem
     name: gateway-certificates
+images:
+  - name: keycloak-image
+  - newName: ghcr.io/unchartedsoftware/keycloak
+    newTag: 0.1.2

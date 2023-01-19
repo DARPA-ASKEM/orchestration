@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium/name: data-service
+  name: data-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: data-service
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/component: data
+        software.uncharted.terarium/environment: dev
+        software.uncharted.terarium/tier: services
+        software.uncharted.terarium/name: data-service
+    spec:
+      containers:
+        - image: data-service-image
+          name: data-service
+          ports:
+            - containerPort: 8000
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}

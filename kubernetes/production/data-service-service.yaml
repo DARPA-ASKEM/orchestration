@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       targetPort: 8000
   selector:
-    software.uncharted.terarium: data-service
+    software.uncharted.terarium/name: data-service

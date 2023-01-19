@@ -3,20 +3,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    software.uncharted.terarium: hmi-server
+    software.uncharted.terarium/name: hmi-server
   name: hmi-server
   namespace: terarium
 spec:
   replicas: 1
   selector:
     matchLabels:
-      software.uncharted.terarium: hmi-server
+      software.uncharted.terarium/name: hmi-server
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        software.uncharted.terarium: hmi-server
+        software.uncharted.terarium/name: hmi-server
     spec:
       containers:
         - image: ghcr.io/darpa-askem/hmi-server:latest

@@ -3,20 +3,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    software.uncharted.terarium: data-service
+    software.uncharted.terarium/name: data-service
   name: data-service
   namespace: terarium
 spec:
   replicas: 1
   selector:
     matchLabels:
-      software.uncharted.terarium: data-service
+      software.uncharted.terarium/name: data-service
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        software.uncharted.terarium: data-service
+        software.uncharted.terarium/name: data-service
     spec:
       containers:
         - image: ghcr.io/darpa-askem/data-service:latest

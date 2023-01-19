@@ -15,4 +15,4 @@ spec:
       protocol: TCP
       targetPort: 7687
   selector:
-    software.uncharted.terarium: data-service-graphdb
+    software.uncharted.terarium/name: data-service-graphdb

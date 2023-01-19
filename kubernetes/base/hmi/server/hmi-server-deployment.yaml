@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium/name: hmi-server
+  name: hmi-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: hmi-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/component: server
+        software.uncharted.terarium/environment: dev
+        software.uncharted.terarium/tier: hmi
+        software.uncharted.terarium/name: hmi-server
+    spec:
+      containers:
+        - image: hmi-server-image
+          name: hmi-server
+          ports:
+            - containerPort: 3000
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}

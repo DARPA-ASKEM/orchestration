@@ -11,4 +11,4 @@ spec:
       protocol: TCP
       targetPort: 8888
   selector:
-    software.uncharted.terarium: model-service
+    software.uncharted.terarium/name: model-service

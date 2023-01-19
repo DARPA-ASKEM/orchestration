@@ -11,4 +11,4 @@ spec:
       protocol: TCP
       targetPort: 8080
   selector:
-    software.uncharted.terarium: hmi-server
+    software.uncharted.terarium/name: hmi-server

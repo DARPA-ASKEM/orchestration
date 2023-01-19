@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium/name: gateway-keycloak
+  name: gateway-keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: gateway-keycloak
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: gateway-keycloak
+        software.uncharted.terarium/component: keycloak
+        software.uncharted.terarium/environment: dev
+        software.uncharted.terarium/tier: gateway
+    spec:
+      containers:
+        - image: gateway-keycloak-image
+          name: gateway-keycloak
+          args:
+            - start
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: KC_DB_URL_HOST
+              value: gateway-postgres
+          resources: {}
+      initContainers:
+        - image: gateway-keycloak-image
+          name: init-gateway-keycloak
+          args:
+            - import
+            - --dir
+            - /data
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: KC_DB_URL_HOST
+              value: gateway-postgres
+          resources: {}
+      restartPolicy: Always
+status: {}

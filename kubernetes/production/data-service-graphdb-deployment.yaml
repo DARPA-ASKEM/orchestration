@@ -3,20 +3,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    software.uncharted.terarium: data-service-graphdb
+    software.uncharted.terarium/name: data-service-graphdb
   name: data-service-graphdb
   namespace: terarium
 spec:
   replicas: 1
   selector:
     matchLabels:
-      software.uncharted.terarium: data-service-graphdb
+      software.uncharted.terarium/name: data-service-graphdb
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        software.uncharted.terarium: data-service-graphdb
+        software.uncharted.terarium/name: data-service-graphdb
     spec:
       containers:
         - image: neo4j:latest
