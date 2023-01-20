@@ -25,6 +25,7 @@ spec:
           name: hmi-server
           ports:
             - containerPort: 3000
+          resources: {}
       imagePullSecrets:
         - name: ghcr-cred
       restartPolicy: Always

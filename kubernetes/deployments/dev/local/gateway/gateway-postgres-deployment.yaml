@@ -31,5 +31,7 @@ spec:
           ports:
             - containerPort: 5432
           resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
       restartPolicy: Always
 status: {}
