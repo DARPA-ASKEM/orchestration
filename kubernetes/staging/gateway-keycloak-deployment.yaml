@@ -59,7 +59,6 @@ spec:
             - name: KC_HOSTNAME_PORT
               value: "443"
             - name: KC_HOSTNAME_ADMIN_URL
-              #value: https://app.staging.terarium.ai/auth
               value: https://localhost:8443
             - name: KC_HOSTNAME_PATH
               value: /auth
@@ -95,6 +94,8 @@ spec:
             - import
             - --dir
             - /data
+            - --override
+            - "false"
           ports:
             - containerPort: 8080
               protocol: TCP

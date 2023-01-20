@@ -83,4 +83,8 @@ spec:
             name: gateway-certificates
             defaultMode: 0644
       restartPolicy: Always
+      hostAliases:
+        - ip: "127.0.0.1"
+          hostnames:
+          - "app.staging.terarium.ai"
 status: {}
