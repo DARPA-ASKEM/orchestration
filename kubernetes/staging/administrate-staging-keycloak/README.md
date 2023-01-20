@@ -4,7 +4,7 @@
 
 ### Kubectl Configuration
 
-Run `./admcloak.sh config` to add to your ~/.kube/config file the context and certificate files to execute kubectl commands remotely.
+Run `./admcloak.sh config <user directory>` to add to your ~/.kube/config file the context and certificate files to execute kubectl commands remotely.
 
 ### Kubectl Context Switching
 
