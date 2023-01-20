@@ -86,5 +86,5 @@ spec:
       hostAliases:
         - ip: "127.0.0.1"
           hostnames:
-          - "app.staging.terarium.ai"
+            - "app.staging.terarium.ai"
 status: {}
