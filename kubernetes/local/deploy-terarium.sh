@@ -1,39 +1,5 @@
 #!/bin/bash
 
-function start_gateway() {
-    kubectl apply --filename 'gateway-*.yaml'
-}
-
-function start_db() {
-	kubectl apply --filename 'data-service-postgres-*.yaml'
-	kubectl apply --filename 'data-service-graphdb-*.yaml'
-}
-
-function start_data-service() {
-    # Wait for postgres and graphdb to start
-    kubectl rollout status --filename 'data-service-postgres-*.yaml'
-    kubectl rollout status --filename 'data-service-graphdb-*.yaml'
-    kubectl apply --filename 'data-service-deployment.yaml' --filename 'data-service-service.yaml'
-}
-
-function start_model-service() {
-    kubectl apply --filename 'model-service-*.yaml'
-}
-
-function start_document-service() {
-    kubectl apply --filename 'document-service-*.yaml'
-}
-
-function start_hmi-server() {
-    # Wait for Keyclock, the hmi-server test its existence on start
-    kubectl rollout status --filename 'gateway-keycloak-*.yaml'
-    kubectl apply --filename 'hmi-server-*.yaml'
-}
-
-function start_hmi-client() {
-    kubectl apply --filename 'hmi-client-*.yaml'
-}
-
 # Displays the status of all services
 if [[ ${1} == "status" ]]; then
     kubectl get po,svc,configMap
@@ -42,31 +8,19 @@ fi
 
 # Launches TERArium
 if [[ ${1} == "up" ]]; then
-    start_gateway && \
-    start_db && \
-    start_model-service && \
-    start_data-service && \
-    start_document-service && \
-    start_hmi-server && \
-    start_hmi-client
+    kubectl kustomize . | kubectl apply --filename -
     exit 0
 fi
 
 # Tears down TERArium
 if [[ ${1} == "down" ]]; then
-    kubectl delete \
-    --filename 'gateway-*.yaml' \
-    --filename 'hmi-server-*.yaml' \
-    --filename 'document-service-*.yaml' \
-    --filename 'model-service-*.yaml' \
-    --filename 'data-service-*.yaml' \
-    --filename 'hmi-client-*.yaml'
+    kubectl kustomize . | kubectl delete --filename -
     exit 0
 fi
 
 # Launches only the Gateway and Authentication services
 if [[ ${1} == "gateway" ]]; then
-    start_gateway
+    kubectl kustomize gateway | kubectl apply --filename -
     exit 0
 fi
 

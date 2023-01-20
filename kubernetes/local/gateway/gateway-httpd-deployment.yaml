@@ -29,6 +29,8 @@ spec:
               mountPath: /usr/local/apache2/htdocs
             - name: config-volume
               mountPath: /usr/local/apache2/conf/default
+            - name: httpd-foreground-volume
+              mountPath: /usr/local/bin
       volumes:
         - name: htdocs-volume
           configMap:
@@ -36,5 +38,9 @@ spec:
         - name: config-volume
           configMap:
             name: gateway-httpd-config
+        - name: httpd-foreground-volume
+          configMap:
+            name: gateway-httpd-exec
+            defaultMode: 0500
       restartPolicy: Always
 status: {}
