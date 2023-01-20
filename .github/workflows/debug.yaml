@@ -12,7 +12,7 @@ on: # yamllint disable-line rule:truthy
 jobs:
   # Build and Publish all targets associated with specified group
   bake:
-    uses: darpa-askem/.github/.github/workflows/bake-publish.yaml@5a48e26be4926d73fb19c3fe0b46b8024a4f34f7
+    uses: darpa-askem/.github/.github/workflows/bake-publish.yaml@31a9f5b72a284a5c211e7904e0723cbf9fabf135
     with:
       file: 'docker-bake.hcl'
       group: 'prod'
