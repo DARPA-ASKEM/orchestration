@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hmi-postgres
+spec:
+  ports:
+    - name: 5021-tcp
+      port: 5021
+      protocol: TCP
+      targetPort: 5432
+  selector:
+    software.uncharted.terarium: hmi-postgres
+  type: LoadBalancer
+status:
+  loadBalancer: {}

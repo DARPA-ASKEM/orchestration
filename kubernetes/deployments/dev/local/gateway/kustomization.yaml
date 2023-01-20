@@ -2,12 +2,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../../../../base/gateway
-- gateway-postgres-deployment.yaml
-- gateway-postgres-service.yaml
+  - ../../../../base/gateway
+  - gateway-postgres-deployment.yaml
+  - gateway-postgres-service.yaml
 patchesStrategicMerge:
-- gateway-httpd-deployment.yaml
-- gateway-keycloak-deployment.yaml
+  - gateway-httpd-deployment.yaml
+  - gateway-keycloak-deployment.yaml
 configMapGenerator:
 - files:
   - keycloak/realm/master-realm.json
@@ -16,20 +16,16 @@ configMapGenerator:
   - keycloak/realm/Uncharted-users-0.json
   name: gateway-keycloak-realm
 - files:
-  - httpd/htdocs/index.html
-  - httpd/htdocs/silent-check-sso.html
-  - httpd/htdocs/styles.css
+    - httpd/htdocs/index.html
+    - httpd/htdocs/silent-check-sso.html
+    - httpd/htdocs/styles.css
   name: gateway-httpd-htdocs
 - files:
-  - httpd/config-locations/api.conf
-  - httpd/config-locations/app.conf
-  name: gateway-httpd-config-locations
-- files:
-  - httpd/exec/httpd-foreground
+    - httpd/exec/httpd-foreground
   name: gateway-httpd-exec
 - files:
-  - httpd/config-ssl/ssl-proxy.conf
-  - httpd/config-ssl/ssl-setup.conf
+    - httpd/config-ssl/ssl-proxy.conf
+    - httpd/config-ssl/ssl-setup.conf
   name: gateway-httpd-config-ssl
 images:
   - name: gateway-httpd-image

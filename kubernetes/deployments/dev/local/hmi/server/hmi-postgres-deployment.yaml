@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium/name: hmi-postgres
+  name: hmi-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: hmi-postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/component: postgres
+        software.uncharted.terarium/environment: dev
+        software.uncharted.terarium/tier: hmi
+        software.uncharted.terarium/name: hmi-postgres
+    spec:
+      containers:
+        - image: hmi-postgres-image
+          name: hmi-postgres
+          env:
+            - name: POSTGRES_USER
+              value: terarium
+            - name: POSTGRES_PASSWORD
+              value: terarium123
+            - name: POSTGRES_DB
+              value: terarium
+          ports:
+            - containerPort: 5432
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,75 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../base/gateway
+  - ../../../base/hmi/client
+  - ../../../base/hmi/server
+  - ../../../services
+  - gateway/gateway-httpd-ingress.yaml
+  - gateway/gateway-keycloak-ingress.yaml
+  - secrets/secrets-dkg.yaml
+  - secrets/secrets-keycloak-admin-creds.yaml
+  - secrets/secrets-neo4j-auth.yaml
+  - secrets/secrets-oidc.yaml
+  - secrets/secrets-rds-creds.yaml
+  - services/data-service-ingress.yaml
+patchesStrategicMerge:
+  - gateway/gateway-httpd-deployment.yaml
+  - gateway/gateway-keycloak-deployment.yaml
+  - hmi-server-deployment.yaml
+  - data-service-deployment.yaml
+  - data-service-graphdb-deployment.yaml
+  - data-service-postgres-deployment.yaml
+configMapGenerator:
+  - files:
+      - gateway/keycloak/realm/master-realm.json
+      - gateway/keycloak/realm/master-users-0.json
+      - gateway/keycloak/realm/Uncharted-realm.json
+      - gateway/keycloak/realm/Uncharted-users-0.json
+    name: gateway-keycloak-realm
+  - files:
+      - gateway/httpd/htdocs/index.html
+      - gateway/httpd/htdocs/silent-check-sso.html
+      - gateway/httpd/htdocs/styles.css
+    name: gateway-httpd-htdocs
+  - files:
+      - gateway/httpd/config-locations/api.conf
+      - gateway/httpd/config-locations/app.conf
+    name: gateway-httpd-config-locations
+  - files:
+      - gateway/httpd/exec/httpd-foreground
+    name: gateway-httpd-exec
+  - files:
+      - gateway/httpd/config-ssl/ssl-proxy.conf
+      - gateway/httpd/config-ssl/ssl-setup.conf
+    name: gateway-httpd-config-ssl
+images:
+  - name: gateway-httpd-image
+    newName: ghcr.io/unchartedsoftware/httpd-openidc
+    newTag: 0.1.3
+  - name: gateway-keycloak-image
+    newName: ghcr.io/unchartedsoftware/keycloak
+    newTag: 0.1.3
+  - name: hmi-client-image
+    newName: ghcr.io/darpa-askem/hmi-client
+    newTag: latest
+  - name: hmi-server-image
+    newName: ghcr.io/darpa-askem/hmi-server
+    newTag: latest
+  - name: data-service-image
+    newName: ghcr.io/darpa-askem/data-service
+    newTag: latest
+  - name: data-service-graphdb-image
+    newName: ghcr.io/darpa-askem/neo4j
+    newTag: 5.3.0
+  - name: data-service-postgres-image
+    newName: ghcr.io/darpa-askem/data-service-dev-db
+    newTag: 0.3.5
+  - name: document-service-image
+    newName: ghcr.io/darpa-askem/document-service
+    newTag: latest
+  - name: model-service-image
+    newName: ghcr.io/darpa-askem/model-service
+    newTag: latest
+

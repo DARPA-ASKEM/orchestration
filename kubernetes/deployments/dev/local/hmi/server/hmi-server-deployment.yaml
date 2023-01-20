@@ -23,3 +23,11 @@ spec:
               value: host.docker.internal
             - name: keycloak-service-port
               value: :8079
+            - name: terarium-db-user
+              value: terarium
+            - name: terarium-db-password
+              value: terarium123
+            - name: terarium-db-host
+              value: host.docker.internal
+            - name: terarium-db-port
+              value: :5021

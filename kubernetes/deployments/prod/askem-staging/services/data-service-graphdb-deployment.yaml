@@ -1,0 +1,18 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-service-graphdb
+spec:
+  template:
+    spec:
+      containers:
+        - name: data-service-graphdb
+          env:
+            - name: NEO4J_AUTH
+              valueFrom:
+                secretKeyRef:
+                  name: neo4j-auth
+                  key: value
+            - name: NEO4J_dbms_memory_pagecache_size
+              value: 512M

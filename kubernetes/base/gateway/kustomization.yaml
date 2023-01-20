@@ -1,11 +1,15 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- gateway-httpd-deployment.yaml
-- gateway-httpd-service.yaml
-- gateway-keycloak-deployment.yaml
-- gateway-keycloak-service.yaml
+  - gateway-httpd-deployment.yaml
+  - gateway-httpd-service.yaml
+  - gateway-keycloak-deployment.yaml
+  - gateway-keycloak-service.yaml
 configMapGenerator:
 - files:
-  - httpd/config/000-default.conf
+    - httpd/config/000-default.conf
   name: gateway-httpd-config
+- files:
+    - httpd/config-locations/api.conf
+    - httpd/config-locations/app.conf
+  name: gateway-httpd-config-locations
