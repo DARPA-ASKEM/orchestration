@@ -2,6 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
+  labels:
+    software.uncharted.terarium/component: document
+    software.uncharted.terarium/environment: dev
+    software.uncharted.terarium/tier: services
   name: document-service
 spec:
   ports:
