@@ -2,6 +2,11 @@
 
 ## Prerequesits
 
+### Update /etc/hosts
+
+Edit `/etc/hosts` and add the following line `127.0.0.1 kubernetes.staging.terarium.ai`.
+Best under the comment `# Added by Docker Desktop` if already there.
+
 ### Kubectl Configuration
 
 Run `./admcloak.sh config` to add to your ~/.kube/config file the context and certificate files to execute kubectl commands remotely.
