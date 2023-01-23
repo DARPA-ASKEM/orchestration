@@ -11,6 +11,5 @@ spec:
       targetPort: 3030
   selector:
     software.uncharted.terarium: document-service
-  type: LoadBalancer
 status:
   loadBalancer: {}
