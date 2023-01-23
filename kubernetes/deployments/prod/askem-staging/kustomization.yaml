@@ -23,6 +23,10 @@ patchesStrategicMerge:
   - data-service-postgres-deployment.yaml
 configMapGenerator:
   - files:
+      - gateway/certificates/cert.pem
+      - gateway/certificates/key.pem
+    name: gateway-certificates
+  - files:
       - gateway/keycloak/realm/master-realm.json
       - gateway/keycloak/realm/master-users-0.json
       - gateway/keycloak/realm/Uncharted-realm.json

@@ -31,6 +31,9 @@ spec:
           env:
             - name: KC_DB_URL_HOST
               value: gateway-postgres
+          volumeMounts:
+            - name: theme-volume
+              mountPath: /opt/keycloak/themes/terarium
           resources: {}
       initContainers:
         - image: terarium-login-theme-image
