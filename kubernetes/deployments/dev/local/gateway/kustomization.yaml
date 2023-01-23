@@ -8,6 +8,7 @@ resources:
 patchesStrategicMerge:
   - gateway-httpd-deployment.yaml
   - gateway-keycloak-deployment.yaml
+  - gateway-keycloak-service.yaml
 configMapGenerator:
 - files:
   - keycloak/realm/master-realm.json
@@ -37,3 +38,6 @@ images:
   - name: gateway-postgres-image
     newName: ghcr.io/darpa-askem/postgres
     newTag: "15.1"
+  - name: terarium-login-theme-image
+    newName: ghcr.io/darpa-askem/terarium-login-theme
+    newTag: latest

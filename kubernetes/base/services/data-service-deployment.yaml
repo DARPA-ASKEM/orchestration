@@ -25,6 +25,7 @@ spec:
           name: data-service
           ports:
             - containerPort: 8000
+          resources: {}
       imagePullSecrets:
         - name: ghcr-cred
       restartPolicy: Always

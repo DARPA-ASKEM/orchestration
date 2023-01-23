@@ -33,6 +33,7 @@ spec:
               mountPath: /usr/local/apache2/conf/default
             - name: config-ssl-volume
               mountPath: /usr/local/apache2/conf/default/ssl
+          resources: {}
       volumes:
         - name: httpd-foreground-volume
           configMap:

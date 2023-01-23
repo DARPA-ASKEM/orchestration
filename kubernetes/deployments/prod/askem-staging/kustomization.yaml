@@ -72,4 +72,6 @@ images:
   - name: model-service-image
     newName: ghcr.io/darpa-askem/model-service
     newTag: latest
-
+  - name: terarium-login-theme-image
+    newName: ghcr.io/darpa-askem/terarium-login-theme
+    newTag: latest

@@ -13,23 +13,11 @@ spec:
             - name: KEYCLOAK_ADMIN
               value: admin
             - name: KEYCLOAK_ADMIN_PASSWORD
-              value: openidctest
-            - name: KC_HOSTNAME
-              value: localhost
-            - name: KC_HOSTNAME_PORT
-              value: "8078"
-            - name: KC_HOSTNAME_ADMIN
-              value: admin.private.local
-            - name: KC_HOSTNAME_PATH
-              value: /auth
-            - name: KC_HTTP_ENABLED
-              value: '"true"'
+              value: admin123
             - name: KC_HOSTNAME_STRICT_HTTPS
               value: '"false"'
             - name: KC_HOSTNAME_STRICT
               value: '"false"'
-            - name: KC_PROXY
-              value: edge
       initContainers:
         - name: init-gateway-keycloak
           env:
@@ -38,7 +26,7 @@ spec:
             - name: KEYCLOAK_ADMIN
               value: admin
             - name: KEYCLOAK_ADMIN_PASSWORD
-              value: openidctest
+              value: admin123
           volumeMounts:
             - name: realm-volume
               mountPath: /data
