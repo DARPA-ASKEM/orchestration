@@ -18,11 +18,6 @@ configMapGenerator:
       - gateway/certificates/key.pem
     name: gateway-certificates
   - files:
-      - gateway/keycloak/realm/master-realm.json
-      - gateway/keycloak/realm/master-users-0.json
-      - gateway/keycloak/realm/Uncharted-realm.json
-    name: gateway-keycloak-realm
-  - files:
       - gateway/httpd/exec/httpd-foreground
     name: gateway-httpd-exec
   - files:

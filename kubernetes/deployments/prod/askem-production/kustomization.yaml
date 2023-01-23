@@ -11,9 +11,14 @@ resources:
   - secrets/secrets-rds-creds.yaml
 configMapGenerator:
   - files:
+      - gateway/keycloak/realm/master-realm.json
+      - gateway/keycloak/realm/master-users-0.json
+      - gateway/keycloak/realm/Uncharted-realm.json
+    name: gateway-keycloak-realm
+  - files:
       - gateway/httpd/htdocs/index.html
-      - ../base/gateway/httpd/htdocs/silent-check-sso.html
-      - ../base/gateway/httpd/htdocs/styles.css
+      - gateway/httpd/htdocs/silent-check-sso.html
+      - gateway/httpd/htdocs/styles.css
     name: gateway-httpd-htdocs
 images:
   - name: gateway-httpd-image
