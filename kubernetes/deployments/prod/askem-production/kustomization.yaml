@@ -53,13 +53,13 @@ images:
     newTag: 0.1.3
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: latest
+    newTag: 1.0.0
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: latest
+    newTag: 1.0.0
   - name: data-service-image
     newName: ghcr.io/darpa-askem/data-service
-    newTag: latest
+    newTag: 0.3.5
   - name: data-service-graphdb-image
     newName: ghcr.io/darpa-askem/neo4j
     newTag: 5.3.0
@@ -68,11 +68,11 @@ images:
     newTag: 0.3.5
   - name: document-service-image
     newName: ghcr.io/darpa-askem/document-service
-    newTag: latest
+    newTag: 1.0.0
   - name: model-service-image
     newName: ghcr.io/darpa-askem/model-service
-    newTag: latest
+    newTag: 1.0.0
   - name: terarium-login-theme-image
     newName: ghcr.io/darpa-askem/terarium-login-theme
-    newTag: latest
+    newTag: 1.0.0
 
