@@ -1,49 +1,126 @@
 #!/bin/bash
 
+# import enviroment variables (.env file)
+unamestr=$(uname)
+if [ "$unamestr" = 'Linux' ]; then
+  export $(grep -v '^#' .env | xargs -d '\n')
+elif [ "$unamestr" = 'FreeBSD' ] || [ "$unamestr" = 'Darwin' ]; then
+  export $(grep -v '^#' .env | xargs -0)
+fi
+
+SECRET_FILES=( "secrets/secrets*.yaml" "gateway/keycloak/certificates/*.pem" "gateway/keycloak/realm/*.json" )
+
 decrypt() {
-    ansible-vault decrypt --vault-id ~/askem-vault-id.txt secrets*.yaml
-    ansible-vault decrypt --vault-id ~/askem-vault-id.txt gateway/keycloak/certificates/*.pem
-    ansible-vault decrypt --vault-id ~/askem-vault-id.txt gateway/keycloak/realm/*.json
+    DECRYPTED_FILES=()
+    for SECRET_FILE in ${SECRET_FILES[@]}; do
+        echo "decrypting file ${SECRET_FILE}"
+        ansible-vault decrypt --vault-id ~/askem-vault-id.txt ${SECRET_FILE}
+        STATUS=$?
+        if [[ ${STATUS} -eq 0 ]]; then
+            DECRYPTED_FILES+=( ${SECRET_FILE} )
+        fi
+    done
 }
 
 encrypt() {
-    ansible-vault encrypt --vault-id ~/askem-vault-id.txt secrets*.yaml
-    ansible-vault encrypt --vault-id ~/askem-vault-id.txt gateway/keycloak/certificates/*.pem
-    ansible-vault encrypt --vault-id ~/askem-vault-id.txt gateway/keycloak/realm/*.json
+    for SECRET_FILE in ${SECRET_FILES[@]}; do
+        ansible-vault encrypt --vault-id ~/askem-vault-id.txt ${SECRET_FILE}
+    done
 }
 
-# Displays the status of all services
-if [[ ${1} == "status" ]]; then
-    ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl get po,svc,configMap -n terarium
-    exit 0
-fi
+restore() {
+    for SECRET_FILE in ${DECRYPTED_FILES[@]}; do
+        git restore ${SECRET_FILE}
+    done
+}
 
-if [[ ${1} == "decrypt" ]]; then
-    decrypt
-    exit 0
-fi
-if [[ ${1} == "encrypt" ]]; then
-    encrypt
-    exit 0
-fi
+while [[ $# -gt 0 ]]; do
+    case ${1} in
+        -f|--file)
+            FILE="$2"
+            shift
+            ;;
+        -h|--help)
+            COMMAND="help"
+            ;;
+        test)
+            COMMAND="test"
+            ;;
+        up)
+            COMMAND="up"
+            ;;
+        down)
+            COMMAND="down"
+            ;;
+        status)
+            COMMAND="status"
+            ;;
+        encrypt)
+            COMMAND="encrypt"
+            ;;
+        decrypt)
+            COMMAND="decrypt"
+            ;;
+        *)
+            echo "dt: illegal option"
+            break
+            ;;
+    esac
+    shift
+done
 
-# Launches TERArium
-if [[ ${1} == "up" ]]; then
-    decrypt
-    kubectl kustomize . | ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl apply --filename -
-    exit 0
-fi
+# Default COMMAND to help if empty
+COMMAND=${COMMAND:-help}
 
-# Tears down TERArium
-if [[ ${1} == "down" ]]; then
-    decrypt
-    kubectl kustomize . | ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl delete --filename -
-    exit 0
-fi
+case ${COMMAND} in
+    test)
+        decrypt
+        kubectl kustomize . | less
+        restore
+        ;;
+    up)
+        decrypt
+        kubectl kustomize . | ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl apply --filename -
+        restore
+        ;;
+    down)
+        decrypt
+        kubectl kustomize . | ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl delete --filename -
+        restore
+        ;;
+    status)
+        ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl get po,svc,configMap,deployments,secrets -n terarium
+        ;;
+    decrypt)
+        decrypt $FILE
+        ;;
+    encrypt)
+        encrypt $FILE
+        ;;
+    help)
+        echo "
+NAME
+    dt - deploy TERArium
 
-echo "Usage:"
-echo "    ${0} up      Launch TERArium"
-echo "    ${0} down    Tear-down TERArium"
-echo "    ${0} status  Display status of running TERArium"
-echo "    ${0} decrypt Decrypt secret files"
-echo "    ${0} encrypt Encrypt secret files"
+SYNOPSIS
+    dt [up | down | status | decrypt [--file <file>] | encrypt [--file <file>]]
+
+DESCRIPTION
+  Launch commands:
+    up                Launches the entire TERArium stack
+    down              Tears down the entire TERArium stack
+
+  Other commands:
+    status            Displays the status of the TERArium cluster
+    encrypt           Encrypt secrets for adding to git repo
+    decrypt           Decrypt secrets for editing
+
+  Options:
+    -f|--file <file>  the file to be replaced, encrypted, or decrypted
+
+  Environment Variables will be read from a '.env' file, the following can be set
+    AGE_PUBLIC_KEY    the 'askem.agekey' file's public key
+    SOPS_AGE_KEY_FILE location of the file 'askem.agekey'
+        "
+        ;;
+esac
