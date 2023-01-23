@@ -4,17 +4,20 @@ kind: Kustomization
 resources:
   - ../base
   - gateway/gateway-httpd-ingress.yaml
-  - gateway/gateway-keycloak-ingress.yaml
   - secrets/secrets-dkg.yaml
   - secrets/secrets-keycloak-admin-creds.yaml
   - secrets/secrets-neo4j-auth.yaml
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
-  - services/data-service-ingress.yaml
 configMapGenerator:
   - files:
       - gateway/keycloak/realm/Uncharted-users-0.json
     name: gateway-keycloak-realm
+  - files:
+      - gateway/httpd/htdocs/index.html
+      - ../base/gateway/httpd/htdocs/silent-check-sso.html
+      - ../base/gateway/httpd/htdocs/styles.css
+    name: gateway-httpd-htdocs
 images:
   - name: gateway-httpd-image
     newName: ghcr.io/unchartedsoftware/httpd-openidc

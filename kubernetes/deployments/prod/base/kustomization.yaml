@@ -5,14 +5,13 @@ resources:
   - ../../../base/gateway
   - ../../../base/hmi/client
   - ../../../base/hmi/server
-  - ../../../services
+  - ../../../base/services
 patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-keycloak-deployment.yaml
-  - hmi-server-deployment.yaml
-  - data-service-deployment.yaml
-  - data-service-graphdb-deployment.yaml
-  - data-service-postgres-deployment.yaml
+  - hmi/hmi-server-deployment.yaml
+  - services/data-service-deployment.yaml
+  - services/data-service-graphdb-deployment.yaml
 configMapGenerator:
   - files:
       - gateway/certificates/cert.pem
@@ -23,15 +22,6 @@ configMapGenerator:
       - gateway/keycloak/realm/master-users-0.json
       - gateway/keycloak/realm/Uncharted-realm.json
     name: gateway-keycloak-realm
-  - files:
-      - gateway/httpd/htdocs/index.html
-      - gateway/httpd/htdocs/silent-check-sso.html
-      - gateway/httpd/htdocs/styles.css
-    name: gateway-httpd-htdocs
-  - files:
-      - gateway/httpd/config-locations/api.conf
-      - gateway/httpd/config-locations/app.conf
-    name: gateway-httpd-config-locations
   - files:
       - gateway/httpd/exec/httpd-foreground
     name: gateway-httpd-exec

@@ -43,6 +43,9 @@ while [[ $# -gt 0 ]]; do
         -h|--help)
             COMMAND="help"
             ;;
+        test)
+            COMMAND="test"
+            ;;
         up)
             COMMAND="up"
             ;;
@@ -70,6 +73,11 @@ done
 COMMAND=${COMMAND:-help}
 
 case ${COMMAND} in
+    test)
+        decrypt
+        kubectl kustomize . | less
+        restore
+        ;;
     up)
         decrypt
         kubectl kustomize . | ssh uncharted-askem-prod-askem-staging-kube-manager-1 sudo kubectl apply --filename -
