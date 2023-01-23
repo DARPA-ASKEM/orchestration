@@ -7,6 +7,9 @@ spec:
     spec:
       containers:
         - name: gateway-keycloak
+          ports:
+            - containerPort: 8443
+              protocol: TCP
           env:
             - name: KC_DB_URL_HOST
               value: gateway-postgres
@@ -41,6 +44,8 @@ spec:
               value: app.staging.terarium.ai
             - name: KC_HOSTNAME_PORT
               value: "443"
+            - name: KC_HOSTNAME_ADMIN_URL
+              value: https://localhost:8443
             - name: KC_HOSTNAME_PATH
               value: /auth
             - name: KC_HTTP_ENABLED
@@ -57,6 +62,12 @@ spec:
               value: /certificates/key.pem
       initContainers:
         - name: init-gateway-keycloak
+          args:
+            - import
+            - --dir
+            - /data
+            - --override
+            - "false"
           env:
             - name: PROXY_ADDRESS_FORWARDING
               value: '"true"'
