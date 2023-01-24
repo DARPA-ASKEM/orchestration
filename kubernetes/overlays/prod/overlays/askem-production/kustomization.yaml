@@ -35,7 +35,7 @@ images:
     newTag: 5.3.0
   - name: data-service-postgres-image
     newName: ghcr.io/darpa-askem/data-service-dev-db
-    newTag: 0.3.5
+    newTag: 0.3.6
   - name: document-service-image
     newName: ghcr.io/darpa-askem/document-service
     newTag: 1.0.0
@@ -45,4 +45,3 @@ images:
   - name: terarium-login-theme-image
     newName: ghcr.io/darpa-askem/terarium-login-theme
     newTag: latest
-
