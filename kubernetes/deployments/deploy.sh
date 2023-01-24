@@ -87,39 +87,51 @@ fi
 case ${ENVIRONMENT} in
     d | development)
         KUSTOMIZATION=dev/local
+        KUBECTL_CMD="kubectl"
         ;;
     s | staging)
         SECRET_FILES+=("prod/base/gateway/certificates/cert.pem" "prod/base/gateway/certificates/key.pem")
         SECRET_FILES+=("prod/askem-staging/secrets/*.yaml")
         SECRET_FILES+=("prod/askem-staging/gateway/keycloak/realm/*.json")
         KUSTOMIZATION=prod/askem-staging
+        KUBECTL_CMD="ssh uncharted-askem-prod-askem-staging-kube-manager-1 sudo kubectl"
         ;;
     p | production)
         SECRET_FILES+=("prod/base/gateway/certificates/cert.pem" "prod/base/gateway/certificates/key.pem")
         SECRET_FILES+=("prod/askem-production/secrets/*.yaml")
         SECRET_FILES+=("prod/askem-production/gateway/keycloak/realm/*.json")
         KUSTOMIZATION=prod/askem-production
+        KUBECTL_CMD="ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl"
         ;;
 esac
 
 case ${COMMAND} in
     test)
+        echo "## Decrypting secrets"
         decrypt
+        echo "## Testing kustomization script"
         kubectl kustomize ${KUSTOMIZATION} | less
+        echo "## Restoring secrets as encrypted files"
         restore
         ;;
     up)
+        echo "## Decrypting secrets"
         decrypt
-        kubectl kustomize ${KUSTOMIZATION} | ssh uncharted-askem-prod-askem-staging-kube-manager-1 sudo kubectl apply --filename -
+        echo "## Applying kustomization script to Kubernetes cluster"
+        kubectl kustomize ${KUSTOMIZATION} | ${KUBECTL_CMD} apply --filename -
+        echo "## Restoring secrets as encrypted files"
         restore
         ;;
     down)
+        echo "## Decrypting secrets"
         decrypt
-        kubectl kustomize ${KUSTOMIZATION} | ssh uncharted-askem-prod-askem-staging-kube-manager-1 sudo kubectl delete --filename -
+        echo "## Deleting kustomization script from Kubernetes cluster"
+        kubectl kustomize ${KUSTOMIZATION} | ${KUBECTL_CMD} delete --filename -
+        echo "## Restoring secrets as encrypted files"
         restore
         ;;
     status)
-        ssh uncharted-askem-prod-askem-staging-kube-manager-1 sudo kubectl get po,svc,configMap,deployments,secrets -n terarium
+        ${KUBECTL_CMD} get configMap,secrets,deployments,svc,po
         ;;
     decrypt)
         decrypt
