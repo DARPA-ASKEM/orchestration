@@ -11,8 +11,6 @@ spec:
             - containerPort: 8443
               protocol: TCP
           env:
-            - name: KC_DB_URL_HOST
-              value: gateway-postgres
             - name: PROXY_ADDRESS_FORWARDING
               value: '"true"'
             - name: KEYCLOAK_ADMIN
@@ -60,6 +58,9 @@ spec:
               value: /certificates/cert.pem
             - name: KC_HTTPS_CERTIFICATE_KEY_FILE
               value: /certificates/key.pem
+          volumeMounts:
+            - name: certificates-volume
+              mountPath: /certificates
       initContainers:
         - name: init-gateway-keycloak
           args:
@@ -103,4 +104,8 @@ spec:
         - name: realm-volume
           configMap:
             name: gateway-keycloak-realm
+        - name: certificates-volume
+          configMap:
+            name: gateway-certificates
+            defaultMode: 0644
 status: {}
