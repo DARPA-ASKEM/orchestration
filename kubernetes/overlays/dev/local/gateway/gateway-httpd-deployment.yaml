@@ -27,9 +27,9 @@ spec:
             - name: OIDC_DEFAULT_URL_PATH
               value: /app/
             - name: KEYCLOAK_ADMIN_FQDN
-              value: admin.private.local
+              value: localhost
             - name: KEYCLOAK_SERVICE_URL
-              value: http://gateway-keycloak:8080/
+              value: http://gateway-keycloak:8079/
             - name: LOCATION_API_URL
               value: http://host.docker.internal:3000/api/
             - name: LOCATION_APP_URL
