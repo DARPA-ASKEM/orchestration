@@ -99,7 +99,7 @@ case ${ENVIRONMENT} in
     p | production)
         SECRET_FILES+=("prod/base/gateway/certificates/cert.pem" "prod/base/gateway/certificates/key.pem")
         SECRET_FILES+=("prod/overlays/askem-production/secrets/*.yaml")
-        SECRET_FILES+=("prod/base/gateway/keycloak/realm/*.json")
+        SECRET_FILES+=("prod/base/gateway/keycloak/realm/*.json" "prod/overlays/askem-production/gateway/keycloak/realm/*.json")
         KUSTOMIZATION=prod/overlays/askem-production
         KUBECTL_CMD="ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl"
         ;;
