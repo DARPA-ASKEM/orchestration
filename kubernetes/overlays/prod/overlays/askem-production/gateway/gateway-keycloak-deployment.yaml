@@ -11,4 +11,3 @@ spec:
           env:
             - name: KC_HOSTNAME
               value: app.terarium.ai
-  
