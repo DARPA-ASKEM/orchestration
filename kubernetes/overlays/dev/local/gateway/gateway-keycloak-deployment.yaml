@@ -8,6 +8,8 @@ spec:
       containers:
         - name: gateway-keycloak
           env:
+            - name: KC_DB_URL_HOST
+              value: gateway-postgres
             - name: PROXY_ADDRESS_FORWARDING
               value: '"true"'
             - name: KEYCLOAK_ADMIN
