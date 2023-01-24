@@ -11,13 +11,7 @@ resources:
   - secrets/secrets-rds-creds.yaml
 patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml
-  - gateway/gateway-keycloak-deployment.yaml
 configMapGenerator:
-  - files:
-      - gateway/keycloak/realm/master-realm.json
-      - gateway/keycloak/realm/master-users-0.json
-      - gateway/keycloak/realm/Uncharted-realm.json
-    name: gateway-keycloak-realm
   - files:
       - gateway/httpd/htdocs/index.html
       - gateway/httpd/htdocs/silent-check-sso.html
