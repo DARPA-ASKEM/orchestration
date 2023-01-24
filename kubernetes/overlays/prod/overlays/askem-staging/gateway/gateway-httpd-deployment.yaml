@@ -1,0 +1,17 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-httpd
+spec:
+  template:
+    spec:
+      containers:
+        - name: gateway-httpd
+          env:
+            - name: SERVICE_FQDN
+              value: app.staging.terarium.ai
+      hostAliases:
+        - ip: "127.0.0.1"
+          hostnames:
+            - "app.staging.terarium.ai"

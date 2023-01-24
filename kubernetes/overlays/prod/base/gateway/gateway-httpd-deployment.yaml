@@ -18,8 +18,6 @@ spec:
               value: "443"
             - name: SERVICE_PROTOCOL
               value: https
-            - name: SERVICE_FQDN
-              value: app.staging.terarium.ai
             - name: SERVICE_REDIRECT_URL_PATH
               value: /app/redirect_uri
             - name: OIDC_CRYPTO_PASS_PHRASE
@@ -60,7 +58,3 @@ spec:
           configMap:
             name: gateway-certificates
             defaultMode: 0644
-      hostAliases:
-        - ip: "127.0.0.1"
-          hostnames:
-            - "app.staging.terarium.ai"

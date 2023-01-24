@@ -9,6 +9,7 @@ resources:
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
 patchesStrategicMerge:
+  - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-keycloak-deployment.yaml
 configMapGenerator:
   - files:
