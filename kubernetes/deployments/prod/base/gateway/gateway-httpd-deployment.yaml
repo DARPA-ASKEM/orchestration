@@ -42,8 +42,6 @@ spec:
             - name: LOCATION_APP_URL
               value: http://hmi-client:8080/app/
           volumeMounts:
-            - name: htdocs-volume
-              mountPath: /usr/local/apache2/htdocs
             - name: config-locations-volume
               mountPath: /usr/local/apache2/conf/default/locations
             - name: certificates-volume
