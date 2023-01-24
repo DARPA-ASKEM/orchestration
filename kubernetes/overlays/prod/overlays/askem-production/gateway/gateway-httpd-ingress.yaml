@@ -23,3 +23,6 @@ spec:
                 name: gateway-httpd
                 port:
                   number: 8078
+  tls:
+    - hosts:
+        - "gateway-httpd.terarium.ai"
