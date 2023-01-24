@@ -16,6 +16,10 @@ patchesStrategicMerge:
   - services/data-service-graphdb-deployment.yaml
 configMapGenerator:
   - files:
+      - gateway/httpd/htdocs/silent-check-sso.html
+      - gateway/httpd/htdocs/styles.css
+    name: gateway-httpd-htdocs
+  - files:
       - gateway/keycloak/realm/master-realm.json
       - gateway/keycloak/realm/master-users-0.json
       - gateway/keycloak/realm/Uncharted-realm.json

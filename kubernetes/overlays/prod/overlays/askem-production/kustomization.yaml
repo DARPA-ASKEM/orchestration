@@ -9,14 +9,11 @@ resources:
   - secrets/secrets-neo4j-auth.yaml
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
-patchesStrategicMerge:
-  - gateway/gateway-httpd-deployment.yaml
 configMapGenerator:
   - files:
       - gateway/httpd/htdocs/index.html
-      - gateway/httpd/htdocs/silent-check-sso.html
-      - gateway/httpd/htdocs/styles.css
     name: gateway-httpd-htdocs
+    behavior: merge
 images:
   - name: gateway-httpd-image
     newName: ghcr.io/unchartedsoftware/httpd-openidc
