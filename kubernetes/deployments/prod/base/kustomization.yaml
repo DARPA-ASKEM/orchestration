@@ -9,6 +9,7 @@ resources:
   - ../../../base/services
 patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml
+  - gateway/gateway-httpd-service.yaml
   - gateway/gateway-keycloak-deployment.yaml
   - hmi/hmi-server-deployment.yaml
   - services/data-service-deployment.yaml
