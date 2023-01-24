@@ -9,6 +9,8 @@ resources:
   - secrets/secrets-neo4j-auth.yaml
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
+patchesStrategicMerge:
+  - gateway/gateway-httpd-deployment.yaml
 configMapGenerator:
   - files:
       - gateway/keycloak/realm/Uncharted-users-0.json

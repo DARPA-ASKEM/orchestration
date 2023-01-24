@@ -49,9 +49,6 @@ spec:
             - name: certificates-volume
               mountPath: /certificates
       volumes:
-        - name: htdocs-volume
-          configMap:
-            name: gateway-httpd-htdocs
         - name: config-locations-volume
           configMap:
             name: gateway-httpd-config-locations

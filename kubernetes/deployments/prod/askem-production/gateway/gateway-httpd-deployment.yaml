@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-httpd
+spec:
+  template:
+    spec:
+      containers:
+        - name: gateway-httpd
+          volumeMounts:
+            - name: htdocs-volume
+              mountPath: /usr/local/apache2/htdocs
+      volumes:
+        - name: htdocs-volume
+          configMap:
+            name: gateway-httpd-htdocs
