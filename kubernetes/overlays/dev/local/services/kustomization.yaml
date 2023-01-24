@@ -7,8 +7,11 @@ resources:
   - data-service-postgres-service.yaml
 patchesStrategicMerge:
   - data-service-deployment.yaml
+  - data-service-service.yaml
   - data-service-graphdb-deployment.yaml
   - data-service-postgres-deployment.yaml
+  - document-service-service.yaml
+  - model-service-service.yaml
 images:
   - name: data-service-image
     newName: ghcr.io/darpa-askem/data-service

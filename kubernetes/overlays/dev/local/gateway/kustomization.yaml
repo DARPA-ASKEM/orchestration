@@ -6,6 +6,7 @@ resources:
   - gateway-postgres-deployment.yaml
   - gateway-postgres-service.yaml
 patchesStrategicMerge:
+  - gateway-httpd-service.yaml
   - gateway-httpd-deployment.yaml
   - gateway-keycloak-deployment.yaml
   - gateway-keycloak-service.yaml

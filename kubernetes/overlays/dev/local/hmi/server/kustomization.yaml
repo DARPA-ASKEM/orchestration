@@ -6,6 +6,7 @@ resources:
   - hmi-postgres-deployment.yaml
   - hmi-postgres-service.yaml
 patchesStrategicMerge:
+  - hmi-server-service.yaml
   - hmi-server-deployment.yaml
 images:
   - name: hmi-server-image
