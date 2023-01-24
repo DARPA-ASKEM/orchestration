@@ -9,11 +9,10 @@ metadata:
   name: gateway-keycloak
 spec:
   ports:
-    - name: 8079-keycloak-tcp
-      port: 8079
+    - name: 8080-keycloak-tcp
+      port: 8080
       protocol: TCP
       targetPort: 8080
-  type: LoadBalancer
   selector:
     software.uncharted.terarium/name: gateway-keycloak
 status:

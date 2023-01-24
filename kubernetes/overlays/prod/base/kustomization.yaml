@@ -7,6 +7,7 @@ resources:
   - ../../../base/hmi/client
   - ../../../base/hmi/server
   - ../../../base/services
+  - gateway/gateway-keycloak-service.yaml
 patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-httpd-service.yaml

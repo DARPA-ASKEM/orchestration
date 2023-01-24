@@ -4,7 +4,6 @@ resources:
   - gateway-httpd-deployment.yaml
   - gateway-httpd-service.yaml
   - gateway-keycloak-deployment.yaml
-  - gateway-keycloak-service.yaml
 configMapGenerator:
 - files:
     - httpd/config/000-default.conf
