@@ -35,8 +35,8 @@ spec:
       initContainers:
         - image: terarium-login-theme-image
           name: gateway-terarium-theme
-          command: [ '/bin/sh' ]
-          args: [ '-c', 'cp -r /terarium/* /shared' ]
+          command: ['/bin/sh']
+          args: ['-c', 'cp -r /terarium/* /shared']
           volumeMounts:
             - name: theme-volume
               mountPath: /shared
