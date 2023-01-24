@@ -38,8 +38,6 @@ spec:
                 secretKeyRef:
                   name: rds-creds
                   key: password
-            - name: KC_HOSTNAME
-              value: app.staging.terarium.ai
             - name: KC_HOSTNAME_PORT
               value: "443"
             - name: KC_HOSTNAME_ADMIN_URL
@@ -68,7 +66,7 @@ spec:
             - --dir
             - /data
             - --override
-            - "false"
+            - "true"
           env:
             - name: PROXY_ADDRESS_FORWARDING
               value: '"true"'
