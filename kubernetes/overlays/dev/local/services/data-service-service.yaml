@@ -4,4 +4,4 @@ kind: Service
 metadata:
   name: data-service
 spec:
-  type: loadBalancer
+  type: LoadBalancer
