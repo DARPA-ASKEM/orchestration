@@ -1,0 +1,52 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+  - secrets/secrets-dkg.yaml
+  - secrets/secrets-keycloak-admin-creds.yaml
+  - secrets/secrets-neo4j-auth.yaml
+  - secrets/secrets-oidc.yaml
+  - secrets/secrets-rds-creds.yaml
+patchesStrategicMerge:
+  - gateway/gateway-keycloak-deployment.yaml
+configMapGenerator:
+  - files:
+      - gateway/keycloak/realm/Uncharted-realm.json
+    name: gateway-keycloak-realm
+    behavior: merge
+  - files:
+      - gateway/httpd/htdocs/index.html
+    name: gateway-httpd-htdocs
+    behavior: merge
+images:
+  - name: gateway-httpd-image
+    newName: ghcr.io/unchartedsoftware/httpd-openidc
+    newTag: 0.1.3
+  - name: gateway-keycloak-image
+    newName: ghcr.io/unchartedsoftware/keycloak
+    newTag: 0.1.3
+  - name: hmi-client-image
+    newName: ghcr.io/darpa-askem/hmi-client
+    newTag: 1.0.0
+  - name: hmi-server-image
+    newName: ghcr.io/darpa-askem/hmi-server
+    newTag: 1.0.0
+  - name: data-service-image
+    newName: ghcr.io/darpa-askem/data-service
+    newTag: 0.3.5
+  - name: data-service-graphdb-image
+    newName: ghcr.io/darpa-askem/neo4j
+    newTag: 5.3.0
+  - name: data-service-postgres-image
+    newName: ghcr.io/darpa-askem/data-service-dev-db
+    newTag: 0.3.6
+  - name: document-service-image
+    newName: ghcr.io/darpa-askem/document-service
+    newTag: 1.0.0
+  - name: model-service-image
+    newName: ghcr.io/darpa-askem/model-service
+    newTag: latest
+  - name: terarium-login-theme-image
+    newName: ghcr.io/darpa-askem/terarium-login-theme
+    newTag: latest

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        var accessToken;
+
+        getAccessToken = async () => {
+        try{
+            var response = await fetch('/silent-check-sso.html');
+            return await response.headers.get('OIDC_access_token');
+        } catch (e) {
+            console.log(e);
+        }
+        };
+
+        apiCall = async (path) => {
+        var response = fetch(path, {
+            headers: new Headers({
+            'Authorization': 'Bearer ' + accessToken
+            })
+        })
+        response.then(data => {
+            console.log(path + ' --> ' + data);
+        })
+        }
+
+        getAccessToken().then(response => {
+        accessToken = response;
+        console.log('AccessToken: ' + accessToken);
+        });
+    </script>
+    <body>
+    <h2>Terarium Auth</h2>
+    <p>Go to <a href="/app/">/app/</a>.</p>
+    <p>There are two users:</p>
+    <ul>
+        <li>Adam the administrator <code>adam@test.io:asdf1ASDF</code></li>
+        <li>Ursula the user <code>ursula@test.io:asdf1ASDF</code></li>
+    </ul>
+    <p>Go to <a href="#" onclick="apiCall('/api/user/me')">/api/user/me</a>.</p>
+    <p>Go to <a href="#" onclick="apiCall('/api/admin')">/api/admin</a>.</p>
+    </body>
+</html>

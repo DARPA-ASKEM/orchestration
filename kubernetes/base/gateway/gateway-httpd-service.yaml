@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    software.uncharted.terarium/component: httpd
+    software.uncharted.terarium/environment: dev
+    software.uncharted.terarium/tier: gateway
+  name: gateway-httpd
+spec:
+  ports:
+    - name: 8078-tcp
+      port: 8078
+      protocol: TCP
+      targetPort: 80
+  selector:
+    software.uncharted.terarium/name: gateway-httpd
+status:
+  loadBalancer: {}
