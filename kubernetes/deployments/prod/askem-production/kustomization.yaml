@@ -11,6 +11,7 @@ resources:
   - secrets/secrets-rds-creds.yaml
 patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml
+  - gateway/gateway-keycloak-deployment.yaml
 configMapGenerator:
   - files:
       - gateway/keycloak/realm/master-realm.json
