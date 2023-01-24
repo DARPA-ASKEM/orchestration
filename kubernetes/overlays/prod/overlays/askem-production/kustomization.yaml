@@ -11,6 +11,10 @@ resources:
   - secrets/secrets-rds-creds.yaml
 configMapGenerator:
   - files:
+      - gateway/keycloak/realm/Uncharted-realm.json
+    name: gateway-keycloak-realm
+    behavior: merge
+  - files:
       - gateway/httpd/htdocs/index.html
     name: gateway-httpd-htdocs
     behavior: merge
