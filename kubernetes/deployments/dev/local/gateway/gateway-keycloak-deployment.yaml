@@ -39,6 +39,8 @@ spec:
               value: admin
             - name: KEYCLOAK_ADMIN_PASSWORD
               value: admin123
+            - name: KC_DB_URL_HOST
+              value: gateway-postgres
           volumeMounts:
             - name: realm-volume
               mountPath: /data
