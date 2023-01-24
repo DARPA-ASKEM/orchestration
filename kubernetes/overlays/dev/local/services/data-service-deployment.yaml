@@ -9,6 +9,8 @@ spec:
       containers:
         - name: data-service
           env:
+            - name: NEO4J_driver
+              value: neo4j://data-service-graphdb:7687
             - name: SQL_URL
               value: data-service-postgres
             - name: SQL_PORT
