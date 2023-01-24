@@ -9,10 +9,10 @@ metadata:
   name: gateway-keycloak
 spec:
   ports:
-    - name: 8080-keycloak-tcp
-      port: 8080
+    - name: 443-keycloak-internal-tcp
+      port: 443
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8443
   selector:
     software.uncharted.terarium/name: gateway-keycloak
 status:
