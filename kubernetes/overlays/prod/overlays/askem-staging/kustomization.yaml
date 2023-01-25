@@ -8,6 +8,7 @@ resources:
   - secrets/secrets-neo4j-auth.yaml
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
+  - secrets/secrets-data-service-s3.yaml
 patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-keycloak-deployment.yaml
