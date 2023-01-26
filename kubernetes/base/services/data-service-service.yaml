@@ -8,6 +8,7 @@ metadata:
     software.uncharted.terarium/tier: services
   name: data-service
 spec:
+  type: NodePort
   ports:
     - name: 3020-tcp
       port: 3020
