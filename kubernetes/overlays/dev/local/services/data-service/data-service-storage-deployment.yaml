@@ -29,7 +29,8 @@ spec:
             - name: MINIO_ROOT_PASSWORD
               value: miniopass
           ports:
-            - containerPort: 5432
+            - containerPort: 9000
+            - containerPort: 9001
           resources: {}
       imagePullSecrets:
         - name: ghcr-cred
