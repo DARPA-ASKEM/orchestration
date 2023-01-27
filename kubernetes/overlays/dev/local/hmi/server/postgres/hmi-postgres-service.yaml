@@ -14,7 +14,7 @@ spec:
       protocol: TCP
       targetPort: 5432
   selector:
-    software.uncharted.terarium: hmi-postgres
+    software.uncharted.terarium/name: hmi-postgres
   type: LoadBalancer
 status:
   loadBalancer: {}

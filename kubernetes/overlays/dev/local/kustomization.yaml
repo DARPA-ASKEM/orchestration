@@ -6,3 +6,4 @@ resources:
   - services
   - hmi/client
   - hmi/server
+  - hmi/server/postgres
