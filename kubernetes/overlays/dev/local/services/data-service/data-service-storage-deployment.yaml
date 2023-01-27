@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium/name: data-service-storage
+  name: data-service-storage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: data-service-storage
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/component: storage
+        software.uncharted.terarium/environment: dev
+        software.uncharted.terarium/tier: services
+        software.uncharted.terarium/name: data-service-storage
+    spec:
+      containers:
+        - image: data-service-storage-image
+          name: data-service-storage
+          env:
+            - name: MINIO_ROOT_USER
+              value: miniouser
+            - name: MINIO_ROOT_PASSWORD
+              value: miniopass
+          ports:
+            - containerPort: 5432
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}
