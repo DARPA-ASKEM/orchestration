@@ -6,7 +6,3 @@ resources:
   - data-service-service.yaml
   - data-service-graphdb-deployment.yaml
   - data-service-graphdb-service.yaml
-  - document-service-deployment.yaml
-  - document-service-service.yaml
-  - model-service-deployment.yaml
-  - model-service-service.yaml
