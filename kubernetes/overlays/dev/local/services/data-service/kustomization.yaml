@@ -1,0 +1,27 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../../base/services/data-service
+  - data-service-postgres-deployment.yaml
+  - data-service-postgres-service.yaml
+  - data-service-storage-deployment.yaml
+  - data-service-storage-service.yaml
+patchesStrategicMerge:
+  - data-service-deployment.yaml
+  - data-service-service.yaml
+  - data-service-graphdb-deployment.yaml
+  - data-service-graphdb-service.yaml
+images:
+  - name: data-service-image
+    newName: ghcr.io/darpa-askem/data-service
+    newTag: latest
+  - name: data-service-graphdb-image
+    newName: ghcr.io/darpa-askem/neo4j
+    newTag: 5.3.0
+  - name: data-service-postgres-image
+    newName: ghcr.io/darpa-askem/data-service-dev-db
+    newTag: latest
+  - name: data-service-storage-image
+    newName: ghcr.io/darpa-askem/data-service-storage
+    newTag: latest

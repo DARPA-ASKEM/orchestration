@@ -30,4 +30,4 @@ spec:
             - name: terarium-db-host
               value: host.docker.internal
             - name: terarium-db-port
-              value: :5021
+              value: "5021"

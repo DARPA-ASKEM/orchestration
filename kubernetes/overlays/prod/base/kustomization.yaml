@@ -6,7 +6,9 @@ resources:
   - ../../../base/gateway
   - ../../../base/hmi/client
   - ../../../base/hmi/server
-  - ../../../base/services
+  - ../../../base/services/data-service
+  - ../../../base/services/document-service
+  - ../../../base/services/model-service
   - gateway/gateway-keycloak-service.yaml
 patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml
