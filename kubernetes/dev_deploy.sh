@@ -128,7 +128,7 @@ case ${COMMAND} in
   help)
     echo "
 Usage:
-    ${0} status           Displays the status of all services
+    ${0} status              Displays the status of all services
     ${0} up [SERVICE(s)]     Launch TERArium or specific services
     ${0} down [SERVICE(s)]   Tear down TERArium or specific service
 
