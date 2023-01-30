@@ -46,11 +46,11 @@ images:
   # Data Service repository
   - name: data-service-image
     newName: ghcr.io/darpa-askem/data-service
-    newTag: 0.3.6
+    newTag: 0.3.7
   # Model Service repository
   - name: model-service-image
     newName: ghcr.io/darpa-askem/model-service
-    newTag: latest
+    newTag: 1.0.1
   # GitHub DARPA-ASKEM organisation
   - name: data-service-graphdb-image
     newName: ghcr.io/darpa-askem/data-service-graphdb
