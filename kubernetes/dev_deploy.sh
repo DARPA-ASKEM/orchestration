@@ -6,13 +6,13 @@ case ${1} in
 		;;
 	up)
 		COMMAND="up"
+		shift
 		SERVICES=("$@")
-		unset "SERVICES[0]"
 		;;
 	down)
 		COMMAND="down"
+		shift
 		SERVICES=("$@")
-		unset "SERVICES[0]"
 		;;
 	status)
 		COMMAND="status"
