@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    software.uncharted.terarium/component: storage
+    software.uncharted.terarium/environment: dev
+    software.uncharted.terarium/tier: services
+  name: data-service-storage
+spec:
+  ports:
+    - name: 9000-tcp
+      port: 9000
+      protocol: TCP
+      targetPort: 9000
+    - name: 9001-tcp
+      port: 9001
+      protocol: TCP
+      targetPort: 9001
+  selector:
+    software.uncharted.terarium/name: data-service-storage
+  type: LoadBalancer
+status:
+  loadBalancer: {}
