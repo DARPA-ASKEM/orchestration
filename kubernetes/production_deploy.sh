@@ -14,7 +14,10 @@ decrypt() {
 	DECRYPTED_FILES=()
 	for SECRET_FILE in "${SECRET_FILES[@]}"; do
 		echo "decrypting file ${SECRET_FILE}"
-		ansible-vault decrypt --vault-id ~/askem-vault-id.txt "${SECRET_FILE}"
+		#unpack wildcard - now failing
+		for FILE in `ls ${SECRET_FILE}`; do
+			ansible-vault decrypt --vault-id ~/askem-vault-id.txt "${FILE}"
+		done
 		STATUS=$?
 		if [[ ${STATUS} -eq 0 ]]; then
 			DECRYPTED_FILES+=("${SECRET_FILE}")
@@ -24,7 +27,10 @@ decrypt() {
 
 encrypt() {
 	for SECRET_FILE in "${SECRET_FILES[@]}"; do
-		ansible-vault encrypt --vault-id ~/askem-vault-id.txt "${SECRET_FILE}"
+		#unpack wildcard - now failing
+		for FILE in `ls ${SECRET_FILE}`; do
+			ansible-vault encrypt --vault-id ~/askem-vault-id.txt "${FILE}"
+		done
 	done
 }
 
