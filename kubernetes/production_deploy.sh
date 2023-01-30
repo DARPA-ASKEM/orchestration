@@ -14,7 +14,10 @@ decrypt() {
 	DECRYPTED_FILES=()
 	for SECRET_FILE in "${SECRET_FILES[@]}"; do
 		echo "decrypting file ${SECRET_FILE}"
-		ansible-vault decrypt --vault-id ~/askem-vault-id.txt "${SECRET_FILE}"
+		#unpack wildcard - now failing
+		for FILE in `ls ${SECRET_FILE}`; do
+			ansible-vault decrypt --vault-id ~/askem-vault-id.txt "${FILE}"
+		done
 		STATUS=$?
 		if [[ ${STATUS} -eq 0 ]]; then
 			DECRYPTED_FILES+=("${SECRET_FILE}")
@@ -24,7 +27,10 @@ decrypt() {
 
 encrypt() {
 	for SECRET_FILE in "${SECRET_FILES[@]}"; do
-		ansible-vault encrypt --vault-id ~/askem-vault-id.txt "${SECRET_FILE}"
+		#unpack wildcard - now failing
+		for FILE in `ls ${SECRET_FILE}`; do
+			ansible-vault encrypt --vault-id ~/askem-vault-id.txt "${FILE}"
+		done
 	done
 }
 
@@ -86,17 +92,17 @@ fi
 
 case ${ENVIRONMENT} in
 staging)
-	SECRET_FILES+=("prod/base/gateway/certificates/cert.pem" "prod/base/gateway/certificates/key.pem")
-	SECRET_FILES+=("prod/overlays/askem-staging/secrets/*.yaml")
-	SECRET_FILES+=("prod/base/gateway/keycloak/realm/*.json" "prod/overlays/askem-staging/gateway/keycloak/realm/*.json")
-	KUSTOMIZATION=prod/overlays/askem-staging
+	SECRET_FILES+=("overlays/prod/base/gateway/certificates/cert.pem" "overlays/prod/base/gateway/certificates/key.pem")
+	SECRET_FILES+=("overlays/prod/overlays/askem-staging/secrets/*.yaml")
+	SECRET_FILES+=("overlays/prod/base/gateway/keycloak/realm/*.json" "overlays/prod/overlays/askem-staging/gateway/keycloak/realm/*.json")
+	KUSTOMIZATION=overlays/prod/overlays/askem-staging
 	KUBECTL_CMD="ssh uncharted-askem-prod-askem-staging-kube-manager-1 sudo kubectl"
 	;;
 production)
-	SECRET_FILES+=("prod/base/gateway/certificates/cert.pem" "prod/base/gateway/certificates/key.pem")
-	SECRET_FILES+=("prod/overlays/askem-production/secrets/*.yaml")
-	SECRET_FILES+=("prod/base/gateway/keycloak/realm/*.json" "prod/overlays/askem-production/gateway/keycloak/realm/*.json")
-	KUSTOMIZATION=prod/overlays/askem-production
+	SECRET_FILES+=("overlays/prod/base/gateway/certificates/cert.pem" "overlays/prod/base/gateway/certificates/key.pem")
+	SECRET_FILES+=("overlays/prod/overlays/askem-production/secrets/*.yaml")
+	SECRET_FILES+=("overlays/prod/base/gateway/keycloak/realm/*.json" "overlays/prod/overlays/askem-production/gateway/keycloak/realm/*.json")
+	KUSTOMIZATION=overlays/prod/overlays/askem-production
 	KUBECTL_CMD="ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl"
 	;;
 esac
