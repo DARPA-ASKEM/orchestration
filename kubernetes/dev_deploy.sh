@@ -4,11 +4,6 @@ case ${1} in
   -h | --help)
     COMMAND="help"
     ;;
-  test)
-    COMMAND="test"
-    shift
-    SERVICES="$@"
-    ;;
   up)
     COMMAND="up"
     SERVICES="$@"
@@ -29,12 +24,6 @@ esac
 COMMAND=${COMMAND:-help}
 
 case ${COMMAND} in
-  test)
-    echo "## Testing kustomization script"
-    for SERVICE in ${SERVICES[@]}; do
-      echo ${SERVICE}
-    done
-    ;;
   up)
     for SERVICE in ${SERVICES[@]}; do
       case ${SERVICE} in
