@@ -46,7 +46,7 @@ images:
   # Data Service repository
   - name: data-service-image
     newName: ghcr.io/darpa-askem/data-service
-    newTag: 0.3.7
+    newTag: 0.3.8
   # Model Service repository
   - name: model-service-image
     newName: ghcr.io/darpa-askem/model-service
