@@ -23,4 +23,3 @@ spec:
                 name: gateway-keycloak
                 port:
                   number: 443
-
