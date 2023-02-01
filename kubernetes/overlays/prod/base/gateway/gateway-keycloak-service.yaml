@@ -15,5 +15,6 @@ spec:
       targetPort: 8443
   selector:
     software.uncharted.terarium/name: gateway-keycloak
+  type: NodePort
 status:
   loadBalancer: {}

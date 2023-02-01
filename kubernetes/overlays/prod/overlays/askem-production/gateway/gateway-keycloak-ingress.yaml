@@ -22,4 +22,4 @@ spec:
               service:
                 name: gateway-keycloak
                 port:
-                  number: 8079
+                  number: 443
