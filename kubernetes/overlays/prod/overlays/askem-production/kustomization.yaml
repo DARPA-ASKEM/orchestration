@@ -36,13 +36,13 @@ images:
   # TERArium repository
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: 1.2.2
+    newTag: 1.2.3
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: 1.2.2
+    newTag: 1.2.3
   - name: document-service-image
     newName: ghcr.io/darpa-askem/document-service
-    newTag: 1.2.2
+    newTag: 1.2.3
   # Data Service repository
   - name: data-service-image
     newName: ghcr.io/darpa-askem/data-service
