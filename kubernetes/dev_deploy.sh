@@ -53,11 +53,6 @@ case ${COMMAND} in
 						kubectl kustomize ./overlays/dev/local/services/data-service | kubectl apply --filename -
 						;;
 
-					document-service)
-						echo "Launching DOCUMENT SERVICE on localhost..."
-						kubectl kustomize ./overlays/dev/local/services/document-service | kubectl apply --filename -
-						;;
-
 					model-service)
 						echo "Launching MODEL SERVICE on localhost..."
 						kubectl kustomize ./overlays/dev/local/services/model-service | kubectl apply --filename -
@@ -102,11 +97,6 @@ case ${COMMAND} in
 						kubectl kustomize ./overlays/dev/local/services/data-service | kubectl delete --filename -
 						;;
 
-					document-service)
-						echo "Tearing down DOCUMENT SERVICE on localhost..."
-						kubectl kustomize ./overlays/dev/local/services/document-service | kubectl delete --filename -
-						;;
-
 					model-service)
 						echo "Tearing down MODEL SERVICE on localhost..."
 						kubectl kustomize ./overlays/dev/local/services/model-service | kubectl delete --filename -
@@ -144,7 +134,6 @@ case ${COMMAND} in
 			hmi-server
 			hmi-postgres
 			data-service
-			document-service
 			model-service
 			gateway
 			"
