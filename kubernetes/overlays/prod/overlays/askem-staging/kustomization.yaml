@@ -41,9 +41,6 @@ images:
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
     newTag: latest
-  - name: document-service-image
-    newName: ghcr.io/darpa-askem/document-service
-    newTag: latest
   # Data Service repository
   - name: data-service-image
     newName: ghcr.io/darpa-askem/data-service

@@ -11,8 +11,6 @@ spec:
           env:
             - name: data-service
               value: data-service
-            - name: document-service
-              value: document-service
             - name: keycloak-service-protocol
               value: https
             - name: keycloak-service-fqdn
