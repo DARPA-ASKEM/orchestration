@@ -12,4 +12,3 @@ configMapGenerator:
   - files:
       - check-latest-rsa
     name: rsa-key
-
