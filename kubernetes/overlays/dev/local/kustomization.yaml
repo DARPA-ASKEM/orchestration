@@ -9,14 +9,14 @@ resources:
   - services/data-service
   - services/model-service
 vars:
-- name: LOCALHOST
-  objref:
-    kind: ConfigMap
-    name: environment-variables
-    apiVersion: v1
-  fieldref:
-    fieldpath: data.LOCALHOST
+  - name: LOCALHOST
+    objref:
+      kind: ConfigMap
+      name: environment-variables
+      apiVersion: v1
+    fieldref:
+      fieldpath: data.LOCALHOST
 configMapGenerator:
-- name: environment-variables
-  envs: [environment-variables.env]
-  behavior: create
+  - name: environment-variables
+    envs: [environment-variables.env]
+    behavior: create
