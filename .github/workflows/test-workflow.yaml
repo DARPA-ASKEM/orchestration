@@ -1,0 +1,23 @@
+---
+# Test workflow to validate shared tag generator
+
+name: Test
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    branches: ['main']
+    tags:
+      - '*'
+
+jobs:
+  # Call the Tag Generator
+  tag-generator:
+    uses: darpa-askem/.github/.github/workflows/bake-publish.yaml@main
+
+  # Validate the output from the tag generator
+  validate-test:
+    runs-on: ubuntu-latest
+    needs:
+      - tag-generator
+    steps:
+      - run: echo ${{ needs.tag-generator.outputs.tag }}
