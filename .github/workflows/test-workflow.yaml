@@ -6,6 +6,7 @@ name: Test
 on: # yamllint disable-line rule:truthy
   pull_request:
     branches: ['main']
+  push:
     tags:
       - '*'
 
