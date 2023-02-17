@@ -11,6 +11,10 @@ spec:
           env:
             - name: data-service
               value: data-service
+            - name: SKEMA_MP_REST_URL
+              value: "http://skema-py:4041"
+            - name: SKEMA_RUST_MP_REST_URL
+              value: "http://skema-rs:4040"
             - name: keycloak-service-protocol
               value: https
             - name: keycloak-service-fqdn

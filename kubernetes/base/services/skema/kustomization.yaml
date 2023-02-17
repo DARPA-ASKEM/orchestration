@@ -1,0 +1,10 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - skema-rs-deployment.yaml
+  - skema-rs-service.yaml
+  - skema-py-deployment.yaml
+  - skema-py-service.yaml
+  - skema-memgraph-deployment.yaml
+  - skema-memgraph-service.yaml
