@@ -10,6 +10,7 @@ metadata:
     alb.ingress.kubernetes.io/security-groups: askem-staging-web-private
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
+    alb.ingress.kubernetes.io/healthcheck-path: '/ping'
 spec:
   ingressClassName: alb
   rules:
