@@ -1,0 +1,60 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: check-latest
+  namespace: terarium
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            software.uncharted.terarium: check-latest
+        spec:
+          containers:
+            - name: check-latest
+              image: ghcr.io/darpa-askem/check-latest:0.2.1
+              args:
+                - -d
+              imagePullPolicy: Always
+              env:
+                - name: NAMESPACE
+                  value: terarium
+                - name: GH_USERNAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: check-latest-creds
+                      key: username
+                - name: GH_PAT
+                  valueFrom:
+                    secretKeyRef:
+                      name: check-latest-creds
+                      key: pat
+                - name: SSH_KUBECTL
+                  valueFrom:
+                    secretKeyRef:
+                      name: check-latest-creds
+                      key: ssh_kubectl
+                - name: IMAGES_FILE
+                  valueFrom:
+                    secretKeyRef:
+                      name: check-latest-creds
+                      key: images_file
+              volumeMounts:
+                - name: images-volume
+                  mountPath: /check-latest/data
+                - name: rsa-key-volume
+                  mountPath: /check-latest/.ssh
+          restartPolicy: OnFailure
+          imagePullSecrets:
+            - name: ghcr-cred
+          volumes:
+            - name: images-volume
+              configMap:
+                name: askem-images
+            - name: rsa-key-volume
+              configMap:
+                name: rsa-key
+                defaultMode: 0400
