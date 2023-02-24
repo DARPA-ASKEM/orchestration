@@ -35,6 +35,8 @@ spec:
               value: http://host.docker.internal:3000/api/
             - name: LOCATION_APP_URL
               value: http://host.docker.internal:8080/app/
+            - name: ADMIN_KEYCLOAK_SERVICE_URL
+              value: http://gateway-admin-keycloak:8080/adminapi/
           volumeMounts:
             - name: htdocs-volume
               mountPath: /usr/local/apache2/htdocs

@@ -7,6 +7,7 @@ resources:
   - gateway-postgres-deployment.yaml
   - gateway-postgres-service.yaml
 patchesStrategicMerge:
+  - gateway-admin-keycloak-deployment.yaml
   - gateway-httpd-service.yaml
   - gateway-httpd-deployment.yaml
   - gateway-keycloak-deployment.yaml
@@ -30,6 +31,9 @@ configMapGenerator:
       - httpd/config-ssl/ssl-setup.conf
     name: gateway-httpd-config-ssl
 images:
+  - name: gateway-admin-keycloak-image
+    newName: docker.uncharted.software/auth/admin-keycloak
+    newTag: local
   - name: gateway-httpd-image
     newName: ghcr.io/unchartedsoftware/httpd-openidc
     newTag: 0.1.3

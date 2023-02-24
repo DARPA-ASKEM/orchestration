@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.auth/name: gateway-admin-keycloak
+  name: gateway-admin-keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.auth/name: gateway-admin-keycloak
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.auth/name: gateway-admin-keycloak
+        software.uncharted.auth/component: admin-keycloak
+        software.uncharted.auth/environment: dev
+        software.uncharted.auth/tier: gateway
+    spec:
+      containers:
+        - image: gateway-admin-keycloak-image
+          name: gateway-admin-keycloak
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources: {}
+      restartPolicy: Always
+status: {}

@@ -16,15 +16,25 @@
         }
         };
 
-        apiCall = async (path) => {
-        var response = fetch(path, {
-            headers: new Headers({
-            'Authorization': 'Bearer ' + accessToken
+        apiCall = async (path, method) => {
+            var response = await fetch(path,  {
+                method: method,
+                headers: new Headers({
+                'Authorization': 'Bearer ' + accessToken
+                })
             })
-        })
-        response.then(data => {
-            console.log(path + ' --> ' + data);
-        })
+            .then(res => {
+                if (res.status >= 200 && res.status < 300) {
+                    return res.json();
+                }
+                return {
+                    return_code: res.status
+                }
+            })
+            .catch(function(err) {
+                console.log(`Error: ${err}`)
+            });
+            document.getElementById('responseArea').value = JSON.stringify(response, undefined, 4);
         }
 
         getAccessToken().then(response => {
@@ -40,7 +50,10 @@
         <li>Adam the administrator <code>adam@test.io:asdf1ASDF</code></li>
         <li>Ursula the user <code>ursula@test.io:asdf1ASDF</code></li>
     </ul>
-    <p>Go to <a href="#" onclick="apiCall('/api/user/me')">/api/user/me</a>.</p>
-    <p>Go to <a href="#" onclick="apiCall('/api/admin')">/api/admin</a>.</p>
+    <h3>Admin Keycloak</h3>
+    <p>Get Roles <a href="#" onclick="apiCall('/adminapi/roles', 'GET')">/adminapi/roles</a>.</p>
+    <p>Go Users <a href="#" onclick="apiCall('/adminapi/users', 'GET')">/adminapi/users</a>.</p>
+    <p>Add role "user" to <input type="text" name="userId" id="userId" value="" /> <a href="#" onclick="apiCall('/adminapi/user/' + document.getElementById('userId').value + '/add-role?name=user', 'POST')">/adminapi/user/&lt;id&gt;/add-role?name=user</id></a>.</p>
+    <textarea id="responseArea"></textarea>
     </body>
 </html>
