@@ -1,5 +1,29 @@
 #!/bin/bash
 
+# Write out an environment file locally to populate the kube configs
+filename="overlays/dev/local/environment-variables.env"
+# default
+LOCALHOST="host.docker.internal"
+
+get_os(){
+case $(uname) in
+			"Linux")
+					# Linux
+					echo "You are running Linux"
+					LOCALHOST=$(hostname -I | awk '{print $1}')
+					if [[ "$(< /proc/sys/kernel/osrelease)" == *WSL2 ]];
+					then
+							echo "But on Windows in WSL2 mode...  If there's a problem, this is probably it =)"
+							LOCALHOST="`ip a s eth0 | egrep -o 'inet [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d' ' -f2`" # Get the IP on eth0
+							echo "Assigning docker host to WSL2 VM IP ${LOCALHOST}"
+					fi
+					;;
+	esac
+	echo "LOCALHOST=$LOCALHOST" > "$filename"
+}
+
+get_os
+
 case ${1} in
 	-h | --help)
 		COMMAND="help"
