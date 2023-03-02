@@ -32,9 +32,9 @@ spec:
             - name: KEYCLOAK_SERVICE_URL
               value: http://gateway-keycloak:8079/
             - name: LOCATION_API_URL
-              value: http://host.docker.internal:3000/api/
+              value: http://$(LOCALHOST):3000/api/
             - name: LOCATION_APP_URL
-              value: http://host.docker.internal:8080/app/
+              value: http://$(LOCALHOST):8080/app/
           volumeMounts:
             - name: htdocs-volume
               mountPath: /usr/local/apache2/htdocs
