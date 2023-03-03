@@ -9,6 +9,8 @@ spec:
       containers:
         - name: hmi-server
           env:
+            - name: QUARKUS_LOG_CONSOLE_JSON
+              value: 'true'
             - name: data-service
               value: data-service
             - name: model-service
