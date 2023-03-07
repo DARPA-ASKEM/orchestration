@@ -600,7 +600,7 @@
         "ownerManagedAccess" : false,
         "attributes" : { },
         "_id" : "5a29fc2e-366a-4a9b-9b86-e020d1e62213",
-        "uris" : [ "/api/user/*" ],
+        "uris" : [ "/api/*" ],
         "scopes" : [ {
           "name" : "user"
         } ],
@@ -610,7 +610,7 @@
         "ownerManagedAccess" : false,
         "attributes" : { },
         "_id" : "9c6f94ec-9911-4023-9b5a-437165a668cd",
-        "uris" : [ "/api/admin", "/adminapi/*" ],
+        "uris" : [ "/adminapi/*" ],
         "scopes" : [ {
           "name" : "admin"
         } ],
