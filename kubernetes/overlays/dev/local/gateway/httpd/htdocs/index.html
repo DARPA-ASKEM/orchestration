@@ -45,15 +45,12 @@
     <body>
     <h2>Terarium Auth</h2>
     <p>Go to <a href="/app/">/app/</a>.</p>
-    <p>There are two users:</p>
+    <p>There are four users:</p>
     <ul>
-        <li>Adam the administrator <code>adam@test.io:asdf1ASDF</code></li>
-        <li>Ursula the user <code>ursula@test.io:asdf1ASDF</code></li>
+        <li>Emperor Adam <code>adam@test.io:asdf1ASDF</code> account with admin and user roles</li>
+        <li>Lady Ursula <code>ursula@test.io:asdf1ASDF</code> account with user role</li>
+        <li>New1 Test<code>new1@test.io:</code> account without any roles</li>
+        <li>New2 Test <code>new2@test.io:</code> account without any roles</li>
     </ul>
-    <h3>Admin Keycloak</h3>
-    <p>Get Roles <a href="#" onclick="apiCall('/adminapi/roles', 'GET')">/adminapi/roles</a>.</p>
-    <p>Go Users <a href="#" onclick="apiCall('/adminapi/users', 'GET')">/adminapi/users</a>.</p>
-    <p>Add role "user" to <input type="text" name="userId" id="userId" value="" /> <a href="#" onclick="apiCall('/adminapi/user/' + document.getElementById('userId').value + '/add-role?name=user', 'POST')">/adminapi/user/&lt;id&gt;/add-role?name=user</id></a>.</p>
-    <textarea id="responseArea"></textarea>
     </body>
 </html>
