@@ -9,6 +9,8 @@ spec:
       containers:
         - name: hmi-server
           env:
+            - name: realm
+              value: Terarium
             - name: data-service
               value: $(LOCALHOST)
             - name: model-service
