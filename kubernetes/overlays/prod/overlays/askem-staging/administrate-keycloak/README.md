@@ -24,7 +24,7 @@ To change the current context run `./admcloak.sh set docker-desktop` to switch f
 
 ### SSH Configuration
 
-Add the following forward (`LocalForward 16443 172.16.60.226:6443`) to your SSH rule for `Host uncharted-askem-prod-askem-staging-kube-manager-1`
+Add the following forward (`LocalForward 16443 172.16.50.96:6443`) to your SSH rule for `Host uncharted-askem-prod-askem-staging-kube-manager-2`
 
 ## Establishing Port Forwarding for Keycloak
 
