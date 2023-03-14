@@ -6,7 +6,7 @@ filename="overlays/dev/local/environment-variables.env"
 LOCALHOST="host.docker.internal"
 
 get_os(){
-case $(uname) in
+	case $(uname) in
 			"Linux")
 					# Linux
 					echo "You are running Linux"
@@ -19,7 +19,7 @@ case $(uname) in
 					fi
 					;;
 	esac
-	echo "LOCALHOST=$LOCALHOST" > "$filename"
+	echo "LOCALHOST=${LOCALHOST}" > "$filename"
 }
 
 get_os

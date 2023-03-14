@@ -9,7 +9,7 @@ spec:
         - name: gateway-admin-keycloak
           env:
             - name: realm
-              value: Uncharted
+              value: Terarium
             - name: keycloak-service-url
               value: http://gateway-keycloak:8079/
             - name: client-id

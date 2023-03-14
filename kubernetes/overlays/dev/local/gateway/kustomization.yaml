@@ -13,8 +13,8 @@ patchesStrategicMerge:
   - gateway-keycloak-deployment.yaml
 configMapGenerator:
   - files:
-      - keycloak/realm/Uncharted-realm.json
-      - keycloak/realm/Uncharted-users-0.json
+      - keycloak/realm/Terarium-realm.json
+      - keycloak/realm/Terarium-users-0.json
     name: gateway-keycloak-realm
   - files:
       - httpd/htdocs/index.html
