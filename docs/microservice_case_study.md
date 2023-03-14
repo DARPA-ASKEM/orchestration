@@ -207,6 +207,12 @@ spec:
               value: "http://skema-rs:4040"
 ``` 
 
+For staging, we want this service to auto-update.  We can add the following line to `kubernetes/overlays/prod/overlays/askem-staging/check-latest/images.txt`:
+```text
+software.uncharted.terarium/name=skema-rs ghcr.io/darpa-askem/skema-rs:latest
+```
+This tells our updating cronjob that the pods with the selector in the first column should use the latest version of image name in the second column.
+
 Finally, we must deploy all of this.  In order to get access to the staging environment, please message @chris on Slack.  
 
 We can deploy the service itself by running
