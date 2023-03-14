@@ -522,7 +522,7 @@
     "alwaysDisplayInConsole" : false,
     "clientAuthenticatorType" : "client-secret",
     "secret" : "jtbQhs6SlfynqJaygVpwav2kLzAme2b4",
-    "redirectUris" : [ "http://localhost:8078/app/", "http://localhost:8078/app/redirect_uri", "http://localhost:8078/" ],
+    "redirectUris" : [ "http://localhost:8078/app/", "http://localhost:8078/app/redirect_uri", "http://localhost:8078/", "https://oauth.pstmn.io/v1/callback" ],
     "webOrigins" : [ ],
     "notBefore" : 0,
     "bearerOnly" : false,
