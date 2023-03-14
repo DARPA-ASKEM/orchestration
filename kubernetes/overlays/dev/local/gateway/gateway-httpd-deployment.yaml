@@ -9,6 +9,8 @@ spec:
       containers:
         - name: gateway-httpd
           env:
+            - name: REALM
+              value: Terarium
             - name: LISTEN_PORT
               value: "80"
             - name: SERVICE_PORT
