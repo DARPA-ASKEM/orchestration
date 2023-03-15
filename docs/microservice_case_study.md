@@ -111,7 +111,7 @@ should `Inherit access from source repository`. (https://github.com/orgs/DARPA-A
 
 This allows access control via the repository settings as opposed to package specific settings.
 
-Within Skema itself, we can see matches what we expect:
+Within [Skemas permissions](https://github.com/DARPA-ASKEM/skema/settings/access) itself, we can see this matches what we expect:
 
 ![mcs_3.png](images%2Fmcs_3.png)
 
