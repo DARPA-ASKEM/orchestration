@@ -12,9 +12,10 @@ services and provides "data-in-data-out" functionality.
 ## Process
 The general steps of the process are outlined below:
 1. [Fork the Repository](#fork-the-repository)
-2. [Setup CI and Package Access](#setup-ci-and-package-access)
-3. [Add Manifests to Orchestration](#add-manifests-to-orchestration)
-4. [Add Configuration to Terarium](#add-configuration-to-terarium)
+2. [Setup CI](#setup-ci)
+3. [Configure Package Access](#configure-package-access)
+4. [Add Manifests to Orchestration](#add-manifests-to-orchestration)
+5. [Add Configuration to Terarium](#add-configuration-to-terarium)
 
 ### Fork the Repository
 **Goals**: Ensure that the repository is in the DARPA-ASKEM GitHub repository. If this was a service maintained directly by Terarium maintainers
@@ -27,13 +28,13 @@ of this repository so that Terarium maintainers can control versioning and relea
 We can fork this repository by clicking `Fork` and ensuring that we fork the repository into the correct organization:
 ![mcs_1.png](images%2Fmcs_1.png)
 
-### Setup CI and Package Access
+### Setup CI
 **Goals**: Ensure that the microservice image(s) have Continuous Integration for builds and that generated Docker images follow the 
 naming convention of the organization and have the correct access permissions.
 
 **Where**: Within the [Skema](https://github.com/DARPA-ASKEM/skema) repository and the GitHub UI
 
-To ensure CI is built, we simply need to make a `.github/publish.yaml` file. When creating a new microservice, we can use this file
+To ensure CI is built, we simply need to make a `.github/workflows/publish.yaml` file. When creating a new microservice, we can use this file
 as an example and create changes as needed. A walkthrough of the important bits of this file follows:
 
 ```yaml
@@ -94,6 +95,25 @@ The `platforms` section tells GitHub to build both the amd and arm versions of t
 commented out as this particular service fails to build on ARM achitecture).
 
 When creating a new service, this can simply be copy/pasted with the correct edits.
+
+### Configure Package Access
+**Goals**: To ensure that the packages published by GitHub actions can be pulled by anyone in the ASKEM organization, but only written
+by the Terarium group.
+
+**Where**: Within the GitHub UI
+
+By default, newly published packages are private except to the person that initially pushed the image. We need to ensure 
+the published packages have the correct permissions within the GitHub organization. Once published via GitHub Actions, 
+you should be able to see the new package appear at https://github.com/orgs/DARPA-ASKEM/packages. `skema-rs` specifically
+should `Inherit access from source repository`. (https://github.com/orgs/DARPA-ASKEM/packages/container/skema-rs/settings)
+
+![mcs_2.png](images%2Fmcs_2.png)
+
+This allows access control via the repository settings as opposed to package specific settings.
+
+Within Skema itself, we can see matches what we expect:
+
+![mcs_3.png](images%2Fmcs_3.png)
 
 ### Add Manifests to Orchestration
 **Goals**: To create Kubernetes manifests to ensure that service is deployed to AWS environments and, in staging, updates
