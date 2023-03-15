@@ -1,28 +1,40 @@
 #!/bin/bash
 
-# Write out an environment file locally to populate the kube configs
-filename="overlays/dev/local/environment-variables.env"
-# default
-LOCALHOST="host.docker.internal"
+GATEWAY_HTTPD_REPLACEMENT_FILE="overlays/dev/local/gateway/configmap/host.yaml"
+GATEWAY_HTTPD_REPLACEMENT_FILE_MAC="overlays/dev/local/gateway/configmap/host-mac.yaml"
+GATEWAY_HTTPD_REPLACEMENT_FILE_LINUX="overlays/dev/local/gateway/configmap/host-linux.yaml"
 
-get_os(){
+HMI_SERVER_REPLACEMENT_FILE="overlays/dev/local/hmi/server/configmap/host.yaml"
+HMI_SERVER_REPLACEMENT_FILE_MAC="overlays/dev/local/hmi/server/configmap/host-mac.yaml"
+HMI_SERVER_REPLACEMENT_FILE_LINUX="overlays/dev/local/hmi/server/configmap/host-linux.yaml"
+
+determine_host_machine_for_pods() {
+	# Assume Mac using docker
+	cp ${GATEWAY_HTTPD_REPLACEMENT_FILE_MAC} ${GATEWAY_HTTPD_REPLACEMENT_FILE}
+	cp ${HMI_SERVER_REPLACEMENT_FILE_MAC} ${HMI_SERVER_REPLACEMENT_FILE}
+
 	case $(uname) in
-			"Linux")
-					# Linux
-					echo "You are running Linux"
-					LOCALHOST=$(hostname -I | awk '{print $1}')
-					if [[ "$(< /proc/sys/kernel/osrelease)" == *WSL2 ]];
-					then
-							echo "But on Windows in WSL2 mode...  If there's a problem, this is probably it =)"
-							LOCALHOST="`ip a s eth0 | egrep -o 'inet [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d' ' -f2`" # Get the IP on eth0
-							echo "Assigning docker host to WSL2 VM IP ${LOCALHOST}"
-					fi
-					;;
-	esac
-	echo "LOCALHOST=${LOCALHOST}" > "$filename"
-}
+		"Linux")
+			# Linux
+			cp ${GATEWAY_HTTPD_REPLACEMENT_FILE_LINUX} ${GATEWAY_HTTPD_REPLACEMENT_FILE}
+			cp ${HMI_SERVER_REPLACEMENT_FILE_LINUX} ${HMI_SERVER_REPLACEMENT_FILE}
 
-get_os
+			echo "You are running Linux"
+			LOCALHOST=$(hostname -I | awk '{print $1}')
+			if [[ "$(< /proc/sys/kernel/osrelease)" == *WSL2 ]];
+			then
+				echo "But on Windows in WSL2 mode...  If there's a problem, this is probably it =)"
+				LOCALHOST="`ip a s eth0 | egrep -o 'inet [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d' ' -f2`" # Get the IP on eth0
+				echo "Assigning docker host to WSL2 VM IP ${LOCALHOST}"
+			fi
+
+			echo "editing files replacing 'localhost' with ${LOCALHOST}"
+
+			sed -i.bak "s/localhost/${LOCALHOST}/g" ${GATEWAY_HTTPD_REPLACEMENT_FILE}
+			sed -i.bak "s/localhost/${LOCALHOST}/g" ${HMI_SERVER_REPLACEMENT_FILE}
+			;;
+	esac
+}
 
 case ${1} in
 	-h | --help)
@@ -51,6 +63,7 @@ COMMAND=${COMMAND:-help}
 
 case ${COMMAND} in
 	up)
+		determine_host_machine_for_pods
 		if [ "${#SERVICES[@]}" -eq 0 ]; then
 			echo "Launching TERArium on localhost..."
 			kubectl kustomize ./overlays/dev/local | kubectl apply --filename -
@@ -95,6 +108,7 @@ case ${COMMAND} in
 		fi
 		;;
 	down)
+		determine_host_machine_for_pods
 		if [ "${#SERVICES[@]}" -eq 0 ]; then
 			echo "Launching TERArium on localhost..."
 			kubectl kustomize ./overlays/dev/local | kubectl delete --filename -

@@ -6,6 +6,7 @@ resources:
   - gateway-keycloak-service.yaml
   - gateway-postgres-deployment.yaml
   - gateway-postgres-service.yaml
+  - configmap/host.yaml
 patchesStrategicMerge:
   - gateway-admin-keycloak-deployment.yaml
   - gateway-httpd-service.yaml
@@ -28,6 +29,8 @@ configMapGenerator:
       - httpd/config-ssl/ssl-proxy.conf
       - httpd/config-ssl/ssl-setup.conf
     name: gateway-httpd-config-ssl
+replacements:
+  - path: gateway-httpd-replacement.yaml
 images:
   - name: gateway-admin-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin
