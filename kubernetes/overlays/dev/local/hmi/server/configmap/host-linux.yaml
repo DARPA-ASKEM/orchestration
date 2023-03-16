@@ -4,4 +4,3 @@ metadata:
   name: hmi-host
 data:
   host: "localhost"
-
