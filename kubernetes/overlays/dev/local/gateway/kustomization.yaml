@@ -30,7 +30,8 @@ configMapGenerator:
       - httpd/config-ssl/ssl-setup.conf
     name: gateway-httpd-config-ssl
 replacements:
-  - path: gateway-httpd-replacement.yaml
+  - path: gateway-httpd-api-replacement.yaml
+  - path: gateway-httpd-app-replacement.yaml
 images:
   - name: gateway-admin-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin

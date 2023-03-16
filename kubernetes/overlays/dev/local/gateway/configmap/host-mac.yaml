@@ -3,4 +3,5 @@ kind: ConfigMap
 metadata:
   name: gateway-host
 data:
-  host: "host.docker.internal"
+  host_api: "host.docker.internal:3000"
+  host_app: "host.docker.internal:8080"
