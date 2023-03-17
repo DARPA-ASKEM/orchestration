@@ -1,0 +1,13 @@
+source:
+  kind: ConfigMap
+  name: hmi-host
+  fieldPath: data.host
+targets:
+  - select:
+      name: hmi-server
+      kind: Deployment
+    fieldPaths:
+      - spec.template.spec.containers.[name=hmi-server].env.[name=data-service].value
+      - spec.template.spec.containers.[name=hmi-server].env.[name=model-service].value
+      - spec.template.spec.containers.[name=hmi-server].env.[name=keycloak-service-fqdn].value
+      - spec.template.spec.containers.[name=hmi-server].env.[name=terarium-db-host].value
