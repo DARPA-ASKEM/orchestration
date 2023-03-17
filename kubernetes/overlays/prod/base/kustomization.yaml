@@ -10,6 +10,7 @@ resources:
   - ../../../base/services/model-service
   - ../../../base/services/skema
   - gateway/gateway-keycloak-service.yaml
+  - gateway/gateway-admin-keycloak-deployment.yaml
 patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-httpd-service.yaml
