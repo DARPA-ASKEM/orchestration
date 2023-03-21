@@ -12,6 +12,7 @@ resources:
   - gateway/gateway-keycloak-service.yaml
   - gateway/gateway-admin-keycloak-deployment.yaml
 patchesStrategicMerge:
+  - gateway/gateway-admin-keycloak-deployment.yaml
   - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-httpd-service.yaml
   - gateway/gateway-keycloak-deployment.yaml
