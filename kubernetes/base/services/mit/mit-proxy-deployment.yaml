@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium/name: mit-proxy
+  name: mit-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: mit-proxy
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/component: mit
+        software.uncharted.terarium/environment: dev
+        software.uncharted.terarium/tier: services
+        software.uncharted.terarium/name: mit-proxy
+    spec:
+      containers:
+        - image: mit-proxy-image
+          name: mit-proxy
+          env:
+            - name: CHAT_GPT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mit-proxy-secrets
+                  key: chatgptkey
+            - name: MIT_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mit-proxy-secrets
+                  key: mitbaseurl
+          ports:
+            - containerPort: 3000
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}
