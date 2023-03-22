@@ -4,3 +4,4 @@ software.uncharted.terarium/name=model-service ghcr.io/darpa-askem/model-service
 software.uncharted.terarium/name=data-service ghcr.io/darpa-askem/data-service:latest
 software.uncharted.terarium/name=skema-py ghcr.io/darpa-askem/skema-py:latest
 software.uncharted.terarium/name=skema-rs ghcr.io/darpa-askem/skema-rs:latest
+software.uncharted.terarium/name=mit-proxy ghcr.io/darpa-askem/mit-proxy:latest

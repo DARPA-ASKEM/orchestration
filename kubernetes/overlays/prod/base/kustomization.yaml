@@ -9,6 +9,7 @@ resources:
   - ../../../base/services/data-service
   - ../../../base/services/model-service
   - ../../../base/services/skema
+  - ../../../base/services/mit
   - gateway/gateway-keycloak-service.yaml
 patchesStrategicMerge:
   - gateway/gateway-admin-keycloak-deployment.yaml
