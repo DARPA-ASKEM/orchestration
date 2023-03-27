@@ -44,10 +44,10 @@ images:
   # TERArium repository
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: 1.2.3
+    newTag: 2.0.0
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: 1.2.3
+    newTag: 2.0.0
   # Data Service repository
   - name: data-service-image
     newName: ghcr.io/darpa-askem/data-service
@@ -55,7 +55,7 @@ images:
   # Model Service repository
   - name: model-service-image
     newName: ghcr.io/darpa-askem/model-service
-    newTag: 1.0.1
+    newTag: 1.1.0
   # GitHub DARPA-ASKEM organisation
   - name: data-service-graphdb-image
     newName: ghcr.io/darpa-askem/data-service-graphdb
@@ -63,14 +63,14 @@ images:
 
   - name: skema-py-image
     newName: ghcr.io/darpa-askem/skema-py
-    newTag: 0.0.1
+    newTag: 0.0.3
   - name: skema-rs-image
     newName: ghcr.io/darpa-askem/skema-rs
-    newTag: 0.0.1
+    newTag: 0.0.3
   - name: skema-memgraph-image
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: 2.6.5-memgraph2.5.2-lab2.4.0-mage1.6
 
   - name: mit-proxy-image
     newName: ghcr.io/darpa-askem/mit-proxy
-    newTag: latest
+    newTag: v1.0.0
