@@ -9,8 +9,14 @@ spec:
       containers:
         - name: gateway-httpd
           env:
+            - name: REALM
+              value: Uncharted
+            - name: KEYCLOAK_ADMIN_FQDN
+              value: localhost
             - name: SERVICE_FQDN
               value: app.terarium.ai
+            - name: ADMIN_KEYCLOAK_SERVICE_URL
+              value: http://gateway-admin-keycloak:8080/adminapi/
       hostAliases:
         - ip: "127.0.0.1"
           hostnames:
