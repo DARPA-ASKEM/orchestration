@@ -44,14 +44,14 @@ images:
   # TERArium repository
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: 2.0.0
+    newTag: 2.1.0
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: 2.0.0
+    newTag: 2.1.0
   # Data Service repository
   - name: data-service-image
     newName: ghcr.io/darpa-askem/data-service
-    newTag: 0.3.8
+    newTag: 0.3.9
   # Model Service repository
   - name: model-service-image
     newName: ghcr.io/darpa-askem/model-service
@@ -74,3 +74,7 @@ images:
   - name: mit-proxy-image
     newName: ghcr.io/darpa-askem/mit-proxy
     newTag: 1.0.0
+
+  - name: simulation-service-image
+    newName: ghcr.io/darpa-askem/simulation-scheduler
+    newTag: 0.1.1
