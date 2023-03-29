@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium/name: skema-memgraph
+  name: skema-memgraph
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: skema-memgraph
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/component: skema
+        software.uncharted.terarium/environment: dev
+        software.uncharted.terarium/tier: services
+        software.uncharted.terarium/name: skema-memgraph
+    spec:
+      containers:
+        - image: skema-memgraph-image
+          name: skema-memgraph
+          command: ['/usr/bin/supervisord']
+          ports:
+            - containerPort: 7687
+            - containerPort: 3000
+            - containerPort: 7444
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}

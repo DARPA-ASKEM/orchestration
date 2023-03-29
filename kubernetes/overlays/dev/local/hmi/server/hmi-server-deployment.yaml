@@ -9,16 +9,18 @@ spec:
       containers:
         - name: hmi-server
           env:
+            - name: realm
+              value: Terarium
             - name: data-service
-              value: host.docker.internal
+              value: $(LOCALHOST)
             - name: model-service
-              value: host.docker.internal
+              value: $(LOCALHOST)
             - name: oidc-secret
               value: jtbQhs6SlfynqJaygVpwav2kLzAme2b4
             - name: keycloak-service-protocol
               value: http
             - name: keycloak-service-fqdn
-              value: host.docker.internal
+              value: $(LOCALHOST)
             - name: keycloak-service-port
               value: :8079
             - name: terarium-db-user
@@ -26,6 +28,6 @@ spec:
             - name: terarium-db-password
               value: terarium123
             - name: terarium-db-host
-              value: host.docker.internal
+              value: $(LOCALHOST)
             - name: terarium-db-port
               value: "5021"

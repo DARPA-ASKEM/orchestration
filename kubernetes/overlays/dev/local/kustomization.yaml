@@ -7,4 +7,3 @@ resources:
   - hmi/server
   - hmi/server/postgres
   - services/data-service
-  - services/model-service
