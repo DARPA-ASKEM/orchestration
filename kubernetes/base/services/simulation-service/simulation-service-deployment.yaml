@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium/name: simulation-service
+  name: simulation-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: simulation-service
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/component: simulation
+        software.uncharted.terarium/environment: dev
+        software.uncharted.terarium/tier: services
+        software.uncharted.terarium/name: simulation-service
+    spec:
+      containers:
+        - image: simulation-service-image
+          name: simulation-service
+          ports:
+            - containerPort: 8080
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}

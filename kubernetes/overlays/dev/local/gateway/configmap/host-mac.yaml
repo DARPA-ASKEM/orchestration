@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gateway-host
+data:
+  host_api: "host.docker.internal:3000"
+  host_app: "host.docker.internal:8080"

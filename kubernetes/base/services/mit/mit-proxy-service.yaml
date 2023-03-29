@@ -3,18 +3,18 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    software.uncharted.terarium/component: model
+    software.uncharted.terarium/component: mit
     software.uncharted.terarium/environment: dev
     software.uncharted.terarium/tier: services
-  name: model-service
+  name: mit-proxy
 spec:
   type: NodePort
   ports:
-    - name: 3010-tcp
-      port: 3010
+    - name: 3981-tcp
+      port: 3981
       protocol: TCP
-      targetPort: 8888
+      targetPort: 3000
   selector:
-    software.uncharted.terarium/name: model-service
+    software.uncharted.terarium/name: mit-proxy
 status:
   loadBalancer: {}

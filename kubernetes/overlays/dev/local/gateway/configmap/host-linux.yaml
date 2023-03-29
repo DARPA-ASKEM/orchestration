@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gateway-host
+data:
+  host_api: "localhost:3000"
+  host_app: "localhost:8080"

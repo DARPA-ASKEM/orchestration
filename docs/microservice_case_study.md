@@ -214,7 +214,7 @@ traffic will not be routed to them
 3. `"skema-rs`.staging.terarium.ai"`: This must be within the `*.staging.terarium.ai` domain block or else it will not work.
 4. `number: 4040`: This needs to route to the port exposed in the `service.yaml` definition.
 
-We now configure Terarium itself to expect these services.  A deeper explanation is provided in the [FAW](#faq).
+We now configure Terarium itself to expect these services.  A deeper explanation is provided in the [FAQ](#faq).
 Within `kubernetes/overlays/prod/base/hmi/hmi-server-deployment.yaml` we have an environment override:
 ```yaml
 spec:
