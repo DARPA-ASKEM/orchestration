@@ -176,25 +176,14 @@ resources:
   - skema-rs-service.yaml
 ```
 
-The final step is creating an `ingress` file that exposes this service to the outside world.
-The file `kubernetes/overlays/prod/overlays/askem-staging/services/skema-rs-ingress.yaml`:
+The final step is to modify the ingress definition to expose this service to the outside world.
+The file `kubernetes/overlays/prod/overlays/askem-staging/ingress/private-web-ingress.yaml`:
 ```yaml
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  namespace: terarium
-  name: skema-rs
-  annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: instance
-    alb.ingress.kubernetes.io/security-groups: askem-staging-web-private
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
-    alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
-    alb.ingress.kubernetes.io/healthcheck-path: '/ping'
 spec:
   ingressClassName: alb
   rules:
-    - http:
+		- host: "skema-rs.staging.terarium.ai"
+  		http:
         paths:
           - path: /
             pathType: Prefix
@@ -207,12 +196,8 @@ spec:
     - hosts:
         - "skema-rs.staging.terarium.ai"
 ```
-Important bits from above:
-1. `alb.ingress.kubernetes.io/security-groups: askem-staging-web-private` ensures that the service is only available to the _private_ web. Aka, Uncharted/Jataware IP's only.
-2. `alb.ingress.kubernetes.io/healthcheck-path: '/ping'`: This is the healthcheck that AWS will use to ensure the service is alive.  All microservices **must** have a healthcheck or
-traffic will not be routed to them
-3. `"skema-rs`.staging.terarium.ai"`: This must be within the `*.staging.terarium.ai` domain block or else it will not work.
-4. `number: 4040`: This needs to route to the port exposed in the `service.yaml` definition.
+1. `"skema-rs`.staging.terarium.ai"`: This must be within the `*.staging.terarium.ai` domain block or else it will not work.
+2. `number: 4040`: This needs to route to the port exposed in the `service.yaml` definition.
 
 We now configure Terarium itself to expect these services.  A deeper explanation is provided in the [FAQ](#faq).
 Within `kubernetes/overlays/prod/base/hmi/hmi-server-deployment.yaml` we have an environment override:

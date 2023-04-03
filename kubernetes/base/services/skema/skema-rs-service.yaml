@@ -7,6 +7,8 @@ metadata:
     software.uncharted.terarium/environment: dev
     software.uncharted.terarium/tier: services
   name: skema-rs
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: '/ping'
 spec:
   type: NodePort
   ports:
