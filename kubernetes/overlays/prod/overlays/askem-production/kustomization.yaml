@@ -9,6 +9,7 @@ resources:
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
   - secrets/secrets-data-service-s3.yaml
+  - secrets/secrets-xdd-api-key.yaml
 patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-keycloak-deployment.yaml
