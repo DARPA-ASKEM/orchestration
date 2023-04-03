@@ -1,0 +1,113 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: terarium
+  name: private-web-ingress
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: instance
+    alb.ingress.kubernetes.io/security-groups: askem-staging-web-private
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
+spec:
+  ingressClassName: alb
+  rules:
+    - host: "gateway-httpd.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-httpd
+                port:
+                  number: 8078
+
+    - host: "app.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-httpd
+                port:
+                  number: 8078
+
+    - host: "data-service.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: data-service
+                port:
+                  number: 3020
+
+    - host: "mit-proxy.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mit-proxy
+                port:
+                  number: 3981
+
+    - host: "model-service.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: model-service
+                port:
+                  number: 3010
+
+    - host: "simulation-service.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: simulation-service
+                port:
+                  number: 3030
+
+    - host: "skema-py.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: skema-py
+                port:
+                  number: 4041
+
+    - host: "skema-rs.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: skema-rs
+                port:
+                  number: 4040
+
+  tls:
+    - hosts:
+        - "app.staging.terarium.ai"
+        - "gateway-httpd.staging.terarium.ai"
+        - "data-service.staging.terarium.ai"
+        - "mit-proxy.staging.terarium.ai"
+        - "model-service.staging.terarium.ai"
+        - "simulation-service.staging.terarium.ai"
+        - "skema-py.staging.terarium.ai"
+        - "skema-rs.staging.terarium.ai"
