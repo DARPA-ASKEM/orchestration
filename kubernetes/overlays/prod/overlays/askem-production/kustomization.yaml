@@ -11,6 +11,7 @@ resources:
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
   - secrets/secrets-data-service-s3.yaml
+  - secrets/secrets-xdd-api-key.yaml
   - secrets/secrets-mit-proxy.yaml
 patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml

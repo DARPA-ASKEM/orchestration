@@ -52,3 +52,8 @@ spec:
                 secretKeyRef:
                   name: rds-creds
                   key: password
+            - name: xdd_api_key
+              valueFrom:
+                secretKeyRef:
+                  name: xdd-api-key
+                  key: key
