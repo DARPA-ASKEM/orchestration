@@ -12,35 +12,7 @@ HMI_SERVER_REPLACEMENT_FILE_LINUX="overlays/dev/local/hmi/server/configmap/host-
 SECRET_FILES=()
 SECRET_FILES+=("overlays/dev/local/secrets/*.yaml")
 
-decrypt() {
-	DECRYPTED_FILES=()
-	for SECRET_FILE in "${SECRET_FILES[@]}"; do
-		echo "decrypting file ${SECRET_FILE}"
-		#unpack wildcard - now failing
-		for FILE in `ls ${SECRET_FILE}`; do
-			ansible-vault decrypt --vault-id ~/askem-vault-id.txt "${FILE}"
-		done
-		STATUS=$?
-		if [[ ${STATUS} -eq 0 ]]; then
-			DECRYPTED_FILES+=("${SECRET_FILE}")
-		fi
-	done
-}
-
-encrypt() {
-	for SECRET_FILE in "${SECRET_FILES[@]}"; do
-		#unpack wildcard - now failing
-		for FILE in `ls ${SECRET_FILE}`; do
-			ansible-vault encrypt --vault-id ~/askem-vault-id.txt "${FILE}"
-		done
-	done
-}
-
-restore() {
-	for SECRET_FILE in "${DECRYPTED_FILES[@]}"; do
-		git restore "${SECRET_FILE}"
-	done
-}
+source functions.sh
 
 determine_host_machine_for_pods() {
 	# Assume Mac using docker
@@ -74,6 +46,9 @@ case ${1} in
 	-h | --help)
 		COMMAND="help"
 		;;
+	test)
+		COMMAND="test"
+		;;
 	up)
 		COMMAND="up"
 		shift
@@ -102,9 +77,17 @@ esac
 COMMAND=${COMMAND:-help}
 
 case ${COMMAND} in
+	test)
+		echo "## Decrypting secrets"
+		decrypt
+		echo "## Testing kustomization script"
+		kubectl kustomize ./overlays/dev/local | less
+		echo "## Restoring secrets as encrypted files"
+		restore
+		;;
 	up)
 		echo "## Decrypting secrets"
-    decrypt
+		decrypt
 		determine_host_machine_for_pods
 		if [ "${#SERVICES[@]}" -eq 0 ]; then
 			echo "Launching TERArium on localhost..."
@@ -149,11 +132,11 @@ case ${COMMAND} in
 			done
 		fi
 		echo "## Restoring secrets as encrypted files"
-    restore
+		restore
 		;;
 	down)
 		echo "## Decrypting secrets"
-    decrypt
+		decrypt
 		determine_host_machine_for_pods
 		if [ "${#SERVICES[@]}" -eq 0 ]; then
 			echo "Launching TERArium on localhost..."
@@ -203,17 +186,17 @@ case ${COMMAND} in
 			done
 		fi
 		echo "## Restoring secrets as encrypted files"
-    restore
+		restore
 		;;
 	status)
 		kubectl get configMap,svc,po
 		;;
 	decrypt)
-  	decrypt
-  	;;
-  encrypt)
-  	encrypt
-  	;;
+		decrypt
+		;;
+	encrypt)
+		encrypt
+		;;
 	help)
 		echo "
 	Usage:
