@@ -7,3 +7,4 @@ resources:
   - hmi/server
   - hmi/server/postgres
   - services/data-service
+  - secrets/secrets-xdd-api-key.yaml
