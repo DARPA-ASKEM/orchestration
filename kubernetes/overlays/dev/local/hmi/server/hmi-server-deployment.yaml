@@ -31,3 +31,8 @@ spec:
               value: $(LOCALHOST)
             - name: terarium-db-port
               value: "5021"
+            - name: xdd_api_key
+              valueFrom:
+                secretKeyRef:
+                  name: xdd-api-key
+                  key: key
