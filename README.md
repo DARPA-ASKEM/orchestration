@@ -9,6 +9,13 @@ See [Uncharted-Auth](https://github.com/unchartedsoftware/uncharted-auth) for de
 
 ## Requirements for Building locally
 
+### Install Ansible
+Required to encrypt/decrypt secrets.
+
+```shell
+brew install ansible
+```
+
 ### Enabling Kubernetes
 
 You will need a Kubernetes node running locally, the simplist for development is probably Docker Desktop's Kubernetes capability as it give the easiest access to your local machine from within the Kubernetes (or Docker) containers, but there are other options if one wishes.
