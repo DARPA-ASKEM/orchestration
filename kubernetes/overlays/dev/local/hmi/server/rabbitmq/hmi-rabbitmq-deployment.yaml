@@ -28,8 +28,6 @@ spec:
               value: terarium
             - name: RABBITMQ_DEFAULT_PASS
               value: terarium123
-            - name: POSTGRES_DB
-              value: terarium
           ports:
             - containerPort: 5672
           resources: {}
