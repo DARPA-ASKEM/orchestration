@@ -24,14 +24,14 @@ spec:
         - image: hmi-rabbitmq-image
           name: hmi-rabbitmq
           env:
-            - name: POSTGRES_USER
+            - name: RABBITMQ_DEFAULT_USER
               value: terarium
-            - name: POSTGRES_PASSWORD
+            - name: RABBITMQ_DEFAULT_PASS
               value: terarium123
             - name: POSTGRES_DB
               value: terarium
           ports:
-            - containerPort: 5432
+            - containerPort: 5672
           resources: {}
       imagePullSecrets:
         - name: ghcr-cred

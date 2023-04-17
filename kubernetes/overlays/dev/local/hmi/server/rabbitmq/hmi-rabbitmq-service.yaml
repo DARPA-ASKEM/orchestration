@@ -9,10 +9,10 @@ metadata:
   name: hmi-rabbitmq
 spec:
   ports:
-    - name: 5021-tcp
-      port: 5021
+    - name: 5672-tcp
+      port: 5672
       protocol: TCP
-      targetPort: 5432
+      targetPort: 5672
   selector:
     software.uncharted.terarium/name: hmi-rabbitmq
   type: LoadBalancer
