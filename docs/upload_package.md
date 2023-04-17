@@ -8,13 +8,11 @@ A decision was made to avoid bugs and issues with other packages manager to uplo
 - Check that your GitHub access tokens has `package:write` enable.
 - Select on docker hub which image and version image you would like to use. 
 
-    ```
-    RabbitMQ 3.11-alpine
-    ```
+    i.e. `RabbitMQ 3.11-alpine`
 - Run the following command `regctl-darwin-arm64 image copy [IMAGE] ghcr.io/darpa-askem/[IMAGE]`
 
-    ```
-    regctl-darwin-arm64 image copy rabbitmq:3.11-alpine ghcr.io/darpa-askem/rabbitmq:3.11-alpine
+    ```shell
+    $ regctl-darwin-arm64 image copy rabbitmq:3.11-alpine ghcr.io/darpa-askem/rabbitmq:3.11-alpine
     ```
 - Check that the package has been properly uploaded to the [GitHub organization](https://github.com/orgs/DARPA-ASKEM/packages) and update the package settings to add the [`ASKEM`](https://github.com/orgs/DARPA-ASKEM/teams/askem) team as a read and [`Terarium`](https://github.com/orgs/DARPA-ASKEM/teams/terarium) as Admin, and remove yourself from the _Manage access_.
     ![upwr_1.png](images/upwr_1.png)
