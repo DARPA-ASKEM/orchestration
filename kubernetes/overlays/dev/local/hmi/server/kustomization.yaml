@@ -16,6 +16,3 @@ images:
   - name: hmi-postgres-image
     newName: ghcr.io/darpa-askem/postgres
     newTag: "15.1"
-  - name: hmi-rabbitmq-image
-    newName: ghcr.io/darpa-askem/rabbitmq
-    newTag: "3.11-alpine"
