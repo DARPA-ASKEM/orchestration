@@ -6,5 +6,6 @@ resources:
   - hmi/client
   - hmi/server
   - hmi/server/postgres
+  - hmi/server/rabbitmq
   - services/data-service
   - secrets/secrets-xdd-api-key.yaml
