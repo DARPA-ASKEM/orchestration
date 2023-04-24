@@ -79,15 +79,15 @@ COMMAND=${COMMAND:-help}
 case ${COMMAND} in
 	test)
 		echo "## Decrypting secrets"
-		decrypt_ansible
+		decrypt_sops
 		echo "## Testing kustomization script"
 		kubectl kustomize ./overlays/dev/local | less
 		echo "## Restoring secrets as encrypted files"
-		restore_ansible
+		restore_sops
 		;;
 	up)
 		echo "## Decrypting secrets"
-		decrypt_ansible
+		decrypt_sops
 		determine_host_machine_for_pods
 		if [ "${#SERVICES[@]}" -eq 0 ]; then
 			echo "Launching TERArium on localhost..."
@@ -132,11 +132,11 @@ case ${COMMAND} in
 			done
 		fi
 		echo "## Restoring secrets as encrypted files"
-		restore_ansible
+		restore_sops
 		;;
 	down)
 		echo "## Decrypting secrets"
-		decrypt_ansible
+		decrypt_sops
 		determine_host_machine_for_pods
 		if [ "${#SERVICES[@]}" -eq 0 ]; then
 			echo "Launching TERArium on localhost..."
@@ -186,13 +186,13 @@ case ${COMMAND} in
 			done
 		fi
 		echo "## Restoring secrets as encrypted files"
-		restore_ansible
+		restore_sops
 		;;
 	status)
 		kubectl get configMap,svc,po
 		;;
 	decrypt)
-		decrypt_ansible
+		decrypt_sops
 		;;
 	encrypt)
 		encrypt_sops
