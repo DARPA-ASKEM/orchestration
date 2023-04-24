@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    software.uncharted.terarium/component: graphdb
+    software.uncharted.terarium/environment: dev
+    software.uncharted.terarium/tier: services
+  name: data-service-graphdb
+spec:
+  ports:
+    - name: 7474-tcp
+      port: 7474
+      protocol: TCP
+      targetPort: 7474
+    - name: 7687-tcp
+      port: 7687
+      protocol: TCP
+      targetPort: 7687
+  selector:
+    software.uncharted.terarium/name: data-service-graphdb
+status:
+  loadBalancer: {}

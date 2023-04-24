@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium/name: hmi-rabbitmq
+  name: hmi-rabbitmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: hmi-rabbitmq
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/component: rabbitmq
+        software.uncharted.terarium/environment: dev
+        software.uncharted.terarium/tier: hmi
+        software.uncharted.terarium/name: hmi-rabbitmq
+    spec:
+      containers:
+        - image: hmi-rabbitmq-image
+          name: hmi-rabbitmq
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              value: terarium
+            - name: RABBITMQ_DEFAULT_PASS
+              value: terarium123
+          ports:
+            - containerPort: 5672
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}

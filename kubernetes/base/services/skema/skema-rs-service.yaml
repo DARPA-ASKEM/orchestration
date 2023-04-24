@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    software.uncharted.terarium/component: skema
+    software.uncharted.terarium/environment: dev
+    software.uncharted.terarium/tier: services
+  name: skema-rs
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: '/ping'
+spec:
+  type: NodePort
+  ports:
+    - name: 4040-tcp
+      port: 4040
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    software.uncharted.terarium/name: skema-rs
+status:
+  loadBalancer: {}

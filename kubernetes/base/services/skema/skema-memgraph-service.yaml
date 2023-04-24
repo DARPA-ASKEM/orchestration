@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    software.uncharted.terarium/component: skema
+    software.uncharted.terarium/environment: dev
+    software.uncharted.terarium/tier: services
+  name: skema-memgraph
+spec:
+  ports:
+    - name: 7687-tcp
+      port: 7687
+      protocol: TCP
+      targetPort: 7687
+    - name: 7444-tcp
+      port: 7444
+      protocol: TCP
+      targetPort: 7444
+    - name: 3111-tcp
+      port: 3111
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    software.uncharted.terarium/name: skema-memgraph
+status:
+  loadBalancer: {}

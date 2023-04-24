@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    software.uncharted.terarium/component: model
+    software.uncharted.terarium/environment: dev
+    software.uncharted.terarium/tier: services
+  name: model-service
+spec:
+  type: NodePort
+  ports:
+    - name: 3010-tcp
+      port: 3010
+      protocol: TCP
+      targetPort: 8888
+  selector:
+    software.uncharted.terarium/name: model-service
+status:
+  loadBalancer: {}

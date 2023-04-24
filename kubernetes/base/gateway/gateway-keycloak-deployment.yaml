@@ -1,0 +1,59 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium/name: gateway-keycloak
+  name: gateway-keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: gateway-keycloak
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: gateway-keycloak
+        software.uncharted.terarium/component: keycloak
+        software.uncharted.terarium/environment: dev
+        software.uncharted.terarium/tier: gateway
+    spec:
+      containers:
+        - image: gateway-keycloak-image
+          name: gateway-keycloak
+          args:
+            - start
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: theme-volume
+              mountPath: /opt/keycloak/themes/terarium
+          resources: {}
+      initContainers:
+        - image: terarium-login-theme-image
+          name: gateway-terarium-theme
+          command: ['/bin/sh']
+          args: ['-c', 'cp -r /terarium/* /shared']
+          volumeMounts:
+            - name: theme-volume
+              mountPath: /shared
+        - image: gateway-keycloak-image
+          name: init-gateway-keycloak
+          args:
+            - import
+            - --dir
+            - /data
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources: {}
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: ghcr-cred
+      volumes:
+        - name: theme-volume
+          emptyDir: {}
+status: {}

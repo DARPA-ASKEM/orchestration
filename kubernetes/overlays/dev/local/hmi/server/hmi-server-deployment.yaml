@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hmi-server
+spec:
+  template:
+    spec:
+      containers:
+        - name: hmi-server
+          env:
+            - name: realm
+              value: Terarium
+            - name: data-service
+              value: $(LOCALHOST)
+            - name: model-service
+              value: $(LOCALHOST)
+            - name: oidc-secret
+              value: jtbQhs6SlfynqJaygVpwav2kLzAme2b4
+            - name: keycloak-service-protocol
+              value: http
+            - name: keycloak-service-fqdn
+              value: $(LOCALHOST)
+            - name: keycloak-service-port
+              value: :8079
+            - name: terarium-db-user
+              value: terarium
+            - name: terarium-db-password
+              value: terarium123
+            - name: terarium-db-host
+              value: $(LOCALHOST)
+            - name: terarium-db-port
+              value: "5021"
+            - name: terarium-mq-username
+              value: terarium
+            - name: terarium-mq-password
+              value: terarium123
+            - name: terarium-mq-host
+              value: $(LOCALHOST)
+            - name: terarium-mq-port
+              value: "5672"
+            - name: xdd_api_key
+              valueFrom:
+                secretKeyRef:
+                  name: xdd-api-key
+                  key: key

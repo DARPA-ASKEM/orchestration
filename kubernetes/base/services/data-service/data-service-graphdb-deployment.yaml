@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.terarium/name: data-service-graphdb
+  name: data-service-graphdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: data-service-graphdb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/component: graphdb
+        software.uncharted.terarium/environment: dev
+        software.uncharted.terarium/tier: services
+        software.uncharted.terarium/name: data-service-graphdb
+    spec:
+      containers:
+        - image: data-service-graphdb-image
+          name: data-service-graphdb
+          ports:
+            - containerPort: 7474
+            - containerPort: 7687
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}

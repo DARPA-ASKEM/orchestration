@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    software.uncharted.terarium/component: postgres
+    software.uncharted.terarium/environment: dev
+    software.uncharted.terarium/tier: gateway
+  name: gateway-postgres
+spec:
+  ports:
+    - name: "5432"
+      port: 5432
+      targetPort: 5432
+  type: LoadBalancer
+  selector:
+    software.uncharted.terarium/name: gateway-postgres
+status:
+  loadBalancer: {}

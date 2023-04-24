@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-service
+spec:
+  template:
+    spec:
+      containers:
+        - name: data-service
+          env:
+            - name: NEO4J_driver
+              value: neo4j://data-service-graphdb:7687
+            - name: SQL_URL
+              value: data-service-postgres
+            - name: SQL_PORT
+              value: "5020"
+            - name: SQL_USER
+              value: dev
+            - name: SQL_PASSWORD
+              value: dev
+            - name: DKG_URL
+              value: http://34.230.33.149
+            - name: DKG_API_PORT
+              value: "8771"
+            - name: DKG_DESC_PORT
+              value: "8772"
+            - name: AWS_ACCESS_KEY_ID
+              value: "miniouser"
+            - name: AWS_SECRET_ACCESS_KEY
+              value: "miniopass"
+            - name: DATASET_STORAGE_BASE_URL
+              value: "s3://datasets/"
+            - name: STORAGE_HOST
+              value: "http://host.docker.internal:9000"
