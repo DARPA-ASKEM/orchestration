@@ -9,6 +9,15 @@ See [Uncharted-Auth](https://github.com/unchartedsoftware/uncharted-auth) for de
 
 ## Requirements for Building locally
 
+### Install Sops
+Required to encrypt/decrypt secrets.
+
+[Mozilla's Secret OPerationS : sops](https://github.com/mozilla/sops)
+
+```shell
+brew install sops
+```
+
 ### Install Ansible
 Required to encrypt/decrypt secrets.
 
@@ -21,7 +30,6 @@ ARM64 processors:
 ```shell
 arch -arm64 brew install ansible
 ```
-
 
 ### Enabling Kubernetes
 
@@ -49,19 +57,19 @@ TODO: talk about `kubectl describe <pod-name>`
 
 ## Launching TERArium
 
-To launch TERArium run `./deploy-terarium.sh up`.  This will stand up the TERArium services which are comprised of an Apache HTTPD server, a Keycloak server, and a Postgres server for Keycloak.
+To launch TERArium run `./dev-deploy.sh up`.  This will stand up the TERArium services which are comprised of an Apache HTTPD server, a Keycloak server, and a Postgres server for Keycloak.
 
-Running `./deploy-terarium.sh status` will show the status of the various TERArium services and if there are problems with a *pod* (it says something like CrashLoopBackoff or similar), then running `kubectl logs -f <full-pod-name>` will show the log of the problematic container.  The *full-pod-name* is shown in the list of pods when retrieving the status.
+Running `./dev-deploy.sh status` will show the status of the various TERArium services and if there are problems with a *pod* (it says something like CrashLoopBackoff or similar), then running `kubectl logs -f <full-pod-name>` will show the log of the problematic container.  The *full-pod-name* is shown in the list of pods when retrieving the status.
 
-To bring the TERArium stack down, simply run `./deploy-terarium.sh down` and all the services will be torn down.
+To bring the TERArium stack down, simply run `./dev-deploy.sh down` and all the services will be torn down.
 
-To stop only one service, for example to work on the hmi-client, run `./deploy-terarium.sh stop hmi-client`.
-Or for the _Data Service_ `./deploy-terarium.sh stop data-service`.
+To stop only one service, for example to work on the hmi-client, run `./dev-deploy.sh stop hmi-client`.
+Or for the _Data Service_ `./dev-deploy.sh stop data-service`.
 
 To only launch the services you need:
 ```shell
-$ ./deploy-terarium.sh dev                  # Launches TERArium without the hmi-server and hmi-client
-$ ./deploy-terarium.sh stop hmi-client      # Stop the hmi-client
+$ ./dev-deploy.sh dev                  # Launches TERArium without the hmi-server and hmi-client
+$ ./dev-deploy.sh stop hmi-client      # Stop the hmi-client
 ```
 
 ### Private Registries

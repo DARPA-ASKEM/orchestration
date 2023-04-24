@@ -79,15 +79,15 @@ COMMAND=${COMMAND:-help}
 case ${COMMAND} in
 	test)
 		echo "## Decrypting secrets"
-		decrypt
+		decrypt_ansible
 		echo "## Testing kustomization script"
 		kubectl kustomize ./overlays/dev/local | less
 		echo "## Restoring secrets as encrypted files"
-		restore
+		restore_ansible
 		;;
 	up)
 		echo "## Decrypting secrets"
-		decrypt
+		decrypt_ansible
 		determine_host_machine_for_pods
 		if [ "${#SERVICES[@]}" -eq 0 ]; then
 			echo "Launching TERArium on localhost..."
@@ -132,11 +132,11 @@ case ${COMMAND} in
 			done
 		fi
 		echo "## Restoring secrets as encrypted files"
-		restore
+		restore_ansible
 		;;
 	down)
 		echo "## Decrypting secrets"
-		decrypt
+		decrypt_ansible
 		determine_host_machine_for_pods
 		if [ "${#SERVICES[@]}" -eq 0 ]; then
 			echo "Launching TERArium on localhost..."
@@ -186,16 +186,16 @@ case ${COMMAND} in
 			done
 		fi
 		echo "## Restoring secrets as encrypted files"
-		restore
+		restore_ansible
 		;;
 	status)
 		kubectl get configMap,svc,po
 		;;
 	decrypt)
-		decrypt
+		decrypt_ansible
 		;;
 	encrypt)
-		encrypt
+		encrypt_sops
 		;;
 	help)
 		echo "
@@ -213,6 +213,10 @@ case ${COMMAND} in
 			data-service
 			model-service
 			gateway
+
+	Environment Variables (will be read from a '.env' file, the following can be set)
+		AGE_PUBLIC_KEY    the 'askem.agekey' file's public key
+		SOPS_AGE_KEY_FILE location of the file 'askem.agekey'
 			"
 		;;
 esac
