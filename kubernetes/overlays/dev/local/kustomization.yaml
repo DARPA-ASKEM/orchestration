@@ -9,3 +9,4 @@ resources:
   - hmi/server/rabbitmq
   - services/data-service
   - secrets/secrets-xdd-api-key.yaml
+  - secrets/secrets-adobe-api-key.yaml
