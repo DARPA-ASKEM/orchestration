@@ -9,10 +9,11 @@ A decision was made to avoid bugs and issues with other packages manager to uplo
 - Select on docker hub which image and version image you would like to use. 
 
     i.e. `RabbitMQ 3.11-alpine`
-- Run the following command `regctl-<architecture> image copy [IMAGE] ghcr.io/darpa-askem/[IMAGE]`
+- Run the following command `./regctl-<architecture> image copy [IMAGE] ghcr.io/darpa-askem/[IMAGE]`
 
     ```shell
-    $ regctl-darwin-arm64 image copy rabbitmq:3.11-alpine ghcr.io/darpa-askem/rabbitmq:3.11-alpine
+    $ chmod 755 regctl-darwin-amd64 
+    $ ./regctl-darwin-amd64 image copy rabbitmq:3.11-alpine ghcr.io/darpa-askem/rabbitmq:3.11-alpine
     ```
 - Check that the package has been properly uploaded to the [GitHub organization](https://github.com/orgs/DARPA-ASKEM/packages) and update the package settings to add the [`ASKEM`](https://github.com/orgs/DARPA-ASKEM/teams/askem) team as a read and [`Terarium`](https://github.com/orgs/DARPA-ASKEM/teams/terarium) as Admin, and remove yourself from the _Manage access_. 
 
