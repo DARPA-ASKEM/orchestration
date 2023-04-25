@@ -13,6 +13,7 @@ resources:
   - secrets/secrets-data-service-s3.yaml
   - secrets/secrets-mit-proxy.yaml
   - secrets/secrets-xdd-api-key.yaml
+  - secrets/secrets-adobe-api-key.yaml
 patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-keycloak-deployment.yaml
