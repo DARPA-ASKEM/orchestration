@@ -84,22 +84,22 @@ esac
 case ${COMMAND} in
 test)
 	echo "## Decrypting secrets"
-	decrypt
+	decrypt_sops
 	echo "## Testing kustomization script"
 	kubectl kustomize ${KUSTOMIZATION} | less
 	echo "## Restoring secrets as encrypted files"
-	restore
+	restore_sops
 	;;
 up)
 	read -p "Are you sure you want to deploy to ${ENVIRONMENT}? [y|n] " -n 1 -r
 	echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		echo "## Decrypting secrets"
-		decrypt
+		decrypt_sops
 		echo "## Applying kustomization script to Kubernetes cluster"
 		kubectl kustomize ${KUSTOMIZATION} | ${KUBECTL_CMD} apply --filename -
 		echo "## Restoring secrets as encrypted files"
-		restore
+		restore_sops
 	fi
 	;;
 down)
@@ -107,21 +107,21 @@ down)
 	echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		echo "## Decrypting secrets"
-		decrypt
+		decrypt_sops
 		echo "## Deleting kustomization script from Kubernetes cluster"
 		kubectl kustomize ${KUSTOMIZATION} | ${KUBECTL_CMD} delete --filename -
 		echo "## Restoring secrets as encrypted files"
-		restore
+		restore_sops
 	fi
 	;;
 status)
 	${KUBECTL_CMD} get configMap,secrets,deployments,svc,po
 	;;
 decrypt)
-	decrypt
+	decrypt_sops
 	;;
 encrypt)
-	encrypt
+	encrypt_sops
 	;;
 help)
 	echo "
