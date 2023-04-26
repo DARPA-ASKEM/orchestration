@@ -28,8 +28,12 @@ spec:
               value: terarium
             - name: RABBITMQ_DEFAULT_PASS
               value: terarium123
+            - name: RABBITMQ_MANAGEMENT_ENABLED
+              value: 'true'
           ports:
             - containerPort: 5672
+            - containerPort: 15671
+            - containerPort: 15672
           resources: {}
       imagePullSecrets:
         - name: ghcr-cred

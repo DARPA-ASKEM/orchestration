@@ -13,6 +13,14 @@ spec:
       port: 5672
       protocol: TCP
       targetPort: 5672
+    - name: 15671-tcp
+      port: 15671
+      protocol: TCP
+      targetPort: 15671
+    - name: 15672-tcp
+      port: 15672
+      protocol: TCP
+      targetPort: 15672
   selector:
     software.uncharted.terarium/name: hmi-rabbitmq
   type: LoadBalancer
