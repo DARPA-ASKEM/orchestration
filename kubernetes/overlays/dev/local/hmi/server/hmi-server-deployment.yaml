@@ -49,5 +49,3 @@ spec:
                 secretKeyRef:
                   name: xdd-api-key
                   key: eskey
-
-
