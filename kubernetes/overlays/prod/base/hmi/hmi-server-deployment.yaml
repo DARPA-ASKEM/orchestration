@@ -62,3 +62,8 @@ spec:
                 secretKeyRef:
                   name: adobe-api-key
                   key: key
+            - name: xdd_es_key
+              valueFrom:
+                secretKeyRef:
+                  name: xdd-api-key
+                  key: eskey
