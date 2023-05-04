@@ -3,48 +3,52 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../../../../base/gateway
+  - gateway-envoy-service.yaml
   - gateway-keycloak-service.yaml
   - gateway-postgres-deployment.yaml
   - gateway-postgres-service.yaml
   - configmap/host.yaml
 patchesStrategicMerge:
   - gateway-admin-keycloak-deployment.yaml
-  - gateway-httpd-service.yaml
-  - gateway-httpd-deployment.yaml
+  - gateway-envoy-service.yaml
   - gateway-keycloak-deployment.yaml
+  - gateway-landing-deployment.yaml
 configMapGenerator:
   - files:
       - keycloak/realm/Terarium-realm.json
       - keycloak/realm/Terarium-users-0.json
     name: gateway-keycloak-realm
   - files:
-      - httpd/htdocs/index.html
-      - httpd/htdocs/silent-check-sso.html
-      - httpd/htdocs/styles.css
-    name: gateway-httpd-htdocs
+      - landing/config/default.conf
+    name: landing-config
   - files:
-      - httpd/exec/httpd-foreground
-    name: gateway-httpd-exec
+      - landing/site/index.html
+      - landing/site/styles.css
+    name: landing-site
   - files:
-      - httpd/config-ssl/ssl-proxy.conf
-      - httpd/config-ssl/ssl-setup.conf
-    name: gateway-httpd-config-ssl
-replacements:
-  - path: gateway-httpd-api-replacement.yaml
-  - path: gateway-httpd-app-replacement.yaml
+      - envoy/config.yaml
+      - envoy/token-secret.yaml
+      - envoy/hmac-secret.yaml
+    name: gateway-config
 images:
   - name: gateway-admin-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin
-    newTag: 0.1.4
-  - name: gateway-httpd-image
-    newName: ghcr.io/unchartedsoftware/httpd-openidc
-    newTag: 0.1.4
+    newTag: "0.2.0"
+  - name: gateway-admin-keycloak-ui-image
+    newName: ghcr.io/unchartedsoftware/keycloak-admin-ui
+    newTag: "0.2.0"
+  - name: gateway-envoy-image
+    newName: envoyproxy/envoy
+    newTag: v1.25.2
   - name: gateway-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak
-    newTag: 0.1.4
+    newTag: "0.2.0"
   - name: gateway-postgres-image
     newName: ghcr.io/darpa-askem/postgres
     newTag: "15.1"
+  - name: gateway-landing-image
+    newName: nginx
+    newTag: 1.23-alpine
   - name: terarium-login-theme-image
     newName: ghcr.io/darpa-askem/terarium-login-theme
     newTag: latest

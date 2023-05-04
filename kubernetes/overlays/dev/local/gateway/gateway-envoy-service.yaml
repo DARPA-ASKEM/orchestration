@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    software.uncharted.auth/component: gateway-envoy
+    software.uncharted.auth/environment: dev
+    software.uncharted.auth/tier: gateway
+  name: gateway-envoy
+spec:
+  ports:
+    - name: 8078-gateway-tcp
+      port: 8078
+      protocol: TCP
+      targetPort: 10000
+    - name: 8001-gateway-tcp
+      port: 8001
+      protocol: TCP
+      targetPort: 8001
+  selector:
+    software.uncharted.auth/name: gateway-envoy
+  type: LoadBalancer
+status:
+  loadBalancer: {}

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.auth/name: gateway-landing
+  name: gateway-landing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.auth/name: gateway-landing
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.auth/component: gateway-landing
+        software.uncharted.auth/environment: dev
+        software.uncharted.auth/tier: gateway
+        software.uncharted.auth/name: gateway-landing
+    spec:
+      containers:
+        - name: gateway-landing
+          image: gateway-landing-image
+          ports:
+            - containerPort: 80 
+              protocol: TCP
+      restartPolicy: Always
+status: {}

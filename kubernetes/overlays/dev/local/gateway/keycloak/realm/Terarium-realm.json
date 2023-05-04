@@ -522,7 +522,7 @@
     "alwaysDisplayInConsole" : false,
     "clientAuthenticatorType" : "client-secret",
     "secret" : "jtbQhs6SlfynqJaygVpwav2kLzAme2b4",
-    "redirectUris" : [ "http://localhost:8078/app/", "http://localhost:8078/app/redirect_uri", "http://localhost:8078/", "https://oauth.pstmn.io/v1/callback" ],
+    "redirectUris" : [ "http://localhost:8078/app/", "http://localhost:8078/app/redirect_uri", "http://localhost:8078/", "http://localhost:8078/redirect", "https://oauth.pstmn.io/v1/callback" ],
     "webOrigins" : [ ],
     "notBefore" : 0,
     "bearerOnly" : false,
@@ -539,7 +539,7 @@
       "oidc.ciba.grant.enabled" : "false",
       "client.secret.creation.time" : "1660649972",
       "backchannel.logout.session.required" : "true",
-      "post.logout.redirect.uris" : "+",
+      "post.logout.redirect.uris" : "http://localhost:8078/logout",
       "display.on.consent.screen" : "false",
       "oauth2.device.authorization.grant.enabled" : "false",
       "backchannel.logout.revoke.offline.tokens" : "false"
@@ -600,7 +600,7 @@
         "ownerManagedAccess" : false,
         "attributes" : { },
         "_id" : "5a29fc2e-366a-4a9b-9b86-e020d1e62213",
-        "uris" : [ "/api/*" ],
+        "uris" : [ "/app/*", "/api/*", "/ua/user/*" ],
         "scopes" : [ {
           "name" : "user"
         } ],
@@ -610,7 +610,7 @@
         "ownerManagedAccess" : false,
         "attributes" : { },
         "_id" : "9c6f94ec-9911-4023-9b5a-437165a668cd",
-        "uris" : [ "/adminapi/*" ],
+        "uris" : [ "/ua/api/*" ],
         "scopes" : [ {
           "name" : "admin"
         } ],

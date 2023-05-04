@@ -15,13 +15,13 @@ spec:
     metadata:
       labels:
         software.uncharted.auth/name: gateway-admin-keycloak
-        software.uncharted.auth/component: admin-keycloak
+        software.uncharted.auth/component: gateway-admin-keycloak
         software.uncharted.auth/environment: dev
         software.uncharted.auth/tier: gateway
     spec:
       containers:
-        - image: gateway-admin-keycloak-image
-          name: gateway-admin-keycloak
+        - name: gateway-admin-keycloak
+          image: gateway-admin-keycloak-image
           ports:
             - containerPort: 8080
               protocol: TCP

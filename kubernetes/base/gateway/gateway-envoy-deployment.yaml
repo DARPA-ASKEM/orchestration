@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    software.uncharted.auth/name: gateway-envoy
+  name: gateway-envoy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.auth/name: gateway-envoy
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.auth/component: envoy
+        software.uncharted.auth/environment: dev
+        software.uncharted.auth/tier: gateway
+        software.uncharted.auth/name: gateway-envoy
+    spec:
+      containers:
+        - name: gateway-envoy
+          image: gateway-envoy-image
+          args:
+            - envoy
+            - -c
+            - /data/config.yaml
+            - --service-cluster
+            - envoy
+            - --service-node
+            - envoy
+            - --log-level
+            - debug
+          ports:
+            - containerPort: 10000 
+              protocol: TCP
+          volumeMounts:
+            - name: config-volume
+              mountPath: /data
+      volumes:
+        - name: config-volume
+          configMap:
+            name: gateway-config
+      restartPolicy: Always
+status: {}
