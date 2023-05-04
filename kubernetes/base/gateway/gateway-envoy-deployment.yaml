@@ -33,7 +33,7 @@ spec:
             - --log-level
             - debug
           ports:
-            - containerPort: 10000 
+            - containerPort: 10000
               protocol: TCP
           volumeMounts:
             - name: config-volume
