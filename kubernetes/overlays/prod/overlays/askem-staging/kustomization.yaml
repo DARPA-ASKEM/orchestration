@@ -78,5 +78,5 @@ images:
     newTag: latest
 
   - name: simulation-service-image
-    newName: ghcr.io/darpa-askem/simulation-scheduler
+    newName: ghcr.io/darpa-askem/simulation-service
     newTag: latest
