@@ -539,7 +539,7 @@
       "oidc.ciba.grant.enabled" : "false",
       "client.secret.creation.time" : "1660649972",
       "backchannel.logout.session.required" : "true",
-      "post.logout.redirect.uris" : "http://localhost:8078/logout",
+      "post.logout.redirect.uris" : "http://localhost:8078/signout",
       "display.on.consent.screen" : "false",
       "oauth2.device.authorization.grant.enabled" : "false",
       "backchannel.logout.revoke.offline.tokens" : "false"
