@@ -2,6 +2,6 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hmi-client-service
+  name: hmi-client
 spec:
   type: LoadBalancer

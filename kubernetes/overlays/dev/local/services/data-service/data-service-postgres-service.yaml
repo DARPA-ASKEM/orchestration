@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: data-service-postgres-service
+  name: data-service-postgres
   labels:
-    software.uncharted.terarium/name: data-service-postgres-service
+    software.uncharted.terarium/name: data-service-postgres
     software.uncharted.terarium/component: postgres
     software.uncharted.terarium/service: data
     software.uncharted.terarium/part-of: services

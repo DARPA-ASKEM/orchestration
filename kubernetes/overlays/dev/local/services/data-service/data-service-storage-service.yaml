@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: data-service-storage-service
+  name: data-service-storage
   labels:
-    software.uncharted.terarium/name: data-service-storage-service
+    software.uncharted.terarium/name: data-service-storage
     software.uncharted.terarium/component: minio
     software.uncharted.terarium/service: data
     software.uncharted.terarium/part-of: services

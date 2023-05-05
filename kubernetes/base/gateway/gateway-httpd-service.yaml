@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gateway-httpd-service
+  name: gateway-httpd
   labels:
-    software.uncharted.terarium/name: gateway-httpd-service
+    software.uncharted.terarium/name: gateway-httpd
     software.uncharted.terarium/component: httpd
     software.uncharted.terarium/part-of: gateway
 spec:
