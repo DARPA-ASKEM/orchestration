@@ -2,12 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: skema-rs
   labels:
     software.uncharted.terarium/name: skema-rs
     software.uncharted.terarium/component: rs
     software.uncharted.terarium/service: skema
     software.uncharted.terarium/part-of: services
-  name: skema-rs
 spec:
   replicas: 1
   selector:
@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        oftware.uncharted.terarium/name: skema-rs
+        software.uncharted.terarium/name: skema-rs
     spec:
       containers:
         - name: skema-rs
