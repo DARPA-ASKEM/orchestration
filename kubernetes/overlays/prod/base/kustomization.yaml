@@ -11,12 +11,12 @@ resources:
   - ../../../base/services/skema
   - ../../../base/services/mit
   - ../../../base/services/simulation-service
-  - gateway/gateway-keycloak-service.yaml
 patchesStrategicMerge:
   - gateway/gateway-admin-keycloak-deployment.yaml
   - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-httpd-service.yaml
   - gateway/gateway-keycloak-deployment.yaml
+  - gateway/gateway-keycloak-service.yaml
   - hmi/hmi-server-deployment.yaml
   - services/data-service-deployment.yaml
   - services/data-service-graphdb-deployment.yaml

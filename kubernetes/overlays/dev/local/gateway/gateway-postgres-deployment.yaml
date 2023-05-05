@@ -4,6 +4,8 @@ kind: Deployment
 metadata:
   labels:
     software.uncharted.terarium/name: gateway-postgres
+    software.uncharted.terarium/component: postgres
+    software.uncharted.terarium/part-of: gateway
   name: gateway-postgres
 spec:
   replicas: 1
@@ -15,9 +17,6 @@ spec:
   template:
     metadata:
       labels:
-        software.uncharted.terarium/component: postgres
-        software.uncharted.terarium/environment: dev
-        software.uncharted.terarium/tier: gateway
         software.uncharted.terarium/name: gateway-postgres
     spec:
       containers:

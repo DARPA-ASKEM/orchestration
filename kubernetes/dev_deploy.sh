@@ -105,10 +105,15 @@ case ${COMMAND} in
 						kubectl kustomize ./overlays/dev/local/hmi/server | kubectl apply --filename -
 						;;
 
-					hmi-postgres)
-						echo "Launching HMI POSTGRES DB on localhost..."
-						kubectl kustomize ./overlays/dev/local/hmi/server/postgres | kubectl apply --filename -
+					user-store)
+						echo "Launching USER STORE on localhost..."
+						kubectl kustomize ./overlays/dev/local/services/user-store | kubectl apply --filename -
 						;;
+
+				  message-queue)
+          	echo "Launching MESSAGE QUEUE on localhost..."
+          	kubectl kustomize ./overlays/dev/local/services/message-queue | kubectl apply --filename -
+          	;;
 
 					data-service)
 						echo "Launching DATA SERVICE on localhost..."
@@ -119,6 +124,16 @@ case ${COMMAND} in
 						echo "Launching MODEL SERVICE on localhost..."
 						kubectl kustomize ./overlays/dev/local/services/model-service | kubectl apply --filename -
 						;;
+
+				  services)
+          	echo "Launching SERVICES on localhost..."
+          	kubectl kustomize ./overlays/dev/local/services | kubectl apply --filename -
+          	;;
+
+          hmi)
+            echo "Launching HMI on localhost..."
+            kubectl kustomize ./overlays/dev/local/hmi | kubectl apply --filename -
+            ;;
 
 					gateway)
 						echo "Launching GATEWAY on localhost..."
@@ -154,10 +169,15 @@ case ${COMMAND} in
 						kubectl kustomize ./overlays/dev/local/hmi/server | kubectl delete --filename -
 						;;
 
-					hmi-postgres)
-						echo "Tearing down HMI POSTGRES DB on localhost..."
-						kubectl kustomize ./overlays/dev/local/hmi/server/postgres | kubectl delete --filename -
+					user-store)
+						echo "Tearing down USER STORE on localhost..."
+						kubectl kustomize ./overlays/dev/local/services/user-store | kubectl delete --filename -
 						;;
+
+				  message-queue)
+          	echo "Tearing down MESSAGE QUEUE on localhost..."
+          	kubectl kustomize ./overlays/dev/local/services/message-queue | kubectl delete --filename -
+          	;;
 
 					data-service)
 						echo "Tearing down DATA SERVICE on localhost..."
@@ -168,6 +188,16 @@ case ${COMMAND} in
 						echo "Tearing down MODEL SERVICE on localhost..."
 						kubectl kustomize ./overlays/dev/local/services/model-service | kubectl delete --filename -
 						;;
+
+				  services)
+          	echo "Tearing down SERVICES on localhost..."
+          	kubectl kustomize ./overlays/dev/local/services | kubectl delete --filename -
+          	;;
+
+          hmi)
+          	echo "Tearing down HMI on localhost..."
+          	kubectl kustomize ./overlays/dev/local/hmi | kubectl delete --filename -
+          	;;
 
 					gateway)
 						echo "Tearing down GATEWAY on localhost..."

@@ -2,9 +2,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: hmi-server
   labels:
     software.uncharted.terarium/name: hmi-server
-  name: hmi-server
+    software.uncharted.terarium/component: server
+    software.uncharted.terarium/part-of: hmi
 spec:
   replicas: 1
   selector:
@@ -15,14 +17,11 @@ spec:
   template:
     metadata:
       labels:
-        software.uncharted.terarium/component: server
-        software.uncharted.terarium/environment: dev
-        software.uncharted.terarium/tier: hmi
         software.uncharted.terarium/name: hmi-server
     spec:
       containers:
-        - image: hmi-server-image
-          name: hmi-server
+        - name: hmi-server
+          image: hmi-server-image
           ports:
             - containerPort: 3000
           resources: {}

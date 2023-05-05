@@ -3,10 +3,10 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
+    software.uncharted.terarium/name: gateway-postgres-service
     software.uncharted.terarium/component: postgres
-    software.uncharted.terarium/environment: dev
-    software.uncharted.terarium/tier: gateway
-  name: gateway-postgres
+    software.uncharted.terarium/part-of: gateway
+  name: gateway-postgres-service
 spec:
   ports:
     - name: "5432"

@@ -2,6 +2,6 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hmi-client-service
+  name: gateway-admin-keycloak-service
 spec:
   type: LoadBalancer

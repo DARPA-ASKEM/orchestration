@@ -2,9 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: data-service-graphdb
   labels:
     software.uncharted.terarium/name: data-service-graphdb
-  name: data-service-graphdb
+    software.uncharted.terarium/component: graphdb
+    software.uncharted.terarium/service: data
+    software.uncharted.terarium/part-of: services
 spec:
   replicas: 1
   selector:
@@ -15,14 +18,11 @@ spec:
   template:
     metadata:
       labels:
-        software.uncharted.terarium/component: graphdb
-        software.uncharted.terarium/environment: dev
-        software.uncharted.terarium/tier: services
         software.uncharted.terarium/name: data-service-graphdb
     spec:
       containers:
-        - image: data-service-graphdb-image
-          name: data-service-graphdb
+        - name: data-service-graphdb
+          image: data-service-graphdb-image
           ports:
             - containerPort: 7474
             - containerPort: 7687

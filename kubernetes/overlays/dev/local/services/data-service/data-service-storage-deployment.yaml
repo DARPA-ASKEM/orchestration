@@ -2,9 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: data-service-storage
   labels:
     software.uncharted.terarium/name: data-service-storage
-  name: data-service-storage
+    software.uncharted.terarium/component: minio
+    software.uncharted.terarium/service: data
+    software.uncharted.terarium/part-of: services
 spec:
   replicas: 1
   selector:
@@ -15,14 +18,11 @@ spec:
   template:
     metadata:
       labels:
-        software.uncharted.terarium/component: storage
-        software.uncharted.terarium/environment: dev
-        software.uncharted.terarium/tier: services
         software.uncharted.terarium/name: data-service-storage
     spec:
       containers:
-        - image: data-service-storage-image
-          name: data-service-storage
+        - name: data-service-storage
+          image: data-service-storage-image
           env:
             - name: MINIO_ROOT_USER
               value: miniouser

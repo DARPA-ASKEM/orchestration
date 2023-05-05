@@ -2,9 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: data-service
   labels:
     software.uncharted.terarium/name: data-service
-  name: data-service
+    software.uncharted.terarium/component: server
+    software.uncharted.terarium/service: data
+    software.uncharted.terarium/part-of: services
 spec:
   replicas: 1
   selector:
@@ -15,14 +18,11 @@ spec:
   template:
     metadata:
       labels:
-        software.uncharted.terarium/component: data
-        software.uncharted.terarium/environment: dev
-        software.uncharted.terarium/tier: services
         software.uncharted.terarium/name: data-service
     spec:
       containers:
-        - image: data-service-image
-          name: data-service
+        - name: data-service
+          image: data-service-image
           ports:
             - containerPort: 8000
           resources: {}

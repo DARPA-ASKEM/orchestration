@@ -2,9 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: skema-py
   labels:
     software.uncharted.terarium/name: skema-py
-  name: skema-py
+    software.uncharted.terarium/component: py
+    software.uncharted.terarium/service: skema
+    software.uncharted.terarium/part-of: services
 spec:
   replicas: 1
   selector:
@@ -15,14 +18,11 @@ spec:
   template:
     metadata:
       labels:
-        software.uncharted.terarium/component: skema
-        software.uncharted.terarium/environment: dev
-        software.uncharted.terarium/tier: services
         software.uncharted.terarium/name: skema-py
     spec:
       containers:
-        - image: skema-py-image
-          name: skema-py
+        - name: skema-py
+          image: skema-py-image
           command: ['uvicorn']
           args: ['server:app', '--host', '0.0.0.0']
           ports:
