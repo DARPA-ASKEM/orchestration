@@ -20,6 +20,7 @@ patchesStrategicMerge:
   - hmi/hmi-server-deployment.yaml
   - services/data-service-deployment.yaml
   - services/data-service-graphdb-deployment.yaml
+  - services/simulation-service-deployment.yaml
 configMapGenerator:
   - files:
       - gateway/httpd/htdocs/silent-check-sso.html
