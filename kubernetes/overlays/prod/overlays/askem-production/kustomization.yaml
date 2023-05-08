@@ -81,5 +81,5 @@ images:
     newTag: 1.0.0
   # Simulation Service
   - name: simulation-service-image
-    newName: ghcr.io/darpa-askem/simulation-scheduler
+    newName: ghcr.io/darpa-askem/simulation-service
     newTag: 0.1.1
