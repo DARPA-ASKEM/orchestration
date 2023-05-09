@@ -35,7 +35,7 @@ config() {
     cp *.cert ~/.kube/
     restore
 
-    kubectl config set-context askem-staging --cluster=askem-staging --namespace=terarium --user=kubernetes-staging-admin
+    kubectl config set-context askem-staging --cluster=askem-staging --user=kubernetes-staging-admin
 
     kubectl config set-cluster askem-staging --server=https://kubernetes.staging.terarium.ai:16443 --certificate-authority=${1}/.kube/askem-staging-certificate-authority.cert
 
@@ -59,7 +59,7 @@ while [[ $# -gt 0 ]]; do
             COMMAND="set"
             ;;
         list)
-            COMMAND="list" 
+            COMMAND="list"
             ;;
         encrypt)
             COMMAND="encrypt"
@@ -106,7 +106,7 @@ DESCRIPTION
   Launch commands:
     set         Set the current context to the name
     list        List the contexts available
-    config      Configure the Kubernetes configuration from Askem Staging with the local configuration 
+    config      Configure the Kubernetes configuration from Askem Staging with the local configuration
       HOME_DIR  Absolute path to your home directory
         "
         ;;

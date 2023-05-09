@@ -13,4 +13,3 @@ spec:
           env:
             - name: TDS_URL
               value: data-service
-

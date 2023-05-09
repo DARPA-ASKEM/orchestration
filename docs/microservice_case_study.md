@@ -303,7 +303,6 @@ A:
 	Name:             skema-rs
 	Labels:           <none>
 	Address:          ********.amazonaws.com
-	Namespace:        terarium
 	Ingress Class:    alb
 	Default backend:  <default>
 	TLS:

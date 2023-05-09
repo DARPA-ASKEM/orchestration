@@ -3,7 +3,6 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: check-latest
-  namespace: terarium
 spec:
   schedule: "*/5 * * * *"
   jobTemplate:
@@ -20,8 +19,6 @@ spec:
                 - -d
               imagePullPolicy: Always
               env:
-                - name: NAMESPACE
-                  value: terarium
                 - name: GH_USERNAME
                   valueFrom:
                     secretKeyRef:

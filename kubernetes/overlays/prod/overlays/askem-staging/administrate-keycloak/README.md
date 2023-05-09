@@ -15,10 +15,10 @@ Run `./admcloak.sh config <user directory>` to add to your ~/.kube/config file t
 
 Run `./admcloak.sh list` to see the list of contexts configured locally, selecting the `NAME` one wishes to swtich to; eg:
 
-| CURRENT | NAME | CLUSTER | AUTHINFO | NAMESPACE |
-| --- | --- | --- | --- | --- |
-| * | askem-staging | askem-staging | kubernetes-admin | terarium |
-| | docker-desktop | docker-desktop | docker-desktop | |
+| CURRENT | NAME | CLUSTER | AUTHINFO |
+| --- | --- | --- | --- |
+| * | askem-staging | askem-staging | kubernetes-admin |
+| | docker-desktop | docker-desktop | docker-desktop |
 
 To change the current context run `./admcloak.sh set docker-desktop` to switch from `askem-staging` to `docker-desktop`
 
