@@ -35,7 +35,7 @@ config() {
     cp *.cert ~/.kube/
     restore
 
-    kubectl config set-context askem-prod --cluster=askem-prod --user=kubernetes-prod-admin
+    kubectl config set-context askem-prod --cluster=askem-prod --namespace=terarium --user=kubernetes-prod-admin
 
     kubectl config set-cluster askem-prod --server=https://kubernetes.terarium.ai:16443 --certificate-authority=${1}/.kube/askem-prod-certificate-authority.cert
 
