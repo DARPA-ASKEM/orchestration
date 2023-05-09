@@ -18,6 +18,13 @@ patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-keycloak-deployment.yaml
   - hmi/server/hmi-server-deployment.yaml
+  - services/data-service/data-service-service.yaml
+  - services/message-queue/message-queue-service.yaml
+  - services/mit/mit-proxy-service.yaml
+  - services/model-service/model-service-service.yaml
+  - services/simulation-service/simulation-service-service.yaml
+  - services/skema/skema-py-service.yaml
+  - services/skema/skema-rs-service.yaml
 configMapGenerator:
   - files:
       - gateway/keycloak/realm/Uncharted-users-0.json

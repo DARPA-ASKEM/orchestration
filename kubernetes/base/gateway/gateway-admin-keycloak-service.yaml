@@ -8,7 +8,6 @@ metadata:
     software.uncharted.terarium/component: keycloak-admin
     software.uncharted.terarium/part-of: gateway
 spec:
-  type: NodePort
   ports:
     - name: 8081-admin-keycloak-tcp
       port: 8081

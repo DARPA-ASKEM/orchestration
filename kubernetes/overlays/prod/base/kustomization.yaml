@@ -15,6 +15,7 @@ resources:
 patchesStrategicMerge:
   - gateway/gateway-admin-keycloak-deployment.yaml
   - gateway/gateway-httpd-deployment.yaml
+  - gateway/gateway-httpd-service.yaml
   - gateway/gateway-keycloak-deployment.yaml
   - gateway/gateway-keycloak-service.yaml
   - hmi/client/hmi-client-deployment.yaml

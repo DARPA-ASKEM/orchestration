@@ -24,6 +24,5 @@ spec:
       targetPort: 15672
   selector:
     software.uncharted.terarium/name: message-queue
-  type: NodePort
 status:
   loadBalancer: {}

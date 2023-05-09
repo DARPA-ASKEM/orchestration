@@ -8,7 +8,6 @@ metadata:
     software.uncharted.terarium/component: server
     software.uncharted.terarium/part-of: hmi
 spec:
-  type: NodePort
   ports:
     - name: 3000-tcp
       port: 3000

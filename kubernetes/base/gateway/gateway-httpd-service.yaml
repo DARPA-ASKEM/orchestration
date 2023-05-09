@@ -8,7 +8,6 @@ metadata:
     software.uncharted.terarium/component: httpd
     software.uncharted.terarium/part-of: gateway
 spec:
-  type: NodePort
   ports:
     - name: 8078-tcp
       port: 8078

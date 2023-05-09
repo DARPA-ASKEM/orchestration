@@ -9,7 +9,6 @@ metadata:
     software.uncharted.terarium/service: mit
     software.uncharted.terarium/part-of: services
 spec:
-  type: NodePort
   ports:
     - name: 3981-tcp
       port: 3981
