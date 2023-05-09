@@ -6,3 +6,11 @@ metadata:
 spec:
   strategy:
     type: RollingUpdate
+  template:
+    spec:
+      containers:
+        - name: simulation-service
+          env:
+            - name: TDS_URL
+              value: data-service
+
