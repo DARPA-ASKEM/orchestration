@@ -11,7 +11,6 @@ resources:
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
   - secrets/secrets-data-service-s3.yaml
-  - secrets/secrets-mit-proxy.yaml
   - secrets/secrets-xdd-api-key.yaml
   - secrets/secrets-adobe-api-key.yaml
   - secrets/secrets-mit-proxy.yaml
