@@ -11,3 +11,5 @@ spec:
           env:
             - name: TDS_URL
               value: data-service
+            - name: ENABLE_TDS
+              value: false
