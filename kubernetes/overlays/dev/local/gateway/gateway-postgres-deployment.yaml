@@ -2,9 +2,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: gateway-postgres
   labels:
     software.uncharted.terarium/name: gateway-postgres
-  name: gateway-postgres
+    software.uncharted.terarium/component: postgres
+    software.uncharted.terarium/part-of: gateway
 spec:
   replicas: 1
   selector:
@@ -15,14 +17,11 @@ spec:
   template:
     metadata:
       labels:
-        software.uncharted.terarium/component: postgres
-        software.uncharted.terarium/environment: dev
-        software.uncharted.terarium/tier: gateway
         software.uncharted.terarium/name: gateway-postgres
     spec:
       containers:
-        - image: gateway-postgres-image
-          name: gateway-postgres
+        - name: gateway-postgres
+          image: gateway-postgres-image
           env:
             - name: POSTGRES_USER
               value: keycloak

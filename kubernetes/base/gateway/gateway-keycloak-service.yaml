@@ -2,15 +2,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    software.uncharted.terarium/component: keycloak
-    software.uncharted.terarium/environment: dev
-    software.uncharted.terarium/tier: gateway
   name: gateway-keycloak
+  labels:
+    software.uncharted.terarium/name: gateway-keycloak
+    software.uncharted.terarium/component: keycloak
+    software.uncharted.terarium/part-of: gateway
 spec:
   ports:
-    - name: 8080-keycloak-tcp
-      port: 8080
+    - name: 8079-keycloak-tcp
+      port: 8079
       protocol: TCP
       targetPort: 8080
   selector:
