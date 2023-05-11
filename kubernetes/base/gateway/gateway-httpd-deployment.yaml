@@ -2,9 +2,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: gateway-httpd
   labels:
     software.uncharted.terarium/name: gateway-httpd
-  name: gateway-httpd
+    software.uncharted.terarium/component: httpd
+    software.uncharted.terarium/part-of: gateway
 spec:
   replicas: 1
   selector:
@@ -15,14 +17,11 @@ spec:
   template:
     metadata:
       labels:
-        software.uncharted.terarium/component: httpd
-        software.uncharted.terarium/environment: dev
-        software.uncharted.terarium/tier: gateway
         software.uncharted.terarium/name: gateway-httpd
     spec:
       containers:
-        - image: gateway-httpd-image
-          name: gateway-httpd
+        - name: gateway-httpd
+          image: gateway-httpd-image
           ports:
             - containerPort: 80
               protocol: TCP

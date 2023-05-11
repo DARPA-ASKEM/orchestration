@@ -2,9 +2,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: hmi-client
   labels:
     software.uncharted.terarium/name: hmi-client
-  name: hmi-client
+    software.uncharted.terarium/component: client
+    software.uncharted.terarium/part-of: hmi
 spec:
   replicas: 1
   selector:
@@ -15,14 +17,11 @@ spec:
   template:
     metadata:
       labels:
-        software.uncharted.terarium/component: client
-        software.uncharted.terarium/environment: dev
-        software.uncharted.terarium/tier: hmi
         software.uncharted.terarium/name: hmi-client
     spec:
       containers:
-        - image: hmi-client-image
-          name: hmi-client
+        - name: hmi-client
+          image: hmi-client-image
           ports:
             - containerPort: 80
           resources: {}

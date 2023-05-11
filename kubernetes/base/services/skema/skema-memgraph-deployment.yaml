@@ -2,9 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: skema-memgraph
   labels:
     software.uncharted.terarium/name: skema-memgraph
-  name: skema-memgraph
+    software.uncharted.terarium/component: memgraph
+    software.uncharted.terarium/service: skema
+    software.uncharted.terarium/part-of: services
 spec:
   replicas: 1
   selector:
@@ -15,14 +18,11 @@ spec:
   template:
     metadata:
       labels:
-        software.uncharted.terarium/component: skema
-        software.uncharted.terarium/environment: dev
-        software.uncharted.terarium/tier: services
         software.uncharted.terarium/name: skema-memgraph
     spec:
       containers:
-        - image: skema-memgraph-image
-          name: skema-memgraph
+        - name: skema-memgraph
+          image: skema-memgraph-image
           command: ['/usr/bin/supervisord']
           ports:
             - containerPort: 7687

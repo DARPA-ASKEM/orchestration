@@ -2,9 +2,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - hmi-rabbitmq-deployment.yaml
-  - hmi-rabbitmq-service.yaml
+  - ../../../../../base/services/message-queue
+patchesStrategicMerge:
+  - message-queue-service.yaml
 images:
-  - name: hmi-rabbitmq-image
+  - name: rabbitmq-image
     newName: ghcr.io/darpa-askem/rabbitmq
     newTag: "3.11.13-management-alpine"
