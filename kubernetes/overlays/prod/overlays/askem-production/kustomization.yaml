@@ -11,7 +11,6 @@ resources:
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
   - secrets/secrets-data-service-s3.yaml
-  - secrets/secrets-mit-proxy.yaml
   - secrets/secrets-xdd-api-key.yaml
   - secrets/secrets-adobe-api-key.yaml
   - secrets/secrets-mit-proxy.yaml
@@ -46,10 +45,10 @@ images:
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: 2.1.0
+    newTag: 2.2.0
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: 2.1.0
+    newTag: 2.2.0
   # Data Service
   - name: data-service-image
     newName: ghcr.io/darpa-askem/data-service
@@ -60,7 +59,7 @@ images:
   # Model Service
   - name: model-service-image
     newName: ghcr.io/darpa-askem/model-service
-    newTag: 1.1.0
+    newTag: 1.2.0
   # Message queue
   - name: rabbitmq-image
     newName: ghcr.io/darpa-askem/rabbitmq
@@ -78,8 +77,8 @@ images:
   # MIT
   - name: mit-proxy-image
     newName: ghcr.io/darpa-askem/mit-proxy
-    newTag: 1.0.0
+    newTag: 1.1.0
   # Simulation Service
   - name: simulation-service-image
     newName: ghcr.io/darpa-askem/simulation-service
-    newTag: 0.1.1
+    newTag: 0.2.0
