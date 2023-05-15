@@ -2,9 +2,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: gateway-keycloak
   labels:
     software.uncharted.terarium/name: gateway-keycloak
-  name: gateway-keycloak
+    software.uncharted.terarium/component: keycloak
+    software.uncharted.terarium/part-of: gateway
 spec:
   replicas: 1
   selector:
@@ -16,13 +18,10 @@ spec:
     metadata:
       labels:
         software.uncharted.terarium/name: gateway-keycloak
-        software.uncharted.terarium/component: keycloak
-        software.uncharted.terarium/environment: dev
-        software.uncharted.terarium/tier: gateway
     spec:
       containers:
-        - image: gateway-keycloak-image
-          name: gateway-keycloak
+        - name: gateway-keycloak
+          image: gateway-keycloak-image
           args:
             - start
           ports:

@@ -3,10 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - gateway
-  - hmi/client
-  - hmi/server
-  - hmi/server/postgres
-  - hmi/server/rabbitmq
-  - services/data-service
+  - hmi
+  - services
   - secrets/secrets-xdd-api-key.yaml
   - secrets/secrets-adobe-api-key.yaml

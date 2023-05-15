@@ -155,7 +155,6 @@ In staging for instance, we specify the `latest` tag:
 The manifest used for the service deployment (`kubernetes/base/services/skema/skema-rs-service.yaml`):
 ```yaml
 spec:
-  type: NodePort
   ports:
     - name: 4040-tcp
       port: 4040
@@ -165,7 +164,7 @@ spec:
     software.uncharted.terarium/name: skema-rs
 ```
 We map port `4040` to the container port `8080` defined in the deployment file.  The TCP port must be unique in the K8s
-cluster we're deploying into.  We specify that this service is a `NodePort` to make it accessible to the outside world.
+cluster we're deploying into.  
 
 We must also add these new service/deployment files to the `kustomization.yaml` file:
 ```yaml
@@ -175,6 +174,28 @@ resources:
   - skema-rs-deployment.yaml
   - skema-rs-service.yaml
 ```
+
+In staging, we would like this service to be a `NodePort` to make it accessible to the outside world. We override the
+base services in (`kubernetes/base/services/skema`). We add 
+`kubernetes/overlays/prod/overlays/askem-staging/services/skema/skema-py-service.yaml`
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: skema-py
+spec:
+  type: NodePort
+```
+and `kubernetes/overlays/prod/overlays/askem-staging/services/skema/skema-rs-service.yaml`
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: skema-rs
+spec:
+  type: NodePort
+```
+and update staging's kustomization.yaml file to include these files under `patchesStrategicMerge:`
 
 The final step is to modify the ingress definition to expose this service to the outside world.
 The file `kubernetes/overlays/prod/overlays/askem-staging/ingress/private-web-ingress.yaml`:

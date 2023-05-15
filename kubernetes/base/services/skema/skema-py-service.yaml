@@ -2,15 +2,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    software.uncharted.terarium/component: skema
-    software.uncharted.terarium/environment: dev
-    software.uncharted.terarium/tier: services
   name: skema-py
+  labels:
+    software.uncharted.terarium/name: skema-py
+    software.uncharted.terarium/component: py
+    software.uncharted.terarium/service: skema
+    software.uncharted.terarium/part-of: services
   annotations:
     alb.ingress.kubernetes.io/healthcheck-path: '/ping'
 spec:
-  type: NodePort
   ports:
     - name: 4041-tcp
       port: 4041

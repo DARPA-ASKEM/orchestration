@@ -4,6 +4,8 @@ kind: Deployment
 metadata:
   name: simulation-service
 spec:
+  strategy:
+    type: RollingUpdate
   template:
     spec:
       containers:
