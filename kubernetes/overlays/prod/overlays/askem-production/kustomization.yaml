@@ -64,6 +64,10 @@ images:
   - name: rabbitmq-image
     newName: ghcr.io/darpa-askem/rabbitmq
     newTag: "3.11.13-management-alpine"
+  # HMI extraction service
+  - name: hmi-extraction-service
+    newName: ghcr.io/darpa-askem/hmi-extraction-service
+    newTag: 1.0.0
   # Skema
   - name: skema-py-image
     newName: ghcr.io/darpa-askem/skema-py

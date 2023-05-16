@@ -2,7 +2,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - data-service
-  - message-queue
-  - user-store
-  - hmi-extraction-service
+  - hmi-extraction-service-deployment.yaml
+  - hmi-extraction-service.yaml
