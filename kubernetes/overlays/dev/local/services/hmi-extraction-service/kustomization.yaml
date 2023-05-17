@@ -5,7 +5,6 @@ resources:
   - ../../../../../base/services/hmi-extraction-service
 patchesStrategicMerge:
   - hmi-extraction-service.yaml
-  - hmi-extraction-service-deployment.yaml
 images:
   - name: hmi-extraction-service-image
     newName: ghcr.io/darpa-askem/hmi-extraction-service
