@@ -6,7 +6,6 @@ metadata:
   labels:
     software.uncharted.terarium/name: hmi-extraction-service
     software.uncharted.terarium/component: extraction
-    software.uncharted.terarium/service: hmi-extraction
     software.uncharted.terarium/part-of: services
 spec:
   ports:
