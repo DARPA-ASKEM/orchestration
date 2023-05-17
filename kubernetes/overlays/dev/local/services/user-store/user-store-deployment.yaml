@@ -2,27 +2,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: user-store
   labels:
-    software.uncharted.terarium/name: hmi-postgres
-  name: hmi-postgres
+    software.uncharted.terarium/name: user-store
+    software.uncharted.terarium/component: postgres
+    software.uncharted.terarium/service: user-store
+    software.uncharted.terarium/part-of: services
 spec:
   replicas: 1
   selector:
     matchLabels:
-      software.uncharted.terarium/name: hmi-postgres
+      software.uncharted.terarium/name: user-store
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        software.uncharted.terarium/component: postgres
-        software.uncharted.terarium/environment: dev
-        software.uncharted.terarium/tier: hmi
-        software.uncharted.terarium/name: hmi-postgres
+        software.uncharted.terarium/name: user-store
     spec:
       containers:
-        - image: hmi-postgres-image
-          name: hmi-postgres
+        - name: hmi-postgres
+          image: postgres-image
           env:
             - name: POSTGRES_USER
               value: terarium

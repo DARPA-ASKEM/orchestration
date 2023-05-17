@@ -4,6 +4,9 @@ kind: Deployment
 metadata:
   labels:
     software.uncharted.terarium/name: data-service-postgres
+    software.uncharted.terarium/component: postgres
+    software.uncharted.terarium/service: data
+    software.uncharted.terarium/part-of: services
   name: data-service-postgres
 spec:
   replicas: 1
@@ -15,14 +18,11 @@ spec:
   template:
     metadata:
       labels:
-        software.uncharted.terarium/component: postgres
-        software.uncharted.terarium/environment: dev
-        software.uncharted.terarium/tier: services
         software.uncharted.terarium/name: data-service-postgres
     spec:
       containers:
-        - image: data-service-postgres-image
-          name: data-service-postgres
+        - name: data-service-postgres
+          image: data-service-postgres-image
           env:
             - name: POSTGRES_USER
               value: dev

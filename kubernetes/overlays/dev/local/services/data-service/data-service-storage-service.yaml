@@ -2,11 +2,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    software.uncharted.terarium/component: storage
-    software.uncharted.terarium/environment: dev
-    software.uncharted.terarium/tier: services
   name: data-service-storage
+  labels:
+    software.uncharted.terarium/name: data-service-storage
+    software.uncharted.terarium/component: minio
+    software.uncharted.terarium/service: data
+    software.uncharted.terarium/part-of: services
 spec:
   ports:
     - name: 9000-tcp

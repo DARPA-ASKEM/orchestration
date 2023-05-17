@@ -2,9 +2,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - hmi-postgres-deployment.yaml
-  - hmi-postgres-service.yaml
+  - user-store-deployment.yaml
+  - user-store-service.yaml
 images:
-  - name: hmi-postgres-image
+  - name: postgres-image
     newName: ghcr.io/darpa-askem/postgres
     newTag: "15.1"

@@ -2,9 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: model-service
   labels:
     software.uncharted.terarium/name: model-service
-  name: model-service
+    software.uncharted.terarium/component: server
+    software.uncharted.terarium/service: model
+    software.uncharted.terarium/part-of: services
 spec:
   replicas: 1
   selector:
@@ -15,14 +18,11 @@ spec:
   template:
     metadata:
       labels:
-        software.uncharted.terarium/component: model
-        software.uncharted.terarium/environment: dev
-        software.uncharted.terarium/tier: services
         software.uncharted.terarium/name: model-service
     spec:
       containers:
-        - image: model-service-image
-          name: model-service
+        - name: model-service
+          image: model-service-image
           ports:
             - containerPort: 8888
           resources: {}

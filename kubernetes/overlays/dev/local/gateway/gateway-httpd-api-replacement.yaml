@@ -1,3 +1,4 @@
+---
 source:
   kind: ConfigMap
   name: gateway-host

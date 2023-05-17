@@ -4,6 +4,8 @@ kind: Deployment
 metadata:
   name: hmi-server
 spec:
+  strategy:
+    type: RollingUpdate
   template:
     spec:
       containers:
@@ -61,3 +63,13 @@ spec:
                 secretKeyRef:
                   name: xdd-api-key
                   key: key
+            - name: adobe_api_key
+              valueFrom:
+                secretKeyRef:
+                  name: adobe-api-key
+                  key: key
+            - name: xdd_es_key
+              valueFrom:
+                secretKeyRef:
+                  name: xdd-api-key
+                  key: eskey

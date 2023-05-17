@@ -10,35 +10,7 @@
 
 SECRET_FILES=()
 
-decrypt() {
-	DECRYPTED_FILES=()
-	for SECRET_FILE in "${SECRET_FILES[@]}"; do
-		echo "decrypting file ${SECRET_FILE}"
-		#unpack wildcard - now failing
-		for FILE in `ls ${SECRET_FILE}`; do
-			ansible-vault decrypt --vault-id ~/askem-vault-id.txt "${FILE}"
-		done
-		STATUS=$?
-		if [[ ${STATUS} -eq 0 ]]; then
-			DECRYPTED_FILES+=("${SECRET_FILE}")
-		fi
-	done
-}
-
-encrypt() {
-	for SECRET_FILE in "${SECRET_FILES[@]}"; do
-		#unpack wildcard - now failing
-		for FILE in `ls ${SECRET_FILE}`; do
-			ansible-vault encrypt --vault-id ~/askem-vault-id.txt "${FILE}"
-		done
-	done
-}
-
-restore() {
-	for SECRET_FILE in "${DECRYPTED_FILES[@]}"; do
-		git restore "${SECRET_FILE}"
-	done
-}
+source functions.sh
 
 while [[ $# -gt 0 ]]; do
 	case ${1} in
@@ -97,7 +69,7 @@ staging)
 	SECRET_FILES+=("overlays/prod/base/gateway/keycloak/realm/*.json" "overlays/prod/overlays/askem-staging/gateway/keycloak/realm/*.json")
 	SECRET_FILES+=("overlays/prod/overlays/askem-staging/check-latest/check-latest-rsa" "overlays/prod/overlays/askem-staging/check-latest/secrets.yaml")
 	KUSTOMIZATION=overlays/prod/overlays/askem-staging
-	KUBECTL_CMD="ssh uncharted-askem-prod-askem-staging-kube-manager-2 sudo kubectl"
+	KUBECTL_CMD="ssh uncharted-askem-prod-askem-staging-kube-manager-3 sudo kubectl"
 	;;
 production)
 	SECRET_FILES+=("overlays/prod/base/gateway/certificates/cert.pem" "overlays/prod/base/gateway/certificates/key.pem")

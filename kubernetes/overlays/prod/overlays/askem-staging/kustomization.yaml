@@ -11,12 +11,21 @@ resources:
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
   - secrets/secrets-data-service-s3.yaml
-  - secrets/secrets-mit-proxy.yaml
   - secrets/secrets-xdd-api-key.yaml
+  - secrets/secrets-adobe-api-key.yaml
+  - secrets/secrets-mit-proxy.yaml
 patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-keycloak-deployment.yaml
-  - hmi/hmi-server-deployment.yaml
+  - hmi/server/hmi-server-deployment.yaml
+  - services/data-service/data-service-service.yaml
+  - services/message-queue/message-queue-service.yaml
+  - services/hmi-extraction-service/hmi-extraction-service.yaml
+  - services/mit/mit-proxy-service.yaml
+  - services/model-service/model-service-service.yaml
+  - services/simulation-service/simulation-service-service.yaml
+  - services/skema/skema-py-service.yaml
+  - services/skema/skema-rs-service.yaml
 configMapGenerator:
   - files:
       - gateway/keycloak/realm/Uncharted-users-0.json
@@ -28,7 +37,7 @@ configMapGenerator:
     name: gateway-httpd-htdocs
     behavior: merge
 images:
-  # Gateway and Auth Uncharted repositories
+  # Gateway and Auth
   - name: gateway-admin-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin
     newTag: 0.1.4
@@ -38,30 +47,36 @@ images:
   - name: gateway-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak
     newTag: 0.1.4
-  # Orchestration repository
   - name: terarium-login-theme-image
     newName: ghcr.io/darpa-askem/terarium-login-theme
     newTag: latest
-  # TERArium repository
+  # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
     newTag: latest
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
     newTag: latest
-  # Data Service repository
+  # Data Service
   - name: data-service-image
     newName: ghcr.io/darpa-askem/data-service
     newTag: latest
-  # Model Service repository
-  - name: model-service-image
-    newName: ghcr.io/darpa-askem/model-service
-    newTag: latest
-  # GitHub DARPA-ASKEM organisation
   - name: data-service-graphdb-image
     newName: ghcr.io/darpa-askem/data-service-graphdb
     newTag: 5.3.0.3
-
+  # Model Service
+  - name: model-service-image
+    newName: ghcr.io/darpa-askem/model-service
+    newTag: latest
+  # Message queue
+  - name: rabbitmq-image
+    newName: ghcr.io/darpa-askem/rabbitmq
+    newTag: "3.11.13-management-alpine"
+  # HMI extraction service
+  - name: hmi-extraction-service
+    newName: ghcr.io/darpa-askem/hmi-extraction-service
+    newTag: latest
+  # Skema
   - name: skema-py-image
     newName: ghcr.io/darpa-askem/skema-py
     newTag: latest
@@ -71,11 +86,11 @@ images:
   - name: skema-memgraph-image
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: 2.6.5-memgraph2.5.2-lab2.4.0-mage1.6
-
+  # MIT
   - name: mit-proxy-image
     newName: ghcr.io/darpa-askem/mit-proxy
     newTag: latest
-
+  # Simulation Service
   - name: simulation-service-image
-    newName: ghcr.io/darpa-askem/simulation-scheduler
+    newName: ghcr.io/darpa-askem/simulation-service
     newTag: latest

@@ -1,0 +1,15 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simulation-service
+spec:
+  strategy:
+    type: RollingUpdate
+  template:
+    spec:
+      containers:
+        - name: simulation-service
+          env:
+            - name: TDS_URL
+              value: data-service
