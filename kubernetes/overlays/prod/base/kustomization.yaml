@@ -7,6 +7,7 @@ resources:
   - ../../../base/hmi/client
   - ../../../base/hmi/server
   - ../../../base/services/data-service
+  - ../../../base/services/hmi-extraction-service
   - ../../../base/services/message-queue
   - ../../../base/services/model-service
   - ../../../base/services/skema

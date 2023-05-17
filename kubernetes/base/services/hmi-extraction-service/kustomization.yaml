@@ -3,4 +3,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - hmi-extraction-service-deployment.yaml
-  - hmi-extraction-service.yaml
+  - hmi-extraction-service-service.yaml
