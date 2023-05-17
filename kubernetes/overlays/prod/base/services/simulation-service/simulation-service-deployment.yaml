@@ -13,5 +13,6 @@ spec:
           env:
             - name: TDS_URL
               value: data-service
+            # TODO: Remove this env variable once TDS is up-to-date
             - name: ENABLE_TDS
               value: false
