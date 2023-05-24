@@ -7,3 +7,4 @@ resources:
   - services
   - secrets/secrets-xdd-api-key.yaml
   - secrets/secrets-adobe-api-key.yaml
+  - secrets/secrets-es-creds.yaml
