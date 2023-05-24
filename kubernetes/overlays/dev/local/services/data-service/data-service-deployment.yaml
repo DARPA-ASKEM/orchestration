@@ -33,3 +33,19 @@ spec:
               value: "s3://datasets/"
             - name: STORAGE_HOST
               value: "http://host.docker.internal:9000"
+            - name: ES_HOST
+              value: elasticsearch.staging.terarium.ai
+            - name: ES_PORT
+              value: "9200"
+            - name: ES_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: es-creds
+                  key: user 
+            - name: ES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: es-creds
+                  key: password
+            - name: ES_INDEX_PREFIX
+              value: tds_
