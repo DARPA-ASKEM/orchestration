@@ -42,7 +42,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: es-creds
-                  key: user 
+                  key: user
             - name: ES_PASSWORD
               valueFrom:
                 secretKeyRef:
