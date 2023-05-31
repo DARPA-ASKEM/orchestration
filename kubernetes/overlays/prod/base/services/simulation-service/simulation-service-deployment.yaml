@@ -15,4 +15,4 @@ spec:
               value: data-service
             # TODO: Remove this env variable once TDS is up-to-date
             - name: ENABLE_TDS
-              value: false
+              value: '"false"'
