@@ -12,6 +12,7 @@ resources:
   - ../../../base/services/skema
   - ../../../base/services/mit
   - ../../../base/services/simulation-service
+  - ../../../base/services/hmi-extraction-service
 patchesStrategicMerge:
   - gateway/gateway-admin-keycloak-deployment.yaml
   - gateway/gateway-httpd-deployment.yaml
