@@ -41,25 +41,25 @@ images:
     newTag: 0.1.4
   - name: terarium-login-theme-image
     newName: ghcr.io/darpa-askem/terarium-login-theme
-    newTag: latest
+    newTag: 1.0.0
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: 2.2.0
+    newTag: 2.3.0
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: 2.2.0
+    newTag: 2.3.0
   # Data Service
   - name: data-service-image
     newName: ghcr.io/darpa-askem/data-service
-    newTag: 0.3.8
+    newTag: 0.3.11
   - name: data-service-graphdb-image
     newName: ghcr.io/darpa-askem/data-service-graphdb
     newTag: 5.3.0.3
   # Model Service
   - name: model-service-image
     newName: ghcr.io/darpa-askem/model-service
-    newTag: 1.2.0
+    newTag: 1.4.0
   # Message queue
   - name: rabbitmq-image
     newName: ghcr.io/darpa-askem/rabbitmq
@@ -71,10 +71,10 @@ images:
   # Skema
   - name: skema-py-image
     newName: ghcr.io/darpa-askem/skema-py
-    newTag: 0.0.3
+    newTag: 0.0.4
   - name: skema-rs-image
     newName: ghcr.io/darpa-askem/skema-rs
-    newTag: 0.0.3
+    newTag: 0.0.4
   - name: skema-memgraph-image
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: 2.6.5-memgraph2.5.2-lab2.4.0-mage1.6
@@ -85,4 +85,4 @@ images:
   # Simulation Service
   - name: simulation-service-image
     newName: ghcr.io/darpa-askem/simulation-service
-    newTag: 0.2.0
+    newTag: 0.5.0

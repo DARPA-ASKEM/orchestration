@@ -83,6 +83,7 @@ esac
 
 case ${COMMAND} in
 test)
+	checkPrograms
 	echo "## Decrypting secrets"
 	decrypt
 	echo "## Testing kustomization script"
@@ -91,6 +92,7 @@ test)
 	restore
 	;;
 up)
+	checkPrograms
 	read -p "Are you sure you want to deploy to ${ENVIRONMENT}? [y|n] " -n 1 -r
 	echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -103,6 +105,7 @@ up)
 	fi
 	;;
 down)
+	checkPrograms
 	read -p "Are you sure you want to tear down ${ENVIRONMENT}? [y|n] " -n 1 -r
 	echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -115,12 +118,15 @@ down)
 	fi
 	;;
 status)
+	checkPrograms
 	${KUBECTL_CMD} get configMap,secrets,deployments,svc,po
 	;;
 decrypt)
+	checkPrograms
 	decrypt
 	;;
 encrypt)
+	checkPrograms
 	encrypt
 	;;
 help)
