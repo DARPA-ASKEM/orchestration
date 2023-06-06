@@ -74,9 +74,12 @@ esac
 # Default COMMAND to help if empty
 COMMAND=${COMMAND:-help}
 
+if [ ${COMMAND} != "help" ]; then
+	checkPrograms
+fi
+
 case ${COMMAND} in
 test)
-	checkPrograms
 	echo "## Decrypting secrets"
 	decrypt
 	echo "## Testing kustomization script"
@@ -85,7 +88,6 @@ test)
 	restore
 	;;
 up)
-	checkPrograms
 	echo "## Decrypting secrets"
 	decrypt
 	determine_host_machine_for_pods
@@ -150,7 +152,6 @@ up)
 	restore
 	;;
 down)
-	checkPrograms
 	echo "## Decrypting secrets"
 	decrypt
 	determine_host_machine_for_pods
@@ -220,15 +221,12 @@ down)
 	restore
 	;;
 status)
-	checkPrograms
 	kubectl get configMap,svc,po
 	;;
 decrypt)
-	checkPrograms
 	decrypt
 	;;
 encrypt)
-	checkPrograms
 	encrypt
 	;;
 help)
