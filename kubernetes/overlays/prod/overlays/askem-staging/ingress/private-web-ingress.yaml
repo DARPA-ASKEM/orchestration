@@ -2,7 +2,6 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: terarium
   name: private-web-ingress
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
@@ -46,6 +45,17 @@ spec:
                 port:
                   number: 3020
 
+    - host: "message-queue.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: message-queue
+                port:
+                  number: 5672
+
     - host: "mit-proxy.staging.terarium.ai"
       http:
         paths:
@@ -56,6 +66,17 @@ spec:
                 name: mit-proxy
                 port:
                   number: 3981
+
+    - host: "hmi-extraction-service.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hmi-extraction-service
+                port:
+                  number: 5000
 
     - host: "model-service.staging.terarium.ai"
       http:
@@ -106,7 +127,9 @@ spec:
         - "app.staging.terarium.ai"
         - "gateway-httpd.staging.terarium.ai"
         - "data-service.staging.terarium.ai"
+        - "message-queue.staging.terarium.ai"
         - "mit-proxy.staging.terarium.ai"
+        - "hmi-extraction-service.staging.terarium.ai"
         - "model-service.staging.terarium.ai"
         - "simulation-service.staging.terarium.ai"
         - "skema-py.staging.terarium.ai"

@@ -62,6 +62,10 @@ if [ -z "${ENVIRONMENT}" ]; then
 	COMMAND="help"
 fi
 
+if [ ${COMMAND} != "help" ]; then
+	checkPrograms
+fi
+
 case ${ENVIRONMENT} in
 staging)
 	SECRET_FILES+=("overlays/prod/base/gateway/certificates/cert.pem" "overlays/prod/base/gateway/certificates/key.pem")
@@ -69,7 +73,7 @@ staging)
 	SECRET_FILES+=("overlays/prod/base/gateway/keycloak/realm/*.json" "overlays/prod/overlays/askem-staging/gateway/keycloak/realm/*.json")
 	SECRET_FILES+=("overlays/prod/overlays/askem-staging/check-latest/check-latest-rsa" "overlays/prod/overlays/askem-staging/check-latest/secrets.yaml")
 	KUSTOMIZATION=overlays/prod/overlays/askem-staging
-	KUBECTL_CMD="ssh uncharted-askem-prod-askem-staging-kube-manager-2 sudo kubectl"
+	KUBECTL_CMD="ssh uncharted-askem-prod-askem-staging-kube-manager-3 sudo kubectl"
 	;;
 production)
 	SECRET_FILES+=("overlays/prod/base/gateway/certificates/cert.pem" "overlays/prod/base/gateway/certificates/key.pem")

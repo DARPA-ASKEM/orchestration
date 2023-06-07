@@ -1,23 +1,23 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    software.uncharted.auth/name: gateway-admin-keycloak
   name: gateway-admin-keycloak
+  labels:
+    software.uncharted.terarium/name: gateway-admin-keycloak
+    software.uncharted.terarium/component: keycloak-admin
+    software.uncharted.terarium/part-of: gateway
 spec:
   replicas: 1
   selector:
     matchLabels:
-      software.uncharted.auth/name: gateway-admin-keycloak
+      software.uncharted.terarium/name: gateway-admin-keycloak
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        software.uncharted.auth/name: gateway-admin-keycloak
-        software.uncharted.auth/component: gateway-admin-keycloak
-        software.uncharted.auth/environment: dev
-        software.uncharted.auth/tier: gateway
+        software.uncharted.terarium/name: gateway-admin-keycloak
     spec:
       containers:
         - name: gateway-admin-keycloak

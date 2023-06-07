@@ -2,27 +2,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: message-queue
   labels:
-    software.uncharted.terarium/name: hmi-rabbitmq
-  name: hmi-rabbitmq
+    software.uncharted.terarium/name: message-queue
+    software.uncharted.terarium/component: rabbitmq
+    software.uncharted.terarium/service: message-queue
+    software.uncharted.terarium/part-of: services
 spec:
   replicas: 1
   selector:
     matchLabels:
-      software.uncharted.terarium/name: hmi-rabbitmq
+      software.uncharted.terarium/name: message-queue
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        software.uncharted.terarium/component: rabbitmq
-        software.uncharted.terarium/environment: dev
-        software.uncharted.terarium/tier: hmi
-        software.uncharted.terarium/name: hmi-rabbitmq
+        software.uncharted.terarium/name: message-queue
     spec:
       containers:
-        - image: hmi-rabbitmq-image
-          name: hmi-rabbitmq
+        - name: message-queue
+          image: rabbitmq-image
           env:
             - name: RABBITMQ_DEFAULT_USER
               value: terarium

@@ -7,19 +7,29 @@ resources:
   - ../../../base/hmi/client
   - ../../../base/hmi/server
   - ../../../base/services/data-service
+  - ../../../base/services/message-queue
   - ../../../base/services/model-service
   - ../../../base/services/skema
   - ../../../base/services/mit
   - ../../../base/services/simulation-service
-  - gateway/gateway-keycloak-service.yaml
+  - ../../../base/services/hmi-extraction-service
 patchesStrategicMerge:
   - gateway/gateway-admin-keycloak-deployment.yaml
   - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-httpd-service.yaml
   - gateway/gateway-keycloak-deployment.yaml
-  - hmi/hmi-server-deployment.yaml
-  - services/data-service-deployment.yaml
-  - services/data-service-graphdb-deployment.yaml
+  - gateway/gateway-keycloak-service.yaml
+  - hmi/client/hmi-client-deployment.yaml
+  - hmi/server/hmi-server-deployment.yaml
+  - services/data-service/data-service-deployment.yaml
+  - services/data-service/data-service-graphdb-deployment.yaml
+  - services/message-queue/message-queue-deployment.yaml
+  - services/mit/mit-proxy-deployment.yaml
+  - services/model-service/model-service-deployment.yaml
+  - services/simulation-service/simulation-service-deployment.yaml
+  - services/skema/skema-memgraph-deployment.yaml
+  - services/skema/skema-py-deployment.yaml
+  - services/skema/skema-rs-deployment.yaml
 configMapGenerator:
   - files:
       - gateway/httpd/htdocs/silent-check-sso.html

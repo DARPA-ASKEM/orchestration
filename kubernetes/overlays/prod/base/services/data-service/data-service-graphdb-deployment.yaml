@@ -4,6 +4,8 @@ kind: Deployment
 metadata:
   name: data-service-graphdb
 spec:
+  strategy:
+    type: RollingUpdate
   template:
     spec:
       containers:

@@ -4,6 +4,8 @@ kind: Deployment
 metadata:
   name: hmi-server
 spec:
+  strategy:
+    type: RollingUpdate
   template:
     spec:
       containers:
@@ -19,6 +21,10 @@ spec:
               value: "http://skema-rs:4040"
             - name: MODEL_SERVICE_MP_REST_URL
               value: "http://model-service:3010"
+            - name: SIMULATION_SERVICE_MP_REST_URL
+              value: "http://simulation-service:3030"
+            - name: MIT_MP_REST_URL
+              value: "http://mit-proxy:3981"
             - name: keycloak-service-protocol
               value: https
             - name: keycloak-service-fqdn

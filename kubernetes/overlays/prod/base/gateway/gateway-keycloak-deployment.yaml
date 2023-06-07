@@ -4,6 +4,8 @@ kind: Deployment
 metadata:
   name: gateway-keycloak
 spec:
+  strategy:
+    type: RollingUpdate
   template:
     spec:
       containers:
