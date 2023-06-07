@@ -1,9 +1,26 @@
+checkPrograms() {
+	if ! command -v ansible-vault &>/dev/null; then
+		echo "[ERROR] the program \"ansible-vault\" could not be found."
+		exit
+	fi
+
+	if ! command -v git &>/dev/null; then
+		echo "[ERROR] the program \"git\" could not be found."
+		exit
+	fi
+
+	if ! command -v kubectl &>/dev/null; then
+		echo "[ERROR] the program \"kubectl\" could not be found."
+		exit
+	fi
+}
+
 decrypt() {
 	DECRYPTED_FILES=()
 	for SECRET_FILE in "${SECRET_FILES[@]}"; do
 		echo "decrypting file ${SECRET_FILE}"
 		#unpack wildcard - now failing
-		for FILE in `ls ${SECRET_FILE}`; do
+		for FILE in $(ls ${SECRET_FILE}); do
 			ansible-vault decrypt --vault-id ~/askem-vault-id.txt "${FILE}"
 		done
 		STATUS=$?
@@ -16,7 +33,7 @@ decrypt() {
 encrypt() {
 	for SECRET_FILE in "${SECRET_FILES[@]}"; do
 		#unpack wildcard - now failing
-		for FILE in `ls ${SECRET_FILE}`; do
+		for FILE in $(ls ${SECRET_FILE}); do
 			ansible-vault encrypt --vault-id ~/askem-vault-id.txt "${FILE}"
 		done
 	done

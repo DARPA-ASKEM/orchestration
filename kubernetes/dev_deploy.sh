@@ -74,6 +74,10 @@ esac
 # Default COMMAND to help if empty
 COMMAND=${COMMAND:-help}
 
+if [ ${COMMAND} != "help" ]; then
+	checkPrograms
+fi
+
 case ${COMMAND} in
 test)
 	echo "## Decrypting secrets"

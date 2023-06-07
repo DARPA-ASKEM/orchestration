@@ -62,6 +62,10 @@ if [ -z "${ENVIRONMENT}" ]; then
 	COMMAND="help"
 fi
 
+if [ ${COMMAND} != "help" ]; then
+	checkPrograms
+fi
+
 case ${ENVIRONMENT} in
 staging)
 	SECRET_FILES+=("overlays/prod/base/gateway/certificates/cert.pem" "overlays/prod/base/gateway/certificates/key.pem")

@@ -73,7 +73,7 @@ images:
     newName: ghcr.io/darpa-askem/rabbitmq
     newTag: "3.11.13-management-alpine"
   # HMI extraction service
-  - name: hmi-extraction-service
+  - name: hmi-extraction-service-image
     newName: ghcr.io/darpa-askem/hmi-extraction-service
     newTag: latest
   # Skema
