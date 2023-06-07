@@ -20,7 +20,7 @@ patchesStrategicMerge:
   - hmi/server/hmi-server-deployment.yaml
   - services/data-service/data-service-service.yaml
   - services/message-queue/message-queue-service.yaml
-  - services/hmi-extraction-service/hmi-extraction-service.yaml
+  - services/hmi-extraction-service/hmi-extraction-service-service.yaml
   - services/mit/mit-proxy-service.yaml
   - services/model-service/model-service-service.yaml
   - services/simulation-service/simulation-service-service.yaml
