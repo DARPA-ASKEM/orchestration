@@ -8,5 +8,6 @@ resources:
   - gateway-admin-keycloak-ui-service.yaml
   - gateway-envoy-deployment.yaml
   - gateway-keycloak-deployment.yaml
+  - gateway-keycloak-service.yaml
   - gateway-landing-deployment.yaml
   - gateway-landing-service.yaml

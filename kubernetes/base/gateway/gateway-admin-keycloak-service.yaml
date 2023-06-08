@@ -9,8 +9,8 @@ metadata:
     software.uncharted.terarium/part-of: gateway
 spec:
   ports:
-    - name: 8081-admin-keycloak-tcp
-      port: 8081
+    - name: 8080-admin-keycloak-tcp
+      port: 8080
       protocol: TCP
       targetPort: 8080
   selector:
