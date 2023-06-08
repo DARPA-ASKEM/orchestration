@@ -15,4 +15,4 @@ spec:
               value: data-service
             # TODO: Remove this env variable once TDS is up-to-date
             - name: ENABLE_REMOTE_DATA_HANDLING
-              value: "false"
+              value: '"false"'

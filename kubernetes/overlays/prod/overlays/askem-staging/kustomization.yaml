@@ -14,10 +14,12 @@ resources:
   - secrets/secrets-xdd-api-key.yaml
   - secrets/secrets-adobe-api-key.yaml
   - secrets/secrets-mit-proxy.yaml
+  - secrets/secrets-es-creds.yaml
 patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-keycloak-deployment.yaml
   - hmi/server/hmi-server-deployment.yaml
+  - services/data-service/data-service-deployment.yaml
   - services/data-service/data-service-service.yaml
   - services/message-queue/message-queue-service.yaml
   - services/hmi-extraction-service/hmi-extraction-service-service.yaml

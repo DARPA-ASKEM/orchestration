@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-service
+spec:
+  template:
+    spec:
+      containers:
+        - name: data-service
+          imagePullPolicy: Always
+          env:
+            - name: ES_SCHEME
+              value: https
+            - name: ES_URL
+              value: https://elasticsearch.staging.terarium.ai:443
+            - name: ES_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: es-creds
+                  key: user
+            - name: ES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: es-creds
+                  key: password
+            - name: ES_INDEX_PREFIX
+              value: tds_

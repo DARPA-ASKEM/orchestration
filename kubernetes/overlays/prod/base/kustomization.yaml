@@ -13,7 +13,6 @@ resources:
   - ../../../base/services/skema
   - ../../../base/services/mit
   - ../../../base/services/simulation-service
-  - ../../../base/services/hmi-extraction-service
 patchesStrategicMerge:
   - gateway/gateway-admin-keycloak-deployment.yaml
   - gateway/gateway-httpd-deployment.yaml
@@ -31,6 +30,7 @@ patchesStrategicMerge:
   - services/skema/skema-memgraph-deployment.yaml
   - services/skema/skema-py-deployment.yaml
   - services/skema/skema-rs-deployment.yaml
+  - services/hmi-extraction-service/hmi-extraction-service-deployment.yaml
 configMapGenerator:
   - files:
       - gateway/httpd/htdocs/silent-check-sso.html
