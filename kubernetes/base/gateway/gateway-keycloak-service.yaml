@@ -4,9 +4,9 @@ kind: Service
 metadata:
   name: gateway-keycloak
   labels:
-    software.uncharted.wm/name: gateway-keycloak
-    software.uncharted.wm/component: keycloak
-    software.uncharted.wm/part-of: gateway
+    software.uncharted.terarium/name: gateway-keycloak
+    software.uncharted.terarium/component: keycloak
+    software.uncharted.terarium/part-of: gateway
 spec:
   ports:
     - name: 8079-keycloak-tcp
@@ -14,6 +14,6 @@ spec:
       protocol: TCP
       targetPort: 8080
   selector:
-    software.uncharted.wm/name: gateway-keycloak
+    software.uncharted.terarium/name: gateway-keycloak
 status:
   loadBalancer: {}
