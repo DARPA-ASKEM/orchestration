@@ -1,0 +1,11 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../../base/hmi/documentation
+patchesStrategicMerge:
+  - terarium-docs-service.yaml
+images:
+  - name: terarium-docs-image
+    newName: ghcr.io/darpa-askem/terarium-docs
+    newTag: 1.0.0
