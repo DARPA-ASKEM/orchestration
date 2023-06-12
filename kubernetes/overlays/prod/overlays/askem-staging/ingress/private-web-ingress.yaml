@@ -34,6 +34,17 @@ spec:
                 port:
                   number: 8078
 
+    - host: "documentation.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: terarium-docs
+                port:
+                  number: 8000
+
     - host: "data-service.staging.terarium.ai"
       http:
         paths:
@@ -125,6 +136,7 @@ spec:
   tls:
     - hosts:
         - "app.staging.terarium.ai"
+        - "documentation.staging.terarium.ai"
         - "gateway-httpd.staging.terarium.ai"
         - "data-service.staging.terarium.ai"
         - "message-queue.staging.terarium.ai"

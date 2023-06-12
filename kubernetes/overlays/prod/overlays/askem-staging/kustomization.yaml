@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ../../base
   - check-latest
+  - ingress/private-web-ingress.yaml
   - secrets/secrets-dkg.yaml
   - secrets/secrets-keycloak-admin-creds.yaml
   - secrets/secrets-keycloak-admin-service-account-creds.yaml
@@ -18,6 +19,7 @@ resources:
 patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-keycloak-deployment.yaml
+  - hmi/documentation/terarium-docs-service.yaml
   - hmi/server/hmi-server-deployment.yaml
   - services/data-service/data-service-deployment.yaml
   - services/data-service/data-service-service.yaml
@@ -56,6 +58,9 @@ images:
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
     newTag: latest
+  - name: terarium-docs-image
+    newName: ghcr.io/darpa-askem/terarium-docs
+    newTag: 1.0.0
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
     newTag: latest
