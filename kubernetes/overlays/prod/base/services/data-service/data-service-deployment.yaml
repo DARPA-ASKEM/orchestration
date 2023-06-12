@@ -68,3 +68,18 @@ spec:
                 secretKeyRef:
                   name: data-service-s3
                   key: aws-data-storage-path
+            - name: S3_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-dataset-bucket
+            - name: S3_DATASET_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-dataset-path
+            - name: S3_RESULTS_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-results-path
