@@ -50,3 +50,9 @@ spec:
                   key: password
             - name: ES_INDEX_PREFIX
               value: tds_
+            - name: S3_BUCKET
+              value: "askem"
+            - name: S3_DATASET_PATH
+              value: "datasets"
+            - name: S3_RESULTS_PATH
+              value: "simulations"
