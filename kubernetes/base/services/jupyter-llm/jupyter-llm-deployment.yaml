@@ -33,13 +33,15 @@ spec:
               value: http://data-service:8000
             - name: SIMULATION_SCHEDULER_URL
               value: http://simulation-service:8080
+            - name: DEBUG
+              value: "1"
             - name: JUPYTER_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: jupyer-llm-secrets
                   key: jupytertoken
           ports:
-            - containerPort: 3000
+            - containerPort: 8888
           resources: {}
       imagePullSecrets:
         - name: ghcr-cred
