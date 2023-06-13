@@ -31,6 +31,7 @@ patchesStrategicMerge:
   - services/simulation-service/simulation-service-service.yaml
   - services/skema/skema-py-service.yaml
   - services/skema/skema-rs-service.yaml
+  - services/jupyter-llm/jupyter-llm-service.yaml
 configMapGenerator:
   - files:
       - gateway/keycloak/realm/Uncharted-users-0.json
