@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        software.uncharted.terarium/name: juptyer-llm
+        software.uncharted.terarium/name: jupyter-llm
     spec:
       containers:
         - name: jupyter-llm
