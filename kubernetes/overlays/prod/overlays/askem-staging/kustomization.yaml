@@ -16,6 +16,7 @@ resources:
   - secrets/secrets-adobe-api-key.yaml
   - secrets/secrets-mit-proxy.yaml
   - secrets/secrets-es-creds.yaml
+  - secrets/secrets-jupyter-llm.yaml
 patchesStrategicMerge:
   - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-keycloak-deployment.yaml
@@ -100,4 +101,8 @@ images:
   # Simulation Service
   - name: simulation-service-image
     newName: ghcr.io/darpa-askem/simulation-service
+    newTag: latest
+  # Jupiter-LLM
+  - name: jupyter-llm-image
+    newName: ghcr.io/darpa-askem/jupyter-llm
     newTag: latest

@@ -133,6 +133,18 @@ spec:
                 port:
                   number: 4040
 
+    - host: "jupyter-llm.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jupyter-llm
+                port:
+                  number: 8889
+
+
   tls:
     - hosts:
         - "app.staging.terarium.ai"
@@ -146,3 +158,4 @@ spec:
         - "simulation-service.staging.terarium.ai"
         - "skema-py.staging.terarium.ai"
         - "skema-rs.staging.terarium.ai"
+        - "jupyter-llm.staging.terarium.ai"
