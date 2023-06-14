@@ -50,6 +50,8 @@ spec:
                   key: password
             - name: ES_INDEX_PREFIX
               value: tds_
+            - name: SEED_DATA
+              value: "true"
             - name: S3_BUCKET
               value: "askem"
             - name: S3_DATASET_PATH

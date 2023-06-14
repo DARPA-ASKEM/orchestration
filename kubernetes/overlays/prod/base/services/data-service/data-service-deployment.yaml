@@ -83,3 +83,17 @@ spec:
                 secretKeyRef:
                   name: data-service-s3
                   key: aws-results-path
+            - name: ES_SCHEME
+              value: https
+            - name: ES_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: es-creds
+                  key: user
+            - name: ES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: es-creds
+                  key: password
+            - name: ES_INDEX_PREFIX
+              value: tds_
