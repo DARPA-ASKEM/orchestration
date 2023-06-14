@@ -6,6 +6,10 @@ metadata:
 spec:
   template:
     spec:
+      initContainers:
+        - name: data-service-migrations
+          image: data-service-migrations-image
+          command: [ "/run_migrations.sh" ]
       containers:
         - name: data-service
           imagePullPolicy: Always
