@@ -15,4 +15,6 @@ configMapGenerator:
   - files:
       - httpd/config-locations/api.conf
       - httpd/config-locations/app.conf
+      - httpd/config-locations/chatty.conf
+      - httpd/config-locations/chatty_ws.conf
     name: gateway-httpd-config-locations

@@ -39,7 +39,7 @@ images:
     newTag: 0.1.4
   - name: gateway-httpd-image
     newName: ghcr.io/unchartedsoftware/httpd-openidc
-    newTag: 0.1.4
+    newTag: local
   - name: gateway-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak
     newTag: 0.1.4
