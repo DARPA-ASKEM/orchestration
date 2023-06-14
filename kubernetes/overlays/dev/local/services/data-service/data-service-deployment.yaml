@@ -27,13 +27,20 @@ spec:
             - name: DKG_DESC_PORT
               value: "8772"
             - name: AWS_ACCESS_KEY_ID
-              value: "miniouser"
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-access-key-id
             - name: AWS_SECRET_ACCESS_KEY
-              value: "miniopass"
-            - name: DATASET_STORAGE_BASE_URL
-              value: "s3://datasets/"
-            - name: STORAGE_HOST
-              value: "http://host.docker.internal:9000"
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-secret-access-key
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-region
             - name: ES_SCHEME
               value: https
             - name: ES_URL
@@ -53,7 +60,10 @@ spec:
             - name: SEED_DATA
               value: "true"
             - name: S3_BUCKET
-              value: "askem"
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key:  aws-dataset-bucket
             - name: S3_DATASET_PATH
               value: "datasets"
             - name: S3_RESULTS_PATH

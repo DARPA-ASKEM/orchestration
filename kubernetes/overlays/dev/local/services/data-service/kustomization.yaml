@@ -5,9 +5,6 @@ resources:
   - ../../../../../base/services/data-service
   - data-service-postgres-deployment.yaml
   - data-service-postgres-service.yaml
-  - data-service-storage-deployment.yaml
-  - data-service-storage-job.yaml
-  - data-service-storage-service.yaml
 patchesStrategicMerge:
   - data-service-deployment.yaml
   - data-service-service.yaml
@@ -23,9 +20,3 @@ images:
   - name: data-service-postgres-image
     newName: ghcr.io/darpa-askem/data-service-dev-db
     newTag: latest
-  - name: data-service-storage-image
-    newName: ghcr.io/darpa-askem/data-service-storage
-    newTag: latest
-  - name: data-service-storage-job-image
-    newName: ghcr.io/darpa-askem/mc
-    newTag: release.2022-12-13t00-23-28z
