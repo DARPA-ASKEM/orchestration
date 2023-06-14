@@ -13,4 +13,4 @@ spec:
             - name: ES_URL
               value: https://elasticsearch.terarium.ai:443
             - name: SEED_DATA
-              value: "false"
+              value: "true"
