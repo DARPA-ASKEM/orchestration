@@ -14,6 +14,8 @@ spec:
               value: neo4j://data-service-graphdb:7687
             - name: SQL_URL
               value: data-service-postgres
+            - name: SQL_DB
+              value: askem
             - name: SQL_PORT
               value: "5020"
             - name: SQL_USER
