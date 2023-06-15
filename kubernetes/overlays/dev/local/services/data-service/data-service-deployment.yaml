@@ -56,7 +56,7 @@ spec:
                   name: es-creds
                   key: password
             - name: ES_INDEX_PREFIX
-              value: tds_
+              value: dev_
             - name: SEED_DATA
               value: "true"
             - name: S3_BUCKET
