@@ -6,6 +6,68 @@ metadata:
 spec:
   template:
     spec:
+      initContainers:
+        - name: data-service-migrations
+          imagePullPolicy: Always
+          env:
+            - name: NEO4J_driver
+              value: neo4j://data-service-graphdb:7687
+            - name: SQL_URL
+              value: data-service-postgres
+            - name: SQL_PORT
+              value: "5020"
+            - name: SQL_USER
+              value: dev
+            - name: SQL_PASSWORD
+              value: dev
+            - name: DKG_URL
+              value: http://34.230.33.149
+            - name: DKG_API_PORT
+              value: "8771"
+            - name: DKG_DESC_PORT
+              value: "8772"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-access-key-id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-secret-access-key
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-region
+            - name: ES_SCHEME
+              value: https
+            - name: ES_URL
+              value: https://elasticsearch.staging.terarium.ai:443
+            - name: ES_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: es-creds
+                  key: user
+            - name: ES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: es-creds
+                  key: password
+            - name: ES_INDEX_PREFIX
+              value: tds_
+            - name: SEED_DATA
+              value: "true"
+            - name: S3_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-dataset-bucket
+            - name: S3_DATASET_PATH
+              value: "datasets"
+            - name: S3_RESULTS_PATH
+              value: "simulations"
       containers:
         - name: data-service
           imagePullPolicy: Always
