@@ -1,0 +1,14 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: waitfor-role
+  labels:
+    software.uncharted.terarium/name: waitfor-role
+    software.uncharted.terarium/component: role
+    software.uncharted.terarium/service: waitfor
+    software.uncharted.terarium/part-of: utils
+rules:
+  - apiGroups: [ "" ]
+    resources: [ "services","pods","jobs" ]
+    verbs: [ "get","watch","list" ]

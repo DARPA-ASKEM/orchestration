@@ -6,9 +6,14 @@ metadata:
 spec:
   template:
     spec:
+      serviceAccountName: waitfor-service-account
       initContainers:
+        - name: wait-for-data-service-postgres
+          image: ghcr.io/groundnuty/k8s-wait-for:v2.0
+          args:
+           - "pod"
+           - "-lsoftware.uncharted.terarium/name=data-service-postgres"
         - name: data-service-migrations
-          imagePullPolicy: Always
           env:
             - name: NEO4J_driver
               value: neo4j://data-service-graphdb:7687
