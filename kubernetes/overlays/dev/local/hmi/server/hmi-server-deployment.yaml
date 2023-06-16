@@ -49,3 +49,33 @@ spec:
                 secretKeyRef:
                   name: xdd-api-key
                   key: eskey
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-access-key-id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-secret-access-key
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-region
+            - name: S3_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-dataset-bucket
+            - name: S3_DATASET_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-dataset-path
+            - name: S3_RESULTS_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-results-path
