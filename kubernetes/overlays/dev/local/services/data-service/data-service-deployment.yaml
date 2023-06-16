@@ -11,8 +11,8 @@ spec:
         - name: wait-for-data-service-postgres
           image: ghcr.io/groundnuty/k8s-wait-for:v2.0
           args:
-           - "pod"
-           - "-lsoftware.uncharted.terarium/name=data-service-postgres"
+            - "pod"
+            - "-lsoftware.uncharted.terarium/name=data-service-postgres"
         - name: data-service-migrations
           env:
             - name: NEO4J_driver
