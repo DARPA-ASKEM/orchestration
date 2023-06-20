@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - ../../base
   - check-latest
-  - ingress/private-web-ingress.yaml
+  # - ingress/private-web-ingress.yaml
   - secrets/secrets-adobe-api-key.yaml
   - secrets/secrets-data-service-s3.yaml
   - secrets/secrets-dkg.yaml
@@ -38,6 +38,10 @@ configMapGenerator:
   - files:
       - gateway/landing/site/index.html
     name: landing-site
+    behavior: merge
+  - files:
+      - gateway/envoy/config.yaml
+    name: gateway-config
     behavior: merge
 images:
   # Gateway and Auth
