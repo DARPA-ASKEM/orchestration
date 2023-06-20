@@ -17,9 +17,11 @@ resources:
   - gateway/gateway-envoy-service.yaml
 patchesStrategicMerge:
   - gateway/gateway-admin-keycloak-deployment.yaml
+  - gateway/gateway-admin-keycloak-ui-deployment.yaml
   - gateway/gateway-envoy-deployment.yaml
   - gateway/gateway-keycloak-deployment.yaml
   - gateway/gateway-keycloak-service.yaml
+  - gateway/gateway-landing-deployment.yaml
   - hmi/client/hmi-client-deployment.yaml
   - hmi/documentation/terarium-docs-deployment.yaml
   - hmi/server/hmi-server-deployment.yaml

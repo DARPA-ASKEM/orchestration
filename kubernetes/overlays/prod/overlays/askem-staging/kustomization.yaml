@@ -57,13 +57,13 @@ images:
     newName: ghcr.io/unchartedsoftware/keycloak-admin-ui
     newTag: 0.2.0
   - name: gateway-envoy-image
-    newName: envoyproxy/envoy
+    newName: ghcr.io/darpa-askem/envoy
     newTag: v1.25.2
   - name: gateway-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak
     newTag: 0.2.0
   - name: gateway-landing-image
-    newName: nginx
+    newName: ghcr.io/darpa-askem/nginx
     newTag: 1.23-alpine
   - name: terarium-login-theme-image
     newName: ghcr.io/darpa-askem/terarium-login-theme

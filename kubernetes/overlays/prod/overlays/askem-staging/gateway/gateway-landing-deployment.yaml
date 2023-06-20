@@ -15,9 +15,7 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: landing-config
+            name: landing-config-xxx
         - name: site-volume
           configMap:
-            name: landing-site
-      restartPolicy: Always
-status: {}
+            name: landing-site-xxx
