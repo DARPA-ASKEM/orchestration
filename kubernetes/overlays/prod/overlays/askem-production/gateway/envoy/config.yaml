@@ -102,8 +102,8 @@ static_resources:
               "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext
               common_tls_context:
                 tls_certificates:
-                  - certificate_chain: { filename: "/certificates/cert.pem" }
-                    private_key: { filename: "/certificates/key.pem" }
+                  - certificate_chain: {filename: "/certificates/cert.pem"}
+                    private_key: {filename: "/certificates/key.pem"}
 
   clusters:
     - name: upstream-keycloak
