@@ -31,5 +31,7 @@ spec:
         - name: config-volume
           configMap:
             name: gateway-config
+      imagePullSecrets:
+        - name: ghcr-cred
       restartPolicy: Always
 status: {}

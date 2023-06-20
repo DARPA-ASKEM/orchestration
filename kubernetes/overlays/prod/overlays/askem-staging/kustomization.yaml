@@ -18,7 +18,6 @@ resources:
   - secrets/secrets-xdd-api-key.yaml
 patchesStrategicMerge:
   - gateway/gateway-keycloak-deployment.yaml
-  - gateway/gateway-landing-deployment.yaml
   - hmi/documentation/terarium-docs-service.yaml
   - hmi/server/hmi-server-deployment.yaml
   - services/data-service/data-service-deployment.yaml
@@ -32,22 +31,14 @@ patchesStrategicMerge:
   - services/skema/skema-rs-service.yaml
 configMapGenerator:
   - files:
-      - gateway/envoy/config.yaml
-      - gateway/envoy/hmac-secret.yaml
-      - gateway/envoy/token-secret.yaml
-    name: gateway-config
-  - files:
       - gateway/keycloak/realm/Uncharted-realm.json
       - gateway/keycloak/realm/Uncharted-users-0.json
     name: gateway-keycloak-realm
     behavior: merge
   - files:
-      - gateway/landing/config/default.conf
-    name: landing-config
-  - files:
       - gateway/landing/site/index.html
-      - gateway/landing/site/styles.css
     name: landing-site
+    behavior: merge
 images:
   # Gateway and Auth
   - name: gateway-admin-keycloak-image

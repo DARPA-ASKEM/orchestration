@@ -41,9 +41,20 @@ configMapGenerator:
       - gateway/certificates/key.pem
     name: gateway-certificates
   - files:
+      - gateway/envoy/config.yaml
+      - gateway/envoy/hmac-secret.yaml
+      - gateway/envoy/token-secret.yaml
+    name: gateway-config
+  - files:
       - gateway/keycloak/realm/master-realm.json
       - gateway/keycloak/realm/master-users-0.json
     name: gateway-keycloak-realm
   - files:
       - gateway/keystore/cacerts
     name: gateway-keystore
+  - files:
+      - gateway/landing/config/default.conf
+    name: landing-config
+  - files:
+      - gateway/landing/site/styles.css
+    name: landing-site
