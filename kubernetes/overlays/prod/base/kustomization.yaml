@@ -5,6 +5,7 @@ namespace: terarium
 resources:
   - ../../../base/gateway
   - ../../../base/hmi/client
+  - ../../../base/hmi/documentation
   - ../../../base/hmi/server
   - ../../../base/services/data-service
   - ../../../base/services/hmi-extraction-service
@@ -20,6 +21,7 @@ patchesStrategicMerge:
   - gateway/gateway-keycloak-deployment.yaml
   - gateway/gateway-keycloak-service.yaml
   - hmi/client/hmi-client-deployment.yaml
+  - hmi/documentation/terarium-docs-deployment.yaml
   - hmi/server/hmi-server-deployment.yaml
   - services/data-service/data-service-deployment.yaml
   - services/data-service/data-service-graphdb-deployment.yaml

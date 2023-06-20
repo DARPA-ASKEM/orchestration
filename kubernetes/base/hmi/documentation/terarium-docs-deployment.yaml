@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: terarium-docs
+  labels:
+    software.uncharted.terarium/name: terarium-docs
+    software.uncharted.terarium/component: documentation
+    software.uncharted.terarium/part-of: hmi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: terarium-docs
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: terarium-docs
+    spec:
+      containers:
+        - name: terarium-docs
+          image: terarium-docs-image
+          ports:
+            - containerPort: 80
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}

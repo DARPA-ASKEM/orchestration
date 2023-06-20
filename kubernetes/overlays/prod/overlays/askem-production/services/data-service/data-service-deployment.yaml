@@ -10,13 +10,14 @@ spec:
         - name: data-service-migrations
           env:
             - name: ES_URL
-              value: https://elasticsearch.staging.terarium.ai:443
+              value: https://elasticsearch.terarium.ai:443
             - name: SEED_DATA
               value: "true"
       containers:
         - name: data-service
+          imagePullPolicy: Always
           env:
             - name: ES_URL
-              value: https://elasticsearch.staging.terarium.ai:443
+              value: https://elasticsearch.terarium.ai:443
             - name: SEED_DATA
               value: "true"

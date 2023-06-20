@@ -34,6 +34,28 @@ spec:
                 port:
                   number: 443
 
+    - host: "documentation.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: terarium-docs
+                port:
+                  number: 8000
+
+    - host: "data-service.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: data-service
+                port:
+                  number: 3020
+
     - host: "message-queue.staging.terarium.ai"
       http:
         paths:
@@ -115,6 +137,7 @@ spec:
     - hosts:
         - "app.staging.terarium.ai"
         - "keycloak.staging.terarium.ai"
+        - "documentation.staging.terarium.ai"
         - "data-service.staging.terarium.ai"
         - "message-queue.staging.terarium.ai"
         - "mit-proxy.staging.terarium.ai"
