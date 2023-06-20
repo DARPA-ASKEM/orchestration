@@ -41,7 +41,6 @@ configMapGenerator:
       - gateway/certificates/key.pem
     name: gateway-certificates
   - files:
-      - gateway/envoy/config.yaml
       - gateway/envoy/hmac-secret.yaml
       - gateway/envoy/token-secret.yaml
     name: gateway-config

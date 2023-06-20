@@ -17,35 +17,45 @@ resources:
   - secrets/secrets-rds-creds.yaml
   - secrets/secrets-xdd-api-key.yaml
 patchesStrategicMerge:
-  - gateway/gateway-httpd-deployment.yaml
   - gateway/gateway-keycloak-deployment.yaml
   - hmi/documentation/terarium-docs-service.yaml
   - hmi/server/hmi-server-deployment.yaml
   - services/data-service/data-service-deployment.yaml
 configMapGenerator:
   - files:
-      - gateway/keycloak/realm/Uncharted-users-0.json
       - gateway/keycloak/realm/Uncharted-realm.json
+      - gateway/keycloak/realm/Uncharted-users-0.json
     name: gateway-keycloak-realm
     behavior: merge
   - files:
-      - gateway/httpd/htdocs/index.html
-    name: gateway-httpd-htdocs
+      - gateway/landing/site/index.html
+    name: landing-site
+    behavior: merge
+  - files:
+      - gateway/envoy/config.yaml
+    name: gateway-config
     behavior: merge
 images:
   # Gateway and Auth
   - name: gateway-admin-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin
-    newTag: 0.1.4
-  - name: gateway-httpd-image
-    newName: ghcr.io/unchartedsoftware/httpd-openidc
-    newTag: 0.1.4
+    newTag: 0.2.0
+  - name: gateway-admin-keycloak-ui-image
+    newName: ghcr.io/unchartedsoftware/keycloak-admin-ui
+    newTag: 0.2.0
+  - name: gateway-envoy-image
+    newName: ghcr.io/darpa-askem/envoy
+    newTag: v1.25.2
   - name: gateway-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak
-    newTag: 0.1.4
+    newTag: 0.2.0
+  - name: gateway-landing-image
+    newName: ghcr.io/darpa-askem/nginx
+    newTag: 1.23-alpine
   - name: terarium-login-theme-image
     newName: ghcr.io/darpa-askem/terarium-login-theme
     newTag: 1.0.0
+
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
@@ -56,29 +66,33 @@ images:
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
     newTag: 2.3.0
+
   # Data Service
   - name: data-service-image
     newName: ghcr.io/darpa-askem/data-service
     newTag: 0.3.11
-  - name: data-service-migrations-image
-    newName: ghcr.io/darpa-askem/data-service-migrations
-    newTag: latest
-#    newTag: 0.5.0
   - name: data-service-graphdb-image
     newName: ghcr.io/darpa-askem/data-service-graphdb
     newTag: 5.3.0.3
+  - name: data-service-migrations-image
+    newName: ghcr.io/darpa-askem/data-service-migrations
+    newTag: latest
+
   # Model Service
   - name: model-service-image
     newName: ghcr.io/darpa-askem/model-service
     newTag: 1.4.0
+
   # Message queue
   - name: rabbitmq-image
     newName: ghcr.io/darpa-askem/rabbitmq
     newTag: "3.11.13-management-alpine"
+
   # HMI extraction service
   - name: hmi-extraction-service-image
     newName: ghcr.io/darpa-askem/hmi-extraction-service
     newTag: 1.0.0
+
   # Skema
   - name: skema-py-image
     newName: ghcr.io/darpa-askem/skema-py
@@ -89,10 +103,12 @@ images:
   - name: skema-memgraph-image
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: 2.6.5-memgraph2.5.2-lab2.4.0-mage1.6
+
   # MIT
   - name: mit-proxy-image
     newName: ghcr.io/darpa-askem/mit-proxy
     newTag: 1.1.0
+
   # Simulation Service
   - name: simulation-service-image
     newName: ghcr.io/darpa-askem/simulation-service

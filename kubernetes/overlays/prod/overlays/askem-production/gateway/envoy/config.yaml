@@ -11,7 +11,7 @@ static_resources:
             - name: envoy.filters.network.http_connection_manager
               typed_config:
                 "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
-                tracing: { }
+                tracing: {}
                 codec_type: "AUTO"
                 stat_prefix: ingress_http
                 route_config:
@@ -165,7 +165,7 @@ static_resources:
                   address:
                     socket_address:
                       address: gateway-admin-keycloak
-                      port_value: 8080
+                      port_value: 8081
 
     - name: upstream-ua-ui
       connect_timeout: 1s
