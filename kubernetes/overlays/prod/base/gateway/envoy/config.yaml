@@ -24,7 +24,7 @@ static_resources:
                             path: "/logout"
                           redirect:
                             host_redirect: "keycloak.staging.terarium.ai"
-                            path_redirect: "/realms/Terarium/protocol/openid-connect/logout?client_id=app&post_logout_redirect_uri=https://app.staging.terarium.ai/signout"
+                            path_redirect: "/realms/Uncharted/protocol/openid-connect/logout?client_id=app&post_logout_redirect_uri=https://app.staging.terarium.ai/signout"
                         - match:
                             prefix: "/ua/api"
                           route:
@@ -58,9 +58,9 @@ static_resources:
                       config:
                         token_endpoint:
                           cluster: upstream-keycloak
-                          uri: https://gateway-keycloak/realms/Terarium/protocol/openid-connect/token
+                          uri: https://gateway-keycloak/realms/Uncharted/protocol/openid-connect/token
                           timeout: 5s
-                        authorization_endpoint: https://keycloak.staging.terarium.ai/realms/Terarium/protocol/openid-connect/auth
+                        authorization_endpoint: https://keycloak.staging.terarium.ai/realms/Uncharted/protocol/openid-connect/auth
                         redirect_uri: "https://%REQ(:authority)%/redirect"
                         redirect_path_matcher:
                           path:
