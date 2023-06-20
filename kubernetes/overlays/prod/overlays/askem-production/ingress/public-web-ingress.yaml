@@ -9,20 +9,10 @@ metadata:
     alb.ingress.kubernetes.io/security-groups: askem-prod-web
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
+    alb.ingress.kubernetes.io/backend-protocol: HTTPS
 spec:
   ingressClassName: alb
   rules:
-    - host: "gateway-httpd.terarium.ai"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: gateway-httpd
-                port:
-                  number: 8078
-
     - host: "app.terarium.ai"
       http:
         paths:
@@ -30,9 +20,20 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: gateway-httpd
+                name: gateway-envoy
                 port:
                   number: 8078
+
+    - host: "keycloak.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-keycloak
+                port:
+                  number: 443
 
     - host: "documentation.terarium.ai"
       http:
@@ -47,5 +48,5 @@ spec:
   tls:
     - hosts:
         - "app.terarium.ai"
-        - "gateway-httpd.terarium.ai"
+        - "keycloak.terarium.ai"
         - "documentation.terarium.ai"
