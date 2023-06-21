@@ -9,20 +9,10 @@ metadata:
     alb.ingress.kubernetes.io/security-groups: askem-staging-web-private
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
+    alb.ingress.kubernetes.io/backend-protocol: HTTPS
 spec:
   ingressClassName: alb
   rules:
-    - host: "gateway-httpd.staging.terarium.ai"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: gateway-httpd
-                port:
-                  number: 8078
-
     - host: "app.staging.terarium.ai"
       http:
         paths:
@@ -30,9 +20,20 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: gateway-httpd
+                name: gateway-envoy
                 port:
                   number: 8078
+
+    - host: "keycloak.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-keycloak
+                port:
+                  number: 443
 
     - host: "documentation.staging.terarium.ai"
       http:
@@ -136,8 +137,8 @@ spec:
   tls:
     - hosts:
         - "app.staging.terarium.ai"
+        - "keycloak.staging.terarium.ai"
         - "documentation.staging.terarium.ai"
-        - "gateway-httpd.staging.terarium.ai"
         - "data-service.staging.terarium.ai"
         - "message-queue.staging.terarium.ai"
         - "mit-proxy.staging.terarium.ai"

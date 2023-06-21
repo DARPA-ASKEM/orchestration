@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-landing
+  labels:
+    software.uncharted.terarium/name: gateway-landing
+    software.uncharted.terarium/component: landing
+    software.uncharted.terarium/part-of: gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: gateway-landing
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: gateway-landing
+    spec:
+      containers:
+        - name: gateway-landing
+          image: gateway-landing-image
+          ports:
+            - containerPort: 80
+              protocol: TCP
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}
