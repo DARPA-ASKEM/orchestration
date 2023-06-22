@@ -253,19 +253,31 @@ encrypt)
 help)
 	echo "
 	Usage:
-			${0} status              Displays the status of all services
-			${0} decrypt             Decrypt secrets for editing
-			${0} encrypt             Encrypt secrets for adding to git repo
-			${0} up [SERVICE(s)]     Launch TERArium or specific services
-			${0} down [SERVICE(s)]   Tear down TERArium or specific service
+      ${0} [OPTIONS] COMMAND [SERVICES]
 
-	SERVICEs include:
+      HOST_ADDRESS is overwritten with either the IP of the host machine or with
+      the virtual cluster's host DNS - ie using Docker on Mac or Windows should
+      allow "host.docker.internal" to be used.
+
+  COMMANDs include
+			status                  Displays the status of all services
+			decrypt                 Decrypt secrets for editing
+			encrypt                 Encrypt secrets for adding to git repo
+			up [SERVICE(s)]         Launch TERArium or specific services
+			down [SERVICE(s)]       Tear down TERArium or specific service
+
+	SERVICES include:
 			hmi-client
 			hmi-server
 			hmi-postgres
 			data-service
 			model-service
 			gateway
+
+  OPTIONS include
+      -h | --help            Display this help
+      -o | --override        Override HOST_ADDRESS with Mac's IP address
+      -u | --use ADDRESS     Use ADDRESS as HOST_ADDRESS       
 			"
 	;;
 esac
