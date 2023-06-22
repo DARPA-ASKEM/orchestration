@@ -17,12 +17,12 @@ source functions.sh
 determine_host_machine_for_pods() {
 	# Assume Mac using docker
 	cp ${GATEWAY_TEMPLATE_FILE} ${GATEWAY_FILE}
-	cp ${HMI_SERVER_REPLACEMENT_FILE_MAC} ${HMI_SERVER_REPLACEMENT_FILE}
+  cp ${HMI_SERVER_REPLACEMENT_FILE_LINUX} ${HMI_SERVER_REPLACEMENT_FILE}
+	#cp ${HMI_SERVER_REPLACEMENT_FILE_MAC} ${HMI_SERVER_REPLACEMENT_FILE}
 
 	case $(uname) in
 	"Linux")
 		# Linux
-		cp ${HMI_SERVER_REPLACEMENT_FILE_LINUX} ${HMI_SERVER_REPLACEMENT_FILE}
 
 		echo "You are running Linux"
 		LOCALHOST=$(hostname -I | awk '{print $1}')
@@ -41,11 +41,13 @@ determine_host_machine_for_pods() {
     if [ "${USE_ADDRESS_OVERRIDE}" = "true" ]; then
       echo "true"
       sed -i.bak "s/HOST_ADDRESS/${INTERNAL_ADDRESS}/g" ${GATEWAY_FILE}
+      sed -i.bak "s/localhost/${INTERNAL_ADDRESS}/g" ${HMI_SERVER_REPLACEMENT_FILE}
     else
       # find mac ip address
       echo "false"
       IP_ADDRESS=$(getMacIpAddress)
       sed -i.bak "s/HOST_ADDRESS/${IP_ADDRESS}/g" ${GATEWAY_FILE}
+      sed -i.bak "s/localhost/${IP_ADDRESS}/g" ${HMI_SERVER_REPLACEMENT_FILE}
     fi
 	esac
 }
