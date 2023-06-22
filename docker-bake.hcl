@@ -30,7 +30,7 @@ group "prod" {
 }
 
 group "default" {
-  targets = ["theme"]
+  targets = ["theme-base"]
 }
 
 # ---------------------------------
@@ -38,9 +38,12 @@ target "_platforms" {
   platforms = ["linux/amd64", "linux/arm64"]
 }
 
-target "theme" {
-  inherits = ["_platforms"]
+target "theme-base" {
 	context = "keycloak-theme"
 	dockerfile = "Dockerfile"
 	tags = tag("terarium-login-theme", "", "")
+}
+
+target "theme" {
+  inherits = ["_platforms", "theme-base"]
 }
