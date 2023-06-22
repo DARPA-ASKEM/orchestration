@@ -39,16 +39,16 @@ images:
   # Gateway and Auth
   - name: gateway-admin-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin
-    newTag: 0.2.1
+    newTag: 0.2.0
   - name: gateway-admin-keycloak-ui-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin-ui
-    newTag: 0.2.1
+    newTag: 0.2.0
   - name: gateway-envoy-image
     newName: ghcr.io/darpa-askem/envoy
     newTag: v1.25.2
   - name: gateway-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak
-    newTag: 0.2.1
+    newTag: 0.2.0
   - name: gateway-landing-image
     newName: ghcr.io/darpa-askem/nginx
     newTag: 1.23-alpine
@@ -86,7 +86,7 @@ images:
   # Message queue
   - name: rabbitmq-image
     newName: ghcr.io/darpa-askem/rabbitmq
-    newTag: "3.11.13-management-alpine"
+    newTag: '3.11.13-management-alpine'
 
   # HMI extraction service
   - name: hmi-extraction-service-image
