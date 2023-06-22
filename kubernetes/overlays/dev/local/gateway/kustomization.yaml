@@ -33,19 +33,19 @@ configMapGenerator:
 images:
   - name: gateway-admin-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin
-    newTag: "0.2.0"
+    newTag: '0.2.1'
   - name: gateway-admin-keycloak-ui-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin-ui
-    newTag: "0.2.0"
+    newTag: '0.2.1'
   - name: gateway-envoy-image
     newName: envoyproxy/envoy
     newTag: v1.25.2
   - name: gateway-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak
-    newTag: "0.2.0"
+    newTag: '0.2.1'
   - name: gateway-postgres-image
     newName: ghcr.io/darpa-askem/postgres
-    newTag: "15.1"
+    newTag: '15.1'
   - name: gateway-landing-image
     newName: nginx
     newTag: 1.23-alpine

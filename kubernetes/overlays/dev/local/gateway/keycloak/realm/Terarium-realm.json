@@ -516,7 +516,7 @@
     "description" : "",
     "rootUrl" : "http://localhost:8078/app",
     "adminUrl" : "",
-    "baseUrl" : "",
+    "baseUrl" : "/",
     "surrogateAuthRequired" : false,
     "enabled" : true,
     "alwaysDisplayInConsole" : false,
