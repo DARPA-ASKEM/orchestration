@@ -18,7 +18,6 @@ determine_host_machine_for_pods() {
 	# Assume Mac using docker
 	cp ${GATEWAY_TEMPLATE_FILE} ${GATEWAY_FILE}
   cp ${HMI_SERVER_REPLACEMENT_FILE_LINUX} ${HMI_SERVER_REPLACEMENT_FILE}
-	#cp ${HMI_SERVER_REPLACEMENT_FILE_MAC} ${HMI_SERVER_REPLACEMENT_FILE}
 
 	case $(uname) in
 	"Linux")
