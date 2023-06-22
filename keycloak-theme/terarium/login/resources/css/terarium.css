@@ -9,7 +9,7 @@
 
   --un-color-button-primary: #1b8073;
   --un-color-button-secondary: #dffaf6;
-  --un-color-button-hover: #c5f9f2;
+  --un-color-button-hover: #198c7d;
 
   --un-background-color-left: #bceae4;
   --un-background-color-right: #55b6a9;
@@ -17,16 +17,10 @@
   --un-color-font-dark: #1c2127;
   --un-color-font-light: #fdfafd;
   --un-color-body-text-disabled: #747576ff;
-  --un-color-body-text-secondary: ##9da5af;
+  --un-color-body-text-secondary: #9da5af;
   --un-color-body-text-primary: #101828;
 }
 
-/***************/
-/**** ALERT ****/
-/***************/
-/* .pf-c-alert.pf-m-danger {
-  --pf-c-alert--BorderTopColor: var(--un-alert-highlight);
-  --pf-c-alert__icon--Color: var(--un-alert-highlight);
-  --pf-c-alert__title--Color: var(--un-alert-highlight);
-  --pf-c-alert--m-inline--BackgroundColor: #e3fffb;
-} */
+input[type="submit"].pf-c-button.pf-m-primary:hover {
+	color: var(--un-color-font-light);
+}
