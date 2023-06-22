@@ -106,7 +106,7 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-                      address: host.docker.internal
+                      address: HOST_ADDRESS
                       port_value: 8079
 
     - name: upstream-app
@@ -120,7 +120,7 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-                      address: host.docker.internal
+                      address: HOST_ADDRESS
                       port_value: 8080
 
     - name: upstream-api
@@ -134,7 +134,7 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-                      address: host.docker.internal
+                      address: HOST_ADDRESS
                       port_value: 3000
 
     - name: upstream-ua-api
@@ -184,4 +184,4 @@ admin:
   address:
     socket_address:
       address: 0.0.0.0
-      port_value: 8001
+ e     port_value: 8001
