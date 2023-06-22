@@ -56,7 +56,7 @@ static_resources:
                       config:
                         token_endpoint:
                           cluster: upstream-keycloak
-                          uri: http://keycloak:8079/realms/Terarium/protocol/openid-connect/token
+                          uri: http://localhost:8079/realms/Terarium/protocol/openid-connect/token
                           timeout: 5s
                         authorization_endpoint: http://localhost:8079/realms/Terarium/protocol/openid-connect/auth
                         redirect_uri: "http://%REQ(:authority)%/redirect"
@@ -106,29 +106,57 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-                      address: gateway-keycloak
+                      address: host.docker.internal
                       port_value: 8079
+
+    - name: upstream-app
+      connect_timeout: 1s
+      type: STRICT_DNS
+      lb_policy: ROUND_ROBIN
+      load_assignment:
+        cluster_name: upstream-app
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      address: host.docker.internal
+                      port_value: 8080
+
+    - name: upstream-api
+      connect_timeout: 1s
+      type: STRICT_DNS
+      lb_policy: ROUND_ROBIN
+      load_assignment:
+        cluster_name: upstream-api
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      address: host.docker.internal
+                      port_value: 3000
 
     - name: upstream-ua-api
       connect_timeout: 1s
       type: STRICT_DNS
       lb_policy: ROUND_ROBIN
       load_assignment:
-        cluster_name: upstream-adminapi
+        cluster_name: upstream-ua-api
         endpoints:
           - lb_endpoints:
               - endpoint:
                   address:
                     socket_address:
                       address: gateway-admin-keycloak
-                      port_value: 8080
+                      port_value: 8081
 
     - name: upstream-ua-ui
       connect_timeout: 1s
       type: STRICT_DNS
       lb_policy: ROUND_ROBIN
       load_assignment:
-        cluster_name: upstream-adminapi
+        cluster_name: upstream-ua-ui
         endpoints:
           - lb_endpoints:
               - endpoint:
@@ -151,30 +179,9 @@ static_resources:
                       address: gateway-landing
                       port_value: 80
 
-    - name: upstream-api
-      connect_timeout: 1s
-      type: STRICT_DNS
-      lb_policy: ROUND_ROBIN
-      load_assignment:
-        cluster_name: upstream-api
-        endpoints:
-          - lb_endpoints:
-              - endpoint:
-                  address:
-                    socket_address:
-                      address: host.docker.internal
-                      port_value: 3000
-
-    - name: upstream-app
-      connect_timeout: 1s
-      type: STRICT_DNS
-      lb_policy: ROUND_ROBIN
-      load_assignment:
-        cluster_name: upstream-app
-        endpoints:
-          - lb_endpoints:
-              - endpoint:
-                  address:
-                    socket_address:
-                      address: host.docker.internal
-                      port_value: 8080
+admin:
+  access_log_path: "/dev/null"
+  address:
+    socket_address:
+      address: 0.0.0.0
+      port_value: 8001
