@@ -34,19 +34,19 @@ determine_host_machine_for_pods() {
 		echo "editing files replacing 'localhost' with ${LOCALHOST}"
 
 		sed -i.bak "s/HOST_ADDRESS/${LOCALHOST}/g" ${GATEWAY_FILE}
-		sed -i.bak "s/localhost/${LOCALHOST}/g" ${HMI_SERVER_REPLACEMENT_FILE}
+		sed -i.bak "s/HOST_ADDRESS/${LOCALHOST}/g" ${HMI_SERVER_REPLACEMENT_FILE}
 		;;
   "Darwin")
     if [ "${USE_ADDRESS_OVERRIDE}" = "true" ]; then
       echo "true"
       sed -i.bak "s/HOST_ADDRESS/${INTERNAL_ADDRESS}/g" ${GATEWAY_FILE}
-      sed -i.bak "s/localhost/${INTERNAL_ADDRESS}/g" ${HMI_SERVER_REPLACEMENT_FILE}
+      sed -i.bak "s/HOST_ADDRESS/${INTERNAL_ADDRESS}/g" ${HMI_SERVER_REPLACEMENT_FILE}
     else
       # find mac ip address
       echo "false"
       IP_ADDRESS=$(getMacIpAddress)
       sed -i.bak "s/HOST_ADDRESS/${IP_ADDRESS}/g" ${GATEWAY_FILE}
-      sed -i.bak "s/localhost/${IP_ADDRESS}/g" ${HMI_SERVER_REPLACEMENT_FILE}
+      sed -i.bak "s/HOST_ADDRESS/${IP_ADDRESS}/g" ${HMI_SERVER_REPLACEMENT_FILE}
     fi
 	esac
 }
