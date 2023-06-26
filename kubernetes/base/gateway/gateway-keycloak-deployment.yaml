@@ -39,8 +39,8 @@ spec:
           volumeMounts:
             - name: theme-volume
               mountPath: /shared
-        - image: gateway-keycloak-image
-          name: init-gateway-keycloak
+        - name: init-gateway-keycloak
+          image: gateway-keycloak-image
           args:
             - import
             - --dir

@@ -1,8 +1,9 @@
 #!/bin/bash
+INTERNAL_ADDRESS="host.docker.internal"
+USE_ADDRESS_OVERRIDE="true"
 
-GATEWAY_HTTPD_REPLACEMENT_FILE="overlays/dev/local/gateway/configmap/host.yaml"
-GATEWAY_HTTPD_REPLACEMENT_FILE_MAC="overlays/dev/local/gateway/configmap/host-mac.yaml"
-GATEWAY_HTTPD_REPLACEMENT_FILE_LINUX="overlays/dev/local/gateway/configmap/host-linux.yaml"
+GATEWAY_TEMPLATE_FILE="overlays/dev/local/gateway/envoy/config.yaml.template"
+GATEWAY_FILE="overlays/dev/local/gateway/envoy/config.yaml"
 
 HMI_SERVER_REPLACEMENT_FILE="overlays/dev/local/hmi/server/configmap/host.yaml"
 HMI_SERVER_REPLACEMENT_FILE_MAC="overlays/dev/local/hmi/server/configmap/host-mac.yaml"
@@ -15,14 +16,12 @@ source functions.sh
 
 determine_host_machine_for_pods() {
 	# Assume Mac using docker
-	cp ${GATEWAY_HTTPD_REPLACEMENT_FILE_MAC} ${GATEWAY_HTTPD_REPLACEMENT_FILE}
-	cp ${HMI_SERVER_REPLACEMENT_FILE_MAC} ${HMI_SERVER_REPLACEMENT_FILE}
+	cp ${GATEWAY_TEMPLATE_FILE} ${GATEWAY_FILE}
+  cp ${HMI_SERVER_REPLACEMENT_FILE_LINUX} ${HMI_SERVER_REPLACEMENT_FILE}
 
 	case $(uname) in
 	"Linux")
 		# Linux
-		cp ${GATEWAY_HTTPD_REPLACEMENT_FILE_LINUX} ${GATEWAY_HTTPD_REPLACEMENT_FILE}
-		cp ${HMI_SERVER_REPLACEMENT_FILE_LINUX} ${HMI_SERVER_REPLACEMENT_FILE}
 
 		echo "You are running Linux"
 		LOCALHOST=$(hostname -I | awk '{print $1}')
@@ -34,42 +33,64 @@ determine_host_machine_for_pods() {
 
 		echo "editing files replacing 'localhost' with ${LOCALHOST}"
 
-		sed -i.bak "s/localhost/${LOCALHOST}/g" ${GATEWAY_HTTPD_REPLACEMENT_FILE}
-		sed -i.bak "s/localhost/${LOCALHOST}/g" ${HMI_SERVER_REPLACEMENT_FILE}
+		sed -i.bak "s/HOST_ADDRESS/${LOCALHOST}/g" ${GATEWAY_FILE}
+		sed -i.bak "s/HOST_ADDRESS/${LOCALHOST}/g" ${HMI_SERVER_REPLACEMENT_FILE}
 		;;
+  "Darwin")
+    if [ "${USE_ADDRESS_OVERRIDE}" = "true" ]; then
+      echo "true"
+      sed -i.bak "s/HOST_ADDRESS/${INTERNAL_ADDRESS}/g" ${GATEWAY_FILE}
+      sed -i.bak "s/HOST_ADDRESS/${INTERNAL_ADDRESS}/g" ${HMI_SERVER_REPLACEMENT_FILE}
+    else
+      # find mac ip address
+      echo "false"
+      IP_ADDRESS=$(getMacIpAddress)
+      sed -i.bak "s/HOST_ADDRESS/${IP_ADDRESS}/g" ${GATEWAY_FILE}
+      sed -i.bak "s/HOST_ADDRESS/${IP_ADDRESS}/g" ${HMI_SERVER_REPLACEMENT_FILE}
+    fi
 	esac
 }
 
-case ${1} in
--h | --help)
-	COMMAND="help"
-	;;
-test)
-	COMMAND="test"
-	;;
-up)
-	COMMAND="up"
-	shift
-	SERVICES=("$@")
-	;;
-down)
-	COMMAND="down"
-	shift
-	SERVICES=("$@")
-	;;
-status)
-	COMMAND="status"
-	;;
-decrypt)
-	COMMAND="decrypt"
-	;;
-encrypt)
-	COMMAND="encrypt"
-	;;
-*)
-	echo "dev_deploy.sh: illegal option"
-	;;
-esac
+while [[ $# -gt 0 ]]; do
+  case ${1} in
+  -h | --help)
+    COMMAND="help"
+    ;;
+  -o | --override)
+    USE_ADDRESS_OVERRIDE="false"
+    ;;
+  -u | --use)
+    shift
+    INTERNAL_ADDRESS="${1}"
+    ;;
+  test)
+    COMMAND="test"
+    ;;
+  up)
+    COMMAND="up"
+    shift
+    SERVICES=("$@")
+    ;;
+  down)
+    COMMAND="down"
+    shift
+    SERVICES=("$@")
+    ;;
+  status)
+    COMMAND="status"
+    ;;
+  decrypt)
+    COMMAND="decrypt"
+    ;;
+  encrypt)
+    COMMAND="encrypt"
+    ;;
+  *)
+    echo "dev_deploy.sh: illegal option"
+    ;;
+  esac
+  shift
+done
 
 # Default COMMAND to help if empty
 COMMAND=${COMMAND:-help}
@@ -82,6 +103,7 @@ case ${COMMAND} in
 test)
 	echo "## Decrypting secrets"
 	decrypt
+	determine_host_machine_for_pods
 	echo "## Testing kustomization script"
 	kubectl kustomize ./overlays/dev/local | less
 	echo "## Restoring secrets as encrypted files"
@@ -232,19 +254,31 @@ encrypt)
 help)
 	echo "
 	Usage:
-			${0} status              Displays the status of all services
-			${0} decrypt             Decrypt secrets for editing
-			${0} encrypt             Encrypt secrets for adding to git repo
-			${0} up [SERVICE(s)]     Launch TERArium or specific services
-			${0} down [SERVICE(s)]   Tear down TERArium or specific service
+      ${0} [OPTIONS] COMMAND [SERVICES]
 
-	SERVICEs include:
+      HOST_ADDRESS is overwritten with either the IP of the host machine or with
+      the virtual cluster's host DNS - ie using Docker on Mac or Windows should
+      allow "host.docker.internal" to be used.
+
+  COMMANDs include
+			status                  Displays the status of all services
+			decrypt                 Decrypt secrets for editing
+			encrypt                 Encrypt secrets for adding to git repo
+			up [SERVICE(s)]         Launch TERArium or specific services
+			down [SERVICE(s)]       Tear down TERArium or specific service
+
+	SERVICES include:
 			hmi-client
 			hmi-server
 			hmi-postgres
 			data-service
 			model-service
 			gateway
+
+  OPTIONS include
+      -h | --help            Display this help
+      -o | --override        Override HOST_ADDRESS with Mac's IP address
+      -u | --use ADDRESS     Use ADDRESS as HOST_ADDRESS       
 			"
 	;;
 esac

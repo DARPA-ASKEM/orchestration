@@ -4,4 +4,4 @@ kind: ConfigMap
 metadata:
   name: hmi-host
 data:
-  host: "localhost"
+  host: "HOST_ADDRESS"

@@ -8,8 +8,8 @@ spec:
     type: RollingUpdate
   template:
     spec:
-      containers:
-        - name: data-service
+      initContainers:
+        - name: data-service-migrations
           env:
             - name: NEO4J_driver
               value: neo4j://data-service-graphdb:7687
@@ -18,6 +18,8 @@ spec:
                 secretKeyRef:
                   name: rds-creds
                   key: url
+            - name: SQL_DB
+              value: askem
             - name: SQL_PORT
               valueFrom:
                 secretKeyRef:
@@ -83,3 +85,108 @@ spec:
                 secretKeyRef:
                   name: data-service-s3
                   key: aws-results-path
+            - name: ES_SCHEME
+              value: https
+            - name: ES_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: es-creds
+                  key: user
+            - name: ES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: es-creds
+                  key: password
+            - name: ES_INDEX_PREFIX
+              value: tds_
+      containers:
+        - name: data-service
+          env:
+            - name: NEO4J_driver
+              value: neo4j://data-service-graphdb:7687
+            - name: SQL_URL
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: url
+            - name: SQL_DB
+              value: askem
+            - name: SQL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: port
+            - name: SQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: username
+            - name: SQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: password
+            - name: DKG_URL
+              valueFrom:
+                secretKeyRef:
+                  name: dkg
+                  key: url
+            - name: DKG_API_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: dkg
+                  key: api-port
+            - name: DKG_DESC_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: dkg
+                  key: desc-port
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-access-key-id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-secret-access-key
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-region
+            - name: DATASET_STORAGE_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-data-storage-path
+            - name: S3_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-dataset-bucket
+            - name: S3_DATASET_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-dataset-path
+            - name: S3_RESULTS_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-results-path
+            - name: ES_SCHEME
+              value: https
+            - name: ES_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: es-creds
+                  key: user
+            - name: ES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: es-creds
+                  key: password
+            - name: ES_INDEX_PREFIX
+              value: tds_
