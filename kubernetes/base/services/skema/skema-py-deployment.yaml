@@ -24,7 +24,7 @@ spec:
         - name: skema-py
           image: skema-py-image
           command: ['uvicorn']
-          args: ['server:app', '--host', '0.0.0.0']
+          args: ['skema.skema_py.server:app', '--host', '0.0.0.0', '--port', '8000']
           ports:
             - containerPort: 8000
           resources: {}
