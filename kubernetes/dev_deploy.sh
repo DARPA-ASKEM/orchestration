@@ -163,6 +163,10 @@ up)
 				echo "Launching GATEWAY on localhost..."
 				kubectl kustomize ./overlays/dev/local/gateway | kubectl apply --filename -
 				;;
+			ai)
+				echo "Launching AI on localhost..."
+				kubectl kustomize ./overlays/dev/local/services/jupyter-llm | kubectl apply --filename -
+				;;
 
 			*)
 				echo "'${SERVICE}' is not a valid service. Please specify a valid service."
@@ -227,6 +231,11 @@ down)
 				echo "Tearing down GATEWAY on localhost..."
 				kubectl kustomize ./overlays/dev/local/gateway | kubectl delete --filename -
 				;;
+			ai)
+				echo "Tearing down ai-service on localhost..."
+				kubectl kustomize ./overlays/dev/local/services/jupyter-llm | kubectl delete --filename -
+				;;
+
 
 			"")
 				echo "Tearing down TERArium on localhost..."
