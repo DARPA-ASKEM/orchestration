@@ -8,4 +8,4 @@ patchesStrategicMerge:
 images:
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
-    newTag: 1.0.0
+    newTag: 1.1.0
