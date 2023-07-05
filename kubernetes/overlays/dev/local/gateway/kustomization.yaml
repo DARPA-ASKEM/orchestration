@@ -38,7 +38,7 @@ images:
     newName: ghcr.io/unchartedsoftware/keycloak-admin-ui
     newTag: '0.2.2'
   - name: gateway-envoy-image
-    newName: envoyproxy/envoy
+    newName: ghcr.io/darpa-askem/envoy
     newTag: v1.25.2
   - name: gateway-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak
