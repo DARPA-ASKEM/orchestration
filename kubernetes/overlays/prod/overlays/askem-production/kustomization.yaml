@@ -23,6 +23,7 @@ patchesStrategicMerge:
   - hmi/documentation/terarium-docs-service.yaml
   - hmi/server/hmi-server-deployment.yaml
   - services/data-service/data-service-deployment.yaml
+  - services/data-service/data-service-service.yaml
 configMapGenerator:
   - files:
       - gateway/keycloak/realm/Uncharted-realm.json
@@ -56,7 +57,7 @@ images:
     newTag: 1.23-alpine
   - name: terarium-login-theme-image
     newName: ghcr.io/darpa-askem/terarium-login-theme
-    newTag: 1.1.0
+    newTag: 1.2.0
 
   # Terarium HMI
   - name: hmi-client-image
