@@ -57,7 +57,7 @@ images:
     newTag: 1.23-alpine
   - name: terarium-login-theme-image
     newName: ghcr.io/darpa-askem/terarium-login-theme
-    newTag: 1.2.0
+    newTag: 1.3.0
 
   # Terarium HMI
   - name: hmi-client-image
