@@ -4,8 +4,8 @@ kind: Kustomization
 resources:
   - ../../base
   - check-latest
-#  - ingress/private-web-ingress.yaml
-#  - ingress/private-web-ssl-ingress.yaml
+  - ingress/private-web-ingress.yaml
+  - ingress/private-web-ssl-ingress.yaml
   - secrets/secrets-adobe-api-key.yaml
   - secrets/secrets-data-service-s3.yaml
   - secrets/secrets-dkg.yaml
