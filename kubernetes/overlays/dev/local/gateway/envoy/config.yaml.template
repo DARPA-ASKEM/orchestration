@@ -44,6 +44,7 @@ static_resources:
                             prefix: "/api"
                           route:
                             cluster: upstream-api
+                            timeout: 30s
                         - match:
                             prefix: "/"
                           route:
