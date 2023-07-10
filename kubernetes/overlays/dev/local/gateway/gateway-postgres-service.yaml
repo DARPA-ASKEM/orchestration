@@ -9,7 +9,7 @@ metadata:
   name: gateway-postgres
 spec:
   ports:
-    - name: gateway-postgres-svc-port
+    - name: "5432"
       port: 5432
       targetPort: 5432
   type: LoadBalancer
