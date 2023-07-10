@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - data-service
   - message-queue
+  - redis
   - user-store
   - hmi-extraction-service
