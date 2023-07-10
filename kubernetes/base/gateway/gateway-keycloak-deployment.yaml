@@ -32,8 +32,8 @@ spec:
               mountPath: /opt/keycloak/themes/terarium
           resources: {}
       initContainers:
-        - image: terarium-login-theme-image
-          name: gateway-terarium-theme
+        - name: gateway-terarium-theme
+          image: terarium-login-theme-image
           command: ['/bin/sh']
           args: ['-c', 'cp -r /terarium/* /shared']
           volumeMounts:
