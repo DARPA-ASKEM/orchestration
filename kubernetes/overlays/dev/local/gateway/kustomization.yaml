@@ -42,7 +42,7 @@ images:
     newTag: 0.1.4
   - name: gateway-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak
-    newTag: 0.1.4
+    newTag: 0.2.2
   - name: gateway-postgres-image
     newName: ghcr.io/darpa-askem/postgres
     newTag: '15.1'
