@@ -17,4 +17,5 @@ configMapGenerator:
   - files:
       - httpd/config-locations/api.conf
       - httpd/config-locations/app.conf
+      - httpd/config-locations/ua.conf
     name: gateway-httpd-config-locations
