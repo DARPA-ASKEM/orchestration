@@ -16,6 +16,7 @@ resources:
   - ../../../base/services/simulation-service
 patches:
   - path: gateway/gateway-admin-keycloak-deployment.yaml
+  - path: gateway/gateway-admin-keycloak-ui-deployment.yaml
   - path: gateway/gateway-httpd-deployment.yaml
   - path: gateway/gateway-httpd-service.yaml
   - path: gateway/gateway-keycloak-deployment.yaml
