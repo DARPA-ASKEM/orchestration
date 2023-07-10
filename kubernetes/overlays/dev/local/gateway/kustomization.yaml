@@ -6,13 +6,13 @@ resources:
   - gateway-postgres-deployment.yaml
   - gateway-postgres-service.yaml
   - configmap/host.yaml
-patchesStrategicMerge:
-  - gateway-admin-keycloak-deployment.yaml
-  - gateway-admin-keycloak-service.yaml
-  - gateway-httpd-deployment.yaml
-  - gateway-httpd-service.yaml
-  - gateway-keycloak-deployment.yaml
-  - gateway-keycloak-service.yaml
+patches:
+  - path: gateway-admin-keycloak-deployment.yaml
+  - path: gateway-admin-keycloak-service.yaml
+  - path: gateway-httpd-deployment.yaml
+  - path: gateway-httpd-service.yaml
+  - path: gateway-keycloak-deployment.yaml
+  - path: gateway-keycloak-service.yaml
 configMapGenerator:
   - files:
       - keycloak/realm/Terarium-realm.json

@@ -4,9 +4,9 @@ kind: Kustomization
 resources:
   - ../../../../../base/hmi/server
   - configmap/host.yaml
-patchesStrategicMerge:
-  - hmi-server-service.yaml
-  - hmi-server-deployment.yaml
+patches:
+  - path: hmi-server-service.yaml
+  - path: hmi-server-deployment.yaml
 replacements:
   - path: hmi-server-replacement.yaml
 images:

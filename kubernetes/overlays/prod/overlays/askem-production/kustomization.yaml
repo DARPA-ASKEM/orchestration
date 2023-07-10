@@ -18,13 +18,13 @@ resources:
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
   - secrets/secrets-xdd-api-key.yaml
-patchesStrategicMerge:
-  - gateway/gateway-httpd-deployment.yaml
-  - gateway/gateway-keycloak-deployment.yaml
-  - hmi/documentation/terarium-docs-service.yaml
-  - hmi/server/hmi-server-deployment.yaml
-  - services/data-service/data-service-deployment.yaml
-  - services/data-service/data-service-service.yaml
+patches:
+  - path: gateway/gateway-httpd-deployment.yaml
+  - path: gateway/gateway-keycloak-deployment.yaml
+  - path: hmi/documentation/terarium-docs-service.yaml
+  - path: hmi/server/hmi-server-deployment.yaml
+  - path: services/data-service/data-service-deployment.yaml
+  - path: services/data-service/data-service-service.yaml
 configMapGenerator:
   - files:
       - gateway/keycloak/realm/Uncharted-realm.json
