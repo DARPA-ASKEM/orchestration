@@ -42,6 +42,8 @@ spec:
               value: http://hmi-server:3000/api/
             - name: LOCATION_APP_URL
               value: http://hmi-client:8080/app/
+            - name: LOCATION_FUNMAN_URL
+              value: http://funman:8190/
             - name: ADMIN_KEYCLOAK_API_URL
               value: http://gateway-admin-keycloak:8081/api/
             - name: ADMIN_KEYCLOAK_UI_URL
