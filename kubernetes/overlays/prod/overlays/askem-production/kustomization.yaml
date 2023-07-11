@@ -25,6 +25,8 @@ patches:
   - path: hmi/server/hmi-server-deployment.yaml
   - path: services/data-service/data-service-deployment.yaml
   - path: services/data-service/data-service-service.yaml
+  - path: services/pyciemss-service/pyciemss-api-deployment.yaml
+  - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
 configMapGenerator:
   - files:
       - gateway/keycloak/realm/Uncharted-realm.json

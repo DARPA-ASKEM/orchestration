@@ -36,8 +36,8 @@ patches:
   - path: services/skema/skema-rs-service.yaml
 configMapGenerator:
   - files:
-      - gateway/keycloak/realm/Uncharted-users-0.json
       - gateway/keycloak/realm/Uncharted-realm.json
+      - gateway/keycloak/realm/Uncharted-users-0.json
     name: gateway-keycloak-realm
     behavior: merge
   - files:
