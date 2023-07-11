@@ -12,6 +12,17 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
+    - host: "app.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-httpd
+                port:
+                  number: 8078
+
     - host: "documentation.staging.terarium.ai"
       http:
         paths:
@@ -124,6 +135,7 @@ spec:
 
   tls:
     - hosts:
+        - "app.staging.terarium.ai"
         - "documentation.staging.terarium.ai"
         - "data-service.staging.terarium.ai"
         - "message-queue.staging.terarium.ai"
