@@ -1,0 +1,19 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyciemss-api
+spec:
+  strategy:
+    type: RollingUpdate
+  template:
+    spec:
+      containers:
+        - name: pyciemss-api
+          env:
+            - name: TDS_URL
+              value: http://data-service-api:3020
+            - name: STANDALONE_MODE
+              value: 'False'
+            - name: PYCIEMSS_OUTPUT_FILEPATH
+              value: result.csv

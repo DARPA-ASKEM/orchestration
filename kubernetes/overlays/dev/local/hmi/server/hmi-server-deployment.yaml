@@ -74,6 +74,11 @@ spec:
                 secretKeyRef:
                   name: data-service-s3
                   key: aws-dataset-path
+            - name: S3_ARTIFACT_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-artifact-path
             - name: S3_RESULTS_PATH
               valueFrom:
                 secretKeyRef:

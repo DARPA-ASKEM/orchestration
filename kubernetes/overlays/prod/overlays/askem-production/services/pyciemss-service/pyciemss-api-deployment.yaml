@@ -1,0 +1,15 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyciemss-api
+spec:
+  template:
+    spec:
+      containers:
+        - name: pyciemss-api
+          env:
+            - name: REDIS_HOST
+              value: redis.teraium.ai
+            - name: REDIS_PORT
+              value: '6379'
