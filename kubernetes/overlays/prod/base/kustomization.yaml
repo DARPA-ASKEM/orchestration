@@ -11,6 +11,7 @@ resources:
   - ../../../base/services/hmi-extraction-service
   - ../../../base/services/message-queue
   - ../../../base/services/model-service
+  - ../../../base/services/pyciemss-service
   - ../../../base/services/skema
   - ../../../base/services/mit
   - ../../../base/services/simulation-service

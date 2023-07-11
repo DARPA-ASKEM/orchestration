@@ -10,6 +10,6 @@ spec:
         - name: pyciemss-worker
           env:
             - name: REDIS_HOST
-              value: redis.staging.teraium.ai
+              value: redis.staging.terarium.ai
             - name: REDIS_PORT
               value: '6379'
