@@ -109,6 +109,12 @@ images:
   - name: skema-memgraph-image
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: 2.6.5-memgraph2.5.2-lab2.4.0-mage1.6
+  - name: skema-py-image
+    newName: ghcr.io/darpa-askem/skema-eq2mml
+    newTag: latest
+  - name: skema-py-image
+    newName: ghcr.io/darpa-askem/skema-mathjax
+    newTag: latest
 
   # MIT
   - name: mit-proxy-image
