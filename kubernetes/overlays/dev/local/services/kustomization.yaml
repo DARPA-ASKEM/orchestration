@@ -6,3 +6,4 @@ resources:
   - message-queue
   - user-store
   - hmi-extraction-service
+  - jupyter-llm
