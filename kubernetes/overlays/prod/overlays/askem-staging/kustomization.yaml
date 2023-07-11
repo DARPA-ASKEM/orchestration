@@ -24,10 +24,13 @@ patches:
   - path: hmi/server/hmi-server-deployment.yaml
   - path: services/data-service/data-service-deployment.yaml
   - path: services/data-service/data-service-service.yaml
-  - path: services/message-queue/message-queue-service.yaml
   - path: services/hmi-extraction-service/hmi-extraction-service-service.yaml
+  - path: services/message-queue/message-queue-service.yaml
   - path: services/mit/mit-proxy-service.yaml
   - path: services/model-service/model-service-service.yaml
+  - path: services/pyciemss-service/pyciemss-api-deployment.yaml
+  - path: services/pyciemss-service/pyciemss-api-service.yaml
+  - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
   - path: services/simulation-service/simulation-service-service.yaml
   - path: services/skema/skema-py-service.yaml
   - path: services/skema/skema-rs-service.yaml

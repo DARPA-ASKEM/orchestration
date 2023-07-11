@@ -4,15 +4,13 @@ kind: Deployment
 metadata:
   name: pyciemss-api
 spec:
+  strategy:
+    type: RollingUpdate
   template:
     spec:
       containers:
         - name: pyciemss-api
           env:
-            - name: REDIS_HOST
-              value: redis
-            - name: REDIS_PORT
-              value: '6379'
             - name: TDS_URL
               value: http://data-service-api:3020
             - name: STANDALONE_MODE
