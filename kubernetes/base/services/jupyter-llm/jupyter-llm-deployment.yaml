@@ -25,15 +25,11 @@ spec:
           image: jupyter-llm-image
           env:
             - name: DATA_SERVICE_URL
-              value: http://data-service:8000
+              value: http://data-service:3020
             - name: SIMULATION_SCHEDULER_URL
-              value: http://simulation-service:8080
-#            - name: DEBUG
-#              value: "1"
+              value: http://simulation-service:3030
             - name: JUPYTER_TOKEN
               value: 89f73481102c46c0bc13b2998f9a4fce
-            - name: OPENAI_API_KEY
-              value: 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
           ports:
             - containerPort: 5672
           resources: {}

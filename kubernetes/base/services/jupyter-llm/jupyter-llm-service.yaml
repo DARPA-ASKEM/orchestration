@@ -10,8 +10,8 @@ metadata:
     software.uncharted.terarium/part-of: services
 spec:
   ports:
-    - name: 8889-tcp
-      port: 8889
+    - name: jupyter-llm-svc-port
+      port: 3050
       protocol: TCP
       targetPort: 8888
   selector:
