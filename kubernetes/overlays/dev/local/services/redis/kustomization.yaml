@@ -6,5 +6,5 @@ resources:
   - redis-service.yaml
 images:
   - name: redis-image
-    newName: redis
-    newTag: 7-alpine
+    newName: ghcr.io/darpa-askem/redis
+    newTag: 7.0.12-alpine

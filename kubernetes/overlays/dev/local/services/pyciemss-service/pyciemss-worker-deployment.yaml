@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyciemss-worker
+spec:
+  template:
+    spec:
+      containers:
+        - name: pyciemss-worker
+          env:
+            - name: REDIS_HOST
+              value: http://redis
+            - name: REDIS_PORT
+              value: '6379'
+            - name: TDS_URL
+              value: http://data-service-api:3020
+            - name: STANDALONE_MODE
+              value: False
+            - name: PYCIEMSS_OUTPUT_FILEPATH
+              value: result.csv

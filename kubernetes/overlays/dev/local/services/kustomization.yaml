@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - data-service
   - message-queue
+  - pyciemss-service
   - redis
   - user-store
   - hmi-extraction-service
