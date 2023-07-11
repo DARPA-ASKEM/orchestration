@@ -12,6 +12,7 @@ resources:
   - ../../../base/services/jupyter-llm
   - ../../../base/services/message-queue
   - ../../../base/services/model-service
+  - ../../../base/services/pyciemss-service
   - ../../../base/services/skema
   - ../../../base/services/mit
   - ../../../base/services/simulation-service

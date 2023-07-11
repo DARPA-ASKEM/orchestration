@@ -4,6 +4,7 @@ kind: Service
 metadata:
   name: gateway-keycloak
 spec:
+  type: NodePort
   ports:
     - name: 443-keycloak-internal-tcp
       port: 443

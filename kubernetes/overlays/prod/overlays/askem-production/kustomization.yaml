@@ -25,6 +25,8 @@ patches:
   - path: hmi/server/hmi-server-deployment.yaml
   - path: services/data-service/data-service-deployment.yaml
   - path: services/data-service/data-service-service.yaml
+  - path: services/pyciemss-service/pyciemss-api-deployment.yaml
+  - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
 configMapGenerator:
   - files:
       - gateway/keycloak/realm/Uncharted-realm.json
@@ -56,13 +58,13 @@ images:
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: 2.7.0
+    newTag: 2.7.1
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
     newTag: 1.1.0
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: 2.7.0
+    newTag: 2.7.1
 
   # Data Service
   - name: data-service-image
@@ -110,3 +112,11 @@ images:
   - name: simulation-service-image
     newName: ghcr.io/darpa-askem/simulation-service
     newTag: 0.8.0
+
+  # PyCIEMSS service
+  - name: pyciemss-api-image
+    newName: ghcr.io/darpa-askem/pyciemss-api
+    newTag: latest
+  - name: pyciemss-worker-image
+    newName: ghcr.io/darpa-askem/pyciemss-worker
+    newTag: latest

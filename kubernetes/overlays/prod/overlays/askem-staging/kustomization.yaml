@@ -38,8 +38,8 @@ patches:
   - path: services/skema/skema-rs-service.yaml
 configMapGenerator:
   - files:
-      - gateway/keycloak/realm/Uncharted-users-0.json
       - gateway/keycloak/realm/Uncharted-realm.json
+      - gateway/keycloak/realm/Uncharted-users-0.json
     name: gateway-keycloak-realm
     behavior: merge
   - files:
@@ -125,4 +125,12 @@ images:
   # Simulation Service
   - name: simulation-service-image
     newName: ghcr.io/darpa-askem/simulation-service
+    newTag: latest
+
+  # PyCIEMSS service
+  - name: pyciemss-api-image
+    newName: ghcr.io/darpa-askem/pyciemss-api
+    newTag: latest
+  - name: pyciemss-worker-image
+    newName: ghcr.io/darpa-askem/pyciemss-worker
     newTag: latest
