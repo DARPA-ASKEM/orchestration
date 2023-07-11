@@ -78,6 +78,17 @@ spec:
                 port:
                   number: 3010
 
+    - host: "pyciemss.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pyciemss-api
+                port:
+                  number: 3030
+
     - host: "simulation-service.staging.terarium.ai"
       http:
         paths:
@@ -119,6 +130,7 @@ spec:
         - "mit-proxy.staging.terarium.ai"
         - "hmi-extraction-service.staging.terarium.ai"
         - "model-service.staging.terarium.ai"
+        - "pyciemss.staging.terarium.ai"
         - "simulation-service.staging.terarium.ai"
         - "skema-py.staging.terarium.ai"
         - "skema-rs.staging.terarium.ai"
