@@ -195,7 +195,7 @@ metadata:
 spec:
   type: NodePort
 ```
-and update staging's kustomization.yaml file to include these files under `patchesStrategicMerge:`
+and update staging's kustomization.yaml file to include these files under `patches:`
 
 The final step is to modify the ingress definition to expose this service to the outside world.
 The file `kubernetes/overlays/prod/overlays/askem-staging/ingress/private-web-ingress.yaml`:
