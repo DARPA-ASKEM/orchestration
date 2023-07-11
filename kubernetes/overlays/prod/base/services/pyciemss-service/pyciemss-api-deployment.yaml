@@ -12,7 +12,7 @@ spec:
         - name: pyciemss-api
           env:
             - name: TDS_URL
-              value: http://data-service-api:3020
+              value: http://data-service:3020
             - name: STANDALONE_MODE
               value: 'False'
             - name: PYCIEMSS_OUTPUT_FILEPATH
