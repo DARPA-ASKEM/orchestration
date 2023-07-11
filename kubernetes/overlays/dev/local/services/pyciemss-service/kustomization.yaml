@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../../base/services/pyciemss-service
+patches:
+  - path: pyciemss-api-deployment.yaml
+  - path: pyciemss-api-service.yaml
+  - path: pyciemss-worker-deployment.yaml
+images:
+  - name: pyciemss-api-image
+    newName: ghcr.io/darpa-askem/pyciemss-api
+    newTag: latest
+  - name: pyciemss-worker-image
+    newName: ghcr.io/darpa-askem/pyciemss-worker
+    newTag: latest

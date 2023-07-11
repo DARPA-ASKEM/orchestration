@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyciemss-api
+  labels:
+    software.uncharted.terarium/name: pyciemss-api
+    software.uncharted.terarium/component: api
+    software.uncharted.terarium/service: pyciemss
+    software.uncharted.terarium/part-of: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: pyciemss-api
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: pyciemss-api
+    spec:
+      containers:
+        - name: pyciemss-api
+          image: pyciemss-api-image
+          ports:
+            - containerPort: 8000
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}
