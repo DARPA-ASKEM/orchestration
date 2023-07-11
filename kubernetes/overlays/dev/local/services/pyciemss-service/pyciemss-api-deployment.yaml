@@ -19,4 +19,3 @@ spec:
               value: 'False'
             - name: PYCIEMSS_OUTPUT_FILEPATH
               value: result.csv
-
