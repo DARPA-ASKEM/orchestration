@@ -9,6 +9,7 @@ resources:
   - ../../../base/hmi/server
   - ../../../base/services/data-service
   - ../../../base/services/hmi-extraction-service
+  - ../../../base/services/funman
   - ../../../base/services/message-queue
   - ../../../base/services/model-service
   - ../../../base/services/pyciemss-service
@@ -29,6 +30,8 @@ patches:
   - path: services/data-service/data-service-graphdb-deployment.yaml
   - path: services/message-queue/message-queue-deployment.yaml
   - path: services/mit/mit-proxy-deployment.yaml
+  - path: services/funman/funman-deployment.yaml
+  - path: services/funman/funman-service.yaml
   - path: services/model-service/model-service-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
