@@ -13,7 +13,7 @@ metadata:
 spec:
   ports:
     - name: pyciemss-api-svc-port
-      port: 3030
+      port: 3040
       protocol: TCP
       targetPort: 8000
   selector:
