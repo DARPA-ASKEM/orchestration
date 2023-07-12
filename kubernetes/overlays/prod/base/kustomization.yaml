@@ -33,6 +33,8 @@ patches:
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
   - path: services/simulation-service/simulation-service-deployment.yaml
+  - path: services/skema/skema-eq2mml-deployment.yaml
+  - path: services/skema/skema-mathjax-deployment.yaml
   - path: services/skema/skema-memgraph-deployment.yaml
   - path: services/skema/skema-py-deployment.yaml
   - path: services/skema/skema-rs-deployment.yaml
