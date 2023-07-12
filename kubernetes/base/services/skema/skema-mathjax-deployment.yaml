@@ -25,10 +25,12 @@ spec:
           image: skema-py-image
           command: ['npm']
           args: ['start']
-          working_dir: /app/skema/img2mml/data_generation #MAYBE BAD
-          environment: #MAYBE BAD
-            - "SKEMA_MATHJAX_HOST=0.0.0.0"
-            - "SKEMA_MATHJAX_PORT=8031"
+          workingDir: /app/skema/img2mml/data_generation
+          env:
+            - name: SKEMA_MATHJAX_HOST
+              value: "0.0.0.0"
+            - name: SKEMA_MATHJAX_PORT
+              value: "8031"
           ports:
             - containerPort: 8031
           resources: {}
