@@ -138,4 +138,4 @@ images:
   # Funman service
   - name: funman-image
     newName: ghcr.io/darpa-askem/funman-api
-    newTag: api_relative_paths
+    newTag: develop-1
