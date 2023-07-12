@@ -33,6 +33,7 @@ configMapGenerator:
 replacements:
   - path: gateway-httpd-api-replacement.yaml
   - path: gateway-httpd-app-replacement.yaml
+  - path: gateway-httpd-config-replacement.yaml
 images:
   - name: gateway-admin-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin
