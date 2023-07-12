@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skema-mathjax
+  labels:
+    software.uncharted.terarium/name: skema-mathjax
+    software.uncharted.terarium/component: mathjax
+    software.uncharted.terarium/service: skema
+    software.uncharted.terarium/part-of: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: skema-mathjax
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: skema-mathjax
+    spec:
+      containers:
+        - name: skema-mathjax
+          image: skema-py-image
+          command: ['npm']
+          args: ['start']
+          working_dir: /app/skema/img2mml/data_generation #MAYBE BAD
+          environment: #MAYBE BAD
+            - "SKEMA_MATHJAX_HOST=0.0.0.0"
+            - "SKEMA_MATHJAX_PORT=8031"
+          ports:
+            - containerPort: 8031
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}
