@@ -78,6 +78,17 @@ spec:
                 port:
                   number: 5000
 
+    - host: "jupyter-llm.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jupyter-llm
+                port:
+                  number: 3050
+
     - host: "model-service.staging.terarium.ai"
       http:
         paths:
@@ -98,7 +109,7 @@ spec:
               service:
                 name: pyciemss-api
                 port:
-                  number: 3030
+                  number: 3040
 
     - host: "simulation-service.staging.terarium.ai"
       http:
@@ -136,11 +147,12 @@ spec:
   tls:
     - hosts:
         - "app.staging.terarium.ai"
-        - "documentation.staging.terarium.ai"
         - "data-service.staging.terarium.ai"
+        - "documentation.staging.terarium.ai"
+        - "hmi-extraction-service.staging.terarium.ai"
+        - "jupyter-llm.staging.terarium.ai"
         - "message-queue.staging.terarium.ai"
         - "mit-proxy.staging.terarium.ai"
-        - "hmi-extraction-service.staging.terarium.ai"
         - "model-service.staging.terarium.ai"
         - "pyciemss.staging.terarium.ai"
         - "simulation-service.staging.terarium.ai"

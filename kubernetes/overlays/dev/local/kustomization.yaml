@@ -8,4 +8,5 @@ resources:
   - secrets/secrets-xdd-api-key.yaml
   - secrets/secrets-adobe-api-key.yaml
   - secrets/secrets-es-creds.yaml
+  - secrets/secrets-openai-key.yaml
   - secrets/secrets-data-service-s3.yaml
