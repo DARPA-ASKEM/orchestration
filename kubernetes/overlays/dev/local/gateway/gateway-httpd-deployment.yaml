@@ -45,6 +45,9 @@ spec:
               value: http://gateway-admin-keycloak:8081/ua/api/
             - name: ADMIN_KEYCLOAK_UI_URL
               value: http://gateway-admin-keycloak-ui:80/
+            - name: LOCATION_FUNMAN_URL
+              value: http://funman:8080/
+
           volumeMounts:
             - name: htdocs-volume
               mountPath: /usr/local/apache2/htdocs
