@@ -8,4 +8,4 @@ patches:
 images:
   - name: funman-image
     newName: ghcr.io/darpa-askem/funman
-    newTag: "develop"
+    newTag: api_relative_paths
