@@ -101,10 +101,10 @@ images:
   # Skema
   - name: skema-py-image
     newName: ghcr.io/darpa-askem/skema-py
-    newTag: 0.0.6
+    newTag: 0.0.7
   - name: skema-rs-image
     newName: ghcr.io/darpa-askem/skema-rs
-    newTag: 0.0.6
+    newTag: 0.0.7
   - name: skema-memgraph-image
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: 2.6.5-memgraph2.5.2-lab2.4.0-mage1.6
