@@ -35,5 +35,5 @@ spec:
                   number: 8000
   tls:
     - hosts:
-        - "app.staging.terarium.ai"
+        - "app.terarium.ai"
         - "documentation.terarium.ai"
