@@ -1,26 +1,23 @@
 :root {
-  --un-color-accent-darker: #166359;
-  --un-color-accent-dark: #198c7d;
-  --un-color-accent: #1b8073;
-  --un-color-accent-light: #86d3c9;
-  --un-color-accent-lighter: #bceae4;
+	--un-color-accent-darker: #166359;
+	--un-color-accent-dark: #198c7d;
+	--un-color-accent: #1b8073;
+	--un-color-accent-light: #86d3c9;
+	--un-color-accent-lighter: #f4fefd;
 
-  --un-alert-highlight: #037566;
+	--un-alert-highlight: #037566;
 
-  --un-color-button-primary: #1b8073;
-  --un-color-button-secondary: #dffaf6;
-  --un-color-button-hover: #198c7d;
+	--un-color-button-primary: #1b8073;
+	--un-color-button-hover: #198c7d;
+	--un-color-button-secondary: #dffaf6;
+	--un-color-button-secondary-hover: #c3e9e4;
 
-  --un-background-color-left: #bceae4;
-  --un-background-color-right: #55b6a9;
+	--un-background-color-left: #ffffff;
+	--un-background-color-right: #75d5c8;
 
-  --un-color-font-dark: #1c2127;
-  --un-color-font-light: #fdfafd;
-  --un-color-body-text-disabled: #747576ff;
-  --un-color-body-text-secondary: #9da5af;
-  --un-color-body-text-primary: #101828;
-}
-
-input[type="submit"].pf-c-button.pf-m-primary:hover {
-	color: var(--un-color-font-light);
+	--un-color-font-dark: #1c2127;
+	--un-color-font-light: #fdfafd;
+	--un-color-body-text-disabled: #747576ff;
+	--un-color-body-text-secondary: #9da5af;
+	--un-color-body-text-primary: #101828;
 }

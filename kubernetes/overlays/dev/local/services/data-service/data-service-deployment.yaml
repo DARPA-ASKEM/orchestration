@@ -73,6 +73,8 @@ spec:
                   key: aws-dataset-bucket
             - name: S3_DATASET_PATH
               value: "datasets"
+            - name: S3_ARTIFACT_PATH
+              value: "artifacts"
             - name: S3_RESULTS_PATH
               value: "simulations"
       containers:
@@ -135,5 +137,7 @@ spec:
                   key: aws-dataset-bucket
             - name: S3_DATASET_PATH
               value: "datasets"
+            - name: S3_ARTIFACT_PATH
+              value: "artifacts"
             - name: S3_RESULTS_PATH
               value: "simulations"

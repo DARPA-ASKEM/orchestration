@@ -1,0 +1,14 @@
+---
+source:
+  kind: ConfigMap
+  name: gateway-host
+  fieldPath: data.host_api
+targets:
+  - select:
+      name: gateway-httpd
+      kind: Deployment
+    fieldPaths:
+      - spec.template.spec.containers.[name=gateway-httpd].env.[name=LOCATION_API_URL].value
+    options:
+      delimiter: '/'
+      index: 2

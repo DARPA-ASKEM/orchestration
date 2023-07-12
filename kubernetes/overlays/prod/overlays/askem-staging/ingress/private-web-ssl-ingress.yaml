@@ -13,17 +13,6 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: "app.staging.terarium.ai"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: gateway-envoy
-                port:
-                  number: 8078
-
     - host: "keycloak.staging.terarium.ai"
       http:
         paths:
@@ -37,5 +26,4 @@ spec:
 
   tls:
     - hosts:
-        - "app.staging.terarium.ai"
         - "keycloak.staging.terarium.ai"

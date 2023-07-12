@@ -6,11 +6,11 @@ resources:
   - ../../../../../base/utils
   - data-service-postgres-deployment.yaml
   - data-service-postgres-service.yaml
-patchesStrategicMerge:
-  - data-service-deployment.yaml
-  - data-service-service.yaml
-  - data-service-graphdb-deployment.yaml
-  - data-service-graphdb-service.yaml
+patches:
+  - path: data-service-deployment.yaml
+  - path: data-service-service.yaml
+  - path: data-service-graphdb-deployment.yaml
+  - path: data-service-graphdb-service.yaml
 images:
   - name: data-service-image
     newName: ghcr.io/darpa-askem/data-service

@@ -17,19 +17,25 @@ resources:
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
   - secrets/secrets-xdd-api-key.yaml
-patchesStrategicMerge:
-  - gateway/gateway-keycloak-deployment.yaml
-  - hmi/documentation/terarium-docs-service.yaml
-  - hmi/server/hmi-server-deployment.yaml
-  - services/data-service/data-service-deployment.yaml
-  - services/data-service/data-service-service.yaml
-  - services/hmi-extraction-service/hmi-extraction-service-service.yaml
-  - services/message-queue/message-queue-service.yaml
-  - services/mit/mit-proxy-service.yaml
-  - services/model-service/model-service-service.yaml
-  - services/simulation-service/simulation-service-service.yaml
-  - services/skema/skema-py-service.yaml
-  - services/skema/skema-rs-service.yaml
+patches:
+  - path: gateway/gateway-httpd-deployment.yaml
+  - path: gateway/gateway-keycloak-deployment.yaml
+  - path: hmi/documentation/terarium-docs-service.yaml
+  - path: hmi/server/hmi-server-deployment.yaml
+  - path: services/data-service/data-service-deployment.yaml
+  - path: services/data-service/data-service-service.yaml
+  - path: services/hmi-extraction-service/hmi-extraction-service-service.yaml
+  - path: services/jupyter-llm/jupyter-llm-deployment.yaml
+  - path: services/jupyter-llm/jupyter-llm-service.yaml
+  - path: services/message-queue/message-queue-service.yaml
+  - path: services/mit/mit-proxy-service.yaml
+  - path: services/model-service/model-service-service.yaml
+  - path: services/pyciemss-service/pyciemss-api-deployment.yaml
+  - path: services/pyciemss-service/pyciemss-api-service.yaml
+  - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
+  - path: services/simulation-service/simulation-service-service.yaml
+  - path: services/skema/skema-py-service.yaml
+  - path: services/skema/skema-rs-service.yaml
 configMapGenerator:
   - files:
       - gateway/keycloak/realm/Uncharted-realm.json
@@ -37,30 +43,23 @@ configMapGenerator:
     name: gateway-keycloak-realm
     behavior: merge
   - files:
-      - gateway/landing/site/index.html
-    name: landing-site
-    behavior: merge
-  - files:
-      - gateway/envoy/config.yaml
-    name: gateway-config
+      - gateway/httpd/htdocs/index.html
+    name: gateway-httpd-htdocs
     behavior: merge
 images:
   # Gateway and Auth
   - name: gateway-admin-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin
-    newTag: 0.2.1
+    newTag: 0.2.2
   - name: gateway-admin-keycloak-ui-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin-ui
-    newTag: 0.2.1
-  - name: gateway-envoy-image
-    newName: ghcr.io/darpa-askem/envoy
-    newTag: v1.25.2
+    newTag: 0.2.2
+  - name: gateway-httpd-image
+    newName: ghcr.io/unchartedsoftware/httpd-openidc
+    newTag: 0.1.4
   - name: gateway-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak
-    newTag: 0.2.1
-  - name: gateway-landing-image
-    newName: ghcr.io/darpa-askem/nginx
-    newTag: 1.23-alpine
+    newTag: 0.2.2
   - name: terarium-login-theme-image
     newName: ghcr.io/darpa-askem/terarium-login-theme
     newTag: latest
@@ -71,7 +70,7 @@ images:
     newTag: latest
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
-    newTag: 1.0.0
+    newTag: 1.1.0
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
     newTag: latest
@@ -102,6 +101,11 @@ images:
     newName: ghcr.io/darpa-askem/hmi-extraction-service
     newTag: latest
 
+  # Jupyter LLM service
+  - name: jupyter-llm-image
+    newName: ghcr.io/darpa-askem/jupyter-llm
+    newTag: latest
+
   # Skema
   - name: skema-py-image
     newName: ghcr.io/darpa-askem/skema-py
@@ -122,3 +126,16 @@ images:
   - name: simulation-service-image
     newName: ghcr.io/darpa-askem/simulation-service
     newTag: latest
+
+  # PyCIEMSS service
+  - name: pyciemss-api-image
+    newName: ghcr.io/darpa-askem/pyciemss-api
+    newTag: latest
+  - name: pyciemss-worker-image
+    newName: ghcr.io/darpa-askem/pyciemss-worker
+    newTag: latest
+
+  # Funman service
+  - name: funman-image
+    newName: ghcr.io/darpa-askem/funman-api
+    newTag: api_relative_paths

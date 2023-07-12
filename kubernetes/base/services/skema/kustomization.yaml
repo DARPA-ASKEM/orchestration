@@ -8,3 +8,7 @@ resources:
   - skema-py-service.yaml
   - skema-memgraph-deployment.yaml
   - skema-memgraph-service.yaml
+  - skema-eq2mml-deployment.yaml
+  - skema-eq2mml-service.yaml
+  - skema-mathjax-deployment.yaml
+  - skema-mathjax-service.yaml

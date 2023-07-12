@@ -12,7 +12,7 @@ spec:
         - name: simulation-service
           env:
             - name: TDS_URL
-              value: data-service
+              value: http://data-service:3020
             # TODO: Remove this env variable once TDS is up-to-date
             - name: ENABLE_REMOTE_DATA_HANDLING
               value: "false"

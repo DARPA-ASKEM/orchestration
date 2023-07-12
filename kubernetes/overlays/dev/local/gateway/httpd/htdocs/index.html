@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        var accessToken;
+
+        getAccessToken = async () => {
+        try{
+            var response = await fetch('/silent-check-sso.html');
+            return await response.headers.get('OIDC_access_token');
+        } catch (e) {
+            console.log(e);
+        }
+        };
+
+        apiCall = async (path, method) => {
+            var response = await fetch(path,  {
+                method: method,
+                headers: new Headers({
+                'Authorization': 'Bearer ' + accessToken
+                })
+            })
+            .then(res => {
+                if (res.status >= 200 && res.status < 300) {
+                    return res.json();
+                }
+                return {
+                    return_code: res.status
+                }
+            })
+            .catch(function(err) {
+                console.log(`Error: ${err}`)
+            });
+            document.getElementById('responseArea').value = JSON.stringify(response, undefined, 4);
+        }
+
+        getAccessToken().then(response => {
+        accessToken = response;
+        console.log('AccessToken: ' + accessToken);
+        });
+    </script>
+    <body>
+    <h2>Terarium Auth</h2>
+    <p>Go to <a href="/app/">/app/</a>.</p>
+    <p>There are four users:</p>
+    <ul>
+        <li>Emperor Adam <code>adam@test.io:asdf1ASDF</code> account with admin and user roles</li>
+        <li>Lady Ursula <code>ursula@test.io:asdf1ASDF</code> account with user role</li>
+        <li>New1 Test<code>new1@test.io:</code> account without any roles</li>
+        <li>New2 Test <code>new2@test.io:</code> account without any roles</li>
+    </ul>
+    </body>
+</html>
