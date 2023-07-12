@@ -23,6 +23,9 @@ spec:
       containers:
         - name: funman
           image: funman-image
+          env:
+            - name: FUNMAN_BASE_URL
+              value: /funman
           ports:
             - containerPort: 8190
           resources: {}
