@@ -25,6 +25,8 @@ patches:
   - path: services/data-service/data-service-deployment.yaml
   - path: services/data-service/data-service-service.yaml
   - path: services/hmi-extraction-service/hmi-extraction-service-service.yaml
+  - path: services/jupyter-llm/jupyter-llm-deployment.yaml
+  - path: services/jupyter-llm/jupyter-llm-service.yaml
   - path: services/message-queue/message-queue-service.yaml
   - path: services/mit/mit-proxy-service.yaml
   - path: services/model-service/model-service-service.yaml
@@ -97,6 +99,11 @@ images:
   # HMI extraction service
   - name: hmi-extraction-service-image
     newName: ghcr.io/darpa-askem/hmi-extraction-service
+    newTag: latest
+
+  # Jupyter LLM service
+  - name: jupyter-llm-image
+    newName: ghcr.io/darpa-askem/jupyter-llm
     newTag: latest
 
   # Skema

@@ -10,6 +10,7 @@ resources:
   - ../../../base/services/data-service
   - ../../../base/services/hmi-extraction-service
   - ../../../base/services/funman
+  - ../../../base/services/jupyter-llm
   - ../../../base/services/message-queue
   - ../../../base/services/model-service
   - ../../../base/services/pyciemss-service
@@ -28,6 +29,8 @@ patches:
   - path: hmi/server/hmi-server-deployment.yaml
   - path: services/data-service/data-service-deployment.yaml
   - path: services/data-service/data-service-graphdb-deployment.yaml
+  - path: services/hmi-extraction-service/hmi-extraction-service-deployment.yaml
+  - path: services/jupyter-llm/jupyter-llm-deployment.yaml
   - path: services/message-queue/message-queue-deployment.yaml
   - path: services/mit/mit-proxy-deployment.yaml
   - path: services/funman/funman-deployment.yaml
@@ -39,7 +42,6 @@ patches:
   - path: services/skema/skema-memgraph-deployment.yaml
   - path: services/skema/skema-py-deployment.yaml
   - path: services/skema/skema-rs-deployment.yaml
-  - path: services/hmi-extraction-service/hmi-extraction-service-deployment.yaml
 configMapGenerator:
   - files:
       - gateway/httpd/htdocs/silent-check-sso.html

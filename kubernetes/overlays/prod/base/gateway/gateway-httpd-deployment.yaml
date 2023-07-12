@@ -44,6 +44,10 @@ spec:
               value: http://hmi-client:8080/app/
             - name: LOCATION_FUNMAN_URL
               value: http://funman:8190/
+            - name: LOCATION_LLM_URL
+              value: http://jupyter-llm:3050/
+            - name: LOCATION_LLM_WS_URL
+              value: ws://jupyter-llm:3050/
             - name: ADMIN_KEYCLOAK_API_URL
               value: http://gateway-admin-keycloak:8081/api/
             - name: ADMIN_KEYCLOAK_UI_URL

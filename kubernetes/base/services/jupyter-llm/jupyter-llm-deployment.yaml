@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyter-llm
+  labels:
+    software.uncharted.terarium/name: jupyter-llm
+    software.uncharted.terarium/component: jupyter
+    software.uncharted.terarium/service: llm
+    software.uncharted.terarium/part-of: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: jupyter-llm
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: jupyter-llm
+    spec:
+      containers:
+        - name: jupyter-llm
+          image: jupyter-llm-image
+          env:
+            - name: DATA_SERVICE_URL
+              value: http://data-service:3020
+            - name: SIMULATION_SCHEDULER_URL
+              value: http://simulation-service:3030
+            - name: JUPYTER_TOKEN
+              value: 89f73481102c46c0bc13b2998f9a4fce
+          ports:
+            - containerPort: 5672
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}
