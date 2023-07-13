@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: extraction-service-api
-          image: extraction-service-api
+          image: extraction-service-api-image
           ports:
             - containerPort: 8000
           resources: {}

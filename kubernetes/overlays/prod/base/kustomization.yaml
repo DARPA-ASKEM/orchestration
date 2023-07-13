@@ -8,16 +8,16 @@ resources:
   - ../../../base/hmi/documentation
   - ../../../base/hmi/server
   - ../../../base/services/data-service
-  - ../../../base/services/hmi-extraction-service
+  - ../../../base/services/extraction-service
   - ../../../base/services/funman
+  - ../../../base/services/hmi-extraction-service
   - ../../../base/services/jupyter-llm
   - ../../../base/services/message-queue
+  - ../../../base/services/mit
   - ../../../base/services/model-service
   - ../../../base/services/pyciemss-service
-  - ../../../base/services/skema
-  - ../../../base/services/mit
   - ../../../base/services/simulation-service
-  - ../../../base/services/extraction-service
+  - ../../../base/services/skema
 patches:
   - path: gateway/gateway-admin-keycloak-deployment.yaml
   - path: gateway/gateway-admin-keycloak-ui-deployment.yaml
@@ -46,7 +46,6 @@ patches:
   - path: services/skema/skema-memgraph-deployment.yaml
   - path: services/skema/skema-py-deployment.yaml
   - path: services/skema/skema-rs-deployment.yaml
-  - path: services/skema/integrated-tr-deployment.yaml
   - path: services/skema/skema-unified-deployment.yaml
   - path: services/extraction-service/extraction-api-deployment.yaml
   - path: services/extraction-service/extraction-worker-deployment.yaml
