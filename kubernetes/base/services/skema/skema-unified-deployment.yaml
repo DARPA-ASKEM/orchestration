@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skema-unified
+  labels:
+    software.uncharted.terarium/name: skema-unified
+    software.uncharted.terarium/component: unified
+    software.uncharted.terarium/service: skema
+    software.uncharted.terarium/part-of: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: skema-unified
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: skema-unified
+    spec:
+      containers:
+        - name: skema-unified
+          image: skema-py-image
+          env:
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mit-proxy-secrets
+                  key: chatgptkey
+            - name: SKEMA_RS_ADDESS
+              value: http://skema-rs:8080
+            - name: SKEMA_TR_ADDRESS
+              value: http://skema-tr:9000
+            - name: MIT_TR_ADDRESS
+              value: http://mit-tr:8000
+ 
+          command: ['uvicorn']
+          args: ['skema.rest.api:app', '--host', '0.0.0.0', '--port', '8000']
+          ports:
+            - containerPort: 8000
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}
