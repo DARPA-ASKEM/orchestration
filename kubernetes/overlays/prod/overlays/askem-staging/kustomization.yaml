@@ -153,4 +153,3 @@ images:
   - name: extraction-service-worker
     newName: ghccr.io/darpa-askem/extraction-service-worker
     newTag: latest
-
