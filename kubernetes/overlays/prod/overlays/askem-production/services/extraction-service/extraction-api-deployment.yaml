@@ -2,12 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pyciemss-worker
+  name: extraction-service-api
 spec:
   template:
     spec:
       containers:
-        - name: pyciemss-worker
+        - name: extraction-service-api
           env:
             - name: REDIS_HOST
               value: redis.terarium.ai
