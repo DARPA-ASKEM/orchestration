@@ -15,6 +15,8 @@ spec:
               value: 'true'
             - name: data-service
               value: data-service
+            - name: pyciemss-api
+              value: pyciemss-api
             - name: SKEMA_MP_REST_URL
               value: "http://skema-py:4041"
             - name: SKEMA_RUST_MP_REST_URL
