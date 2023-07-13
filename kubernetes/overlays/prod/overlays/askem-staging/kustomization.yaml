@@ -24,6 +24,9 @@ patches:
   - path: hmi/server/hmi-server-deployment.yaml
   - path: services/data-service/data-service-deployment.yaml
   - path: services/data-service/data-service-service.yaml
+  - path: services/extraction-service/extraction-api-deployment.yaml
+  - path: services/extraction-service/extraction-api-service.yaml
+  - path: services/extraction-service/extraction-worker-deployment.yaml
   - path: services/hmi-extraction-service/hmi-extraction-service-service.yaml
   - path: services/jupyter-llm/jupyter-llm-deployment.yaml
   - path: services/jupyter-llm/jupyter-llm-service.yaml
