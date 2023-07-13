@@ -116,10 +116,16 @@ images:
   - name: skema-memgraph-image
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: 2.6.5-memgraph2.5.2-lab2.4.0-mage1.6
+  - name: skema-tr-image
+    newName: enoriega87/skema-webapp
+    newTag: latest
 
   # MIT
   - name: mit-proxy-image
     newName: ghcr.io/darpa-askem/mit-proxy
+    newTag: latest
+  - name: mit-tr-image
+    newName: ghcr.io/darpa-askem/mit-tr
     newTag: latest
 
   # Simulation Service
@@ -139,3 +145,11 @@ images:
   - name: funman-image
     newName: ghcr.io/darpa-askem/funman-api
     newTag: develop-1
+
+    # Extraction service
+  - name: extraction-service-api
+    newName: ghcr.io/darpa-askem/extraction-service-api
+    newTag: latest
+  - name: extraction-service-worker
+    newName: ghccr.io/darpa-askem/extraction-service-worker
+    newTag: latest

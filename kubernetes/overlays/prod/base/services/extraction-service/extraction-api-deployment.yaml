@@ -1,0 +1,8 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: extraction-service-api
+spec:
+  strategy:
+    type: RollingUpdate
