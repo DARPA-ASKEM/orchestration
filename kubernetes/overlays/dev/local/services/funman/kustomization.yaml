@@ -7,5 +7,5 @@ patches:
   - path: funman-service.yaml
 images:
   - name: funman-image
-    newName: ghcr.io/darpa-askem/funman
-    newTag: api_relative_paths
+    newName: ghcr.io/darpa-askem/funman-api
+    newTag: develop-1
