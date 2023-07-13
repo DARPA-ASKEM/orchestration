@@ -153,7 +153,7 @@ spec:
               service:
                 name: extraction-service-api
                 port:
-                  number: 3050
+                  number: 3060
     - host: "skema-unified.staging.terarium.ai"
       http:
         paths:

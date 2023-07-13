@@ -12,8 +12,8 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-path: '/ping'
 spec:
   ports:
-    - name: 3050-tcp
-      port: 3050
+    - name: 3060-tcp
+      port: 3060
       protocol: TCP
       targetPort: 8000
   selector:
