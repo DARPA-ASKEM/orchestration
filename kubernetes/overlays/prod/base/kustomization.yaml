@@ -46,7 +46,6 @@ patches:
   - path: services/skema/skema-memgraph-deployment.yaml
   - path: services/skema/skema-py-deployment.yaml
   - path: services/skema/skema-rs-deployment.yaml
-  - path: services/skema/integrated-tr-deployment.yaml
   - path: services/skema/skema-unified-deployment.yaml
   - path: services/extraction-service/extraction-api-deployment.yaml
   - path: services/extraction-service/extraction-worker-deployment.yaml
