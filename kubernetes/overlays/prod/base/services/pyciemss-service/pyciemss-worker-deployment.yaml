@@ -4,16 +4,12 @@ kind: Deployment
 metadata:
   name: pyciemss-worker
 spec:
-  strategy:
-    type: RollingUpdate
   template:
     spec:
       containers:
         - name: pyciemss-worker
           env:
-            - name: TDS_URL
-              value: http://data-service:3020
-            - name: STANDALONE_MODE
-              value: 'False'
-            - name: PYCIEMSS_OUTPUT_FILEPATH
-              value: result.csv
+            - name: REDIS_HOST
+              value: redis.terarium.ai
+            - name: REDIS_PORT
+              value: '6379'

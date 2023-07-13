@@ -44,46 +44,46 @@ images:
   # Gateway and Auth
   - name: gateway-admin-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin
-    newTag: 0.2.2
+    newTag: '0.2.2'
   - name: gateway-admin-keycloak-ui-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin-ui
-    newTag: 0.2.2
+    newTag: '0.2.2'
   - name: gateway-httpd-image
     newName: ghcr.io/unchartedsoftware/httpd-openidc
-    newTag: 0.1.4
+    newTag: '0.1.4'
   - name: gateway-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak
-    newTag: 0.2.2
+    newTag: '0.2.2'
   - name: terarium-login-theme-image
     newName: ghcr.io/darpa-askem/terarium-login-theme
-    newTag: 1.3.0
+    newTag: '1.3.0'
 
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: 2.7.2
+    newTag: '2.7.3'
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
-    newTag: 1.1.0
+    newTag: '1.1.0'
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: 2.7.2
+    newTag: '2.7.3'
 
   # Data Service
   - name: data-service-image
     newName: ghcr.io/darpa-askem/data-service
-    newTag: 0.5.5
+    newTag: '0.5.5'
   - name: data-service-graphdb-image
     newName: ghcr.io/darpa-askem/data-service-graphdb
-    newTag: 5.3.0.3
+    newTag: '5.3.0.3'
   - name: data-service-migrations-image
     newName: ghcr.io/darpa-askem/data-service-migrations
-    newTag: 0.5.5
+    newTag: '0.5.5'
 
   # Model Service
   - name: model-service-image
     newName: ghcr.io/darpa-askem/model-service
-    newTag: 1.6.0
+    newTag: '1.6.0'
 
   # Message queue
   - name: rabbitmq-image
@@ -93,57 +93,57 @@ images:
   # HMI extraction service
   - name: hmi-extraction-service-image
     newName: ghcr.io/darpa-askem/hmi-extraction-service
-    newTag: 1.0.0
+    newTag: '1.0.0'
 
   # Jupyter LLM service
   - name: jupyter-llm-image
     newName: ghcr.io/darpa-askem/jupyter-llm
-    newTag: 1.0.0
+    newTag: '1.0.0'
 
   # Skema
   - name: skema-py-image
     newName: ghcr.io/darpa-askem/skema-py
-    newTag: 0.0.7
+    newTag: '0.0.7'
   - name: skema-rs-image
     newName: ghcr.io/darpa-askem/skema-rs
-    newTag: 0.0.7
+    newTag: '0.0.7'
   - name: skema-memgraph-image
     newName: ghcr.io/darpa-askem/memgraph-platform
-    newTag: 2.6.5-memgraph2.5.2-lab2.4.0-mage1.6
+    newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
   - name: skema-tr-image
     newName: enoriega87/skema-webapp
-    newTag: 0.3
+    newTag: '0.3'
 
   # MIT
   - name: mit-proxy-image
     newName: ghcr.io/darpa-askem/mit-proxy
-    newTag: 1.1.0
+    newTag: '1.1.0'
   - name: mit-tr-image
     newName: ghcr.io/darpa-askem/mit-tr
-    newTag: latest
+    newTag: 'latest'
 
   # Simulation Service
   - name: simulation-service-image
     newName: ghcr.io/darpa-askem/simulation-service
-    newTag: 0.9.0
+    newTag: '0.9.0'
 
   # PyCIEMSS service
   - name: pyciemss-api-image
     newName: ghcr.io/darpa-askem/pyciemss-api
-    newTag: 1.0.0
+    newTag: '1.0.0'
   - name: pyciemss-worker-image
     newName: ghcr.io/darpa-askem/pyciemss-worker
-    newTag: 1.0.0
+    newTag: '1.0.0'
 
   # Funman service
   - name: funman-image
     newName: ghcr.io/darpa-askem/funman-api
-    newTag: develop-1
+    newTag: 'develop-1'
 
   # Extraction service
-  - name: extraction-service-api
+  - name: extraction-service-api-image
     newName: ghcr.io/darpa-askem/extraction-service-api
-    newTag: latest
-  - name: extraction-service-worker
+    newTag: 'latest'
+  - name: extraction-service-worker-image
     newName: ghcr.io/darpa-askem/extraction-service-worker
-    newTag: latest
+    newTag: 'latest'
