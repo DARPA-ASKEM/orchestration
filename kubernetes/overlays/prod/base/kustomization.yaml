@@ -8,16 +8,16 @@ resources:
   - ../../../base/hmi/documentation
   - ../../../base/hmi/server
   - ../../../base/services/data-service
-  - ../../../base/services/hmi-extraction-service
+  - ../../../base/services/extraction-service
   - ../../../base/services/funman
+  - ../../../base/services/hmi-extraction-service
   - ../../../base/services/jupyter-llm
   - ../../../base/services/message-queue
+  - ../../../base/services/mit
   - ../../../base/services/model-service
   - ../../../base/services/pyciemss-service
-  - ../../../base/services/skema
-  - ../../../base/services/mit
   - ../../../base/services/simulation-service
-  - ../../../base/services/extraction-service
+  - ../../../base/services/skema
 patches:
   - path: gateway/gateway-admin-keycloak-deployment.yaml
   - path: gateway/gateway-admin-keycloak-ui-deployment.yaml
