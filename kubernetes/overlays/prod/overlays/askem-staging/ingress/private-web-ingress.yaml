@@ -144,6 +144,27 @@ spec:
                 port:
                   number: 4040
 
+    - host: "extraction-service.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: extraction-service-api
+                port:
+                  number: 3050
+    - host: "skema-unified.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: skema-unified
+                port:
+                  number: 4045
+
   tls:
     - hosts:
         - "app.staging.terarium.ai"
@@ -158,3 +179,5 @@ spec:
         - "simulation-service.staging.terarium.ai"
         - "skema-py.staging.terarium.ai"
         - "skema-rs.staging.terarium.ai"
+        - "skema-unified.staging.terarium.ai"
+        - "extraction-service.staging.terarium.ai"

@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: extraction-service-api
+  labels:
+    software.uncharted.terarium/name: extraction-service-api
+    software.uncharted.terarium/component: api
+    software.uncharted.terarium/service: extraction-service
+    software.uncharted.terarium/part-of: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: extraction-service-api
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: extraction-service-api
+    spec:
+      containers:
+        - name: extraction-service-api
+          image: extraction-service-api
+          ports:
+            - containerPort: 8000
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}

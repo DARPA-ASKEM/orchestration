@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: integrated-tr
+  labels:
+    software.uncharted.terarium/name: integrated-tr
+    software.uncharted.terarium/component: tr
+    software.uncharted.terarium/service: integrated
+    software.uncharted.terarium/part-of: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: integrated-tr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: integrated-tr
+    spec:
+      containers:
+        - name: integrated-tr
+          image: skema-py-image
+          env:
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mit-proxy-secrets
+                  key: chatgptkey
+            - name: SKEMA_HOST
+              value: http://skema-tr:9000
+            - name: MIT_HOST
+              value: http://mit-tr:8000
+          command: ['uvicorn']
+          args: ['code.integrated-tr-rest:app', '--host', '0.0.0.0', '--port', '7778']
+          ports:
+            - containerPort: 7778
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}
