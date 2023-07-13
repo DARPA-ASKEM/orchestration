@@ -39,6 +39,7 @@ patches:
   - path: services/simulation-service/simulation-service-service.yaml
   - path: services/skema/skema-py-service.yaml
   - path: services/skema/skema-rs-service.yaml
+  - path: services/skema/skema-unified-service.yaml
 configMapGenerator:
   - files:
       - gateway/keycloak/realm/Uncharted-realm.json
