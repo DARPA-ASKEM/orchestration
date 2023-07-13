@@ -1,0 +1,15 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: extraction-service-api
+spec:
+  template:
+    spec:
+      containers:
+        - name: extraction-service-api
+          env:
+            - name: REDIS_HOST
+              value: redis.terarium.ai
+            - name: REDIS_PORT
+              value: '6379'
