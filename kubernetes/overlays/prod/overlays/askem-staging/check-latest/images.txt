@@ -11,4 +11,5 @@ software.uncharted.terarium/name=skema-py ghcr.io/darpa-askem/skema-py:latest
 software.uncharted.terarium/name=skema-rs ghcr.io/darpa-askem/skema-rs:latest
 software.uncharted.terarium/name=terarium-docs ghcr.io/darpa-askem/terarium-docs:latest
 software.uncharted.terarium/name=extraction-service-api ghcr.io/darpa-askem/extraction-service-api:latest
+software.uncharted.terarium/name=extraction-service-worker ghcr.io/darpa-askem/extraction-service-worker:latest
 software.uncharted.terarium/name=mit-tr ghcr.io/darpa-askem/mit-tr:latest
