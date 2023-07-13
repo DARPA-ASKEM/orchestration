@@ -2,6 +2,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - integrated-tr-deployment.yaml
+  - integrated-tr-service.yaml
   - skema-rs-deployment.yaml
   - skema-rs-service.yaml
   - skema-py-deployment.yaml
@@ -12,3 +14,7 @@ resources:
   - skema-eq2mml-service.yaml
   - skema-mathjax-deployment.yaml
   - skema-mathjax-service.yaml
+  - skema-tr-deployment.yaml
+  - skema-tr-service.yaml
+  - skema-unified-deployment.yaml
+  - skema-unified-service.yaml

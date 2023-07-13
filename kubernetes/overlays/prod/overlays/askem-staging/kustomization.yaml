@@ -147,9 +147,9 @@ images:
     newTag: develop-1
 
     # Extraction service
-  - name: extraction-service-api
+  - name: extraction-service-api-image
     newName: ghcr.io/darpa-askem/extraction-service-api
     newTag: latest
-  - name: extraction-service-worker
-    newName: ghccr.io/darpa-askem/extraction-service-worker
+  - name: extraction-service-worker-image
+    newName: ghcr.io/darpa-askem/extraction-service-worker
     newTag: latest
