@@ -61,13 +61,13 @@ images:
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: '2.7.3'
+    newTag: '2.7.4'
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
     newTag: '1.1.0'
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: '2.7.3'
+    newTag: '2.7.4'
 
   # Data Service
   - name: data-service-image
@@ -98,15 +98,15 @@ images:
   # Jupyter LLM service
   - name: jupyter-llm-image
     newName: ghcr.io/darpa-askem/jupyter-llm
-    newTag: '1.0.0'
+    newTag: '1.1.0'
 
   # Skema
   - name: skema-py-image
     newName: ghcr.io/darpa-askem/skema-py
-    newTag: '0.0.7'
+    newTag: '0.0.8'
   - name: skema-rs-image
     newName: ghcr.io/darpa-askem/skema-rs
-    newTag: '0.0.7'
+    newTag: '0.0.8'
   - name: skema-memgraph-image
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
@@ -125,15 +125,15 @@ images:
   # Simulation Service
   - name: simulation-service-image
     newName: ghcr.io/darpa-askem/simulation-service
-    newTag: '0.9.0'
+    newTag: '0.10.0'
 
   # PyCIEMSS service
   - name: pyciemss-api-image
     newName: ghcr.io/darpa-askem/pyciemss-api
-    newTag: '1.0.0'
+    newTag: '1.1.0'
   - name: pyciemss-worker-image
     newName: ghcr.io/darpa-askem/pyciemss-worker
-    newTag: '1.0.0'
+    newTag: '1.1.0'
 
   # Funman service
   - name: funman-image
@@ -143,7 +143,7 @@ images:
   # Extraction service
   - name: extraction-service-api-image
     newName: ghcr.io/darpa-askem/extraction-service-api
-    newTag: 'latest'
+    newTag: '1.0.0'
   - name: extraction-service-worker-image
     newName: ghcr.io/darpa-askem/extraction-service-worker
-    newTag: 'latest'
+    newTag: '1.0.0'
