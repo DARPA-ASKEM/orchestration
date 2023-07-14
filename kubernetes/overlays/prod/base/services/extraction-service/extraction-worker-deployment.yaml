@@ -6,3 +6,10 @@ metadata:
 spec:
   strategy:
     type: RollingUpdate
+  template:
+    spec:
+      containers:
+        - name: extraction-service-worker
+          env:
+            - name: SKEMA_API
+              value: http://skema-rs:4040
