@@ -10,6 +10,6 @@ spec:
         - name: extraction-service-api
           env:
             - name: REDIS_HOST
-              value: redis.staging.terarium.ai
+              value: redis-2.staging.terarium.ai
             - name: REDIS_PORT
               value: '6379'
