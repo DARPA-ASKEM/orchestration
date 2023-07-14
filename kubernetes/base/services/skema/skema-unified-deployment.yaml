@@ -30,11 +30,11 @@ spec:
                   name: mit-proxy-secrets
                   key: chatgptkey
             - name: SKEMA_RS_ADDESS
-              value: http://skema-rs:8080
+              value: http://skema-rs:4040
             - name: SKEMA_TR_ADDRESS
-              value: http://skema-tr:9000
+              value: http://skema-tr:4047
             - name: MIT_TR_ADDRESS
-              value: http://mit-tr:8000
+              value: http://mit-tr:4046
           command: ['uvicorn']
           args: ['skema.rest.api:app', '--host', '0.0.0.0', '--port', '8000']
           ports:
