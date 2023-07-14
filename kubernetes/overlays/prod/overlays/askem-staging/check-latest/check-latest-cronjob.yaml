@@ -15,7 +15,7 @@ spec:
         spec:
           containers:
             - name: check-latest
-              image: ghcr.io/darpa-askem/check-latest:0.3.1
+              image: ghcr.io/darpa-askem/check-latest:0.3.2
               args:
                 - -d
               imagePullPolicy: Always

@@ -6,3 +6,16 @@ metadata:
 spec:
   strategy:
     type: RollingUpdate
+  template:
+    spec:
+      containers:
+        - name: extraction-service-worker
+          env:
+            - name: TDS_URL
+              value: 'http://data-service:3020'
+            - name: SKEMA_RS_URL
+              value: 'http://skema-rs:4040'
+            - name: MIT_TR_URL
+              value: 'http://mit-tr:4046'
+            - name: TA1_UNIFIED_URL
+              value: 'http://skema-unified:4045'
