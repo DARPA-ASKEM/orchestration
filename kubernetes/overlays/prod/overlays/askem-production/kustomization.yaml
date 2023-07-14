@@ -130,10 +130,10 @@ images:
   # PyCIEMSS service
   - name: pyciemss-api-image
     newName: ghcr.io/darpa-askem/pyciemss-api
-    newTag: '1.1.0'
+    newTag: '1.2.0'
   - name: pyciemss-worker-image
     newName: ghcr.io/darpa-askem/pyciemss-worker
-    newTag: '1.1.0'
+    newTag: '1.2.0'
 
   # Funman service
   - name: funman-image
