@@ -22,6 +22,9 @@ spec:
       containers:
         - name: hmi-server
           image: hmi-server-image
+          env:
+            - name: QUARKUS_HTTP_LIMITS_MAX_BODY_SIZE
+              value: '10m'
           ports:
             - containerPort: 3000
           resources: {}
