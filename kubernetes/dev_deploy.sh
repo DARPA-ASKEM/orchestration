@@ -120,6 +120,8 @@ up)
 		echo "Launching TERArium on localhost..."
 		kubectl kustomize ./overlays/dev/local | kubectl apply --filename -
 	else
+		kubectl kustomize ./overlays/dev/local/secrets | kubectl apply --filename -
+
 		for SERVICE in "${SERVICES[@]}"; do
 			case ${SERVICE} in
 			hmi-client)
@@ -147,6 +149,11 @@ up)
 				kubectl kustomize ./overlays/dev/local/services/data-service | kubectl apply --filename -
 				;;
 
+			pyciemss-service)
+				echo "Launching CIEMSS on localhost..."
+				kubectl kustomize ./overlays/dev/local/services/pyciemss-service | kubectl apply --filename -
+				;;
+
 			model-service)
 				echo "Launching MODEL SERVICE on localhost..."
 				kubectl kustomize ./overlays/dev/local/services/model-service | kubectl apply --filename -
@@ -167,6 +174,11 @@ up)
 				kubectl kustomize ./overlays/dev/local/gateway | kubectl apply --filename -
 				;;
 
+			redis)
+				echo "Launching REDIS on localhost..."
+				kubectl kustomize ./overlays/dev/local/services/redis | kubectl apply --filename -
+				;;
+
 			*)
 				echo "'${SERVICE}' is not a valid service. Please specify a valid service."
 				;;
@@ -184,6 +196,8 @@ down)
 		echo "Launching TERArium on localhost..."
 		kubectl kustomize ./overlays/dev/local | kubectl delete --filename -
 	else
+		kubectl kustomize ./overlays/dev/local/secrets | kubectl apply --filename -
+
 		for SERVICE in "${SERVICES[@]}"; do
 			case ${SERVICE} in
 			hmi-client)
@@ -211,6 +225,11 @@ down)
 				kubectl kustomize ./overlays/dev/local/services/data-service | kubectl delete --filename -
 				;;
 
+			pyciemss-service)
+				echo "Tearing down CIEMSS on localhost..."
+				kubectl kustomize ./overlays/dev/local/services/pyciemss-service | kubectl delete --filename -
+				;;
+
 			model-service)
 				echo "Tearing down MODEL SERVICE on localhost..."
 				kubectl kustomize ./overlays/dev/local/services/model-service | kubectl delete --filename -
@@ -230,6 +249,12 @@ down)
 				echo "Tearing down GATEWAY on localhost..."
 				kubectl kustomize ./overlays/dev/local/gateway | kubectl delete --filename -
 				;;
+
+			redis)
+				echo "Tearing down redis on localhost..."
+				kubectl kustomize ./overlays/dev/local/services/redis | kubectl delete --filename -
+				;;
+
 
 			"")
 				echo "Tearing down TERArium on localhost..."
@@ -281,7 +306,7 @@ help)
   OPTIONS include
       -h | --help            Display this help
       -o | --override        Override HOST_ADDRESS with Mac's IP address
-      -u | --use ADDRESS     Use ADDRESS as HOST_ADDRESS       
+      -u | --use ADDRESS     Use ADDRESS as HOST_ADDRESS
 			"
 	;;
 esac
