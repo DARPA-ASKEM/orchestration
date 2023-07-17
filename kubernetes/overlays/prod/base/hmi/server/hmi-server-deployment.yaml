@@ -25,6 +25,8 @@ spec:
               value: "http://model-service:3010"
             - name: SIMULATION_SERVICE_MP_REST_URL
               value: "http://simulation-service:3030"
+            - name: SKEMA_UNIFIED_MP_REST_URL
+              value: "https://api.askem.lum.ai"
             - name: MIT_MP_REST_URL
               value: "http://mit-proxy:3981"
             - name: keycloak-service-protocol
