@@ -1,0 +1,3 @@
+software.uncharted.terarium/name=data-service ghcr.io/darpa-askem/data-service:latest
+software.uncharted.terarium/name=hmi-client ghcr.io/darpa-askem/hmi-client:latest
+software.uncharted.terarium/name=hmi-server ghcr.io/darpa-askem/hmi-server:latest
