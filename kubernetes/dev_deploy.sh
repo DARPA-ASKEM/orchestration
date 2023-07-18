@@ -154,6 +154,16 @@ up)
 				kubectl kustomize ./overlays/dev/local/services/pyciemss-service | kubectl apply --filename -
 				;;
 
+			funman)
+				echo "Launching FUNMAN on localhost..."
+				kubectl kustomize ./overlays/dev/local/services/funman | kubectl apply --filename -
+				;;
+
+			jupyter-llm)
+				echo "Launching JUPYTER-LLM on localhost..."
+				kubectl kustomize ./overlays/dev/local/services/jupyter-llm | kubectl apply --filename -
+				;;
+
 			model-service)
 				echo "Launching MODEL SERVICE on localhost..."
 				kubectl kustomize ./overlays/dev/local/services/model-service | kubectl apply --filename -
@@ -228,6 +238,16 @@ down)
 			pyciemss-service)
 				echo "Tearing down CIEMSS on localhost..."
 				kubectl kustomize ./overlays/dev/local/services/pyciemss-service | kubectl delete --filename -
+				;;
+		
+			funman)
+				echo "Launching FUNMAN on localhost..."
+				kubectl kustomize ./overlays/dev/local/services/funman | kubectl delete --filename -
+				;;
+
+			jupyter-llm)
+				echo "Launching JUPYTER-LLM on localhost..."
+				kubectl kustomize ./overlays/dev/local/services/jupyter-llm | kubectl delete --filename -
 				;;
 
 			model-service)
