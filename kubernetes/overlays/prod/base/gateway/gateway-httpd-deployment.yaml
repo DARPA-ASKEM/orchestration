@@ -51,9 +51,9 @@ spec:
             - name: LOCATION_LLM_WS_URL
               value: ws://jupyter-llm:3050/
             - name: ADMIN_KEYCLOAK_API_URL
-              value: http://gateway-admin-keycloak:8081/api/
+              value: http://gateway-admin-keycloak:8081/ua/api/
             - name: ADMIN_KEYCLOAK_UI_URL
-              value: http://gateway-admin-keycloak-ui:80/app/
+              value: http://gateway-admin-keycloak-ui:80/
           volumeMounts:
             - name: config-locations-volume
               mountPath: /usr/local/apache2/conf/default/locations
