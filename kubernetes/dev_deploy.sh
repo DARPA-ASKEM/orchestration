@@ -11,7 +11,7 @@ HMI_SERVER_REPLACEMENT_FILE_MAC="overlays/dev/local/hmi/server/configmap/host-ma
 HMI_SERVER_REPLACEMENT_FILE_LINUX="overlays/dev/local/hmi/server/configmap/host-linux.yaml"
 
 SECRET_FILES=()
-SECRET_FILES+=("overlays/dev/local/secrets/*.yaml")
+SECRET_FILES+=("overlays/dev/local/secrets/secrets-*.yaml")
 
 source functions.sh
 
