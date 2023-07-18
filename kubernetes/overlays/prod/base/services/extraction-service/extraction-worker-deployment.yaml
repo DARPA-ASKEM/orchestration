@@ -16,6 +16,11 @@ spec:
             - name: SKEMA_RS_URL
               value: 'http://skema-rs:4040'
             - name: MIT_TR_URL
-              value: 'http://mit-tr:4046'
+              value: 'http://100.26.10.46'
             - name: TA1_UNIFIED_URL
-              value: 'http://skema-unified:4045'
+              value: 'https://api.askem.lum.ai'
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mit-proxy-secrets
+                  key: chatgptkey
