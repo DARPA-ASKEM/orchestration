@@ -60,6 +60,9 @@ configMapGenerator:
       - gateway/keycloak/realm/master-users-0.json
     name: gateway-keycloak-realm
   - files:
+      - gateway/keystore/cacerts
+    name: gateway-keystore
+  - files:
       - gateway/certificates/cert.pem
       - gateway/certificates/key.pem
     name: gateway-certificates
