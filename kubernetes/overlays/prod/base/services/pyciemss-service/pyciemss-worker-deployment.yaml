@@ -4,6 +4,7 @@ kind: Deployment
 metadata:
   name: pyciemss-worker
 spec:
+  replicas: 5
   strategy:
     type: RollingUpdate
   template:
