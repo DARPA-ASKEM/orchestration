@@ -126,7 +126,7 @@ images:
   # Simulation Service
   - name: simulation-service-image
     newName: ghcr.io/darpa-askem/simulation-service
-    newTag: '0.14.3'
+    newTag: '0.14.1'
 
   # PyCIEMSS service
   - name: pyciemss-api-image
