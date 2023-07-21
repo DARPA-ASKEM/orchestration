@@ -150,7 +150,8 @@ up)
 				;;
 
 			pyciemss-service)
-				echo "Launching CIEMSS on localhost..."
+				echo "Launching CIEMSS and REDIS on localhost..."
+				kubectl kustomize ./overlays/dev/local/services/redis | kubectl apply --filename -
 				kubectl kustomize ./overlays/dev/local/services/pyciemss-service | kubectl apply --filename -
 				;;
 
