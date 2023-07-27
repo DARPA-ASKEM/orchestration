@@ -10,7 +10,6 @@ resources:
   - ../../../base/services/data-service
   - ../../../base/services/extraction-service
   - ../../../base/services/funman
-  - ../../../base/services/hmi-extraction-service
   - ../../../base/services/jupyter-llm
   - ../../../base/services/message-queue
   - ../../../base/services/mit
@@ -34,7 +33,6 @@ patches:
   - path: services/extraction-service/extraction-worker-deployment.yaml
   - path: services/funman/funman-deployment.yaml
   - path: services/funman/funman-service.yaml
-  - path: services/hmi-extraction-service/hmi-extraction-service-deployment.yaml
   - path: services/jupyter-llm/jupyter-llm-deployment.yaml
   - path: services/message-queue/message-queue-deployment.yaml
   - path: services/mit/mit-proxy-deployment.yaml

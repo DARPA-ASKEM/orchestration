@@ -8,5 +8,4 @@ resources:
   - pyciemss-service
   - redis
   - user-store
-  - hmi-extraction-service
   - jupyter-llm
