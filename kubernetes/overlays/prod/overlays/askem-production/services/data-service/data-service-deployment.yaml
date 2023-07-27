@@ -15,7 +15,6 @@ spec:
               value: "true"
       containers:
         - name: data-service
-          imagePullPolicy: Always
           env:
             - name: ES_URL
               value: https://elasticsearch.terarium.ai:443
