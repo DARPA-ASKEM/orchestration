@@ -91,11 +91,6 @@ images:
     newName: ghcr.io/darpa-askem/rabbitmq
     newTag: '3.11.13-management-alpine'
 
-  # HMI extraction service
-  - name: hmi-extraction-service-image
-    newName: ghcr.io/darpa-askem/hmi-extraction-service
-    newTag: '1.0.0'
-
   # Jupyter LLM service
   - name: jupyter-llm-image
     newName: ghcr.io/darpa-askem/jupyter-llm
