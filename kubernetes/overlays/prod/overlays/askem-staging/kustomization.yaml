@@ -144,7 +144,7 @@ images:
   # Funman service
   - name: funman-image
     newName: ghcr.io/darpa-askem/funman-api
-    newTag: 'merged_hackathon'
+    newTag: '1.6.0'
 
   # Extraction service
   - name: extraction-service-api-image

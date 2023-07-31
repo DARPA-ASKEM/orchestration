@@ -8,4 +8,4 @@ patches:
 images:
   - name: funman-image
     newName: ghcr.io/darpa-askem/funman-api
-    newTag: develop-1
+    newTag: '1.6.0'
