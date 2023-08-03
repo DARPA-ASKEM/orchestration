@@ -62,13 +62,13 @@ images:
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: 'pp-2023-08-01'
+    newTag: 'pp-2023-08-02'
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
     newTag: '1.2.0'
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: 'pp-2023-08-01'
+    newTag: 'pp-2023-08-02'
 
   # Data Service
   - name: data-service-image
