@@ -1,6 +1,7 @@
 # diagram.py
 from diagrams import Cluster, Diagram, Edge
 from diagrams.aws.storage import S3
+from diagrams.custom import Custom
 from diagrams.elastic.elasticsearch import Elasticsearch
 from diagrams.k8s.compute import Pod
 from diagrams.k8s.network import Ing
@@ -41,15 +42,15 @@ with Diagram("Terarium System Architecture", show=True, graph_attr=graph_attr):
 		with Cluster("Middle Tier"):
 			hmi_server = Pod("HMI Server")
 			web_servers = [Pod("Web Server"), Pod("Docs Server")]
-			gateway = Apache("Gateway", color="firebrick")
-			keycloak = Oauth2Proxy("Keycloak")
+			gateway = Custom("Gateway", "./resources/apache.png")
+			keycloak = Custom("Keycloak", "./resources/keycloak.png")
 			message_queue = Rabbitmq("Message Queue")
 			llm = Pod("Jupyter LLM")
 			hmi_extraction_service = Pod("HMI Extraction Service")
 
 		with Cluster("Data Tier"):
 			tds = Pod("Data Service (TDS)")
-			graphdb = Database("GraphDB")
+			graphdb = Custom("GraphDB", "./resources/graphdb.png")
 
 		with Cluster("Model Services"):
 			model_service = Pod("Model Service")
