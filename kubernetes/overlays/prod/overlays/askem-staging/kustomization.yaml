@@ -27,6 +27,7 @@ patches:
   - path: services/extraction-service/extraction-api-deployment.yaml
   - path: services/extraction-service/extraction-api-service.yaml
   - path: services/extraction-service/extraction-worker-deployment.yaml
+  - path: services/funman/funman-deployment.yaml
   - path: services/jupyter-llm/jupyter-llm-deployment.yaml
   - path: services/jupyter-llm/jupyter-llm-service.yaml
   - path: services/message-queue/message-queue-service.yaml
