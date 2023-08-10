@@ -155,11 +155,22 @@ spec:
                 port:
                   number: 4045
 
+    - host: "funman.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: funman
+                port:
+                  number: 8190
   tls:
     - hosts:
         - "app.staging.terarium.ai"
         - "data-service.staging.terarium.ai"
         - "documentation.staging.terarium.ai"
+        - "funman.staging.terarium.ai"
         - "jupyter-llm.staging.terarium.ai"
         - "message-queue.staging.terarium.ai"
         - "mit-proxy.staging.terarium.ai"
