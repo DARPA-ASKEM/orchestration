@@ -88,6 +88,9 @@ while [[ $# -gt 0 ]]; do
   encrypt)
     COMMAND="encrypt"
     ;;
+  kill)
+    COMMAND="kill"
+    ;;
   *)
     echo "dev_deploy.sh: illegal option"
     ;;
@@ -103,6 +106,14 @@ if [ ${COMMAND} != "help" ]; then
 fi
 
 case ${COMMAND} in
+kill)
+  echo "Removing everything running in kubernetes default namespace"
+  for n in `kubectl get deployments | awk '{ print $1 }'`; do kubectl delete deployments/$n; done
+  for n in `kubectl get services | awk '{ print $1 }'`; do kubectl delete services/$n; done
+  for n in `kubectl get configmaps | awk '{ print $1 }'`; do kubectl delete configmaps/$n; done
+  for n in `kubectl get jobs | awk '{ print $1 }'`; do kubectl delete jobs/$n; done
+  echo "complete"
+  ;;
 test)
 	echo "## Decrypting secrets"
 	decrypt
