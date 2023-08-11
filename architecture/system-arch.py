@@ -22,11 +22,38 @@ graph_attr = {
 	"bgcolor": "white",
 	"center": "true",
 	"beautify": "true",
-	"layout": "dot"
+	"layout": "dot",
+    "rankdir": "TB",          # Direction of graph, "TB" is top to bottom, "LR" is left to right
+    "splines": "spline",    # How edges are drawn. Other options: "ortho", "curved", etc.
+    "nodesep": "1",         # Adjust the space between nodes
+    "ranksep": "2.0",         # Adjust the space between ranks of nodes
+    "margin": "0.5",          # Margin around the graph
+    "pad": "0.5",             # Padding between the graph and the margin
+    "dpi": "120" 	
+}
+
+node_attr = {
+    "style": "filled",        # Filled color for node
+    "shape": "box",           # Shape of the node
+    "fillcolor": "lightblue", # Node fill color
+    "fontname": "Arial",      # Font type
+    "fontsize": "10",         # Font size
+    "fontcolor": "black"      # Font color
+}
+
+edge_attr = {
+    "color": "darkgrey",        # Edge color
+    "style": "solid",       # Style of the edge, other options: "solid", "dotted", etc.
+    "arrowhead": "normal",      # Style of the arrowhead, other options: "normal", "dot", etc.
+    "fontname": "Arial",     # Font type
+    "fontsize": "10",        # Font size
 }
 
 # Nodes
-with Diagram("Terarium System Architecture", show=True, graph_attr=graph_attr):
+with Diagram("Terarium System Architecture", show=True, 
+	     graph_attr=graph_attr, 
+		 node_attr=node_attr,
+		 edge_attr=edge_attr):
 	with Cluster("Logging and Monitoring"):
 		grafana = Grafana("Grafana")
 		loki = Loki("Loki")
@@ -60,9 +87,9 @@ with Diagram("Terarium System Architecture", show=True, graph_attr=graph_attr):
 			pyciemss_worker = Pod("pyciemss Worker")
 			simulation_service = Pod("Simulation Service")
 
-		with Cluster("Extraction Services"):
-			extraction_service_api = Pod("Extraction Service API")
-			extraction_service_worker = Pod("Extraction Service Worker")
+		with Cluster("TA1 Services"):
+			ta1_service_api = Pod("TA1 Service API")
+			ta1_service_worker = Pod("TA1 Service Worker")
 			skema_unified = Pod("Skema Unified")
 			skema_rs = Pod("Skema RS")
 			skema_tr = Pod("Skema TR")
@@ -98,15 +125,13 @@ with Diagram("Terarium System Architecture", show=True, graph_attr=graph_attr):
 			admin_ui = Client("Admin UI")
 
 	# Connections
-	extraction_service_api >> Edge() >> mit_tr_external
-	extraction_service_api >> Edge() >> redis
-	extraction_service_api >> Edge() >> skema_rs
-	extraction_service_api >> Edge() >> skema_unified_external
-	extraction_service_worker >> Edge() >> cosmos
-	extraction_service_worker >> Edge() >> mit_tr_external
-	extraction_service_worker >> Edge() >> redis
-	extraction_service_worker >> Edge() >> skema_rs
-	extraction_service_worker >> Edge() >> skema_unified_external
+	ta1_service_api >> Edge() >> redis
+	ta1_service_worker >> Edge() >> cosmos
+	ta1_service_worker >> Edge() >> mit_tr_external
+	ta1_service_worker >> Edge() >> redis
+	ta1_service_worker >> Edge() >> skema_rs
+	ta1_service_worker >> Edge() >> skema_unified_external
+	ta1_service_worker << Edge() >> tds
 	gateway >> Edge() << ingress_app
 	gateway >> Edge() << ingress_docs
 	gateway >> Edge() << keycloak
@@ -124,6 +149,7 @@ with Diagram("Terarium System Architecture", show=True, graph_attr=graph_attr):
 	hmi_server >> Edge() >> pyciemss_api
 	hmi_server >> Edge() >> simulation_service
 	hmi_server >> Edge() >> xdd
+	hmi_extraction_service << Edge() >> ta1_service_api
 	ingress_app >> Edge() << hmi_client
 	ingress_docs >> Edge() << docs
 	ingress_keycloak >> Edge() << admin_ui
