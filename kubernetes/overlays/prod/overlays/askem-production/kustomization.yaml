@@ -139,7 +139,7 @@ images:
   # ta1 service
   - name: ta1-service-api-image
     newName: ghcr.io/darpa-askem/ta1-service-api
-    newTag: '1.4.0'
+    newTag: '1.4.1'
   - name: ta1-service-worker-image
     newName: ghcr.io/darpa-askem/ta1-service-worker
-    newTag: '1.4.0'
+    newTag: '1.4.1'
