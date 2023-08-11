@@ -2,14 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: extraction-service-worker
+  name: ta1-service-worker
 spec:
   template:
     spec:
       containers:
-        - name: extraction-service-worker
+        - name: ta1-service-worker
           env:
             - name: REDIS_HOST
-              value: redis-2.terarium.ai
+              value: redis-2.staging.terarium.ai
             - name: REDIS_PORT
               value: '6379'

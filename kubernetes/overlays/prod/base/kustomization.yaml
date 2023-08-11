@@ -8,7 +8,6 @@ resources:
   - ../../../base/hmi/documentation
   - ../../../base/hmi/server
   - ../../../base/services/data-service
-  - ../../../base/services/extraction-service
   - ../../../base/services/funman
   - ../../../base/services/jupyter-llm
   - ../../../base/services/message-queue
@@ -17,6 +16,7 @@ resources:
   - ../../../base/services/pyciemss-service
   - ../../../base/services/simulation-service
   - ../../../base/services/skema
+  - ../../../base/services/ta1-service
 patches:
   - path: gateway/gateway-admin-keycloak-deployment.yaml
   - path: gateway/gateway-admin-keycloak-ui-deployment.yaml
@@ -29,8 +29,6 @@ patches:
   - path: hmi/server/hmi-server-deployment.yaml
   - path: services/data-service/data-service-deployment.yaml
   - path: services/data-service/data-service-graphdb-deployment.yaml
-  - path: services/extraction-service/extraction-api-deployment.yaml
-  - path: services/extraction-service/extraction-worker-deployment.yaml
   - path: services/funman/funman-deployment.yaml
   - path: services/funman/funman-service.yaml
   - path: services/jupyter-llm/jupyter-llm-deployment.yaml
@@ -47,6 +45,8 @@ patches:
   - path: services/skema/skema-py-deployment.yaml
   - path: services/skema/skema-rs-deployment.yaml
   - path: services/skema/skema-unified-deployment.yaml
+  - path: services/ta1-service/ta1-service-api-deployment.yaml
+  - path: services/ta1-service/ta1-service-worker-deployment.yaml
 
 configMapGenerator:
   - files:

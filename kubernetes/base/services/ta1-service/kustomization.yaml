@@ -2,6 +2,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ta1-service-api.yaml
+  - ta1-service-api-service.yaml
   - ta1-service-api-deployment.yaml
   - ta1-service-worker-deployment.yaml

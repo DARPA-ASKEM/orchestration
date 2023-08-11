@@ -24,9 +24,9 @@ patches:
   - path: hmi/server/hmi-server-deployment.yaml
   - path: services/data-service/data-service-deployment.yaml
   - path: services/data-service/data-service-service.yaml
-  - path: services/extraction-service/extraction-api-deployment.yaml
-  - path: services/extraction-service/extraction-api-service.yaml
-  - path: services/extraction-service/extraction-worker-deployment.yaml
+  - path: services/ta1-service/ta1-service-api-deployment.yaml
+  - path: services/ta1-service/ta1-service-api-service.yaml
+  - path: services/ta1-service/ta1-service-worker-deployment.yaml
   - path: services/funman/funman-deployment.yaml
   - path: services/jupyter-llm/jupyter-llm-deployment.yaml
   - path: services/jupyter-llm/jupyter-llm-service.yaml
@@ -147,10 +147,10 @@ images:
     newName: ghcr.io/darpa-askem/funman-api
     newTag: '1.6.0'
 
-  # Extraction service
-  - name: extraction-service-api-image
-    newName: ghcr.io/darpa-askem/extraction-service-api
+  # ta1 service
+  - name: ta1-service-api-image
+    newName: ghcr.io/darpa-askem/ta1-service-api
     newTag: 'latest'
-  - name: extraction-service-worker-image
-    newName: ghcr.io/darpa-askem/extraction-service-worker
+  - name: ta1-service-worker-image
+    newName: ghcr.io/darpa-askem/ta1-service-worker
     newTag: 'latest'
