@@ -13,8 +13,8 @@ spec:
   selector:
     matchLabels:
       software.uncharted.terarium/name: ta1-service-api
-    type: Recreate
   strategy:
+    type: Recreate
   template:
     metadata:
       labels:
