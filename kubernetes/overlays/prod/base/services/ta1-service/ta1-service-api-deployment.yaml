@@ -2,14 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: extraction-service-api
+  name: ta1-service-api
 spec:
   strategy:
     type: RollingUpdate
   template:
     spec:
       containers:
-        - name: extraction-service-api
+        - name: ta1-service-api
           env:
             - name: TDS_URL
               value: 'http://data-service:3020'

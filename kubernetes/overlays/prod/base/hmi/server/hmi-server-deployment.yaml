@@ -15,8 +15,8 @@ spec:
               value: 'true'
             - name: data-service
               value: data-service
-            - name: extraction-service-url
-              value: http://extraction-service-api:3060
+            - name: ta1-service-url
+              value: http://ta1-service-api:3060
             - name: pyciemss-api
               value: pyciemss-api
             - name: SKEMA_MP_REST_URL

@@ -133,14 +133,14 @@ spec:
                 port:
                   number: 4040
 
-    - host: "extraction-service.staging.terarium.ai"
+    - host: "ta1-service.staging.terarium.ai"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: extraction-service-api
+                name: ta1-service-api
                 port:
                   number: 3060
 
@@ -180,4 +180,4 @@ spec:
         - "skema-py.staging.terarium.ai"
         - "skema-rs.staging.terarium.ai"
         - "skema-unified.staging.terarium.ai"
-        - "extraction-service.staging.terarium.ai"
+        - "ta1-service.staging.terarium.ai"
