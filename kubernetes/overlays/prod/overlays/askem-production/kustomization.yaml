@@ -50,8 +50,8 @@ images:
     newName: ghcr.io/darpa-askem/admin-keycloak-ui
     newTag: '0.1.7k'
   - name: gateway-httpd-image
-    newName: ghcr.io/unchartedsoftware/httpd-openidc
-    newTag: '0.1.4'
+    newName: ghcr.io/unchartedsoftware/uncharted-auth/httpd-openidc
+    newTag: 2.4.57_oidc_2.4.14.2
   - name: gateway-keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak
     newTag: '0.2.2'
