@@ -22,7 +22,7 @@ spec:
             - name: keycloak-service-fqdn
               value: $(LOCALHOST)
             - name: keycloak-service-port
-              value: :8079
+              value: "8079"
             - name: terarium-db-user
               value: terarium
             - name: terarium-db-password
