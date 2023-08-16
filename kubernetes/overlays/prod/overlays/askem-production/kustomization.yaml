@@ -94,7 +94,7 @@ images:
   # Jupyter LLM service
   - name: jupyter-llm-image
     newName: ghcr.io/darpa-askem/jupyter-llm
-    newTag: '1.1.5'
+    newTag: '1.1.4'
 
   # Skema
   - name: skema-py-image
