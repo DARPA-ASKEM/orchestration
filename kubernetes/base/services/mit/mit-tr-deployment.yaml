@@ -24,7 +24,7 @@ spec:
         - name: mit-tr
           image: mit-tr-image
           env:
-            - name: OPENAI_API_KEY
+            - name: CHAT_GPT_KEY
               valueFrom:
                 secretKeyRef:
                   name: mit-proxy-secrets
