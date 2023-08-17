@@ -19,3 +19,11 @@ spec:
               value: 'False'
             - name: PYCIEMSS_OUTPUT_FILEPATH
               value: result.csv
+            - name: RABBITMQ_HOST
+              value: '10.1.8.64'
+            - name: RABBITMQ_PORT
+              value: '5672'
+            - name: RABBITMQ_USERNAME
+              value: 'terarium'
+            - name: RABBITMQ_PASSWORD
+              value: 'terarium123'
