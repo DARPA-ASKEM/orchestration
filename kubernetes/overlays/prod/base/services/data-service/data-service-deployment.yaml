@@ -90,6 +90,11 @@ spec:
                 secretKeyRef:
                   name: data-service-s3
                   key: aws-results-path
+            - name: S3_CODE_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-code-path
             - name: ES_SCHEME
               value: https
             - name: ES_USERNAME
@@ -186,6 +191,11 @@ spec:
                 secretKeyRef:
                   name: data-service-s3
                   key: aws-artifact-path
+            - name: S3_CODE_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-code-path
             - name: ES_SCHEME
               value: https
             - name: ES_USERNAME
