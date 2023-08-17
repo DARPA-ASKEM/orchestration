@@ -77,6 +77,8 @@ spec:
               value: "artifacts"
             - name: S3_RESULTS_PATH
               value: "simulations"
+            - name: S3_CODE_PATH
+              value: "code"
       containers:
         - name: data-service
           imagePullPolicy: Always
@@ -141,3 +143,5 @@ spec:
               value: "artifacts"
             - name: S3_RESULTS_PATH
               value: "simulations"
+            - name: S3_CODE_PATH
+              value: "code"
