@@ -67,6 +67,17 @@ spec:
                 port:
                   number: 3981
 
+    - host: "mit-tr.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mit-tr
+                port:
+                  number: 4046
+
     - host: "jupyter-llm.staging.terarium.ai"
       http:
         paths:
@@ -174,6 +185,7 @@ spec:
         - "jupyter-llm.staging.terarium.ai"
         - "message-queue.staging.terarium.ai"
         - "mit-proxy.staging.terarium.ai"
+        - "mit-tr.staging.terarium.ai"
         - "model-service.staging.terarium.ai"
         - "pyciemss.staging.terarium.ai"
         - "simulation-service.staging.terarium.ai"
