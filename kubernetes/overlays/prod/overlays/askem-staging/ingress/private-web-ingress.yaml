@@ -76,7 +76,7 @@ spec:
               service:
                 name: mit-tr
                 port:
-                  number: 8000
+                  number: 4046
 
     - host: "jupyter-llm.staging.terarium.ai"
       http:
