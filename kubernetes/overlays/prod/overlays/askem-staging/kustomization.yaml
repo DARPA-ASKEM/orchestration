@@ -32,6 +32,7 @@ patches:
   - path: services/jupyter-llm/jupyter-llm-service.yaml
   - path: services/message-queue/message-queue-service.yaml
   - path: services/mit/mit-proxy-service.yaml
+  - path: services/mit/mit-tr-service.yaml
   - path: services/model-service/model-service-service.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-service.yaml
