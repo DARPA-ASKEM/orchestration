@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hmi-extraction-service
+  name: skema-unified
 spec:
   strategy:
     type: RollingUpdate

@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mit-tr
+  labels:
+    software.uncharted.terarium/name: mit-tr
+    software.uncharted.terarium/component: tr
+    software.uncharted.terarium/service: mit-tr
+    software.uncharted.terarium/part-of: services
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: '/ping'
+spec:
+  ports:
+    - name: 4046-tcp
+      port: 4046
+      protocol: TCP
+      targetPort: 8000
+  selector:
+    software.uncharted.terarium/name: mit-tr
+status:
+  loadBalancer: {}

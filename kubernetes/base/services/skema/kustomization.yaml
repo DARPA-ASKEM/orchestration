@@ -12,3 +12,7 @@ resources:
   - skema-eq2mml-service.yaml
   - skema-mathjax-deployment.yaml
   - skema-mathjax-service.yaml
+  - skema-tr-deployment.yaml
+  - skema-tr-service.yaml
+  - skema-unified-deployment.yaml
+  - skema-unified-service.yaml

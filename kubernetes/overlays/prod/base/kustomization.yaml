@@ -8,15 +8,15 @@ resources:
   - ../../../base/hmi/documentation
   - ../../../base/hmi/server
   - ../../../base/services/data-service
-  - ../../../base/services/hmi-extraction-service
   - ../../../base/services/funman
   - ../../../base/services/jupyter-llm
   - ../../../base/services/message-queue
+  - ../../../base/services/mit
   - ../../../base/services/model-service
   - ../../../base/services/pyciemss-service
-  - ../../../base/services/skema
-  - ../../../base/services/mit
   - ../../../base/services/simulation-service
+  - ../../../base/services/skema
+  - ../../../base/services/ta1-service
 patches:
   - path: gateway/gateway-admin-keycloak-deployment.yaml
   - path: gateway/gateway-admin-keycloak-ui-deployment.yaml
@@ -29,12 +29,12 @@ patches:
   - path: hmi/server/hmi-server-deployment.yaml
   - path: services/data-service/data-service-deployment.yaml
   - path: services/data-service/data-service-graphdb-deployment.yaml
-  - path: services/hmi-extraction-service/hmi-extraction-service-deployment.yaml
+  - path: services/funman/funman-deployment.yaml
+  - path: services/funman/funman-service.yaml
   - path: services/jupyter-llm/jupyter-llm-deployment.yaml
   - path: services/message-queue/message-queue-deployment.yaml
   - path: services/mit/mit-proxy-deployment.yaml
-  - path: services/funman/funman-deployment.yaml
-  - path: services/funman/funman-service.yaml
+  - path: services/mit/mit-tr-deployment.yaml
   - path: services/model-service/model-service-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
@@ -44,6 +44,10 @@ patches:
   - path: services/skema/skema-memgraph-deployment.yaml
   - path: services/skema/skema-py-deployment.yaml
   - path: services/skema/skema-rs-deployment.yaml
+  - path: services/skema/skema-unified-deployment.yaml
+  - path: services/ta1-service/ta1-service-api-deployment.yaml
+  - path: services/ta1-service/ta1-service-worker-deployment.yaml
+
 configMapGenerator:
   - files:
       - gateway/httpd/htdocs/silent-check-sso.html
@@ -53,6 +57,9 @@ configMapGenerator:
       - gateway/keycloak/realm/master-realm.json
       - gateway/keycloak/realm/master-users-0.json
     name: gateway-keycloak-realm
+  - files:
+      - gateway/keystore/cacerts
+    name: gateway-keystore
   - files:
       - gateway/certificates/cert.pem
       - gateway/certificates/key.pem

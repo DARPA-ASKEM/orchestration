@@ -1,0 +1,15 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ta1-service-api
+spec:
+  template:
+    spec:
+      containers:
+        - name: ta1-service-api
+          env:
+            - name: REDIS_HOST
+              value: redis-2.staging.terarium.ai
+            - name: REDIS_PORT
+              value: '6379'

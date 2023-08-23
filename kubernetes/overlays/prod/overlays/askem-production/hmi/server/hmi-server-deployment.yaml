@@ -15,3 +15,5 @@ spec:
               value: https://app.terarium.ai/chatty/
             - name: TGPT_WSURL
               value: wss://app.terarium.ai/chatty_ws/
+            - name: GOOGLEANALYTICS_ID
+              value: G-FQ1QYJX1F7

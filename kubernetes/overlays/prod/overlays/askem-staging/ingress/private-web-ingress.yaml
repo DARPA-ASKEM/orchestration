@@ -67,16 +67,16 @@ spec:
                 port:
                   number: 3981
 
-    - host: "hmi-extraction-service.staging.terarium.ai"
+    - host: "mit-tr.staging.terarium.ai"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: hmi-extraction-service
+                name: mit-tr
                 port:
-                  number: 5000
+                  number: 4046
 
     - host: "jupyter-llm.staging.terarium.ai"
       http:
@@ -144,17 +144,52 @@ spec:
                 port:
                   number: 4040
 
+    - host: "ta1-service.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ta1-service-api
+                port:
+                  number: 3060
+
+    - host: "skema-unified.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: skema-unified
+                port:
+                  number: 4045
+
+    - host: "funman.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: funman
+                port:
+                  number: 8190
   tls:
     - hosts:
         - "app.staging.terarium.ai"
         - "data-service.staging.terarium.ai"
         - "documentation.staging.terarium.ai"
-        - "hmi-extraction-service.staging.terarium.ai"
+        - "funman.staging.terarium.ai"
         - "jupyter-llm.staging.terarium.ai"
         - "message-queue.staging.terarium.ai"
         - "mit-proxy.staging.terarium.ai"
+        - "mit-tr.staging.terarium.ai"
         - "model-service.staging.terarium.ai"
         - "pyciemss.staging.terarium.ai"
         - "simulation-service.staging.terarium.ai"
         - "skema-py.staging.terarium.ai"
         - "skema-rs.staging.terarium.ai"
+        - "skema-unified.staging.terarium.ai"
+        - "ta1-service.staging.terarium.ai"

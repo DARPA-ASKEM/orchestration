@@ -35,6 +35,8 @@ spec:
               value: http://gateway-keycloak:8079/
             - name: LOCATION_API_URL
               value: http://$(LOCALHOST):3000/api/
+            - name: CONFIGURATION_API_URL
+              value: http://$(LOCALHOST):3000/configuration/
             - name: LOCATION_APP_URL
               value: http://$(LOCALHOST):8080/app/
             - name: LOCATION_LLM_URL

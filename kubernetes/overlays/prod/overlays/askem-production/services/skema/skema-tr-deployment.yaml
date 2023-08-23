@@ -1,0 +1,13 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skema-tr
+spec:
+  template:
+    spec:
+      tolerations:
+        - key: "workload"
+          operator: "Equal"
+          value: "skema-text-reading"
+          effect: "NoSchedule"

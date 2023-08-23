@@ -10,6 +10,8 @@ spec:
       containers:
         - name: gateway-admin-keycloak
           env:
+            - name: JAVA_OPTS
+              value: "-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Djavax.net.ssl.trustStore=/keystore/cacerts"
             - name: realm
               value: Uncharted
             - name: keycloak-service-url
@@ -31,5 +33,12 @@ spec:
                 secretKeyRef:
                   name: keycloak-admin-service-account-creds
                   key: password
+          volumeMounts:
+            - name: keystore-volume
+              mountPath: /keystore
           resources: {}
+      volumes:
+        - name: keystore-volume
+          configMap:
+            name: gateway-keystore
 status: {}

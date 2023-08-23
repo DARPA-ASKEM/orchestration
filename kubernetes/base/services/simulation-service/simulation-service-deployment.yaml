@@ -9,7 +9,7 @@ metadata:
     software.uncharted.terarium/service: simulation
     software.uncharted.terarium/part-of: services
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       software.uncharted.terarium/name: simulation-service

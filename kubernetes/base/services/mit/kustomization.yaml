@@ -4,3 +4,5 @@ kind: Kustomization
 resources:
   - mit-proxy-deployment.yaml
   - mit-proxy-service.yaml
+  - mit-tr-deployment.yaml
+  - mit-tr-service.yaml
