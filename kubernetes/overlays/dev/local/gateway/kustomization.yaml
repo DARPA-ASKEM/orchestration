@@ -13,6 +13,8 @@ patches:
   - path: gateway-httpd-service.yaml
   - path: gateway-keycloak-deployment.yaml
   - path: gateway-keycloak-service.yaml
+  - path: gateway-spicedb-deployment.yaml
+  - path: gateway-spicedb-service.yaml
 configMapGenerator:
   - files:
       - keycloak/realm/Terarium-realm.json
@@ -56,3 +58,6 @@ images:
   - name: terarium-login-theme-image
     newName: ghcr.io/darpa-askem/terarium-login-theme
     newTag: latest
+  - name: gateway-spicedb-image
+    newName: ghcr.io/authzed/spicedb
+    newTag: 'v1.24.0'

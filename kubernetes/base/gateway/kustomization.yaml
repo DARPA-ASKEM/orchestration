@@ -10,6 +10,8 @@ resources:
   - gateway-httpd-service.yaml
   - gateway-keycloak-deployment.yaml
   - gateway-keycloak-service.yaml
+  - gateway-spicedb-deployment.yaml
+  - gateway-spicedb-service.yaml
 configMapGenerator:
   - files:
       - httpd/config/000-default.conf
