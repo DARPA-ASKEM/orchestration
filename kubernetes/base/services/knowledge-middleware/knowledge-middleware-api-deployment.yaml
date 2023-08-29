@@ -2,27 +2,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ta1-service-api
+  name: knowledge-middleware-api
   labels:
-    software.uncharted.terarium/name: ta1-service-api
+    software.uncharted.terarium/name: knowledge-middleware-api
     software.uncharted.terarium/component: api
-    software.uncharted.terarium/service: ta1-service
+    software.uncharted.terarium/service: knowledge-middleware
     software.uncharted.terarium/part-of: services
 spec:
   replicas: 1
   selector:
     matchLabels:
-      software.uncharted.terarium/name: ta1-service-api
+      software.uncharted.terarium/name: knowledge-middleware-api
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        software.uncharted.terarium/name: ta1-service-api
+        software.uncharted.terarium/name: knowledge-middleware-api
     spec:
       containers:
-        - name: ta1-service-api
-          image: ta1-service-api-image
+        - name: knowledge-middleware-api
+          image: knowledge-middleware-api-image
           ports:
             - containerPort: 8000
           resources: {}
