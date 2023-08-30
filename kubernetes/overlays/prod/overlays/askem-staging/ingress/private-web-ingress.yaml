@@ -144,14 +144,14 @@ spec:
                 port:
                   number: 4040
 
-    - host: "ta1-service.staging.terarium.ai"
+    - host: "knowledge-middleware.staging.terarium.ai"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: ta1-service-api
+                name: knowledge-middleware-api
                 port:
                   number: 3060
 
@@ -192,4 +192,4 @@ spec:
         - "skema-py.staging.terarium.ai"
         - "skema-rs.staging.terarium.ai"
         - "skema-unified.staging.terarium.ai"
-        - "ta1-service.staging.terarium.ai"
+        - "knowledge-middleware.staging.terarium.ai"

@@ -24,9 +24,9 @@ patches:
   - path: hmi/server/hmi-server-deployment.yaml
   - path: services/data-service/data-service-deployment.yaml
   - path: services/data-service/data-service-service.yaml
-  - path: services/ta1-service/ta1-service-api-deployment.yaml
-  - path: services/ta1-service/ta1-service-api-service.yaml
-  - path: services/ta1-service/ta1-service-worker-deployment.yaml
+  - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
+  - path: services/knowledge-middleware/knowledge-middleware-api-service.yaml
+  - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
   - path: services/funman/funman-deployment.yaml
   - path: services/jupyter-llm/jupyter-llm-deployment.yaml
   - path: services/jupyter-llm/jupyter-llm-service.yaml
@@ -148,10 +148,10 @@ images:
     newName: ghcr.io/darpa-askem/funman-api
     newTag: '1.6.0'
 
-  # ta1 service
-  - name: ta1-service-api-image
-    newName: ghcr.io/darpa-askem/ta1-service-api
+  # knowledge middleware
+  - name: knowledge-middleware-api-image
+    newName: ghcr.io/darpa-askem/knowledge-middleware-api
     newTag: 'latest'
-  - name: ta1-service-worker-image
-    newName: ghcr.io/darpa-askem/ta1-service-worker
+  - name: knowledge-middleware-worker-image
+    newName: ghcr.io/darpa-askem/knowledge-middleware-worker
     newTag: 'latest'

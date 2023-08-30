@@ -2,27 +2,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ta1-service-worker
+  name: knowledge-middleware-worker
   labels:
-    software.uncharted.terarium/name: ta1-service-worker
+    software.uncharted.terarium/name: knowledge-middleware-worker
     software.uncharted.terarium/component: worker
-    software.uncharted.terarium/service: ta1-service
+    software.uncharted.terarium/service: knowledge-middleware
     software.uncharted.terarium/part-of: services
 spec:
   replicas: 1
   selector:
     matchLabels:
-      software.uncharted.terarium/name: ta1-service-worker
+      software.uncharted.terarium/name: knowledge-middleware-worker
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        software.uncharted.terarium/name: ta1-service-worker
+        software.uncharted.terarium/name: knowledge-middleware-worker
     spec:
       containers:
-        - name: ta1-service-worker
-          image: ta1-service-worker-image
+        - name: knowledge-middleware-worker
+          image: knowledge-middleware-worker-image
           ports:
             - containerPort: 8080
           resources: {}
