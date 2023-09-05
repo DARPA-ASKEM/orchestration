@@ -240,7 +240,7 @@ down)
 				echo "Tearing down CIEMSS on localhost..."
 				kubectl kustomize ./overlays/dev/local/services/pyciemss-service | kubectl delete --filename -
 				;;
-		
+
 			funman)
 				echo "Launching FUNMAN on localhost..."
 				kubectl kustomize ./overlays/dev/local/services/funman | kubectl delete --filename -
@@ -319,10 +319,15 @@ help)
 	SERVICES include:
 			hmi-client
 			hmi-server
-			hmi-postgres
+			user-store
+			message-queue
 			data-service
+			pyciemss-service
+			funman
+			juypter-llm
 			model-service
 			gateway
+			redis
 
   OPTIONS include
       -h | --help            Display this help
