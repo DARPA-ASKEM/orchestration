@@ -90,7 +90,6 @@ with Diagram("Terarium System Architecture", show=True,
 		with Cluster("Knowledge Services"):
 			knowledge_middleware_api = Pod("Knowledge Middleware API")
 			knowledge_middleware_worker = Pod("Knowledge Middleware Worker")
-			skema_unified = Pod("Skema Unified")
 			skema_rs = Pod("Skema RS")
 			skema_tr = Pod("Skema TR")
 			mit_tr = Pod("MIT TR")
@@ -156,15 +155,12 @@ with Diagram("Terarium System Architecture", show=True,
 	keycloak >> Edge() << ingress_keycloak
 	llm >> Edge() >> openai
 	llm >> Edge() >> simulation_service
-	loki	>> Edge() >> es
+	loki >> Edge() >> es
 	pyciemss_api >> Edge() >> redis
 	pyciemss_api >> Edge() >> tds
 	pyciemss_worker >> Edge() >> redis
 	pyciemss_worker >> Edge() >> tds
 	skema_rs >> Edge() >> skema_memgraph
-	skema_unified >> Edge() >> mit_tr
-	skema_unified >> Edge() >> skema_rs
-	skema_unified >> Edge() >> skema_tr
 	tds >> Edge() >> dkg
 	tds >> Edge() >> es
 	tds >> Edge() >> graphdb
