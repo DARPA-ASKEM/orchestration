@@ -155,17 +155,6 @@ spec:
                 port:
                   number: 3060
 
-    - host: "skema-unified.staging.terarium.ai"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: skema-unified
-                port:
-                  number: 4045
-
     - host: "funman.staging.terarium.ai"
       http:
         paths:
@@ -191,5 +180,4 @@ spec:
         - "simulation-service.staging.terarium.ai"
         - "skema-py.staging.terarium.ai"
         - "skema-rs.staging.terarium.ai"
-        - "skema-unified.staging.terarium.ai"
         - "knowledge-middleware.staging.terarium.ai"

@@ -43,7 +43,6 @@ patches:
   - path: services/skema/skema-memgraph-deployment.yaml
   - path: services/skema/skema-py-deployment.yaml
   - path: services/skema/skema-rs-deployment.yaml
-  - path: services/skema/skema-unified-deployment.yaml
   - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
   - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
 

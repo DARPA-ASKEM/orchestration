@@ -12,5 +12,3 @@ resources:
   - skema-mathjax-service.yaml
   - skema-tr-deployment.yaml
   - skema-tr-service.yaml
-  - skema-unified-deployment.yaml
-  - skema-unified-service.yaml
