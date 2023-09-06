@@ -115,7 +115,6 @@ with Diagram("Terarium System Architecture", show=True,
 
 	with Cluster("TA1 External Services"):
 		skema_unified_external = Server("TA1 Unified")
-		mit_tr_external = Server("MIT TR")
 
 	with Cluster("Web Tier"):
 		with Cluster("Users"):
@@ -127,7 +126,7 @@ with Diagram("Terarium System Architecture", show=True,
 	# Connections
 	knowledge_middleware_api >> Edge() >> redis
 	knowledge_middleware_worker >> Edge() >> cosmos
-	knowledge_middleware_worker >> Edge() >> mit_tr_external
+	knowledge_middleware_worker >> Edge() >> mit_tr
 	knowledge_middleware_worker >> Edge() >> redis
 	knowledge_middleware_worker >> Edge() >> skema_rs
 	knowledge_middleware_worker >> Edge() >> skema_unified_external
@@ -156,7 +155,7 @@ with Diagram("Terarium System Architecture", show=True,
 	keycloak >> Edge() << ingress_keycloak
 	llm >> Edge() >> openai
 	llm >> Edge() >> simulation_service
-	loki	>> Edge() >> es
+	loki >> Edge() >> es
 	pyciemss_api >> Edge() >> redis
 	pyciemss_api >> Edge() >> tds
 	pyciemss_worker >> Edge() >> redis
