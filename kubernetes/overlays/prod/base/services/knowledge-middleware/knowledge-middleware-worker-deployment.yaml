@@ -24,23 +24,3 @@ spec:
                 secretKeyRef:
                   name: mit-proxy-secrets
                   key: chatgptkey
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: data-service-s3
-                  key: aws-access-key-id
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: data-service-s3
-                  key: aws-secret-access-key
-            - name: AWS_REGION
-              valueFrom:
-                secretKeyRef:
-                  name: data-service-s3
-                  key: aws-region
-            - name: BUCKET
-              valueFrom:
-                secretKeyRef:
-                  name: data-service-s3
-                  key: aws-dataset-bucket
