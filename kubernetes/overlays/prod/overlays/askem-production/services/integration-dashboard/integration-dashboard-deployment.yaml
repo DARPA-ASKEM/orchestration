@@ -50,7 +50,7 @@ spec:
             - name: TA1_UNIFIED_URL
               value: 'https://api.askem.lum.ai'
             - name: MIT_TR_URL
-              value: 'http://54.227.237.7'
+              value: 'http://mit-tr:4046'
           resources: {}
       imagePullSecrets:
         - name: ghcr-cred
