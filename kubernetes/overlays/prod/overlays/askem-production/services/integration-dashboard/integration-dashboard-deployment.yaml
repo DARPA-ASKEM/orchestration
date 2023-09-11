@@ -3,13 +3,27 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: integration-dashboard
+  labels:
+    software.uncharted.terarium/name: integration-dashboard
+    software.uncharted.terarium/service: integration-dashboard
+    software.uncharted.terarium/part-of: services
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: integration-dashboard
   strategy:
     type: RollingUpdate
   template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: integration-dashboard
     spec:
       containers:
         - name: integration-dashboard
+          image: integration-dashboard-image
+          ports:
+            - containerPort: 8051
           env:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
@@ -37,3 +51,8 @@ spec:
               value: 'https://api.askem.lum.ai'
             - name: MIT_TR_URL
               value: 'http://54.227.237.7'
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}
