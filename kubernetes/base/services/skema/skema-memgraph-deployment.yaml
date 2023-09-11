@@ -23,6 +23,9 @@ spec:
       containers:
         - name: skema-memgraph
           image: skema-memgraph-image
+          env:
+            - name: MEMGRAPH
+              value: --memory-limit=3000 --log-level=TRACE
           command: ['/usr/bin/supervisord']
           ports:
             - containerPort: 7687
