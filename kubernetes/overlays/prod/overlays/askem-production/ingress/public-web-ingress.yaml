@@ -33,7 +33,7 @@ spec:
                 name: terarium-docs
                 port:
                   number: 8000
-    - host: "integration.terarium.ai"
+    - host: "integration-dashboard.terarium.ai"
       http:
         paths:
           - path: /
@@ -47,4 +47,4 @@ spec:
     - hosts:
         - "app.terarium.ai"
         - "documentation.terarium.ai"
-        - "integration.terarium.ai"
+        - "integration-dashboard.terarium.ai"
