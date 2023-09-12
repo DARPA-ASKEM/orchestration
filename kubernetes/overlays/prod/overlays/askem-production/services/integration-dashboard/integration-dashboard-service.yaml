@@ -3,5 +3,16 @@ apiVersion: v1
 kind: Service
 metadata:
   name: integration-dashboard
+  labels:
+    software.uncharted.terarium/name: integration-dashboard
+    software.uncharted.terarium/service: integration-dashboard
+    software.uncharted.terarium/part-of: services
 spec:
+  ports:
+    - name: integration-dashboard-svc-port
+      port: 8501
+      protocol: TCP
+      targetPort: 8501
+  selector:
+    software.uncharted.terarium/name: integration-dashboard
   type: NodePort
