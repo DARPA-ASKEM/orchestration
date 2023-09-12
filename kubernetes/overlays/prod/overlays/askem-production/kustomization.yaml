@@ -65,7 +65,7 @@ images:
     newTag: 'latest'
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
-    newTag: '1.2.0'
+    newTag: 'latest'
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
     newTag: 'latest'
