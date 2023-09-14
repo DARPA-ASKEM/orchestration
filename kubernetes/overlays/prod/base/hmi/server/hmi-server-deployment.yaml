@@ -15,8 +15,8 @@ spec:
               value: 'true'
             - name: data-service
               value: data-service
-            - name: ta1-service-url
-              value: http://ta1-service-api:3060
+            - name: KNOWLEDGE_MIDDLEWARE_MP_REST_URL
+              value: http://knowledge-middleware-api:3060
             - name: pyciemss-api
               value: pyciemss-api
             - name: SKEMA_MP_REST_URL

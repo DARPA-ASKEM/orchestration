@@ -27,7 +27,7 @@ spec:
             - name: DATA_SERVICE_URL
               value: http://data-service:3020
             - name: JUPYTER_SERVER
-              value: http://jupyter-llm:8888
+              value: http://jupyter-llm:3050
             - name: SIMULATION_SCHEDULER_URL
               value: http://simulation-service:3030
             - name: JUPYTER_TOKEN

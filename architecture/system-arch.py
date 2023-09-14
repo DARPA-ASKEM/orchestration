@@ -29,7 +29,7 @@ graph_attr = {
     "ranksep": "2.0",         # Adjust the space between ranks of nodes
     "margin": "0.5",          # Margin around the graph
     "pad": "0.5",             # Padding between the graph and the margin
-    "dpi": "120" 	
+    "dpi": "120"
 }
 
 node_attr = {
@@ -50,8 +50,8 @@ edge_attr = {
 }
 
 # Nodes
-with Diagram("Terarium System Architecture", show=True, 
-	     graph_attr=graph_attr, 
+with Diagram("Terarium System Architecture", show=True,
+	     graph_attr=graph_attr,
 		 node_attr=node_attr,
 		 edge_attr=edge_attr):
 	with Cluster("Logging and Monitoring"):
@@ -87,9 +87,9 @@ with Diagram("Terarium System Architecture", show=True,
 			pyciemss_worker = Pod("pyciemss Worker")
 			simulation_service = Pod("Simulation Service")
 
-		with Cluster("TA1 Services"):
-			ta1_service_api = Pod("TA1 Service API")
-			ta1_service_worker = Pod("TA1 Service Worker")
+		with Cluster("Knowledge Services"):
+			knowledge_middleware_api = Pod("Knowledge Middleware API")
+			knowledge_middleware_worker = Pod("Knowledge Middleware Worker")
 			skema_unified = Pod("Skema Unified")
 			skema_rs = Pod("Skema RS")
 			skema_tr = Pod("Skema TR")
@@ -115,7 +115,6 @@ with Diagram("Terarium System Architecture", show=True,
 
 	with Cluster("TA1 External Services"):
 		skema_unified_external = Server("TA1 Unified")
-		mit_tr_external = Server("MIT TR")
 
 	with Cluster("Web Tier"):
 		with Cluster("Users"):
@@ -125,13 +124,13 @@ with Diagram("Terarium System Architecture", show=True,
 			admin_ui = Client("Admin UI")
 
 	# Connections
-	ta1_service_api >> Edge() >> redis
-	ta1_service_worker >> Edge() >> cosmos
-	ta1_service_worker >> Edge() >> mit_tr_external
-	ta1_service_worker >> Edge() >> redis
-	ta1_service_worker >> Edge() >> skema_rs
-	ta1_service_worker >> Edge() >> skema_unified_external
-	ta1_service_worker << Edge() >> tds
+	knowledge_middleware_api >> Edge() >> redis
+	knowledge_middleware_worker >> Edge() >> cosmos
+	knowledge_middleware_worker >> Edge() >> mit_tr
+	knowledge_middleware_worker >> Edge() >> redis
+	knowledge_middleware_worker >> Edge() >> skema_rs
+	knowledge_middleware_worker >> Edge() >> skema_unified_external
+	knowledge_middleware_worker << Edge() >> tds
 	gateway >> Edge() << ingress_app
 	gateway >> Edge() << ingress_docs
 	gateway >> Edge() << keycloak
@@ -149,14 +148,14 @@ with Diagram("Terarium System Architecture", show=True,
 	hmi_server >> Edge() >> pyciemss_api
 	hmi_server >> Edge() >> simulation_service
 	hmi_server >> Edge() >> xdd
-	hmi_extraction_service << Edge() >> ta1_service_api
+	hmi_extraction_service << Edge() >> knowledge_middleware_api
 	ingress_app >> Edge() << hmi_client
 	ingress_docs >> Edge() << docs
 	ingress_keycloak >> Edge() << admin_ui
 	keycloak >> Edge() << ingress_keycloak
 	llm >> Edge() >> openai
 	llm >> Edge() >> simulation_service
-	loki	>> Edge() >> es
+	loki >> Edge() >> es
 	pyciemss_api >> Edge() >> redis
 	pyciemss_api >> Edge() >> tds
 	pyciemss_worker >> Edge() >> redis

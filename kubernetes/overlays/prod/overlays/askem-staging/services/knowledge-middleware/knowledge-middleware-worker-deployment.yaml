@@ -2,12 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ta1-service-api
+  name: knowledge-middleware-worker
 spec:
   template:
     spec:
       containers:
-        - name: ta1-service-api
+        - name: knowledge-middleware-worker
           env:
             - name: REDIS_HOST
               value: redis-2.staging.terarium.ai

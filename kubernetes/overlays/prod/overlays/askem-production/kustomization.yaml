@@ -18,6 +18,8 @@ resources:
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
   - secrets/secrets-xdd-api-key.yaml
+  - services/integration-dashboard/integration-dashboard-deployment.yaml
+  - services/integration-dashboard/integration-dashboard-service.yaml
 patches:
   - path: gateway/gateway-httpd-deployment.yaml
   - path: gateway/gateway-keycloak-deployment.yaml
@@ -25,8 +27,8 @@ patches:
   - path: hmi/server/hmi-server-deployment.yaml
   - path: services/data-service/data-service-deployment.yaml
   - path: services/data-service/data-service-service.yaml
-  - path: services/ta1-service/ta1-service-api-deployment.yaml
-  - path: services/ta1-service/ta1-service-worker-deployment.yaml
+  - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
+  - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
   - path: services/jupyter-llm/jupyter-llm-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
@@ -62,29 +64,29 @@ images:
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: '2.7.11'
+    newTag: 'latest'
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
-    newTag: '1.2.0'
+    newTag: 'latest'
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: '2.7.12'
+    newTag: 'latest'
 
   # Data Service
   - name: data-service-image
     newName: ghcr.io/darpa-askem/data-service
-    newTag: '0.5.10'
+    newTag: 'latest'
   - name: data-service-graphdb-image
     newName: ghcr.io/darpa-askem/data-service-graphdb
     newTag: '5.3.0.3'
   - name: data-service-migrations-image
     newName: ghcr.io/darpa-askem/data-service-migrations
-    newTag: '0.5.10'
+    newTag: 'latest'
 
   # Model Service
   - name: model-service-image
     newName: ghcr.io/darpa-askem/model-service
-    newTag: '1.7.0'
+    newTag: 'latest'
 
   # Message queue
   - name: rabbitmq-image
@@ -94,15 +96,15 @@ images:
   # Jupyter LLM service
   - name: jupyter-llm-image
     newName: ghcr.io/darpa-askem/jupyter-llm
-    newTag: '1.1.5'
+    newTag: 'latest'
 
   # Skema
   - name: skema-py-image
     newName: ghcr.io/darpa-askem/skema-py
-    newTag: '0.0.13'
+    newTag: 'latest'
   - name: skema-rs-image
     newName: ghcr.io/darpa-askem/skema-rs
-    newTag: '0.0.13'
+    newTag: 'latest'
   - name: skema-memgraph-image
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
@@ -113,7 +115,7 @@ images:
   # MIT
   - name: mit-proxy-image
     newName: ghcr.io/darpa-askem/mit-proxy
-    newTag: '1.1.0'
+    newTag: 'latest'
   - name: mit-tr-image
     newName: ghcr.io/darpa-askem/mit-tr
     newTag: 'latest'
@@ -121,25 +123,30 @@ images:
   # Simulation Service
   - name: simulation-service-image
     newName: ghcr.io/darpa-askem/simulation-service
-    newTag: '0.16.0'
+    newTag: 'latest'
 
   # PyCIEMSS service
   - name: pyciemss-api-image
     newName: ghcr.io/darpa-askem/pyciemss-api
-    newTag: '1.6.0'
+    newTag: 'latest'
   - name: pyciemss-worker-image
     newName: ghcr.io/darpa-askem/pyciemss-worker
-    newTag: '1.6.0'
+    newTag: 'latest'
 
   # Funman service
   - name: funman-image
     newName: ghcr.io/darpa-askem/funman-api
     newTag: '1.6.0'
 
-  # ta1 service
-  - name: ta1-service-api-image
-    newName: ghcr.io/darpa-askem/ta1-service-api
-    newTag: '1.4.1'
-  - name: ta1-service-worker-image
-    newName: ghcr.io/darpa-askem/ta1-service-worker
-    newTag: '1.4.1'
+  # knowledge middleware
+  - name: knowledge-middleware-api-image
+    newName: ghcr.io/darpa-askem/knowledge-middleware-api
+    newTag: 'latest'
+  - name: knowledge-middleware-worker-image
+    newName: ghcr.io/darpa-askem/knowledge-middleware-worker
+    newTag: 'latest'
+
+  # Integration Dashboard
+  - name: integration-dashboard-image
+    newName: ghcr.io/darpa-askem/integration-dashboard
+    newTag: 'latest'

@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ta1-service-api
+  name: knowledge-middleware-api
 spec:
   strategy:
     type: RollingUpdate
   template:
     spec:
       containers:
-        - name: ta1-service-api
+        - name: knowledge-middleware-api
           env:
             - name: TDS_URL
               value: 'http://data-service:3020'
             - name: SKEMA_RS_URL
               value: 'http://skema-rs:4040'
             - name: MIT_TR_URL
-              value: 'http://3.83.68.208'
+              value: 'http://mit-tr:4046'
             - name: TA1_UNIFIED_URL
               value: 'https://api.askem.lum.ai'
             - name: OPENAI_API_KEY
