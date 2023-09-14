@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak-admin-ui
+  labels:
+    software.uncharted.terarium/name: keycloak-admin-ui
+    software.uncharted.terarium/component: admin-ui
+    software.uncharted.terarium/service: keycloak
+    software.uncharted.terarium/part-of: gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: keycloak-admin-ui
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: keycloak-admin-ui
+    spec:
+      containers:
+        - name: keycloak-admin-ui
+          image: keycloak-admin-ui-image
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources: {}
+      restartPolicy: Always
+status: {}

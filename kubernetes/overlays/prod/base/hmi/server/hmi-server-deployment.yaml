@@ -34,7 +34,7 @@ spec:
             - name: keycloak-service-protocol
               value: https
             - name: keycloak-service-fqdn
-              value: gateway-keycloak
+              value: keycloak
             - name: keycloak-service-port
               value: ""
             - name: quarkus_http_port

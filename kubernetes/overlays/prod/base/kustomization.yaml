@@ -18,12 +18,10 @@ resources:
   - ../../../base/services/skema
   - ../../../base/services/knowledge-middleware
 patches:
-  - path: gateway/gateway-admin-keycloak-deployment.yaml
-  - path: gateway/gateway-admin-keycloak-ui-deployment.yaml
-  - path: gateway/gateway-httpd-deployment.yaml
-  - path: gateway/gateway-httpd-service.yaml
-  - path: gateway/gateway-keycloak-deployment.yaml
-  - path: gateway/gateway-keycloak-service.yaml
+  - path: gateway/keycloak-admin-deployment.yaml
+  - path: gateway/keycloak-admin-ui-deployment.yaml
+  - path: gateway/keycloak-deployment.yaml
+  - path: gateway/keycloak-service.yaml
   - path: hmi/client/hmi-client-deployment.yaml
   - path: hmi/documentation/terarium-docs-deployment.yaml
   - path: hmi/server/hmi-server-deployment.yaml
@@ -50,24 +48,9 @@ patches:
 
 configMapGenerator:
   - files:
-      - gateway/httpd/htdocs/silent-check-sso.html
-      - gateway/httpd/htdocs/styles.css
-    name: gateway-httpd-htdocs
-  - files:
-      - gateway/keycloak/realm/master-realm.json
-      - gateway/keycloak/realm/master-users-0.json
-    name: gateway-keycloak-realm
-  - files:
       - gateway/keystore/cacerts
-    name: gateway-keystore
+    name: keycloak-keystore
   - files:
       - gateway/certificates/cert.pem
       - gateway/certificates/key.pem
-    name: gateway-certificates
-  - files:
-      - gateway/httpd/exec/httpd-foreground
-    name: gateway-httpd-exec
-  - files:
-      - gateway/httpd/config-ssl/ssl-proxy.conf
-      - gateway/httpd/config-ssl/ssl-setup.conf
-    name: gateway-httpd-config-ssl
+    name: keycloak-certificates

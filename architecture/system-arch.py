@@ -69,7 +69,6 @@ with Diagram("Terarium System Architecture", show=True,
 		with Cluster("Middle Tier"):
 			hmi_server = Pod("HMI Server")
 			web_servers = [Pod("Web Server"), Pod("Docs Server")]
-			gateway = Custom("Gateway", "./resources/apache.png")
 			keycloak = Custom("Keycloak", "./resources/keycloak.png")
 			message_queue = Rabbitmq("Message Queue")
 			llm = Pod("Jupyter LLM")
@@ -131,12 +130,9 @@ with Diagram("Terarium System Architecture", show=True,
 	knowledge_middleware_worker >> Edge() >> skema_rs
 	knowledge_middleware_worker >> Edge() >> skema_unified_external
 	knowledge_middleware_worker << Edge() >> tds
-	gateway >> Edge() << ingress_app
-	gateway >> Edge() << ingress_docs
-	gateway >> Edge() << keycloak
 	grafana >> Edge() >> es
 	hmi_server << Edge() >> pyciemss_api
-	hmi_server >> Edge() << gateway
+	hmi_server >> Edge() << ingress_app
 	hmi_server >> Edge() << keycloak
 	hmi_server >> Edge() << llm
 	hmi_server >> Edge() << tds
@@ -171,4 +167,5 @@ with Diagram("Terarium System Architecture", show=True,
 	tds >> Edge() >> postgres
 	tds >> Edge() >> redis
 	tds >> Edge() >> s3
-	web_servers << Edge() << gateway
+	web_servers >> Edge() << ingress_app
+	web_servers >> Edge() << ingress_docs

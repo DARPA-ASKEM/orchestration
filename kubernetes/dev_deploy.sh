@@ -2,9 +2,9 @@
 INTERNAL_ADDRESS="host.docker.internal"
 USE_ADDRESS_OVERRIDE="true"
 
-GATEWAY_HTTPD_REPLACEMENT_FILE="overlays/dev/local/gateway/configmap/host.yaml"
-GATEWAY_HTTPD_REPLACEMENT_FILE_MAC="overlays/dev/local/gateway/configmap/host-mac.yaml"
-GATEWAY_HTTPD_REPLACEMENT_FILE_LINUX="overlays/dev/local/gateway/configmap/host-linux.yaml"
+GATEWAY_REPLACEMENT_FILE="overlays/dev/local/gateway/configmap/host.yaml"
+GATEWAY_REPLACEMENT_FILE_MAC="overlays/dev/local/gateway/configmap/host-mac.yaml"
+GATEWAY_REPLACEMENT_FILE_LINUX="overlays/dev/local/gateway/configmap/host-linux.yaml"
 
 HMI_SERVER_REPLACEMENT_FILE="overlays/dev/local/hmi/server/configmap/host.yaml"
 HMI_SERVER_REPLACEMENT_FILE_MAC="overlays/dev/local/hmi/server/configmap/host-mac.yaml"
@@ -17,13 +17,13 @@ source functions.sh
 
 determine_host_machine_for_pods() {
 	# Assume Mac using docker
-	cp ${GATEWAY_HTTPD_REPLACEMENT_FILE_MAC} ${GATEWAY_HTTPD_REPLACEMENT_FILE}
+	cp ${GATEWAY_REPLACEMENT_FILE_MAC} ${GATEWAY_REPLACEMENT_FILE}
 	cp ${HMI_SERVER_REPLACEMENT_FILE_MAC} ${HMI_SERVER_REPLACEMENT_FILE}
 
 	case $(uname) in
 	"Linux")
 		# Linux
-		cp ${GATEWAY_HTTPD_REPLACEMENT_FILE_LINUX} ${GATEWAY_HTTPD_REPLACEMENT_FILE}
+		cp ${GATEWAY_REPLACEMENT_FILE_LINUX} ${GATEWAY_REPLACEMENT_FILE}
 		cp ${HMI_SERVER_REPLACEMENT_FILE_LINUX} ${HMI_SERVER_REPLACEMENT_FILE}
 
 		echo "You are running Linux"
@@ -36,19 +36,19 @@ determine_host_machine_for_pods() {
 
 		echo "editing files replacing 'localhost' with ${LOCALHOST}"
 
-		sed -i.bak "s/HOST_ADDRESS/${LOCALHOST}/g" ${GATEWAY_HTTPD_REPLACEMENT_FILE}
+		sed -i.bak "s/HOST_ADDRESS/${LOCALHOST}/g" ${GATEWAY_REPLACEMENT_FILE}
 		sed -i.bak "s/HOST_ADDRESS/${LOCALHOST}/g" ${HMI_SERVER_REPLACEMENT_FILE}
 		;;
   "Darwin")
     if [ "${USE_ADDRESS_OVERRIDE}" = "true" ]; then
       echo "true"
-      sed -i.bak "s/HOST_ADDRESS/${INTERNAL_ADDRESS}/g" ${GATEWAY_HTTPD_REPLACEMENT_FILE}
+      sed -i.bak "s/HOST_ADDRESS/${INTERNAL_ADDRESS}/g" ${GATEWAY_REPLACEMENT_FILE}
       sed -i.bak "s/HOST_ADDRESS/${INTERNAL_ADDRESS}/g" ${HMI_SERVER_REPLACEMENT_FILE}
     else
       # find mac ip address
       echo "false"
       IP_ADDRESS=$(getMacIpAddress)
-      sed -i.bak "s/HOST_ADDRESS/${IP_ADDRESS}/g" ${GATEWAY_HTTPD_REPLACEMENT_FILE}
+      sed -i.bak "s/HOST_ADDRESS/${IP_ADDRESS}/g" ${GATEWAY_REPLACEMENT_FILE}
       sed -i.bak "s/HOST_ADDRESS/${IP_ADDRESS}/g" ${HMI_SERVER_REPLACEMENT_FILE}
     fi
 	esac
