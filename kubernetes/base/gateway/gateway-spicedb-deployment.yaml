@@ -22,12 +22,14 @@ spec:
       containers:
         - name: gateway-spicedb
           image: gateway-spicedb-image
-          args: ['serve']
           ports:
             - containerPort: 50051
               protocol: TCP
             - containerPort: 8443
               protocol: TCP
           resources: {}
+      initContainers:
+        - name: gateway-spicedb-migrate
+          image: gateway-spicedb-image
       restartPolicy: Always
 status: {}

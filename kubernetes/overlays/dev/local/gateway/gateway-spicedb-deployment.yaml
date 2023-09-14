@@ -11,10 +11,12 @@ spec:
           args:
             - serve
             - --datastore-engine=postgres
-            - --datastore-conn-uri=postgres://spicedb:spicedb@gateway-spicedb-postgres:5432/spicedb?sslmode=disable
+            - --datastore-conn-uri=$(DATASTORE_CONN_URL)
           env:
             - name: SPICEDB_GRPC_PRESHARED_KEY
               value: somerandomkeyhere
+            - name: DATASTORE_CONN_URL
+              value: postgres://spicedb:spicedb@gateway-spicedb-postgres:5432/spicedb?sslmode=disable
       initContainers:
         - name: gateway-spicedb-migrate
           image: gateway-spicedb-image
@@ -22,7 +24,9 @@ spec:
             - migrate
             - head
             - --datastore-engine=postgres
-            - --datastore-conn-uri=postgres://spicedb:spicedb@gateway-spicedb-postgres:5432/spicedb?sslmode=disable
+            - --datastore-conn-uri=$(DATASTORE_CONN_URL)
           env:
             - name: SPICEDB_GRPC_PRESHARED_KEY
               value: somerandomkeyhere
+            - name: DATASTORE_CONN_URL
+              value: postgres://spicedb:spicedb@gateway-spicedb-postgres:5432/spicedb?sslmode=disable
