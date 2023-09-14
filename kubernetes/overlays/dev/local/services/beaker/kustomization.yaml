@@ -8,5 +8,5 @@ patches:
   - path: beaker-service.yaml
 images:
   - name: beaker-image
-    newName: ghcr.io/darpa-askem/beaker
+    newName: ghcr.io/darpa-askem/beaker-kernel
     newTag: "latest"
