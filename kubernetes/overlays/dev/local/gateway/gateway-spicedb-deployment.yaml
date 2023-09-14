@@ -8,6 +8,14 @@ spec:
     spec:
       containers:
         - name: gateway-spicedb
+          args: ['serve','--datastore-engine=postgres','--datastore-conn-uri=postgres://spicedb:spicedb@gateway-spicedb-postgres:5432/spicedb?sslmode=disable']
+          env:
+            - name: SPICEDB_GRPC_PRESHARED_KEY
+              value: somerandomkeyhere
+      initContainers:
+        - name: gateway-spicedb-migrate
+          image: gateway-spicedb-image
+          args: ['migrate','head','--datastore-engine=postgres','--datastore-conn-uri=postgres://spicedb:spicedb@gateway-spicedb-postgres:5432/spicedb?sslmode=disable']
           env:
             - name: SPICEDB_GRPC_PRESHARED_KEY
               value: somerandomkeyhere

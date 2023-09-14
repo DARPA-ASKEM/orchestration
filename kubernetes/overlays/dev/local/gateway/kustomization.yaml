@@ -5,6 +5,8 @@ resources:
   - ../../../../base/gateway
   - gateway-postgres-deployment.yaml
   - gateway-postgres-service.yaml
+  - gateway-spicedb-postgres-deployment.yaml
+  - gateway-spicedb-postgres-service.yaml
   - configmap/host.yaml
 patches:
   - path: gateway-admin-keycloak-deployment.yaml
