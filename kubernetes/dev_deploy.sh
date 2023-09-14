@@ -160,9 +160,9 @@ up)
 				kubectl kustomize ./overlays/dev/local/services/funman | kubectl apply --filename -
 				;;
 
-			jupyter-llm)
+			beaker)
 				echo "Launching JUPYTER-LLM on localhost..."
-				kubectl kustomize ./overlays/dev/local/services/jupyter-llm | kubectl apply --filename -
+				kubectl kustomize ./overlays/dev/local/services/beaker | kubectl apply --filename -
 				;;
 
 			model-service)
@@ -246,9 +246,9 @@ down)
 				kubectl kustomize ./overlays/dev/local/services/funman | kubectl delete --filename -
 				;;
 
-			jupyter-llm)
+			beaker)
 				echo "Launching JUPYTER-LLM on localhost..."
-				kubectl kustomize ./overlays/dev/local/services/jupyter-llm | kubectl delete --filename -
+				kubectl kustomize ./overlays/dev/local/services/beaker | kubectl delete --filename -
 				;;
 
 			model-service)

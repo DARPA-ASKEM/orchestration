@@ -2,9 +2,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jupyter-llm
+  name: beaker
   labels:
-    software.uncharted.terarium/name: jupyter-llm
+    software.uncharted.terarium/name: beaker
     software.uncharted.terarium/component: jupyter
     software.uncharted.terarium/service: llm
     software.uncharted.terarium/part-of: services
@@ -12,22 +12,22 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      software.uncharted.terarium/name: jupyter-llm
+      software.uncharted.terarium/name: beaker
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        software.uncharted.terarium/name: jupyter-llm
+        software.uncharted.terarium/name: beaker
     spec:
       containers:
-        - name: jupyter-llm
-          image: jupyter-llm-image
+        - name: beaker
+          image: beaker-image
           env:
             - name: DATA_SERVICE_URL
               value: http://data-service:3020
             - name: JUPYTER_SERVER
-              value: http://jupyter-llm:3050
+              value: http://beaker:3050
             - name: SIMULATION_SCHEDULER_URL
               value: http://simulation-service:3030
             - name: JUPYTER_TOKEN

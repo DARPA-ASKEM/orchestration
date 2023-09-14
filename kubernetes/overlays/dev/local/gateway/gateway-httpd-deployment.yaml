@@ -40,9 +40,9 @@ spec:
             - name: LOCATION_APP_URL
               value: http://$(LOCALHOST):8080/app/
             - name: LOCATION_LLM_URL
-              value: http://jupyter-llm:3050/
+              value: http://beaker:3050/
             - name: LOCATION_LLM_WS_URL
-              value: ws://jupyter-llm:3050/
+              value: ws://beaker:3050/
             - name: ADMIN_KEYCLOAK_API_URL
               value: http://gateway-admin-keycloak:8081/ua/api/
             - name: ADMIN_KEYCLOAK_UI_URL
