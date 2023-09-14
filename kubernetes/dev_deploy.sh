@@ -324,7 +324,7 @@ help)
 			data-service
 			pyciemss-service
 			funman
-			juypter-llm
+			beaker
 			model-service
 			gateway
 			redis

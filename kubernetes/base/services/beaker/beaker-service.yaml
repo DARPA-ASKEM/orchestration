@@ -6,7 +6,7 @@ metadata:
   labels:
     software.uncharted.terarium/name: beaker
     software.uncharted.terarium/component: jupyter
-    software.uncharted.terarium/service: llm
+    software.uncharted.terarium/service: beaker
     software.uncharted.terarium/part-of: services
 spec:
   ports:
