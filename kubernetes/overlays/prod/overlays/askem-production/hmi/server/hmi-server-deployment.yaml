@@ -12,8 +12,8 @@ spec:
             - name: realm
               value: Uncharted
             - name: TGPT_APPURL
-              value: https://app.terarium.ai/chatty/
+              value: https://app.terarium.ai/beaker/
             - name: TGPT_WSURL
-              value: wss://app.terarium.ai/chatty_ws/
+              value: wss://app.terarium.ai/beaker_ws/
             - name: GOOGLEANALYTICS_ID
               value: G-FQ1QYJX1F7
