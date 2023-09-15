@@ -13,6 +13,15 @@ spec:
           env:
             - name: SIMSERVICE_TDS_URL
               value: http://data-service:3020
-            # TODO: Remove this env variable once TDS is up-to-date
-            - name: ENABLE_REMOTE_DATA_HANDLING
-              value: "false"
+            - name: RABBITMQ_ENABLED
+              value: true
+            - name: RABBITMQ_LOGIN
+              value: 'terarium'
+            - name: RABBITMQ_PASSWORD
+              value: 'terarium123'
+            - name: RABBITMQ_ROUTE
+              value: 'sciml-queue'
+            - name: RABBITMQ_HOST
+              value: message-queue
+            - name: RABBITMQ_PORT
+              value: '5672'
