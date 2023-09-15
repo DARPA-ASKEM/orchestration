@@ -22,6 +22,6 @@ spec:
             - name: RABBITMQ_ROUTE
               value: 'sciml-queue'
             - name: RABBITMQ_HOST
-              value: message-queue
+              value: 'message-queue'
             - name: RABBITMQ_PORT
               value: '5672'
