@@ -17,6 +17,7 @@ resources:
   - secrets/secrets-neo4j-auth.yaml
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
+  - secrets/secrets-spicedb-shared.yaml
   - secrets/secrets-xdd-api-key.yaml
   - services/integration-dashboard/integration-dashboard-deployment.yaml
   - services/integration-dashboard/integration-dashboard-service.yaml
