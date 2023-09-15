@@ -14,13 +14,25 @@ spec:
             - --datastore-conn-uri=postgres://$(DB_USERNAME):$(DB_PASSWORD)@$(DB_URL_HOST)/spicedb?sslmode=disable
           env:
             - name: SPICEDB_GRPC_PRESHARED_KEY
-              value: rRi76idYiFwYHpTJsG4wNVKKZxPBfbAHzgq3uC9B3WHD8aJAo87.v76jwH8T
+              valueFrom:
+                secretKeyRef:
+                  name: spicedb-shared-key
+                  key: grpc-key
             - name: DB_URL_HOST
-              value: gateway-spicedb-postgres:5432
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: url
             - name: DB_USERNAME
-              value: spicedb
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: username
             - name: DB_PASSWORD
-              value: spicedb
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: password
       initContainers:
         - name: gateway-spicedb-migrate
           image: gateway-spicedb-image
@@ -31,10 +43,22 @@ spec:
             - --datastore-conn-uri=postgres://$(DB_USERNAME):$(DB_PASSWORD)@$(DB_URL_HOST)/spicedb?sslmode=disable
           env:
             - name: SPICEDB_GRPC_PRESHARED_KEY
-              value: rRi76idYiFwYHpTJsG4wNVKKZxPBfbAHzgq3uC9B3WHD8aJAo87.v76jwH8T
+              valueFrom:
+                secretKeyRef:
+                  name: spicedb-shared-key
+                  key: grpc-key
             - name: DB_URL_HOST
-              value: gateway-spicedb-postgres:5432
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: url
             - name: DB_USERNAME
-              value: spicedb
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: username
             - name: DB_PASSWORD
-              value: spicedb
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: password
