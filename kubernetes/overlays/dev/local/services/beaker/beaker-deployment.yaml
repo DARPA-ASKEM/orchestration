@@ -2,12 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jupyter-llm
+  name: beaker
 spec:
   template:
     spec:
       containers:
-        - name: jupyter-llm
+        - name: beaker
           env:
             - name: OPENAI_API_KEY
               valueFrom:
