@@ -15,3 +15,10 @@ spec:
               value: https://app.staging.terarium.ai/chatty/
             - name: TGPT_WSURL
               value: wss://app.staging.terarium.ai/chatty_ws/
+            - name: spicedb-shared-key
+              valueFrom:
+                secretKeyRef:
+                  name: spicedb-shared-key
+                  key: grpc-key
+            - name: spicedb-target
+              value: gateway-spicedb:50051
