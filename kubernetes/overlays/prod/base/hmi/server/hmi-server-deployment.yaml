@@ -64,6 +64,14 @@ spec:
                 secretKeyRef:
                   name: rds-creds
                   key: password
+            - name: terarium-mq-username
+              value: terarium
+            - name: terarium-mq-password
+              value: terarium123
+            - name: terarium-mq-host
+              value: "http://message-queue"
+            - name: terarium-mq-port
+              value: "5672"
             - name: xdd_api_key
               valueFrom:
                 secretKeyRef:
