@@ -27,8 +27,8 @@ patches:
   - path: services/knowledge-middleware/knowledge-middleware-api-service.yaml
   - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
   - path: services/funman/funman-deployment.yaml
-  - path: services/jupyter-llm/jupyter-llm-deployment.yaml
-  - path: services/jupyter-llm/jupyter-llm-service.yaml
+  - path: services/beaker/beaker-deployment.yaml
+  - path: services/beaker/beaker-service.yaml
   - path: services/message-queue/message-queue-service.yaml
   - path: services/mit/mit-proxy-service.yaml
   - path: services/mit/mit-tr-service.yaml
@@ -96,8 +96,8 @@ images:
     newTag: '3.11.13-management-alpine'
 
   # Jupyter LLM service
-  - name: jupyter-llm-image
-    newName: ghcr.io/darpa-askem/jupyter-llm
+  - name: beaker-image
+    newName: ghcr.io/darpa-askem/beaker-kernel
     newTag: 'latest'
 
   # Skema

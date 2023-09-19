@@ -12,6 +12,6 @@ spec:
             - name: realm
               value: Uncharted
             - name: TGPT_APPURL
-              value: https://app.staging.terarium.ai/chatty/
+              value: https://app.staging.terarium.ai/beaker/
             - name: TGPT_WSURL
-              value: wss://app.staging.terarium.ai/chatty_ws/
+              value: wss://app.staging.terarium.ai/beaker_ws/
