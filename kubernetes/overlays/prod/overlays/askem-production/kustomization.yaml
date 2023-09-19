@@ -145,6 +145,9 @@ images:
   - name: knowledge-middleware-worker-image
     newName: ghcr.io/darpa-askem/knowledge-middleware-worker
     newTag: 'latest'
+  - name: knowledge-middleware-report-image
+    newName: ghcr.io/darpa-askem/knowledge-middleware-report
+    newTag: 'latest'
 
   # Integration Dashboard
   - name: integration-dashboard-image
