@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   keycloak:
-    image: ghcr.io/unchartedsoftware/keycloak:0.2.2
+    image: ghcr.io/unchartedsoftware/keycloak:0.3.1
     networks:
       - terarium
     ports:
@@ -30,22 +30,20 @@ services:
       KC_HTTP_ENABLED: 'true'
       KC_HOSTNAME_STRICT: 'false'
       KC_HOSTNAME_STRICT_HTTPS: 'false'
+    volumes:
+      - ./realm:/data
+      - ../../keycloak-theme/terarium:/opt/keycloak/themes/terarium
     depends_on:
       keycloak_init:
         condition: service_completed_successfully
       postgres:
         condition: service_healthy
-    volumes:
-      - ./realm/:/data/
-      - ../../keycloak-theme/terarium:/opt/keycloak/themes/terarium
 
   keycloak_init:
     image: ghcr.io/unchartedsoftware/keycloak:0.3.1
     networks:
       - terarium
     command: ['import', '--dir', '/data', '--override', 'false']
-    volumes:
-      - ./realm:/data
     environment:
       DB_VENDOR: 'POSTGRES'
       DB_URL_HOST: 'postgres'
@@ -55,6 +53,8 @@ services:
       DB_PASSWORD: 'keycloak'
       KEYCLOAK_ADMIN: 'admin'
       KEYCLOAK_ADMIN_PASSWORD: 'admin123'
+    volumes:
+      - ./realm:/data
     depends_on:
       postgres:
         condition: service_healthy

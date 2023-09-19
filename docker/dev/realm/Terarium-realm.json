@@ -651,7 +651,7 @@
       "description": "",
       "rootUrl": "http://localhost:8080",
       "adminUrl": "",
-      "baseUrl": "http://localhost:8080",
+      "baseUrl": "/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
@@ -659,7 +659,7 @@
       "redirectUris": [
         "http://localhost:8080/*",
         "http://localhost:3000/*",
-        "https://oauth.pstmn.io/v1/callback"
+        "https://oauth.pstmn.io/*"
       ],
       "webOrigins": [
         "+"
@@ -678,6 +678,7 @@
         "oidc.ciba.grant.enabled": "false",
         "client.secret.creation.time": "1660649972",
         "backchannel.logout.session.required": "true",
+        "login_theme": "terarium",
         "post.logout.redirect.uris": "+",
         "display.on.consent.screen": "false",
         "oauth2.device.authorization.grant.enabled": "false",
