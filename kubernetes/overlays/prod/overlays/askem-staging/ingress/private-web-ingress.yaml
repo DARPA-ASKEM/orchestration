@@ -55,7 +55,7 @@ spec:
                 name: message-queue
                 port:
                   number: 5672
-    
+
     - host: "message-queue-ui.staging.terarium.ai"
       http:
         paths:
