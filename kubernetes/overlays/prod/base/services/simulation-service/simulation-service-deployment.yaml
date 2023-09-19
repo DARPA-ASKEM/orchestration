@@ -14,7 +14,7 @@ spec:
             - name: SIMSERVICE_TDS_URL
               value: http://data-service:3020
             - name: RABBITMQ_ENABLED
-              value: true
+              value: 'true'
             - name: RABBITMQ_LOGIN
               value: 'terarium'
             - name: RABBITMQ_PASSWORD
