@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: intergration-test-report
+  name: report
 spec:
   schedule: "* * * * *"
   jobTemplate:
@@ -17,7 +17,7 @@ spec:
             - sh
             - -c
             - |
-              kubectl apply -f deployment.yaml
+              kubectl apply -f knowledge-middleware-report-deployment.yaml
               sleep 60s # Adjust this duration as needed
-              kubectl delete deployment my-app
+              kubectl delete deployment knowledge-middleware-report
           restartPolicy: OnFailure
