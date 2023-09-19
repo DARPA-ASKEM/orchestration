@@ -1,0 +1,77 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:14-alpine
+    networks:
+      - terarium
+    ports:
+      - '5433:5432'
+    restart: always
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready', '-d', 'pantera' ]
+      interval: '3s'
+      timeout: '3s'
+      retries: 30
+    user: postgres
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_DB: 'postgres'
+    volumes:
+      - terarium-db:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  rabbitmq:
+    image: ghcr.io/darpa-askem/rabbitmq:3.11.13-management-alpine
+    networks:
+      - terarium
+    ports:
+      - '5672:5672'
+      - '15671:15671'
+      - '15672:15672'
+    restart: always
+    healthcheck:
+      test: ['CMD', 'rabbitmq-diagnostics', '-q', 'ping']
+      interval: '3s'
+      timeout: '3s'
+      retries: 30
+    environment:
+      RABBITMQ_MANAGEMENT_ENABLED: 'true'
+
+  redis:
+    image: ghcr.io/darpa-askem/redis:7.0.12-alpine
+    networks:
+      - terarium
+    ports:
+      - '6379:6379'
+    restart: always
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: '3s'
+      timeout: '3s'
+      retries: 30
+
+  elasticsearch:
+    image: elasticsearch:8.5.3
+    networks:
+      - terarium
+    ports:
+      - '9200:9200'
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      - xpack.security.enabled=false
+      - action.auto_create_index=false
+    healthcheck:
+      test: ['CMD', 'curl', '--head',  '0.0.0.0:9200/_cluster/health?wait_for_status=yellow']
+      interval: '3s'
+      timeout: '3s'
+      retries: 30
+
+volumes:
+  terarium-db:
+    driver: local
+
+networks:
+  terarium:
+    name: terarium

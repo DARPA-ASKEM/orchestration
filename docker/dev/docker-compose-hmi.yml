@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  hmi-client:
+    image: ghcr.io/darpa-askem/hmi-client:latest
+    networks:
+      - terarium
+    ports:
+      - '8080:80'
+    restart: always
+    healthcheck:
+      test: ['CMD', 'curl', '--head', '0.0.0.0:80/healthcheck']
+      interval: '3s'
+      timeout: '3s'
+      retries: 30
+    depends_on:
+      hmi-server:
+        condition: service_healthy
+
+  hmi-server:
+    image: ghcr.io/darpa-askem/hmi-server:latest
+    networks:
+      - terarium
+    ports:
+      - '3000:3000'
+    healthcheck:
+      test: [ 'CMD', 'curl', '--head', '0.0.0.0:3000/actuator/health' ]
+      interval: '3s'
+      timeout: '3s'
+      retries: 30
+    environment:
+      REALM: Uncharted
+      DATA_SERVICE: '{DATA_SERVICE_FQDN}'
+      MODEL_SERVICE: '${MODEL_SERVICE_FQDN}'
+      KEYCLOAK_SERVICE_PROTOCOL: '${KEYCLOAK_SERVICE_PROTOCOL}'
+      KEYCLOAK_SERVICE_FQDN: '${KEYCLOAK_SERVICE_FQDN}'
+      TERARIUM_DB_USER: '${TERARIUM_DB_USERNAME}'
+      TERARIUM_DB_PASSWORD: '${TERARIUM_DB_PASSWORD}'
+      TERARIUM_DB_URL: '${TERARIUM_DB_FQDN}'
+      TERARIUM_MQ_USERNAME: '${TERARIUM_MQ_USERNAME}'
+      TERARIUM_MQ_PASSWORD: '${TERARIUM_MQ_PASSWORD}'
+      TERARIUM_MQ_URL: '${TERARIUM_MQ_FQDN}'
+      XDD_API_KEY: '${XDD_API_KEY}'
+      XDD_ES_KEY: '${XDD_ES_KEY}'
+      TGPT_APPURL: '${TGPT_APP_FQDN}'
+      TGPT_WSURL: '${TGPT_WS_FQDN}'
+    depends_on:
+      keycloak:
+        condition: service_healthy
+
+  hmi-docs:
+    image: ghcr.io/darpa-askem/terarium-docs:latest
+    networks:
+      - terarium
+    ports:
+      - '8081:80'
+    restart: always
+    healthcheck:
+      test: [ 'CMD', 'curl', '--head', '0.0.0.0:80/healthcheck' ]
+      interval: '3s'
+      timeout: '3s'
+      retries: 30
+
+networks:
+  terarium:
+    name: terarium

@@ -1,7 +1,6 @@
 {
   "id": "1318ba72-941d-409c-89ff-fdf7f89a0d10",
-  "realm": "Uncharted",
-  "displayName": "Terarium",
+  "realm": "Terarium",
   "notBefore": 0,
   "defaultSignatureAlgorithm": "RS256",
   "revokeRefreshToken": false,
@@ -511,13 +510,13 @@
       "clientId": "account",
       "name": "${client_account}",
       "rootUrl": "${authBaseUrl}",
-      "baseUrl": "/realms/Uncharted/account/",
+      "baseUrl": "/realms/Terarium/account/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "/realms/Uncharted/account/*"
+        "/realms/Terarium/account/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -555,13 +554,13 @@
       "clientId": "account-console",
       "name": "${client_account-console}",
       "rootUrl": "${authBaseUrl}",
-      "baseUrl": "/realms/Uncharted/account/",
+      "baseUrl": "/realms/Terarium/account/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "/realms/Uncharted/account/*"
+        "/realms/Terarium/account/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -650,16 +649,17 @@
       "clientId": "app",
       "name": "",
       "description": "",
-      "rootUrl": "https://app.staging.terarium.ai",
+      "rootUrl": "http://localhost:8080",
       "adminUrl": "",
-      "baseUrl": "https://app.staging.terarium.ai",
+      "baseUrl": "http://localhost:8080",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://app.staging.terarium.ai/*",
-        "https://app.staging.terarium.ai:443/*"
+        "http://localhost:8080/*",
+        "http://localhost:3000/*",
+        "https://oauth.pstmn.io/v1/callback"
       ],
       "webOrigins": [
         "+"
@@ -811,7 +811,7 @@
       "protocol": "openid-connect",
       "attributes": {
         "post.logout.redirect.uris": "+",
-        "client.secret.creation.time": "1668200254"
+        "client.secret.creation.time": "1677174092"
       },
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": false,
@@ -903,13 +903,13 @@
       "clientId": "security-admin-console",
       "name": "${client_security-admin-console}",
       "rootUrl": "${authAdminUrl}",
-      "baseUrl": "/admin/Uncharted/console/",
+      "baseUrl": "/admin/Terarium/console/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "/admin/Uncharted/console/*"
+        "/admin/Terarium/console/*"
       ],
       "webOrigins": [
         "+"
@@ -1705,7 +1705,7 @@
   "supportedLocales": [],
   "authenticationFlows": [
     {
-      "id": "18ca6e26-8c03-4514-85cf-374838ef585a",
+      "id": "5138df18-6cdc-4fba-b64d-839910ba88dd",
       "alias": "Account verification options",
       "description": "Method with which to verity the existing account",
       "providerId": "basic-flow",
@@ -1731,7 +1731,7 @@
       ]
     },
     {
-      "id": "abadc79f-42ac-44e9-b2c3-1c3d35d86ebe",
+      "id": "ba7812b0-0980-4a0e-8a5a-0a1abf920752",
       "alias": "Authentication Options",
       "description": "Authentication options.",
       "providerId": "basic-flow",
@@ -1765,7 +1765,7 @@
       ]
     },
     {
-      "id": "cd775120-215f-4ba5-937a-ca008566f6ec",
+      "id": "96f264a7-dcba-4ad4-9be7-2a3e983fdb4d",
       "alias": "Browser - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -1791,7 +1791,7 @@
       ]
     },
     {
-      "id": "cf494808-a17f-47dc-afba-5848137e3e8a",
+      "id": "7bf2531e-c389-4603-82ab-5a2f0678d026",
       "alias": "Direct Grant - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -1817,7 +1817,7 @@
       ]
     },
     {
-      "id": "22c39bff-ba08-4652-b6af-c00fb1834250",
+      "id": "f285da67-0c1f-4a04-ba82-4bc3af8948e7",
       "alias": "First broker login - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -1843,7 +1843,7 @@
       ]
     },
     {
-      "id": "c25ac2d1-1ede-42c5-bbf3-9590f0526f79",
+      "id": "39c54420-4730-4a9f-94b6-43d3bdd8607c",
       "alias": "Handle Existing Account",
       "description": "Handle what to do if there is existing account with same email/username like authenticated identity provider",
       "providerId": "basic-flow",
@@ -1869,7 +1869,7 @@
       ]
     },
     {
-      "id": "3cf06e0a-3cc4-47ac-953b-0b0005d35d07",
+      "id": "46bed863-862b-442d-9f26-0355a7da3849",
       "alias": "Reset - Conditional OTP",
       "description": "Flow to determine if the OTP should be reset or not. Set to REQUIRED to force.",
       "providerId": "basic-flow",
@@ -1895,7 +1895,7 @@
       ]
     },
     {
-      "id": "0e878e30-d098-48f0-b704-702b9d163680",
+      "id": "a47ebac8-2a18-4484-8581-605cabb15077",
       "alias": "User creation or linking",
       "description": "Flow for the existing/non-existing user alternatives",
       "providerId": "basic-flow",
@@ -1922,7 +1922,7 @@
       ]
     },
     {
-      "id": "959634bf-e4fa-4cec-a366-4a49ea11735d",
+      "id": "85405a06-1d44-4f33-bd46-f9558d6e581b",
       "alias": "Verify Existing Account by Re-authentication",
       "description": "Reauthentication of existing account",
       "providerId": "basic-flow",
@@ -1948,7 +1948,7 @@
       ]
     },
     {
-      "id": "b4038995-0952-4881-a9c7-a396632e61cd",
+      "id": "875424d3-c0fe-41a9-8473-1d323844113a",
       "alias": "browser",
       "description": "browser based authentication",
       "providerId": "basic-flow",
@@ -1990,7 +1990,7 @@
       ]
     },
     {
-      "id": "41280cfb-87b9-4050-823c-5d8167755d47",
+      "id": "6e8a54a9-4c97-4757-af13-9f3f7632b66f",
       "alias": "clients",
       "description": "Base authentication for clients",
       "providerId": "client-flow",
@@ -2032,7 +2032,7 @@
       ]
     },
     {
-      "id": "e515e425-5b36-48a8-8b7f-48a187ab52c9",
+      "id": "8445ed80-203b-486d-901b-1ab34747231a",
       "alias": "direct grant",
       "description": "OpenID Connect Resource Owner Grant",
       "providerId": "basic-flow",
@@ -2066,7 +2066,7 @@
       ]
     },
     {
-      "id": "b8bfcdb9-312a-4fe2-89ac-69677cb6f962",
+      "id": "241796e0-bcca-428c-a6d1-851357970591",
       "alias": "docker auth",
       "description": "Used by Docker clients to authenticate against the IDP",
       "providerId": "basic-flow",
@@ -2084,7 +2084,7 @@
       ]
     },
     {
-      "id": "aa00927c-7954-4566-b6f7-36d12efe1d4c",
+      "id": "af00de53-c2ed-42c6-8661-de48d7dd6096",
       "alias": "first broker login",
       "description": "Actions taken after first broker login with identity provider account, which is not yet linked to any Keycloak account",
       "providerId": "basic-flow",
@@ -2111,7 +2111,7 @@
       ]
     },
     {
-      "id": "30adb1e3-fa6b-457a-abfc-16efded7345a",
+      "id": "aab958c7-215e-4262-b22e-663292493a90",
       "alias": "forms",
       "description": "Username, password, otp and other auth forms.",
       "providerId": "basic-flow",
@@ -2137,7 +2137,7 @@
       ]
     },
     {
-      "id": "46bbab2e-7ef8-47d3-8815-4c4718aff9ee",
+      "id": "66d64ac7-3565-4db0-85b1-6dab697f58f4",
       "alias": "http challenge",
       "description": "An authentication flow based on challenge-response HTTP Authentication Schemes",
       "providerId": "basic-flow",
@@ -2163,7 +2163,7 @@
       ]
     },
     {
-      "id": "41660a20-c268-4775-93a8-015056116e91",
+      "id": "82d7731a-ca35-4e84-a945-41e7ce60e890",
       "alias": "registration",
       "description": "registration flow",
       "providerId": "basic-flow",
@@ -2182,7 +2182,7 @@
       ]
     },
     {
-      "id": "502905b6-54d6-4691-b047-93d2c079e741",
+      "id": "075db075-3ebe-493b-b3d6-66aaa29b5f67",
       "alias": "registration form",
       "description": "registration form",
       "providerId": "form-flow",
@@ -2224,7 +2224,7 @@
       ]
     },
     {
-      "id": "cf44859c-f4fd-4c4d-814d-b80a71fcda65",
+      "id": "f23449e4-ef06-40bd-a500-97d68d0b7607",
       "alias": "reset credentials",
       "description": "Reset credentials for a user if they forgot their password or something",
       "providerId": "basic-flow",
@@ -2266,7 +2266,7 @@
       ]
     },
     {
-      "id": "c945424d-dbe7-47e2-a171-4aeaa7e3ad95",
+      "id": "0df390af-281e-417b-aa38-59f5f78ec52f",
       "alias": "saml ecp",
       "description": "SAML ECP Profile Authentication Flow",
       "providerId": "basic-flow",
@@ -2286,14 +2286,14 @@
   ],
   "authenticatorConfig": [
     {
-      "id": "c704fa1c-dd86-4100-98b3-f6fb311e3de3",
+      "id": "ee77ba8f-1437-44f9-a5ad-a84effc4a055",
       "alias": "create unique user config",
       "config": {
         "require.password.update.after.registration": "false"
       }
     },
     {
-      "id": "80138b05-22ee-4bea-9bd6-5a26e6a69c91",
+      "id": "6c4bf330-ccdf-466c-95c4-7cc2b4717de4",
       "alias": "review profile config",
       "config": {
         "update.profile.on.first.login": "missing"
