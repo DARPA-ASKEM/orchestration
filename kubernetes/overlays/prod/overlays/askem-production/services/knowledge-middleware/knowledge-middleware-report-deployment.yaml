@@ -1,0 +1,59 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: knowledge-middleware-report
+  labels:
+    software.uncharted.terarium/name: knowledge-middleware-report
+    software.uncharted.terarium/component: report
+    software.uncharted.terarium/service: knowledge-middleware
+    software.uncharted.terarium/part-of: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: knowledge-middleware-report
+  template:
+     metadata:
+      labels:
+        software.uncharted.terarium/name: knowledge-middleware-report
+    spec:
+      containers:
+        - name: knowledge-middleware-report
+          image: knowledge-middleware-report-image
+          ports:
+            - containerPort: 8080
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-access-key-id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-secret-access-key
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-region
+            - name: BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-dataset-bucket
+            - name: TDS_URL
+              value: 'http://data-service:3020'
+            - name: SKEMA_RS_URL
+              value: 'http://skema-rs:4040'
+            - name: MIT_TR_URL
+              value: 'http://mit-tr:4046'
+            - name: TA1_UNIFIED_URL
+              value: 'https://api.askem.lum.ai'
+            - name: MOCK_TA1
+              value: 'FALSE'
+      imagePullSecrets:
+        - name: ghcr-cred
+status: {}
