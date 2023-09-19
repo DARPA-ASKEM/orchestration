@@ -69,7 +69,7 @@ spec:
             - name: terarium-mq-password
               value: terarium123
             - name: terarium-mq-host
-              value: "http://message-queue"
+              value: message-queue
             - name: terarium-mq-port
               value: "5672"
             - name: xdd_api_key
