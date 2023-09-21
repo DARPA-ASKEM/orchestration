@@ -8,4 +8,4 @@ resources:
   - pyciemss-service
   - redis
   - user-store
-  - jupyter-llm
+  - beaker

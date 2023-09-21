@@ -18,6 +18,8 @@ resources:
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
   - secrets/secrets-xdd-api-key.yaml
+  - services/integration-dashboard/integration-dashboard-deployment.yaml
+  - services/integration-dashboard/integration-dashboard-service.yaml
 patches:
   - path: gateway/gateway-httpd-deployment.yaml
   - path: gateway/gateway-keycloak-deployment.yaml
@@ -27,7 +29,7 @@ patches:
   - path: services/data-service/data-service-service.yaml
   - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
   - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
-  - path: services/jupyter-llm/jupyter-llm-deployment.yaml
+  - path: services/beaker/beaker-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
   - path: services/skema/skema-tr-deployment.yaml
@@ -65,7 +67,7 @@ images:
     newTag: 'latest'
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
-    newTag: '1.2.0'
+    newTag: 'latest'
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
     newTag: 'latest'
@@ -92,8 +94,8 @@ images:
     newTag: '3.11.13-management-alpine'
 
   # Jupyter LLM service
-  - name: jupyter-llm-image
-    newName: ghcr.io/darpa-askem/jupyter-llm
+  - name: beaker-image
+    newName: ghcr.io/darpa-askem/beaker-kernel
     newTag: 'latest'
 
   # Skema
@@ -142,4 +144,9 @@ images:
     newTag: 'latest'
   - name: knowledge-middleware-worker-image
     newName: ghcr.io/darpa-askem/knowledge-middleware-worker
+    newTag: 'latest'
+
+  # Integration Dashboard
+  - name: integration-dashboard-image
+    newName: ghcr.io/darpa-askem/integration-dashboard
     newTag: 'latest'

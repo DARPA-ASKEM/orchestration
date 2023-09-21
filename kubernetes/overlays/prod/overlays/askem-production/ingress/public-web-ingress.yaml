@@ -33,7 +33,19 @@ spec:
                 name: terarium-docs
                 port:
                   number: 8000
+
+    - host: "integration-dashboard.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: integration-dashboard
+                port:
+                  number: 8501
   tls:
     - hosts:
         - "app.terarium.ai"
         - "documentation.terarium.ai"
+        - "integration-dashboard.terarium.ai"
