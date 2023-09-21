@@ -2,34 +2,35 @@ version: '3.8'
 
 services:
   data-service-migrations:
-    container_name: data-service-migrations
     image: ghcr.io/darpa-askem/data-service-migrations:latest
+    networks:
+      - terarium
     entrypoint: /run_migrations.sh
     environment:
-      - DATASET_STORAGE_BASE_URL=s3://datasets/
-      - STORAGE_HOST=http://minio:9000
-      - S3_BUCKET=askem
-      - S3_DATASET_PATH=datasets
-      - S3_RESULT_PATH=simulations
-      - OPENAI_KEY=sk
-      - SQL_URL=postgres
-      - SQL_PORT=5433
-      - SQL_USER=terarium_user
-      - SQL_PASSWORD=terarium
-      - SQL_DB=askem
-      - NEO4J_ENABLED=true
-      - NEO4J_driver=neo4j://neo4j:7687
-      - AWS_ACCESS_KEY_ID=miniouser
-      - AWS_SECRET_ACCESS_KEY=miniopass
-      - ES_INDEX_PREFIX=tds_
-      - ES_URL=http://elasticsearch:9200
-      - ES_USERNAME=tds
-      - ES_PASSWORD=tdsElasticPass
-      - ELASTIC_PASSWORD=tdsElasticPass
-      - KIBANA_PASSWORD=tdsKibanaPass
-      - SEED_DATA=true
+      DATASET_STORAGE_BASE_URL: s3://datasets/
+      STORAGE_HOST: http://minio:9000
+      S3_BUCKET: askem
+      S3_DATASET_PATH: datasets
+      S3_RESULT_PATH: simulations
+      OPENAI_KEY: sk
+      SQL_URL: postgres
+      SQL_PORT: 5432
+      SQL_USER: terarium_user
+      SQL_PASSWORD: terarium
+      SQL_DB: askem
+      NEO4J_ENABLED: true
+      NEO4J_driver: neo4j://neo4j:7687
+      AWS_ACCESS_KEY_ID: miniouser
+      AWS_SECRET_ACCESS_KEY: miniopass
+      ES_INDEX_PREFIX: tds_
+      ES_URL: http://elasticsearch:9200
+      ES_USERNAME: tds
+      ES_PASSWORD: tdsElasticPass
+      ELASTIC_PASSWORD: tdsElasticPass
+      KIBANA_PASSWORD: tdsKibanaPass
+      SEED_DATA: true
     depends_on:
-      data-service-dev-db:
+      postgres:
         condition: service_healthy
       elasticsearch:
         condition: service_healthy
@@ -38,6 +39,10 @@ services:
 
   data-service:
     image: ghcr.io/darpa-askem/data-service:latest
+    networks:
+      - terarium
+    ports:
+      - "3020:8000"
     environment:
       DATASET_STORAGE_BASE_URL: s3://datasets/
       STORAGE_HOST: http://minio:9000
@@ -45,10 +50,11 @@ services:
       S3_DATASET_PATH: datasets
       S3_RESULT_PATH: simulations
       OPENAI_KEY: sk
-      SQL_URL: data-service-dev-db
+      SQL_URL: postgres
       SQL_PORT: 5432
-      SQL_USER: dev
-      SQL_PASSWORD: dev
+      SQL_USER: terarium_user
+      SQL_PASSWORD: terarium
+      SQL_DB: askem
       NEO4J_ENABLED: true
       NEO4J_driver: neo4j://neo4j:7687
       AWS_ACCESS_KEY_ID: miniouser
@@ -63,32 +69,33 @@ services:
         condition: service_started
       minio:
         condition: service_started
-    ports:
-      - "8000:8000"
 
   minio:
     image: ghcr.io/darpa-askem/data-service-storage:latest
+    networks:
+      - terarium
+    ports:
+      - "9000:9000"
+    expose:
+      - 9001
     environment:
       S3_BUCKET: askem
       S3_DATASET_PATH: "datasets"
       S3_RESULTS_PATH: "simulations"
       MINIO_ROOT_USER: miniouser
       MINIO_ROOT_PASSWORD: miniopass
-    expose:
-      - 9000
-      - 9001
     entrypoint: ""
     command: [ "minio", "server", "/data" ]
     volumes:
       - minio-data:/data
-    ports:
-      - "9000:9000"
     depends_on:
       - neo4j
-      - data-service-dev-db
+      - postgres
 
   neo4j:
-    image: ghcr.io/darpa-askem/data-service-graphdb:5.3.0.3
+    image: arm64v8/neo4j:5.12-community
+    networks:
+      - terarium
     expose:
       - 7474
       - 7687
@@ -97,10 +104,39 @@ services:
       - apoc.import.file.enabled=true
       - NEO4J_AUTH=neo4j/password
       - NEO4J_dbms_memory_pagecache_size=512M
-      - PG_HOST=data-service-dev-db
+      - PG_HOST=postgres
       - PG_PORT=5432
     depends_on:
       - postgres
+
+  elasticsearch:
+    image: elasticsearch:8.7.0
+    networks:
+      - terarium
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+    healthcheck:
+      test: [ 'CMD', 'curl', '--head',  '0.0.0.0:9200/_cluster/health?wait_for_status=yellow' ]
+      interval: '3s'
+      timeout: '3s'
+      retries: 30
+    environment:
+      - cluster.name=elasticsearch
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
+      - xpack.security.enabled=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./docker/elasticsearch-data:/usr/share/elasticsearch/data
+
+volumes:
+  minio-data:
+    driver: local
 
 networks:
   terarium:

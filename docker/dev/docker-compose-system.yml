@@ -21,7 +21,7 @@ services:
       - terarium-db:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  rabbitmq:
+  message-queue:
     image: ghcr.io/darpa-askem/rabbitmq:3.11.13-management-alpine
     networks:
       - terarium
@@ -47,23 +47,6 @@ services:
     restart: always
     healthcheck:
       test: ['CMD', 'redis-cli', 'ping']
-      interval: '3s'
-      timeout: '3s'
-      retries: 30
-
-  elasticsearch:
-    image: elasticsearch:8.5.3
-    networks:
-      - terarium
-    ports:
-      - '9200:9200'
-    environment:
-      - discovery.type=single-node
-      - ES_JAVA_OPTS=-Xms1g -Xmx1g
-      - xpack.security.enabled=false
-      - action.auto_create_index=false
-    healthcheck:
-      test: ['CMD', 'curl', '--head',  '0.0.0.0:9200/_cluster/health?wait_for_status=yellow']
       interval: '3s'
       timeout: '3s'
       retries: 30

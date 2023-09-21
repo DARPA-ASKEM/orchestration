@@ -659,7 +659,7 @@
       "redirectUris": [
         "http://localhost:8080/*",
         "http://localhost:3000/*",
-        "https://oauth.pstmn.io/v1/callback"
+        "https://oauth.pstmn.io/*"
       ],
       "webOrigins": [
         "+"

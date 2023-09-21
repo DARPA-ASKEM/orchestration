@@ -40,3 +40,4 @@ kubernetes/overlays/dev/local/hmi/server/configmap/host.yaml.bak
 
 # Docker deployments
 secrets.env
+/docker/dev/docker/
