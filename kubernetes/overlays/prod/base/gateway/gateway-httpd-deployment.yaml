@@ -47,9 +47,9 @@ spec:
             - name: CONFIGURATION_API_URL
               value: http://hmi-server:3000/configuration/
             - name: LOCATION_LLM_URL
-              value: http://jupyter-llm:3050/
+              value: http://beaker:3050/
             - name: LOCATION_LLM_WS_URL
-              value: ws://jupyter-llm:3050/
+              value: ws://beaker:3050/
             - name: ADMIN_KEYCLOAK_API_URL
               value: http://gateway-admin-keycloak:8081/ua/api/
             - name: ADMIN_KEYCLOAK_UI_URL
