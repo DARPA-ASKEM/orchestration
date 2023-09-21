@@ -47,5 +47,6 @@ spec:
                   value: 'https://api.askem.lum.ai'
                 - name: MOCK_TA1
                   value: 'FALSE'
+          restartPolicy: OnFailure
           imagePullSecrets:
             - name: ghcr-cred
