@@ -1,0 +1,51 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: knowledge-middleware-report
+  namespace: terarium
+spec:
+  schedule: "0 0 * * *" # every day at midnight
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            software.uncharted.terarium: knowledge-middleware-report
+        spec:
+          containers:
+            - name: knowledge-middleware-report
+              image: knowledge-middleware-report-image
+              env:
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: data-service-s3
+                      key: aws-access-key-id
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: data-service-s3
+                      key: aws-secret-access-key
+                - name: AWS_REGION
+                  valueFrom:
+                    secretKeyRef:
+                      name: data-service-s3
+                      key: aws-region
+                - name: BUCKET
+                  valueFrom:
+                    secretKeyRef:
+                      name: data-service-s3
+                      key: aws-dataset-bucket
+                - name: TDS_URL
+                  value: 'http://data-service:3020'
+                - name: SKEMA_RS_URL
+                  value: 'http://skema-rs:4040'
+                - name: MIT_TR_URL
+                  value: 'http://mit-tr:4046'
+                - name: TA1_UNIFIED_URL
+                  value: 'https://api.askem.lum.ai'
+                - name: MOCK_TA1
+                  value: 'FALSE'
+          imagePullSecrets:
+            - name: ghcr-cred

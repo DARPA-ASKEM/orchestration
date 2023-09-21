@@ -20,6 +20,7 @@ resources:
   - secrets/secrets-xdd-api-key.yaml
   - services/integration-dashboard/integration-dashboard-deployment.yaml
   - services/integration-dashboard/integration-dashboard-service.yaml
+  - services/knowledge-middleware/knowledge-middleware-report-cronjob.yaml
 patches:
   - path: gateway/gateway-httpd-deployment.yaml
   - path: gateway/gateway-keycloak-deployment.yaml
