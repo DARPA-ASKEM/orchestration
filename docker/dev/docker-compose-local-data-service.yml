@@ -8,7 +8,7 @@ services:
     entrypoint: /run_migrations.sh
     environment:
       DATASET_STORAGE_BASE_URL: s3://datasets/
-      STORAGE_HOST: http://minio:9000
+      STORAGE_HOST: http://localstack:4566
       S3_BUCKET: askem
       S3_DATASET_PATH: datasets
       S3_RESULT_PATH: simulations
@@ -34,7 +34,7 @@ services:
         condition: service_healthy
       elasticsearch:
         condition: service_healthy
-      minio:
+      localstack:
         condition: service_started
 
   data-service:
@@ -45,7 +45,7 @@ services:
       - "3020:8000"
     environment:
       DATASET_STORAGE_BASE_URL: s3://datasets/
-      STORAGE_HOST: http://minio:9000
+      STORAGE_HOST: http://localstack:4566
       S3_BUCKET: askem
       S3_DATASET_PATH: datasets
       S3_RESULT_PATH: simulations
@@ -67,30 +67,27 @@ services:
         condition: service_completed_successfully
       neo4j:
         condition: service_started
-      minio:
+      localstack:
         condition: service_started
 
-  minio:
-    image: ghcr.io/darpa-askem/data-service-storage:latest
-    networks:
-      - terarium
+  localstack:
+    image: localstack/localstack:latest
     ports:
-      - "9000:9000"
-    expose:
-      - 9001
+      - "4566:4566"
+      - "4510-4559:4510-4559"
+      - "8055:8080"
+    networks:
+      terarium:
+      default:
+        aliases:
+          - s3.localhost.localstack.cloud
     environment:
-      S3_BUCKET: askem
-      S3_DATASET_PATH: "datasets"
-      S3_RESULTS_PATH: "simulations"
-      MINIO_ROOT_USER: miniouser
-      MINIO_ROOT_PASSWORD: miniopass
-    entrypoint: ""
-    command: [ "minio", "server", "/data" ]
+      - SERVICES=s3
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
     volumes:
-      - minio-data:/data
-    depends_on:
-      - neo4j
-      - postgres
+      - ./docker/localstack:/tmp/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
 
   neo4j:
     image: arm64v8/neo4j:5.12-community
