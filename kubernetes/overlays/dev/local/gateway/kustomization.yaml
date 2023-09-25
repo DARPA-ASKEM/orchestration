@@ -7,8 +7,6 @@ resources:
   - gateway-postgres-service.yaml
   - configmap/host.yaml
 patches:
-  - path: gateway-admin-keycloak-deployment.yaml
-  - path: gateway-admin-keycloak-service.yaml
   - path: gateway-httpd-deployment.yaml
   - path: gateway-httpd-service.yaml
   - path: gateway-keycloak-deployment.yaml
