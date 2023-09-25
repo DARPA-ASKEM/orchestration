@@ -6,6 +6,8 @@ metadata:
   namespace: terarium
 spec:
   schedule: "0 13-20 * * 1-5" # every hour from 9h to 16h ETC every weekday
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
       template:
@@ -48,6 +50,5 @@ spec:
                 - name: MOCK_TA1
                   value: 'FALSE'
           restartPolicy: OnFailure
-          successfulJobsHistoryLimit: 1
           imagePullSecrets:
             - name: ghcr-cred
