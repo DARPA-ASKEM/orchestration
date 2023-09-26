@@ -1,6 +1,27 @@
 version: '3.8'
 
 services:
+  postgres:
+    image: postgres:14-alpine
+    networks:
+      - terarium
+    ports:
+      - '5433:5432'
+    restart: always
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready', '-d', 'pantera' ]
+      interval: '3s'
+      timeout: '3s'
+      retries: 30
+    user: postgres
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_DB: 'postgres'
+    volumes:
+      - terarium-db:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
   keycloak:
     image: ghcr.io/unchartedsoftware/keycloak:0.3.1
     networks:
@@ -96,6 +117,10 @@ services:
     depends_on:
       keycloak-admin-server:
         condition: service_healthy
+
+volumes:
+  terarium-db:
+    driver: local
 
 networks:
   terarium:

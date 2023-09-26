@@ -1,43 +1,5 @@
 version: '3.8'
 services:
-  postgres:
-    image: postgres:14-alpine
-    networks:
-      - terarium
-    ports:
-      - '5433:5432'
-    restart: always
-    healthcheck:
-      test: [ 'CMD-SHELL', 'pg_isready', '-d', 'pantera' ]
-      interval: '3s'
-      timeout: '3s'
-      retries: 30
-    user: postgres
-    environment:
-      POSTGRES_USER: 'postgres'
-      POSTGRES_PASSWORD: 'postgres'
-      POSTGRES_DB: 'postgres'
-    volumes:
-      - terarium-db:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-
-  message-queue:
-    image: ghcr.io/darpa-askem/rabbitmq:3.11.13-management-alpine
-    networks:
-      - terarium
-    ports:
-      - '5672:5672'
-      - '15671:15671'
-      - '15672:15672'
-    restart: always
-    healthcheck:
-      test: ['CMD', 'rabbitmq-diagnostics', '-q', 'ping']
-      interval: '3s'
-      timeout: '3s'
-      retries: 30
-    environment:
-      RABBITMQ_MANAGEMENT_ENABLED: 'true'
-
   redis:
     image: ghcr.io/darpa-askem/redis:7.0.12-alpine
     networks:
@@ -50,10 +12,6 @@ services:
       interval: '3s'
       timeout: '3s'
       retries: 30
-
-volumes:
-  terarium-db:
-    driver: local
 
 networks:
   terarium:
