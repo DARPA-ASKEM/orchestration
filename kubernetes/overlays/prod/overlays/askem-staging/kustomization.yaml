@@ -46,7 +46,6 @@ configMapGenerator:
       - gateway/realm/Uncharted-realm.json
       - gateway/realm/Uncharted-users-0.json
     name: keycloak-realm
-    behavior: merge
 images:
   # Gateway and Auth
   - name: keycloak-admin-image
@@ -66,13 +65,13 @@ images:
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: 'latest'
+    newTag: 'spring_test'
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
     newTag: 'latest'
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: 'latest'
+    newTag: 'spring_test'
 
   # Data Service
   - name: data-service-image
