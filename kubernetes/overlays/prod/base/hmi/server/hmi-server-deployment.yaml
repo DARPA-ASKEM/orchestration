@@ -11,55 +11,35 @@ spec:
       containers:
         - name: hmi-server
           env:
-            - name: QUARKUS_LOG_CONSOLE_JSON
-              value: 'true'
-            - name: data-service
-              value: data-service
+            - name: spring_profiles_active
+              value: default
+            #- name: QUARKUS_LOG_CONSOLE_JSON
+            #  value: 'true'
+            - name: terarium_dataservice_url
+              value: http://data-service:3020
             - name: KNOWLEDGE_MIDDLEWARE_MP_REST_URL
               value: http://knowledge-middleware-api:3060
-            - name: pyciemss-api
-              value: pyciemss-api
-            - name: SKEMA_MP_REST_URL
+            - name: skema_py_url
               value: "http://skema-py:4041"
-            - name: SKEMA_RUST_MP_REST_URL
+            - name: skema_rust_url
               value: "http://skema-rs:4040"
-            - name: MODEL_SERVICE_MP_REST_URL
-              value: "http://model-service:3010"
-            - name: SIMULATION_SERVICE_MP_REST_URL
-              value: "http://simulation-service:3030"
-            - name: SKEMA_UNIFIED_MP_REST_URL
-              value: "https://api.askem.lum.ai"
-            - name: MIT_MP_REST_URL
+            - name: skema_unified_url
+              value: "https://skema-unified:4045"
+            - name: mit_url
               value: "http://mit-proxy:3981"
-            - name: keycloak-service-protocol
-              value: https
-            - name: keycloak-service-fqdn
-              value: keycloak
-            - name: keycloak-service-port
-              value: ""
-            - name: quarkus_http_port
-              value: "3000"
-            - name: oidc-secret
-              valueFrom:
-                secretKeyRef:
-                  name: oidc
-                  key: client_secret
-            - name: terarium-db-host
+            - name: terarium_keycloak_url
+              value: "http://keycloak:8079"
+            - name: spring_datasource_url
               valueFrom:
                 secretKeyRef:
                   name: rds-creds
-                  key: url
-            - name: terarium-db-port
-              valueFrom:
-                secretKeyRef:
-                  name: rds-creds
-                  key: port
-            - name: terarium-db-user
+                  key: fqdn
+            - name: TERARIUM_DB_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: rds-creds
                   key: username
-            - name: terarium-db-password
+            - name: terarium_db_password
               valueFrom:
                 secretKeyRef:
                   name: rds-creds

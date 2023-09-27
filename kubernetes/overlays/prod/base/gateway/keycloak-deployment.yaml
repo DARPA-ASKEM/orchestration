@@ -98,13 +98,7 @@ spec:
                 secretKeyRef:
                   name: rds-creds
                   key: password
-          volumeMounts:
-            - name: realm-volume
-              mountPath: /data
       volumes:
-        - name: realm-volume
-          configMap:
-            name: keycloak-realm
         - name: certificates-volume
           configMap:
             name: keycloak-certificates

@@ -1,6 +1,7 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: terarium
 resources:
   - hmi-server-deployment.yaml
   - hmi-server-service.yaml
