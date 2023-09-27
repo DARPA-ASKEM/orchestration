@@ -54,6 +54,8 @@ spec:
                       key: chatgptkey
                 - name: MOCK_TA1
                   value: 'FALSE'
+                - name: LIVE_SERVICES
+                  value: 'TRUE'
           restartPolicy: OnFailure
           imagePullSecrets:
             - name: ghcr-cred
