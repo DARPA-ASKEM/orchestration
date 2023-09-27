@@ -23,6 +23,7 @@ patches:
   - path: gateway/keycloak-deployment.yaml
   - path: gateway/keycloak-service.yaml
   - path: hmi/client/hmi-client-deployment.yaml
+  - path: hmi/client/hmi-client-service.yaml
   - path: hmi/documentation/terarium-docs-deployment.yaml
   - path: hmi/server/hmi-server-deployment.yaml
   - path: services/data-service/data-service-deployment.yaml
