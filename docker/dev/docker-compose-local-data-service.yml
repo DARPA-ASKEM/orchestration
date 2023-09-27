@@ -8,7 +8,7 @@ services:
     entrypoint: /run_migrations.sh
     environment:
       DATASET_STORAGE_BASE_URL: s3://datasets/
-      STORAGE_HOST: http://localstack:4566
+      STORAGE_HOST: http://localhost:4566
       S3_BUCKET: askem
       S3_DATASET_PATH: datasets
       S3_RESULT_PATH: simulations
@@ -45,7 +45,7 @@ services:
       - "3020:8000"
     environment:
       DATASET_STORAGE_BASE_URL: s3://datasets/
-      STORAGE_HOST: http://localstack:4566
+      STORAGE_HOST: http://localhost:4566
       S3_BUCKET: askem
       S3_DATASET_PATH: datasets
       S3_RESULT_PATH: simulations
