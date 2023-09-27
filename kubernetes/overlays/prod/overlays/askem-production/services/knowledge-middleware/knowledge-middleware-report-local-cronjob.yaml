@@ -5,7 +5,7 @@ metadata:
   name: knowledge-middleware-report
   namespace: terarium
 spec:
-  schedule: "0 13,18 * * 1-5" # at 9h and 14h ETC every weekday
+  schedule: "0 13 * * 1-5" # at 9h every weekday
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   jobTemplate:
