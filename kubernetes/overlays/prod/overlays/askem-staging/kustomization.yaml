@@ -11,8 +11,7 @@ resources:
   - secrets/secrets-data-service-s3.yaml
   - secrets/secrets-dkg.yaml
   - secrets/secrets-es-creds.yaml
-  - secrets/secrets-keycloak-admin-creds.yaml
-  - secrets/secrets-keycloak-admin-service-account-creds.yaml
+  - secrets/secrets-keycloak-creds.yaml
   - secrets/secrets-mit-proxy.yaml
   - secrets/secrets-neo4j-auth.yaml
   - secrets/secrets-oidc.yaml

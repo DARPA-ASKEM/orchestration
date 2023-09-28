@@ -26,13 +26,13 @@ spec:
             - name: realm-admin
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-admin-service-account-creds
-                  key: username
+                  name: keycloak-creds
+                  key: service_username
             - name: password
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-admin-service-account-creds
-                  key: password
+                  name: keycloak-creds
+                  key: service_password
           volumeMounts:
             - name: keystore-volume
               mountPath: /keystore

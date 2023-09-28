@@ -10,26 +10,23 @@ spec:
     spec:
       containers:
         - name: hmi-server
+          imagePullPolicy: Always
           env:
-            - name: spring_profiles_active
-              value: default
-            #- name: QUARKUS_LOG_CONSOLE_JSON
-            #  value: 'true'
-            - name: terarium_dataservice_url
-              value: http://data-service:3020
-            - name: KNOWLEDGE_MIDDLEWARE_MP_REST_URL
-              value: http://knowledge-middleware-api:3060
-            - name: skema_py_url
-              value: "http://skema-py:4041"
-            - name: skema_rust_url
-              value: "http://skema-rs:4040"
-            - name: skema_unified_url
-              value: "https://skema-unified:4045"
-            - name: mit_url
+            - name: SPRING_PROFILES_ACTIVE
+              value: "default"
+            - name: KNOWLEDGE-MIDDLEWARE_URL
+              value: "http://knowledge-middleware-api:3060"
+            - name: MIT-PROXY_URL
               value: "http://mit-proxy:3981"
-            - name: terarium_keycloak_url
-              value: "http://keycloak:8079"
-            - name: spring_datasource_url
+            - name: SKEMA-PY_URL
+              value: "http://skema-py:4041"
+            - name: SKEMA-RS_URL
+              value: "http://skema-rs:4040"
+            - name: SKEMA-UNIFIED_URL
+              value: "https://skema-unified:4045"
+            - name: TERARIUM_DATASERVICE_URL
+              value: "http://data-service:3020"
+            - name: SPRING_DATASOURCE_URL
               valueFrom:
                 secretKeyRef:
                   name: rds-creds
@@ -39,23 +36,63 @@ spec:
                 secretKeyRef:
                   name: rds-creds
                   key: username
-            - name: terarium_db_password
+            - name: TERARIUM_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: rds-creds
                   key: password
-            - name: xdd_api_key
+            - name: XDD_API-KEY
               valueFrom:
                 secretKeyRef:
                   name: xdd-api-key
                   key: key
-            - name: adobe_api_key
+            - name: ADOBE_API-KEY
               valueFrom:
                 secretKeyRef:
                   name: adobe-api-key
                   key: key
-            - name: xdd_es_key
+            - name: XDD_API-ES-KEY
               valueFrom:
                 secretKeyRef:
                   name: xdd-api-key
                   key: eskey
+            - name: TERARIUM_KEYCLOAK_ADMIN-CLIENT-ID
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: admin_client-id
+            - name: TERARIUM_KEYCLOAK_ADMIN-PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: admin_password
+            - name: TERARIUM_KEYCLOAK_ADMIN-REALM
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: admin_realm
+            - name: TERARIUM_KEYCLOAK_ADMIN-USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: admin_username
+            - name: TERARIUM_KEYCLOAK_CLIENT-ID
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: client-id
+            - name: TERARIUM_KEYCLOAK_REALM
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: realm
+            - name: GOOGLE-ANALYTICS-ID
+              valueFrom:
+                secretKeyRef:
+                  name: logging-creds
+                  key: google-id
+            - name: TGPT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: beaker-creds
+                  key: tgpt-token

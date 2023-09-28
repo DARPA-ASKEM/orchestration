@@ -6,7 +6,7 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: instance
-    alb.ingress.kubernetes.io/security-groups: askem-staging-web-private
+    alb.ingress.kubernetes.io/security-groups: askem-staging-web-private, askem-staging-k8s
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
     alb.ingress.kubernetes.io/backend-protocol: HTTPS
