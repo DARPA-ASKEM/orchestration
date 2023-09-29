@@ -8,13 +8,14 @@ resources:
   - ingress/private-web-ingress.yaml
   - ingress/private-web-ssl-ingress.yaml
   - secrets/secrets-adobe-api-key.yaml
+  - secrets/secrets-beaker-creds.yaml
   - secrets/secrets-data-service-s3.yaml
   - secrets/secrets-dkg.yaml
   - secrets/secrets-es-creds.yaml
   - secrets/secrets-keycloak-creds.yaml
+  - secrets/secrets-logging-creds.yaml
   - secrets/secrets-mit-proxy.yaml
   - secrets/secrets-neo4j-auth.yaml
-  - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
   - secrets/secrets-spicedb-shared.yaml
   - secrets/secrets-xdd-api-key.yaml
@@ -74,6 +75,9 @@ images:
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
     newTag: 'spring_test'
+  - name: spicedb-image
+    newName: ghcr.io/authzed/spicedb
+    newTag: 'v1.24.0'
 
   # Data Service
   - name: data-service-image
