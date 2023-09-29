@@ -116,11 +116,6 @@ spec:
                   key: url
             - name: SQL_DB
               value: askem
-            - name: SQL_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: rds-creds
-                  key: port
             - name: SQL_USER
               valueFrom:
                 secretKeyRef:

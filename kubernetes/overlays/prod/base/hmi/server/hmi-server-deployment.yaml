@@ -96,10 +96,10 @@ spec:
                 secretKeyRef:
                   name: beaker-creds
                   key: tgpt-token
-            - name: spicedb-shared-key
+            - name: SPICEDB_SHARED-KEY
               valueFrom:
                 secretKeyRef:
                   name: spicedb-shared-key
                   key: grpc-key
-            - name: spicedb-target
-              value: gateway-spicedb:50051
+            - name: SPICEDB_URL
+              value: 'spicedb:50051'

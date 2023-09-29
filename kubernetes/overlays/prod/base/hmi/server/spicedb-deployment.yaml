@@ -35,6 +35,8 @@ spec:
                 secretKeyRef:
                   name: rds-creds
                   key: password
+            - name: SPICEDB_HTTP_ENABLED
+              value: "true"
       initContainers:
         - name: spicedb-migrate
           image: spicedb-image

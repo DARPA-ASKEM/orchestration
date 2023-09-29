@@ -35,7 +35,7 @@ spec:
               service:
                 name: spicedb
                 port:
-                  number: 8443
+                  number: 50051
 
   tls:
     - hosts:
