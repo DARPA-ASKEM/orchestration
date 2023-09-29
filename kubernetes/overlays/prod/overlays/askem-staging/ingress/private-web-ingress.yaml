@@ -187,6 +187,7 @@ spec:
                 name: funman
                 port:
                   number: 8190
+
   tls:
     - hosts:
         - "app.staging.terarium.ai"

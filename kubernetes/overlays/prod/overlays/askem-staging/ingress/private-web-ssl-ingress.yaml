@@ -7,9 +7,11 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: instance
     alb.ingress.kubernetes.io/security-groups: askem-staging-web-private, askem-staging-k8s
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
     alb.ingress.kubernetes.io/backend-protocol: HTTPS
+    alb.ingress.kubernetes.io/conditions.argogrpc: |
+      [{"field":"http-header","httpHeaderConfig":{"httpHeaderName": "Content-Type", "values":["application/grpc"]}}]
 spec:
   ingressClassName: alb
   rules:
@@ -24,6 +26,18 @@ spec:
                 port:
                   number: 443
 
+    - host: "spicedb.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: spicedb
+                port:
+                  number: 8443
+
   tls:
     - hosts:
         - "keycloak.staging.terarium.ai"
+        - "spicedb.staging.terarium.ai"

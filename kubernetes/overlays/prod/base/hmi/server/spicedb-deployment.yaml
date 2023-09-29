@@ -13,6 +13,8 @@ spec:
             - --datastore-engine=postgres
             - --datastore-conn-uri=postgres://$(DB_USERNAME):$(DB_PASSWORD)@$(DB_URL_HOST)/spicedb?sslmode=disable
           env:
+            - name: SPICEDB_DATASTORE_ENGINE
+              value: "postgres"
             - name: SPICEDB_GRPC_PRESHARED_KEY
               valueFrom:
                 secretKeyRef:
@@ -42,6 +44,8 @@ spec:
             - --datastore-engine=postgres
             - --datastore-conn-uri=postgres://$(DB_USERNAME):$(DB_PASSWORD)@$(DB_URL_HOST)/spicedb?sslmode=disable
           env:
+            - name: SPICEDB_DATASTORE_ENGINE
+              value: "postgres"
             - name: SPICEDB_GRPC_PRESHARED_KEY
               valueFrom:
                 secretKeyRef:
