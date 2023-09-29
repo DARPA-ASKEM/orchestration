@@ -2,12 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gateway-spicedb
+  name: spicedb
 spec:
   template:
     spec:
       containers:
-        - name: gateway-spicedb
+        - name: spicedb
           args:
             - serve
             - --datastore-engine=postgres
@@ -34,8 +34,8 @@ spec:
                   name: rds-creds
                   key: password
       initContainers:
-        - name: gateway-spicedb-migrate
-          image: gateway-spicedb-image
+        - name: spicedb-migrate
+          image: spicedb-image
           args:
             - migrate
             - head

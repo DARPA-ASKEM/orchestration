@@ -9,5 +9,3 @@ resources:
   - keycloak-admin-ui-service.yaml
   - keycloak-deployment.yaml
   - keycloak-service.yaml
-  - gateway-spicedb-deployment.yaml
-  - gateway-spicedb-service.yaml
