@@ -97,9 +97,6 @@ spec:
                   name: beaker-creds
                   key: tgpt-token
             - name: SPICEDB_SHARED-KEY
-              valueFrom:
-                secretKeyRef:
-                  name: spicedb-shared-key
-                  key: grpc-key
+              value: 'staging'
             - name: SPICEDB_URL
               value: 'spicedb:50051'

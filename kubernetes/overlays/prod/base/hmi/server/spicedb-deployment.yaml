@@ -16,10 +16,7 @@ spec:
             - name: SPICEDB_DATASTORE_ENGINE
               value: "postgres"
             - name: SPICEDB_GRPC_PRESHARED_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: spicedb-shared-key
-                  key: grpc-key
+              value: 'staging'
             - name: DB_URL_HOST
               valueFrom:
                 secretKeyRef:
@@ -49,10 +46,7 @@ spec:
             - name: SPICEDB_DATASTORE_ENGINE
               value: "postgres"
             - name: SPICEDB_GRPC_PRESHARED_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: spicedb-shared-key
-                  key: grpc-key
+              value: 'staging'
             - name: DB_URL_HOST
               valueFrom:
                 secretKeyRef:
