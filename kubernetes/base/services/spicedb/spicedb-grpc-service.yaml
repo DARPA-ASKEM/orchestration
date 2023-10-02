@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/backend-protocol-version: GRPC #This tells AWS to send traffic from the ALB using HTTP2. Can use GRPC as well if you want to leverage GRPC specific features
+    alb.ingress.kubernetes.io/healthcheck-path: /
+    alb.ingress.kubernetes.io/success-codes: 0-99
+  labels:
+    app: spicegrpc
+  name: spicegrpc
+  namespace: terarium
+spec:
+  ports:
+  - name: "50051"
+    port: 50051
+    protocol: TCP
+    targetPort: 50051
+  selector:
+    software.uncharted.terarium/name: spicedb
+  sessionAffinity: None
+  type: NodePort
