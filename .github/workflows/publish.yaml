@@ -4,7 +4,8 @@
 
 name: Build Docker Images
 
-on: # yamllint disable-line rule:truthy
+# yamllint disable-line rule:truthy
+on:
   workflow_dispatch:
   push:
     # restrict it to only run if files in the following path(s) change

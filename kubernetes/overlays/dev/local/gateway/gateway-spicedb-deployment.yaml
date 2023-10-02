@@ -2,12 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gateway-spicedb
+  name: spicedb
 spec:
   template:
     spec:
       containers:
-        - name: gateway-spicedb
+        - name: spicedb
           args:
             - serve
             - --datastore-engine=postgres
@@ -16,14 +16,14 @@ spec:
             - name: SPICEDB_GRPC_PRESHARED_KEY
               value: rRi76idYiFwYHpTJsG4wNVKKZxPBfbAHzgq3uC9B3WHD8aJAo87.v76jwH8T
             - name: DB_URL_HOST
-              value: gateway-spicedb-postgres:5432
+              value: spicedb-postgres:5432
             - name: DB_USERNAME
               value: spicedb
             - name: DB_PASSWORD
               value: spicedb
       initContainers:
-        - name: gateway-spicedb-migrate
-          image: gateway-spicedb-image
+        - name: spicedb-migrate
+          image: spicedb-image
           args:
             - migrate
             - head
@@ -33,7 +33,7 @@ spec:
             - name: SPICEDB_GRPC_PRESHARED_KEY
               value: rRi76idYiFwYHpTJsG4wNVKKZxPBfbAHzgq3uC9B3WHD8aJAo87.v76jwH8T
             - name: DB_URL_HOST
-              value: gateway-spicedb-postgres:5432
+              value: spicedb-postgres:5432
             - name: DB_USERNAME
               value: spicedb
             - name: DB_PASSWORD
