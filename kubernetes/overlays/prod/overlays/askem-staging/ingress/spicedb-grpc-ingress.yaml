@@ -15,16 +15,16 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: spicegrpc.staging.terarium.ai
-    http:
-      paths:
-      - backend:
-          service:
-            name: spicegrpc
-            port:
-              number: 50051
-        path: /
-        pathType: Prefix
+    - host: spicegrpc.staging.terarium.ai
+      http:
+        paths:
+          - backend:
+              service:
+                name: spicegrpc
+                port:
+                  number: 50051
+            path: /
+            pathType: Prefix
   tls:
     - hosts:
-      - "spicegrpc.staging.terarium.ai"
+        - "spicegrpc.staging.terarium.ai"

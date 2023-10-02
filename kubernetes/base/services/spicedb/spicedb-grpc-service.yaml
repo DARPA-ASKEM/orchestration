@@ -12,10 +12,10 @@ metadata:
   namespace: terarium
 spec:
   ports:
-  - name: "50051"
-    port: 50051
-    protocol: TCP
-    targetPort: 50051
+    - name: "50051"
+      port: 50051
+      protocol: TCP
+      targetPort: 50051
   selector:
     software.uncharted.terarium/name: spicedb
   sessionAffinity: None
