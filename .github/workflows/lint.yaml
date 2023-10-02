@@ -4,7 +4,8 @@
 
 name: Lint & Format
 
-on: # yamllint disable-line rule:truthy
+# yamllint disable-line rule:truthy
+on:
   workflow_call:
   push:
     branches: ['main']

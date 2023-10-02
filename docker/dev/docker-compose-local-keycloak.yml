@@ -10,7 +10,7 @@ services:
       - '5433:5432'
     restart: always
     healthcheck:
-      test: [ 'CMD-SHELL', 'pg_isready', '-d', 'pantera' ]
+      test: ['CMD-SHELL', 'pg_isready', '-d', 'pantera']
       interval: '3s'
       timeout: '3s'
       retries: 30
@@ -89,7 +89,7 @@ services:
       - '3090:8080'
     restart: always
     healthcheck:
-      test: [ 'CMD', 'curl', '--head', '0.0.0.0:8080/q/health/ready' ]
+      test: ['CMD', 'curl', '--head', '0.0.0.0:8080/q/health/ready']
       interval: '3s'
       timeout: '3s'
       retries: 30
@@ -111,7 +111,7 @@ services:
       - '8083:80'
     restart: always
     healthcheck:
-      test: [ 'CMD', 'curl', '--head', '0.0.0.0:80/healthcheck' ]
+      test: ['CMD', 'curl', '--head', '0.0.0.0:80/healthcheck']
       interval: '3s'
       timeout: '3s'
       retries: 30

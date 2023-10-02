@@ -115,7 +115,7 @@ services:
       - '9200:9200'
       - '9300:9300'
     healthcheck:
-      test: [ 'CMD', 'curl', '--head',  '0.0.0.0:9200/_cluster/health?wait_for_status=yellow' ]
+      test: ['CMD', 'curl', '--head', '0.0.0.0:9200/_cluster/health?wait_for_status=yellow']
       interval: '3s'
       timeout: '3s'
       retries: 30
