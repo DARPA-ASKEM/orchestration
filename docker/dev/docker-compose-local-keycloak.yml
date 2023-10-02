@@ -1,0 +1,128 @@
+---
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    networks:
+      - terarium
+    ports:
+      - '5433:5432'
+    restart: always
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready', '-d', 'pantera']
+      interval: '3s'
+      timeout: '3s'
+      retries: 30
+    user: postgres
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_DB: 'postgres'
+    volumes:
+      - terarium-db:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  keycloak:
+    image: ghcr.io/unchartedsoftware/keycloak:0.3.1
+    networks:
+      - terarium
+    ports:
+      - '8081:8081'
+    restart: always
+    healthcheck:
+      test: ['CMD', 'curl', '--head', '0.0.0.0:8081/health/ready']
+      interval: '3s'
+      timeout: '3s'
+      retries: 30
+    command: ['start', '--http-port=8081']
+    environment:
+      DB_VENDOR: 'POSTGRES'
+      DB_URL_HOST: 'postgres'
+      DB_URL_PORT: '5432'
+      DB_DATABASE: 'keycloak'
+      DB_USERNAME: 'keycloak'
+      DB_PASSWORD: 'keycloak'
+      PROXY_ADDRESS_FORWARDING: 'true'
+      KEYCLOAK_ADMIN: 'admin'
+      KEYCLOAK_ADMIN_PASSWORD: 'admin123'
+      KC_HOSTNAME: 'localhost'
+      KC_HOSTNAME_PORT: '8081'
+      KC_HOSTNAME_ADMIN_URL: 'http://localhost:8081'
+      KC_HTTP_ENABLED: 'true'
+      KC_HOSTNAME_STRICT: 'false'
+      KC_HOSTNAME_STRICT_HTTPS: 'false'
+    volumes:
+      - ./realm:/data
+      - ../../keycloak-theme/terarium:/opt/keycloak/themes/terarium
+    depends_on:
+      keycloak_init:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+
+  keycloak_init:
+    image: ghcr.io/unchartedsoftware/keycloak:0.3.1
+    networks:
+      - terarium
+    command: ['import', '--dir', '/data', '--override', 'false']
+    environment:
+      DB_VENDOR: 'POSTGRES'
+      DB_URL_HOST: 'postgres'
+      DB_URL_PORT: '5432'
+      DB_DATABASE: 'keycloak'
+      DB_USERNAME: 'keycloak'
+      DB_PASSWORD: 'keycloak'
+      KEYCLOAK_ADMIN: 'admin'
+      KEYCLOAK_ADMIN_PASSWORD: 'admin123'
+    volumes:
+      - ./realm:/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  keycloak-admin-server:
+    image: ghcr.io/unchartedsoftware/keycloak-admin:0.3.1
+    networks:
+      - terarium
+    ports:
+      - '3090:8080'
+    restart: always
+    healthcheck:
+      test: ['CMD', 'curl', '--head', '0.0.0.0:8080/q/health/ready']
+      interval: '3s'
+      timeout: '3s'
+      retries: 30
+    environment:
+      REALM: Terarium
+      KEYCLOAK_SERVICE_URL: http://keycloak:8081/
+      CLIENT_ID: app
+      REALM_ADMIN: adminservice
+      PASSWORD: asdf1ASDF
+    depends_on:
+      keycloak:
+        condition: service_healthy
+
+  keycloak-admin-client:
+    image: ghcr.io/unchartedsoftware/keycloak-admin-ui:0.3.1
+    networks:
+      - terarium
+    ports:
+      - '8083:80'
+    restart: always
+    healthcheck:
+      test: ['CMD', 'curl', '--head', '0.0.0.0:80/healthcheck']
+      interval: '3s'
+      timeout: '3s'
+      retries: 30
+    depends_on:
+      keycloak-admin-server:
+        condition: service_healthy
+
+volumes:
+  terarium-db:
+    driver: local
+
+networks:
+  terarium:
+    name: terarium

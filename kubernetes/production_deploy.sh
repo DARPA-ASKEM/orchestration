@@ -70,7 +70,7 @@ case ${ENVIRONMENT} in
 staging)
 	SECRET_FILES+=("overlays/prod/base/gateway/certificates/cert.pem" "overlays/prod/base/gateway/certificates/key.pem")
 	SECRET_FILES+=("overlays/prod/overlays/askem-staging/secrets/*.yaml")
-	SECRET_FILES+=("overlays/prod/base/gateway/keycloak/realm/*.json" "overlays/prod/overlays/askem-staging/gateway/keycloak/realm/*.json")
+	SECRET_FILES+=("overlays/prod/overlays/askem-staging/gateway/realm/*.json")
 	SECRET_FILES+=("overlays/prod/overlays/askem-staging/check-latest/check-latest-rsa" "overlays/prod/overlays/askem-staging/check-latest/secrets.yaml")
 	KUSTOMIZATION=overlays/prod/overlays/askem-staging
 	KUBECTL_CMD="ssh uncharted-askem-prod-askem-staging-kube-manager-3 sudo kubectl"
@@ -78,7 +78,7 @@ staging)
 production)
 	SECRET_FILES+=("overlays/prod/base/gateway/certificates/cert.pem" "overlays/prod/base/gateway/certificates/key.pem")
 	SECRET_FILES+=("overlays/prod/overlays/askem-production/secrets/*.yaml")
-	SECRET_FILES+=("overlays/prod/base/gateway/keycloak/realm/*.json" "overlays/prod/overlays/askem-production/gateway/keycloak/realm/*.json")
+	SECRET_FILES+=("overlays/prod/overlays/askem-production/gateway/realm/*.json")
 	SECRET_FILES+=("overlays/prod/overlays/askem-production/check-latest/check-latest-rsa" "overlays/prod/overlays/askem-production/check-latest/secrets.yaml")
 	KUSTOMIZATION=overlays/prod/overlays/askem-production
 	KUBECTL_CMD="ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl"

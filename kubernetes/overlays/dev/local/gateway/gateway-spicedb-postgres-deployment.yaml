@@ -2,26 +2,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gateway-spicedb-postgres
+  name: spicedb-postgres
   labels:
-    software.uncharted.terarium/name: gateway-spicedb-postgres
+    software.uncharted.terarium/name: spicedb-postgres
     software.uncharted.terarium/component: postgres
     software.uncharted.terarium/part-of: gateway
 spec:
   replicas: 1
   selector:
     matchLabels:
-      software.uncharted.terarium/name: gateway-spicedb-postgres
+      software.uncharted.terarium/name: spicedb-postgres
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        software.uncharted.terarium/name: gateway-spicedb-postgres
+        software.uncharted.terarium/name: spicedb-postgres
     spec:
       containers:
-        - name: gateway-spicedb-postgres
-          image: gateway-postgres-image
+        - name: spicedb-postgres
+          image: postgres-image
           env:
             - name: POSTGRES_USER
               value: spicedb

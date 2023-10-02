@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spicedb
+  labels:
+    software.uncharted.terarium/name: spicedb
+    software.uncharted.terarium/component: server
+    software.uncharted.terarium/service: spicedb
+    software.uncharted.terarium/part-of: hmi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: spicedb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: spicedb
+    spec:
+      containers:
+        - name: spicedb
+          image: spicedb-image
+          ports:
+            - containerPort: 50051
+              protocol: TCP
+            - containerPort: 8443
+              protocol: TCP
+          resources: {}
+      initContainers:
+        - name: spicedb-migrate
+          image: spicedb-image
+      restartPolicy: Always
+status: {}

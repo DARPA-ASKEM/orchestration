@@ -12,7 +12,7 @@ docker buildx bake
 
 Once build make sure that it is pushed to the appropriate repository.
 
-Finally update the Kubernetes `gateway-keycloak-deployment.yaml` file with the appropriate new version if not using latest and restart the Kubernates stack.
+Finally, update the Kubernetes `keycloak-deployment.yaml` file with the appropriate new version if not using latest and restart the Kubernetes stack.
 >The `gateway.sh` script file may need to be updated as well to automatically pull the latest version of the image.
 
 ## Theming

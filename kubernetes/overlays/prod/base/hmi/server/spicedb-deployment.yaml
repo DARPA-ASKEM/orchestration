@@ -1,0 +1,64 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spicedb
+spec:
+  template:
+    spec:
+      containers:
+        - name: spicedb
+          args:
+            - serve
+            - --datastore-engine=postgres
+            - --datastore-conn-uri=postgres://$(DB_USERNAME):$(DB_PASSWORD)@$(DB_URL_HOST)/spicedb?sslmode=disable
+          env:
+            - name: SPICEDB_DATASTORE_ENGINE
+              value: "postgres"
+            - name: SPICEDB_GRPC_PRESHARED_KEY
+              value: 'staging'
+            - name: DB_URL_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: url
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: password
+            - name: SPICEDB_HTTP_ENABLED
+              value: "true"
+      initContainers:
+        - name: spicedb-migrate
+          image: spicedb-image
+          args:
+            - migrate
+            - head
+            - --datastore-engine=postgres
+            - --datastore-conn-uri=postgres://$(DB_USERNAME):$(DB_PASSWORD)@$(DB_URL_HOST)/spicedb?sslmode=disable
+          env:
+            - name: SPICEDB_DATASTORE_ENGINE
+              value: "postgres"
+            - name: SPICEDB_GRPC_PRESHARED_KEY
+              value: 'staging'
+            - name: DB_URL_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: url
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rds-creds
+                  key: password
