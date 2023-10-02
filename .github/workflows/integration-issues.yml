@@ -4,7 +4,7 @@
 
 name: Add integration tasks to Integration project
 
-on:
+on: # yamllint disable-line rule:truthy
   issues:
     types:
       - reopened
