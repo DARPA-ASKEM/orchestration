@@ -21,12 +21,12 @@ services:
       - terarium
     ports:
       - '50051:50051'
-    command: [ "serve" ]
+    command: ["serve"]
     restart: always
     environment:
       SPICEDB_GRPC_PRESHARED_KEY: "test"
     healthcheck:
-      test: [ 'CMD', 'grpc_health_probe', '-addr=:50051' ]
+      test: ['CMD', 'grpc_health_probe', '-addr=:50051']
       interval: '3s'
       timeout: '3s'
       retries: 30
