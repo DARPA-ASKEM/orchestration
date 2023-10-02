@@ -7,7 +7,7 @@ resources:
   - check-latest
   - ingress/private-web-ingress.yaml
   - ingress/private-web-ssl-ingress.yaml
-  - ingress/spicedb-grpc-ingress.yaml
+  - ingress/private-web-grpc-ingress.yaml
   - secrets/secrets-adobe-api-key.yaml
   - secrets/secrets-beaker-creds.yaml
   - secrets/secrets-data-service-s3.yaml

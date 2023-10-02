@@ -99,4 +99,4 @@ spec:
             - name: SPICEDB_SHARED-KEY
               value: 'staging'
             - name: SPICEDB_URL
-              value: 'spicedb:50051'
+              value: 'spicedb-grpc:50051'
