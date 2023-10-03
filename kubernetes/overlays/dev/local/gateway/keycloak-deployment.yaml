@@ -20,7 +20,7 @@ spec:
             - name: KC_HOSTNAME
               value: localhost
             - name: KC_HOSTNAME_PORT
-              value: "8079"
+              value: "8081"
             - name: KC_HTTP_ENABLED
               value: '"true"'
             - name: KC_HOSTNAME_STRICT_HTTPS

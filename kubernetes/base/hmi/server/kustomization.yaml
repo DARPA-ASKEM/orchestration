@@ -7,4 +7,3 @@ resources:
   - hmi-server-service.yaml
   - spicedb-deployment.yaml
   - spicedb-grpc-service.yaml
-  - spicedb-ssl-service.yaml

@@ -16,7 +16,7 @@ spec:
         paths:
           - backend:
               service:
-                name: spicedb-grpc
+                name: spicedb
                 port:
                   number: 50051
             path: /
