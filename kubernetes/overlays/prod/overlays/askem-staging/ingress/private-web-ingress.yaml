@@ -162,7 +162,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: skema-rs
+                name: skema-tr
                 port:
                   number: 4047
 
