@@ -98,5 +98,5 @@ spec:
                   key: tgpt-token
             - name: SPICEDB_SHARED-KEY
               value: 'staging'
-            - name: SPICEDB_URL
+            - name: SPICEDB_TARGET
               value: 'spicedb:50051'
