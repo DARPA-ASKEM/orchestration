@@ -104,7 +104,7 @@ images:
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
   - name: skema-tr-image
-    newName: enoriega87/skema-webapp
+    newName: lumai/askem-skema-text-reading
     newTag: 'latest'
 
   # MIT
