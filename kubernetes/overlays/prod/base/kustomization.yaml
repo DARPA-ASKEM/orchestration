@@ -27,7 +27,7 @@ patches:
   - path: hmi/documentation/terarium-docs-deployment.yaml
   - path: hmi/server/hmi-server-deployment.yaml
   - path: hmi/server/spicedb-deployment.yaml
-  - path: hmi/server/spicedb-service.yaml
+  - path: hmi/server/spicedb-grpc-service.yaml
   - path: services/data-service/data-service-deployment.yaml
   - path: services/data-service/data-service-graphdb-deployment.yaml
   - path: services/funman/funman-deployment.yaml

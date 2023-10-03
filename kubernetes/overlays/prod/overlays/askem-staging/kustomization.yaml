@@ -7,6 +7,7 @@ resources:
   - check-latest
   - ingress/private-web-ingress.yaml
   - ingress/private-web-ssl-ingress.yaml
+  - ingress/private-web-grpc-ingress.yaml
   - secrets/secrets-adobe-api-key.yaml
   - secrets/secrets-beaker-creds.yaml
   - secrets/secrets-data-service-s3.yaml
@@ -68,13 +69,13 @@ images:
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: 'spring_test'
+    newTag: 'latest'
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
     newTag: 'latest'
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: 'spring_test'
+    newTag: 'latest'
   - name: spicedb-image
     newName: ghcr.io/authzed/spicedb
     newTag: 'v1.24.0'

@@ -6,4 +6,4 @@ resources:
   - hmi-server-deployment.yaml
   - hmi-server-service.yaml
   - spicedb-deployment.yaml
-  - spicedb-service.yaml
+  - spicedb-grpc-service.yaml
