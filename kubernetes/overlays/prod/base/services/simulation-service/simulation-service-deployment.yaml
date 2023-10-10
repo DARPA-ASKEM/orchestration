@@ -2,14 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: simulation-service
+  name: sciml-service
 spec:
   strategy:
     type: RollingUpdate
   template:
     spec:
       containers:
-        - name: simulation-service
+        - name: sciml-service
           env:
             - name: SIMSERVICE_TDS_URL
               value: http://data-service:3020

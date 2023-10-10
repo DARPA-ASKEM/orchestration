@@ -116,8 +116,8 @@ images:
     newTag: 'latest'
 
   # Simulation Service
-  - name: simulation-service-image
-    newName: ghcr.io/darpa-askem/simulation-service
+  - name: sciml-service-image
+    newName: ghcr.io/darpa-askem/sciml-service
     newTag: 'latest'
 
   # PyCIEMSS service

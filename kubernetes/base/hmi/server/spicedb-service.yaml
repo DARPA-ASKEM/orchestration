@@ -5,7 +5,7 @@ metadata:
   name: spicedb
   labels:
     software.uncharted.terarium/name: spicedb
-    software.uncharted.terarium/component: service
+    software.uncharted.terarium/component: server
     software.uncharted.terarium/service: spicedb
     software.uncharted.terarium/part-of: hmi
   annotations:

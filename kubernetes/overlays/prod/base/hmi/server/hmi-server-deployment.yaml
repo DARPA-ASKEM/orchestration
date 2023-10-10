@@ -100,3 +100,5 @@ spec:
               value: 'staging'
             - name: SPICEDB_TARGET
               value: 'spicedb:50051'
+            - name: SPICEDB_LAUNCHMODE
+              value: 'PLAINTEXT'

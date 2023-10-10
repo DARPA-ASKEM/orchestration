@@ -122,14 +122,14 @@ spec:
                 port:
                   number: 3040
 
-    - host: "simulation-service.staging.terarium.ai"
+    - host: "sciml-service.staging.terarium.ai"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: simulation-service
+                name: sciml-service
                 port:
                   number: 3030
 
@@ -211,7 +211,7 @@ spec:
         - "mit-tr.staging.terarium.ai"
         - "model-service.staging.terarium.ai"
         - "pyciemss.staging.terarium.ai"
-        - "simulation-service.staging.terarium.ai"
+        - "sciml-service.staging.terarium.ai"
         - "skema-py.staging.terarium.ai"
         - "skema-rs.staging.terarium.ai"
         - "skema-tr.staging.terarium.ai"
