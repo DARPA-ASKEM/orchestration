@@ -155,16 +155,16 @@ spec:
                 port:
                   number: 4040
 
-    - host: "knowledge-middleware.staging.terarium.ai"
+    - host: "skema-tr.staging.terarium.ai"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: knowledge-middleware-api
+                name: skema-tr
                 port:
-                  number: 3060
+                  number: 4047
 
     - host: "skema-unified.staging.terarium.ai"
       http:
@@ -176,6 +176,17 @@ spec:
                 name: skema-unified
                 port:
                   number: 4045
+
+    - host: "knowledge-middleware.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: knowledge-middleware-api
+                port:
+                  number: 3060
 
     - host: "funman.staging.terarium.ai"
       http:
@@ -203,5 +214,6 @@ spec:
         - "sciml-service.staging.terarium.ai"
         - "skema-py.staging.terarium.ai"
         - "skema-rs.staging.terarium.ai"
+        - "skema-tr.staging.terarium.ai"
         - "skema-unified.staging.terarium.ai"
         - "knowledge-middleware.staging.terarium.ai"
