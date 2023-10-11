@@ -23,6 +23,7 @@ spec:
       containers:
         - name: keycloak
           image: keycloak-image
+          imagePullPolicy: Always
           args:
             - start
           ports:
@@ -35,6 +36,7 @@ spec:
       initContainers:
         - name: keycloak-terarium-theme
           image: terarium-login-theme-image
+          imagePullPolicy: Always
           command: ['/bin/sh']
           args: ['-c', 'cp -r /terarium/* /shared']
           volumeMounts:
@@ -42,6 +44,7 @@ spec:
               mountPath: /shared
         - name: init-keycloak
           image: keycloak-image
+          imagePullPolicy: Always
           args:
             - import
             - --dir

@@ -23,6 +23,7 @@ spec:
       containers:
         - name: mit-tr
           image: mit-tr-image
+          imagePullPolicy: Always
           env:
             - name: GPT_KEY
               valueFrom:

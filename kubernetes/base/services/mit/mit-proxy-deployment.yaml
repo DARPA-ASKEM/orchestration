@@ -23,6 +23,7 @@ spec:
       containers:
         - name: mit-proxy
           image: mit-proxy-image
+          imagePullPolicy: Always
           env:
             - name: CHAT_GPT_KEY
               valueFrom:

@@ -23,6 +23,7 @@ spec:
       containers:
         - name: data-service-graphdb
           image: data-service-graphdb-image
+          imagePullPolicy: Always
           ports:
             - containerPort: 7474
             - containerPort: 7687

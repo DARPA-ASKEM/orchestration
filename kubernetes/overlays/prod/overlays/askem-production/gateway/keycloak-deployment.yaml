@@ -13,3 +13,12 @@ spec:
               value: https://keycloak.terarium.ai
             - name: KC_HOSTNAME_ADMIN_URL
               value: https://keycloak.terarium.ai
+      initContainers:
+        - name: init-keycloak
+          volumeMounts:
+            - name: realm-volume
+              mountPath: /data
+      volumes:
+        - name: realm-volume
+          configMap:
+            name: keycloak-realm

@@ -23,6 +23,7 @@ spec:
       containers:
         - name: skema-py
           image: skema-py-image
+          imagePullPolicy: Always
           command: ['uvicorn']
           args: ['skema.skema_py.server:app', '--host', '0.0.0.0', '--port', '8000']
           ports:

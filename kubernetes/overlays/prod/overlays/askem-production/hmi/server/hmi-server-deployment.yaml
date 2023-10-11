@@ -9,11 +9,11 @@ spec:
       containers:
         - name: hmi-server
           env:
-            - name: realm
-              value: Uncharted
-            - name: TGPT_APPURL
-              value: https://app.terarium.ai/beaker/
-            - name: TGPT_WSURL
-              value: wss://app.terarium.ai/beaker_ws/
-            - name: GOOGLEANALYTICS_ID
-              value: G-FQ1QYJX1F7
+            - name: TGPT_APP_URL
+              value: "https://app.terarium.ai/beaker/"
+            - name: TGPT_WS_URL
+              value: "wss://app.terarium.ai/beaker_ws/"
+            - name: TERARIUM_KEYCLOAK_URL
+              value: "https://keycloak.terarium.ai"
+            - name: SPRING_DATA_REDIS_URL
+              value: "redis://redis.terarium.ai:6379"

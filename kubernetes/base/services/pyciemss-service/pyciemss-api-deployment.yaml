@@ -23,6 +23,7 @@ spec:
       containers:
         - name: pyciemss-api
           image: pyciemss-api-image
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           resources: {}

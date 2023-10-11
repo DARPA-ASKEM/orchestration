@@ -23,6 +23,7 @@ spec:
       containers:
         - name: skema-tr
           image: skema-tr-image
+          imagePullPolicy: Always
           env:
             - name: secret
               value: 8c2fb5a58ae8d9ec6f7065a25c35aac2

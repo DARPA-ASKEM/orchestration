@@ -18,6 +18,7 @@ spec:
           containers:
             - name: knowledge-middleware-report
               image: knowledge-middleware-report-image
+              imagePullPolicy: Always
               env:
                 - name: AWS_ACCESS_KEY_ID
                   valueFrom:

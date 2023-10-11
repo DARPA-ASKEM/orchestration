@@ -23,6 +23,7 @@ spec:
       containers:
         - name: funman
           image: funman-image
+          imagePullPolicy: Always
           env:
             - name: FUNMAN_BASE_URL
               value: /funman

@@ -23,6 +23,7 @@ spec:
       containers:
         - name: hmi-postgres
           image: postgres-image
+          imagePullPolicy: Always
           env:
             - name: POSTGRES_USER
               value: terarium

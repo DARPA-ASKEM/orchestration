@@ -23,6 +23,7 @@ spec:
       containers:
         - name: skema-mathjax
           image: skema-py-image
+          imagePullPolicy: Always
           command: ['npm']
           args: ['start']
           workingDir: /app/skema/img2mml/data_generation

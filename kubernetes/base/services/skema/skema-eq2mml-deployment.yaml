@@ -23,6 +23,7 @@ spec:
       containers:
         - name: skema-eq2mml
           image: skema-py-image
+          imagePullPolicy: Always
           command: ['uvicorn']
           args: ['skema.img2mml.eqn2mml:app', '--host', '0.0.0.0', '--port', '8001']
           ports:

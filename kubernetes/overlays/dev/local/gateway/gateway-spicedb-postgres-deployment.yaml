@@ -22,6 +22,7 @@ spec:
       containers:
         - name: spicedb-postgres
           image: postgres-image
+          imagePullPolicy: Always
           env:
             - name: POSTGRES_USER
               value: spicedb

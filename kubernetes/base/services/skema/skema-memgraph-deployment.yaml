@@ -23,6 +23,7 @@ spec:
       containers:
         - name: skema-memgraph
           image: skema-memgraph-image
+          imagePullPolicy: Always
           command: ['/usr/bin/supervisord']
           ports:
             - containerPort: 7687
