@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spicedb-postgres
+  labels:
+    software.uncharted.terarium/name: spicedb-postgres
+    software.uncharted.terarium/component: postgres
+    software.uncharted.terarium/part-of: gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: spicedb-postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: spicedb-postgres
+    spec:
+      containers:
+        - name: spicedb-postgres
+          image: postgres-image
+          env:
+            - name: POSTGRES_USER
+              value: spicedb
+            - name: POSTGRES_PASSWORD
+              value: spicedb
+          ports:
+            - containerPort: 5432
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}

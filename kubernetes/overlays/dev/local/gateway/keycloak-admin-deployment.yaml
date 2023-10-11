@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak-admin
+spec:
+  template:
+    spec:
+      containers:
+        - name: keycloak-admin
+          env:
+            - name: realm
+              value: Terarium
+            - name: keycloak-service-url
+              value: http://keycloak:8081/
+            - name: client-id
+              value: app
+            - name: oidc-secret
+              value: jtbQhs6SlfynqJaygVpwav2kLzAme2b4
+            - name: realm-admin
+              value: adminservice
+            - name: password
+              value: asdf1ASDF

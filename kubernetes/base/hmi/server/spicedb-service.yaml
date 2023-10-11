@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spicedb
+  labels:
+    software.uncharted.terarium/name: spicedb
+    software.uncharted.terarium/component: server
+    software.uncharted.terarium/service: spicedb
+    software.uncharted.terarium/part-of: hmi
+  annotations:
+    alb.ingress.kubernetes.io/backend-protocol-version: GRPC #This tells AWS to send traffic from the ALB using HTTP2. Can use GRPC as well if you want to leverage GRPC specific features
+    alb.ingress.kubernetes.io/healthcheck-path: /
+    alb.ingress.kubernetes.io/success-codes: 0-99
+spec:
+  ports:
+    - name: spicedb-svc-grpc-port
+      port: 50051
+      protocol: TCP
+      targetPort: 50051
+  selector:
+    software.uncharted.terarium/name: spicedb
+status:
+  loadBalancer: {}

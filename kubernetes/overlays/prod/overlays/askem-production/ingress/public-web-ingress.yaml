@@ -19,9 +19,9 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: gateway-httpd
+                name: hmi-client
                 port:
-                  number: 8078
+                  number: 8080
 
     - host: "documentation.terarium.ai"
       http:

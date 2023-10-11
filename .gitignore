@@ -37,3 +37,7 @@ kubernetes/overlays/dev/local/gateway/configmap/host.yaml
 kubernetes/overlays/dev/local/gateway/configmap/host.yaml.bak
 kubernetes/overlays/dev/local/hmi/server/configmap/host.yaml
 kubernetes/overlays/dev/local/hmi/server/configmap/host.yaml.bak
+
+# Docker deployments
+secrets.env
+/docker/dev/docker/

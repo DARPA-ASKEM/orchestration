@@ -3,8 +3,9 @@
 # Linting YAML/YML
 
 name: Lint & Format
+
+# yamllint disable-line rule:truthy
 on:
-  # yamllint disable-line rule:truthy
   workflow_call:
   push:
     branches: ['main']
@@ -49,4 +50,4 @@ jobs:
         uses: docker://ghcr.io/yannh/kubeconform:v0.5.0-alpine
         with:
           entrypoint: '/kubeconform'
-          args: '-summary -output json -ignore-filename-pattern secrets -ignore-filename-pattern gateway-certificates -ignore-filename-pattern gateway-httpd-config -ignore-filename-pattern gateway-httpd-exec -ignore-filename-pattern gateway-httpd-htdocs -ignore-filename-pattern gateway-httpd-ingress -ignore-filename-pattern gateway-keycloak-realm -ignore-filename-pattern gateway-keycloak-ingress -ignore-filename-pattern data-service-ingress -ignore-filename-pattern overlays -ignore-filename-pattern gateway\/keycloak\/realm -ignore-filename-pattern kustomization ./kubernetes'
+          args: '-summary -output json -ignore-filename-pattern secrets -ignore-filename-pattern certificates -ignore-filename-pattern keycloak-realm -ignore-filename-pattern keycloak-ingress -ignore-filename-pattern data-service-ingress -ignore-filename-pattern overlays -ignore-filename-pattern keycloak\/realm -ignore-filename-pattern kustomization ./kubernetes'

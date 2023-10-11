@@ -1,25 +1,27 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: terarium
 resources:
   - ../../base
   - check-latest
   - ingress/private-web-ingress.yaml
   - ingress/private-web-ssl-ingress.yaml
+  - ingress/private-web-grpc-ingress.yaml
   - secrets/secrets-adobe-api-key.yaml
+  - secrets/secrets-beaker-creds.yaml
   - secrets/secrets-data-service-s3.yaml
   - secrets/secrets-dkg.yaml
   - secrets/secrets-es-creds.yaml
-  - secrets/secrets-keycloak-admin-creds.yaml
-  - secrets/secrets-keycloak-admin-service-account-creds.yaml
+  - secrets/secrets-keycloak-creds.yaml
+  - secrets/secrets-logging-creds.yaml
   - secrets/secrets-mit-proxy.yaml
   - secrets/secrets-neo4j-auth.yaml
-  - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
+  - secrets/secrets-spicedb-shared.yaml
   - secrets/secrets-xdd-api-key.yaml
 patches:
-  - path: gateway/gateway-httpd-deployment.yaml
-  - path: gateway/gateway-keycloak-deployment.yaml
+  - path: gateway/keycloak-deployment.yaml
   - path: hmi/documentation/terarium-docs-service.yaml
   - path: hmi/server/hmi-server-deployment.yaml
   - path: services/data-service/data-service-deployment.yaml
@@ -37,34 +39,27 @@ patches:
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-service.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
-  - path: services/simulation-service/simulation-service-service.yaml
+  - path: services/sciml-service/sciml-service-service.yaml
   - path: services/skema/skema-py-service.yaml
   - path: services/skema/skema-rs-service.yaml
   - path: services/skema/skema-tr-deployment.yaml
   - path: services/skema/skema-unified-service.yaml
 configMapGenerator:
   - files:
-      - gateway/keycloak/realm/Uncharted-realm.json
-      - gateway/keycloak/realm/Uncharted-users-0.json
-    name: gateway-keycloak-realm
-    behavior: merge
-  - files:
-      - gateway/httpd/htdocs/index.html
-    name: gateway-httpd-htdocs
-    behavior: merge
+      - gateway/realm/Uncharted-realm.json
+      - gateway/realm/Uncharted-users-0.json
+    name: keycloak-realm
+    behavior: create
 images:
   # Gateway and Auth
-  - name: gateway-admin-keycloak-image
+  - name: keycloak-admin-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin
     newTag: '0.2.2'
-  - name: gateway-admin-keycloak-ui-image
+  - name: keycloak-admin-ui-image
     newName: ghcr.io/darpa-askem/admin-keycloak-ui
     # newName: ghcr.io/unchartedsoftware/keycloak-admin-ui
     newTag: '0.1.7k'
-  - name: gateway-httpd-image
-    newName: ghcr.io/unchartedsoftware/httpd-openidc
-    newTag: '0.1.4'
-  - name: gateway-keycloak-image
+  - name: keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak
     newTag: '0.2.2'
   - name: terarium-login-theme-image
@@ -81,6 +76,9 @@ images:
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
     newTag: 'latest'
+  - name: spicedb-image
+    newName: ghcr.io/authzed/spicedb
+    newTag: 'v1.24.0'
 
   # Data Service
   - name: data-service-image
@@ -119,8 +117,8 @@ images:
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
   - name: skema-tr-image
-    newName: enoriega87/skema-webapp
-    newTag: 'latest'
+    newName: lumai/askem-skema-text-reading
+    newTag: 'sha-3ee47d1'
 
   # MIT
   - name: mit-proxy-image
@@ -131,8 +129,8 @@ images:
     newTag: 'latest'
 
   # Simulation Service
-  - name: simulation-service-image
-    newName: ghcr.io/darpa-askem/simulation-service
+  - name: sciml-service-image
+    newName: ghcr.io/darpa-askem/sciml-service
     newTag: 'latest'
 
   # PyCIEMSS service

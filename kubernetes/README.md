@@ -9,7 +9,7 @@
 ### Generate Certificates
 
 ```shell	
-minica -domains certificates,gateway-keycloak,gateway-envoy	
+minica -domains certificates,keycloak
 
 cp certificates/*.pem overlays/prod/base/gateway/certificates	
 

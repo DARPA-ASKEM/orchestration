@@ -1,6 +1,7 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: terarium
 resources:
   - ../../base
   - check-latest
@@ -17,13 +18,13 @@ resources:
   - secrets/secrets-neo4j-auth.yaml
   - secrets/secrets-oidc.yaml
   - secrets/secrets-rds-creds.yaml
+  - secrets/secrets-spicedb-shared.yaml
   - secrets/secrets-xdd-api-key.yaml
   - services/integration-dashboard/integration-dashboard-deployment.yaml
   - services/integration-dashboard/integration-dashboard-service.yaml
   - services/knowledge-middleware/knowledge-middleware-report-cronjob.yaml
 patches:
-  - path: gateway/gateway-httpd-deployment.yaml
-  - path: gateway/gateway-keycloak-deployment.yaml
+  - path: gateway/keycloak-deployment.yaml
   - path: hmi/documentation/terarium-docs-service.yaml
   - path: hmi/server/hmi-server-deployment.yaml
   - path: services/data-service/data-service-deployment.yaml
@@ -36,26 +37,19 @@ patches:
   - path: services/skema/skema-tr-deployment.yaml
 configMapGenerator:
   - files:
-      - gateway/keycloak/realm/Uncharted-realm.json
-      - gateway/keycloak/realm/Uncharted-users-0.json
-    name: gateway-keycloak-realm
-    behavior: merge
-  - files:
-      - gateway/httpd/htdocs/index.html
-    name: gateway-httpd-htdocs
+      - gateway/realm/Uncharted-realm.json
+      - gateway/realm/Uncharted-users-0.json
+    name: keycloak-realm
     behavior: merge
 images:
   # Gateway and Auth
-  - name: gateway-admin-keycloak-image
+  - name: keycloak-admin-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin
     newTag: '0.2.2'
-  - name: gateway-admin-keycloak-ui-image
+  - name: keycloak-admin-ui-image
     newName: ghcr.io/darpa-askem/admin-keycloak-ui
     newTag: '0.1.7k'
-  - name: gateway-httpd-image
-    newName: ghcr.io/unchartedsoftware/httpd-openidc
-    newTag: '0.1.4'
-  - name: gateway-keycloak-image
+  - name: keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak
     newTag: '0.2.2'
   - name: terarium-login-theme-image
@@ -110,8 +104,8 @@ images:
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
   - name: skema-tr-image
-    newName: enoriega87/skema-webapp
-    newTag: 'latest'
+    newName: lumai/askem-skema-text-reading
+    newTag: 'sha-3ee47d1'
 
   # MIT
   - name: mit-proxy-image
@@ -122,8 +116,8 @@ images:
     newTag: 'latest'
 
   # Simulation Service
-  - name: simulation-service-image
-    newName: ghcr.io/darpa-askem/simulation-service
+  - name: sciml-service-image
+    newName: ghcr.io/darpa-askem/sciml-service
     newTag: 'latest'
 
   # PyCIEMSS service

@@ -15,6 +15,8 @@ spec:
               value: 'http://data-service:3020'
             - name: SKEMA_RS_URL
               value: 'http://skema-rs:4040'
+            - name: SKEMA_TR_URL
+              value: 'http://skema-tr:4047'
             - name: MIT_TR_URL
               value: 'http://mit-tr:4046'
             - name: TA1_UNIFIED_URL
