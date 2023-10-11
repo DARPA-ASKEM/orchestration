@@ -23,6 +23,7 @@ spec:
       containers:
         - name: model-service
           image: model-service-image
+          imagePullPolicy: Always
           ports:
             - containerPort: 8888
           resources: {}

@@ -23,6 +23,7 @@ spec:
       containers:
         - name: beaker
           image: beaker-image
+          imagePullPolicy: Always
           env:
             - name: DATA_SERVICE_URL
               value: http://data-service:3020

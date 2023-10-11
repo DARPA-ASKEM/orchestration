@@ -23,6 +23,7 @@ spec:
       containers:
         - name: data-service-postgres
           image: data-service-postgres-image
+          imagePullPolicy: Always
           env:
             - name: POSTGRES_USER
               value: dev

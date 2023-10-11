@@ -37,6 +37,7 @@ spec:
       initContainers:
         - name: spicedb-migrate
           image: spicedb-image
+          imagePullPolicy: Always
           args:
             - migrate
             - head

@@ -23,6 +23,7 @@ spec:
       containers:
         - name: skema-unified
           image: skema-py-image
+          imagePullPolicy: Always
           env:
             - name: OPENAI_API_KEY
               valueFrom:

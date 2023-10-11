@@ -23,6 +23,7 @@ spec:
       containers:
         - name: keycloak-admin-ui
           image: keycloak-admin-ui-image
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
               protocol: TCP

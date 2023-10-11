@@ -23,6 +23,7 @@ spec:
       containers:
         - name: skema-rs
           image: skema-rs-image
+          imagePullPolicy: Always
           command: ['cargo']
           args:
             - 'run'

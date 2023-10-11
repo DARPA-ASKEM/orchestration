@@ -23,6 +23,7 @@ spec:
       containers:
         - name: keycloak-postgres
           image: keycloak-postgres-image
+          imagePullPolicy: Always
           env:
             - name: POSTGRES_USER
               value: keycloak

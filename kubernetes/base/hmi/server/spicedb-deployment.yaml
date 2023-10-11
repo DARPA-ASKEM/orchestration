@@ -23,6 +23,7 @@ spec:
       containers:
         - name: spicedb
           image: spicedb-image
+          imagePullPolicy: Always
           ports:
             - containerPort: 50051
               protocol: TCP
@@ -32,5 +33,6 @@ spec:
       initContainers:
         - name: spicedb-migrate
           image: spicedb-image
+          imagePullPolicy: Always
       restartPolicy: Always
 status: {}

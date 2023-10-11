@@ -23,6 +23,7 @@ spec:
       containers:
         - name: knowledge-middleware-worker
           image: knowledge-middleware-worker-image
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           resources: {}

@@ -22,6 +22,7 @@ spec:
       containers:
         - name: hmi-server
           image: hmi-server-image
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
           resources: {}

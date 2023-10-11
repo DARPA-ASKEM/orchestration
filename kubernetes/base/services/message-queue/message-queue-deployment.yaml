@@ -23,6 +23,7 @@ spec:
       containers:
         - name: message-queue
           image: rabbitmq-image
+          imagePullPolicy: Always
           env:
             - name: RABBITMQ_DEFAULT_USER
               value: terarium

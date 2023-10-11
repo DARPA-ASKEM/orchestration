@@ -23,6 +23,7 @@ spec:
       containers:
         - name: knowledge-middleware-api
           image: knowledge-middleware-api-image
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           resources: {}
