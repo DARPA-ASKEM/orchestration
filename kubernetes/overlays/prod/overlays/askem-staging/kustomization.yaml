@@ -39,6 +39,7 @@ patches:
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-service.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
+  - path: services/sciml-service/sciml-service-service.yaml
   - path: services/skema/skema-py-service.yaml
   - path: services/skema/skema-rs-service.yaml
   - path: services/skema/skema-tr-deployment.yaml
