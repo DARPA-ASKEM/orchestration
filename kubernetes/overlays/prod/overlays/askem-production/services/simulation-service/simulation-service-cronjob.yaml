@@ -1,0 +1,24 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: simulation-service-report
+  namespace: terarium
+spec:
+  schedule: "0 14 * * 1-5" # at 10h ETC every weekday
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            software.uncharted.terarium: simulation-service-report
+        spec:
+          containers:
+            - name: simulation-service-report
+              image: docker:24.0.6
+              command:
+                - "/bin/sh"
+                - "-c"
+                - "docker-compose -f /path/to/your/docker-compose.yml up"
