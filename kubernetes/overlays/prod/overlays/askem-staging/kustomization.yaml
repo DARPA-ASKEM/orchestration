@@ -144,7 +144,7 @@ images:
   # Funman service
   - name: funman-image
     newName: ghcr.io/darpa-askem/funman-api
-    newTag: '1.6.0'
+    newTag: 'latest'
 
   # knowledge middleware
   - name: knowledge-middleware-api-image
