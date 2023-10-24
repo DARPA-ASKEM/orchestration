@@ -10,7 +10,6 @@ resources:
   - ../../../base/services/data-service
   - ../../../base/services/funman
   - ../../../base/services/beaker
-  - ../../../base/services/message-queue
   - ../../../base/services/mit
   - ../../../base/services/model-service
   - ../../../base/services/pyciemss-service
@@ -33,7 +32,6 @@ patches:
   - path: services/funman/funman-deployment.yaml
   - path: services/funman/funman-service.yaml
   - path: services/beaker/beaker-deployment.yaml
-  - path: services/message-queue/message-queue-deployment.yaml
   - path: services/mit/mit-proxy-deployment.yaml
   - path: services/mit/mit-tr-deployment.yaml
   - path: services/model-service/model-service-deployment.yaml
