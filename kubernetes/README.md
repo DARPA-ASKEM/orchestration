@@ -17,7 +17,7 @@ keytool -delete -alias self-signed -storepass changeit -keystore overlays/prod/b
 
 keytool -import -alias self-signed -noprompt -storepass changeit -file overlays/prod/base/gateway/certificates/cert.pem -keystore overlays/prod/base/gateway/keystore/cacerts -storetype JKS	
 
-./production_deploy.sh encrypt staging	
+./deploy.sh encrypt staging	
 
 git add overlays/prod/base/gateway/certificates	
 
