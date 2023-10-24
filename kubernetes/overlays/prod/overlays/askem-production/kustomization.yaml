@@ -86,11 +86,6 @@ images:
     newName: ghcr.io/darpa-askem/model-service
     newTag: 'latest'
 
-  # Message queue
-  - name: rabbitmq-image
-    newName: ghcr.io/darpa-askem/rabbitmq
-    newTag: '3.11.13-management-alpine'
-
   # Jupyter LLM service
   - name: beaker-image
     newName: ghcr.io/darpa-askem/beaker-kernel

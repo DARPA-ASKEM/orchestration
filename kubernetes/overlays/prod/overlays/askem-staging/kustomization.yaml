@@ -32,7 +32,6 @@ patches:
   - path: services/funman/funman-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/beaker/beaker-service.yaml
-  - path: services/message-queue/message-queue-service.yaml
   - path: services/mit/mit-proxy-service.yaml
   - path: services/mit/mit-tr-service.yaml
   - path: services/model-service/model-service-service.yaml
@@ -96,11 +95,6 @@ images:
   - name: model-service-image
     newName: ghcr.io/darpa-askem/model-service
     newTag: 'latest'
-
-  # Message queue
-  - name: rabbitmq-image
-    newName: ghcr.io/darpa-askem/rabbitmq
-    newTag: '3.11.13-management-alpine'
 
   # Jupyter LLM service
   - name: beaker-image
