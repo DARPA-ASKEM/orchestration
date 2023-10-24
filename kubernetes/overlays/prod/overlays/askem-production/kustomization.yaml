@@ -22,7 +22,6 @@ resources:
   - secrets/secrets-xdd-api-key.yaml
   - services/integration-dashboard/integration-dashboard-deployment.yaml
   - services/integration-dashboard/integration-dashboard-service.yaml
-  - services/knowledge-middleware/knowledge-middleware-report-cronjob.yaml
 patches:
   - path: keycloak/keycloak-deployment.yaml
   - path: hmi/documentation/terarium-docs-service.yaml
@@ -143,9 +142,6 @@ images:
     newTag: 'latest'
   - name: knowledge-middleware-worker-image
     newName: ghcr.io/darpa-askem/knowledge-middleware-worker
-    newTag: 'latest'
-  - name: knowledge-middleware-report-image
-    newName: ghcr.io/darpa-askem/knowledge-middleware-report
     newTag: 'latest'
 
   # Integration Dashboard
