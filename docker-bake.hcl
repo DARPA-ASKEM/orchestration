@@ -26,11 +26,11 @@ function "check_suffix" {
 
 # ---------------------------------
 group "prod" {
-  targets = ["theme", "reverse-proxy"]
+  targets = ["theme"]
 }
 
 group "default" {
-  targets = ["theme-base", "reverse-proxy-base"]
+  targets = ["theme-base"]
 }
 
 # ---------------------------------
@@ -46,14 +46,4 @@ target "theme-base" {
 
 target "theme" {
   inherits = ["_platforms", "theme-base"]
-}
-
-target "reverse-proxy-base" {
-	context = "reverse-proxy"
-	dockerfile = "Dockerfile"
-	tags = tag("reverse-proxy", "", "")
-}
-
-target "reverse-proxy" {
-  inherits = ["_platforms", "reverse-proxy-base"]
 }
