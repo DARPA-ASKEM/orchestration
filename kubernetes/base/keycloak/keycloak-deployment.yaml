@@ -6,8 +6,7 @@ metadata:
   labels:
     software.uncharted.terarium/name: keycloak
     software.uncharted.terarium/component: keycloak
-    software.uncharted.terarium/service: keycloak
-    software.uncharted.terarium/part-of: gateway
+    software.uncharted.terarium/part-of: keycloak
 spec:
   replicas: 1
   selector:

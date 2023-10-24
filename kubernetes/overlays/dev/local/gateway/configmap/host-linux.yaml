@@ -1,8 +1,0 @@
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: gateway-host
-data:
-  host_api: "HOST_ADDRESS:3000"
-  host_app: "HOST_ADDRESS:8080"

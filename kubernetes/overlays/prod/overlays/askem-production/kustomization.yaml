@@ -24,7 +24,7 @@ resources:
   - services/integration-dashboard/integration-dashboard-service.yaml
   - services/knowledge-middleware/knowledge-middleware-report-cronjob.yaml
 patches:
-  - path: gateway/keycloak-deployment.yaml
+  - path: keycloak/keycloak-deployment.yaml
   - path: hmi/documentation/terarium-docs-service.yaml
   - path: hmi/server/hmi-server-deployment.yaml
   - path: services/data-service/data-service-deployment.yaml
@@ -38,12 +38,12 @@ patches:
   - path: services/skema/skema-tr-deployment.yaml
 configMapGenerator:
   - files:
-      - gateway/realm/Uncharted-realm.json
-      - gateway/realm/Uncharted-users-0.json
+      - keycloak/realm/Uncharted-realm.json
+      - keycloak/realm/Uncharted-users-0.json
     name: keycloak-realm
     behavior: create
 images:
-  # Gateway and Auth
+  # Auth
   - name: keycloak-admin-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin
     newTag: '0.2.2'

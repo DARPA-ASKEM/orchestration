@@ -6,8 +6,7 @@ metadata:
   labels:
     software.uncharted.terarium/name: keycloak-admin
     software.uncharted.terarium/component: admin
-    software.uncharted.terarium/service: keycloak
-    software.uncharted.terarium/part-of: gateway
+    software.uncharted.terarium/part-of: keycloak
 spec:
   ports:
     - name: keycloak-admin-svc-port

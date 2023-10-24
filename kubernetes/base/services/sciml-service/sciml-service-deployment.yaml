@@ -9,7 +9,7 @@ metadata:
     software.uncharted.terarium/service: simulation
     software.uncharted.terarium/part-of: services
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       software.uncharted.terarium/name: sciml-service
