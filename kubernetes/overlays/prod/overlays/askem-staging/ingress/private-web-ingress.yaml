@@ -45,28 +45,6 @@ spec:
                 port:
                   number: 3020
 
-    - host: "message-queue.staging.terarium.ai"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: message-queue
-                port:
-                  number: 5672
-
-    - host: "message-queue-ui.staging.terarium.ai"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: message-queue
-                port:
-                  number: 15672
-
     - host: "mit-proxy.staging.terarium.ai"
       http:
         paths:
@@ -206,7 +184,6 @@ spec:
         - "documentation.staging.terarium.ai"
         - "funman.staging.terarium.ai"
         - "beaker.staging.terarium.ai"
-        - "message-queue.staging.terarium.ai"
         - "mit-proxy.staging.terarium.ai"
         - "mit-tr.staging.terarium.ai"
         - "model-service.staging.terarium.ai"

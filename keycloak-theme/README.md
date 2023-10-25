@@ -13,7 +13,7 @@ docker buildx bake
 Once build make sure that it is pushed to the appropriate repository.
 
 Finally, update the Kubernetes `keycloak-deployment.yaml` file with the appropriate new version if not using latest and restart the Kubernetes stack.
->The `gateway.sh` script file may need to be updated as well to automatically pull the latest version of the image.
+>The `deploy.sh` script file may need to be updated as well to automatically pull the latest version of the image.
 
 ## Theming
 Currently **only** the login screen is being rethemed. Additional views can be rethemed as well such as `account`, `admin`, `email` and `welcome` screens. This is a basic approach that can be reused for other screens. If others are made they should be placed as subdirectories under the `xx-theme` directory so that the image generated copies them accordingly.

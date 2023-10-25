@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak-admin-ui
+  labels:
+    software.uncharted.terarium/name: keycloak-admin-ui
+    software.uncharted.terarium/component: admin-ui
+    software.uncharted.terarium/part-of: keycloak
+spec:
+  ports:
+    - name: keycloak-admin-ui-svc-port
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    software.uncharted.terarium/name: keycloak-admin-ui
+status:
+  loadBalancer: {}

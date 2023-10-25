@@ -11,17 +11,17 @@
 ```shell	
 minica -domains certificates,keycloak
 
-cp certificates/*.pem overlays/prod/base/gateway/certificates	
+cp certificates/*.pem overlays/prod/base/keycloak/certificates	
 
-keytool -delete -alias self-signed -storepass changeit -keystore overlays/prod/base/gateway/keystore/cacerts -storetype JKS	
+keytool -delete -alias self-signed -storepass changeit -keystore overlays/prod/base/keycloak/keystore/cacerts -storetype JKS	
 
-keytool -import -alias self-signed -noprompt -storepass changeit -file overlays/prod/base/gateway/certificates/cert.pem -keystore overlays/prod/base/gateway/keystore/cacerts -storetype JKS	
+keytool -import -alias self-signed -noprompt -storepass changeit -file overlays/prod/base/keycloak/certificates/cert.pem -keystore overlays/prod/base/keycloak/keystore/cacerts -storetype JKS	
 
-./production_deploy.sh encrypt staging	
+./deploy.sh encrypt staging	
 
-git add overlays/prod/base/gateway/certificates	
+git add overlays/prod/base/keycloak/certificates	
 
-git add overlays/prod/base/gateway/keystore	
+git add overlays/prod/base/keycloak/keystore	
 
 git commit -m "updating certificates"	
 ```

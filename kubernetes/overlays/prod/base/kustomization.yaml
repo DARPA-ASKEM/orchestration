@@ -3,14 +3,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: terarium
 resources:
-  - ../../../base/gateway
+  - ../../../base/keycloak
   - ../../../base/hmi/client
   - ../../../base/hmi/documentation
   - ../../../base/hmi/server
   - ../../../base/services/data-service
   - ../../../base/services/funman
   - ../../../base/services/beaker
-  - ../../../base/services/message-queue
   - ../../../base/services/mit
   - ../../../base/services/model-service
   - ../../../base/services/pyciemss-service
@@ -18,10 +17,10 @@ resources:
   - ../../../base/services/skema
   - ../../../base/services/knowledge-middleware
 patches:
-  - path: gateway/keycloak-admin-deployment.yaml
-  - path: gateway/keycloak-admin-ui-deployment.yaml
-  - path: gateway/keycloak-deployment.yaml
-  - path: gateway/keycloak-service.yaml
+  - path: keycloak/keycloak-admin-deployment.yaml
+  - path: keycloak/keycloak-admin-ui-deployment.yaml
+  - path: keycloak/keycloak-deployment.yaml
+  - path: keycloak/keycloak-service.yaml
   - path: hmi/client/hmi-client-deployment.yaml
   - path: hmi/client/hmi-client-service.yaml
   - path: hmi/documentation/terarium-docs-deployment.yaml
@@ -33,7 +32,6 @@ patches:
   - path: services/funman/funman-deployment.yaml
   - path: services/funman/funman-service.yaml
   - path: services/beaker/beaker-deployment.yaml
-  - path: services/message-queue/message-queue-deployment.yaml
   - path: services/mit/mit-proxy-deployment.yaml
   - path: services/mit/mit-tr-deployment.yaml
   - path: services/model-service/model-service-deployment.yaml
@@ -51,9 +49,9 @@ patches:
 
 configMapGenerator:
   - files:
-      - gateway/keystore/cacerts
+      - keycloak/keystore/cacerts
     name: keycloak-keystore
   - files:
-      - gateway/certificates/cert.pem
-      - gateway/certificates/key.pem
+      - keycloak/certificates/cert.pem
+      - keycloak/certificates/key.pem
     name: keycloak-certificates

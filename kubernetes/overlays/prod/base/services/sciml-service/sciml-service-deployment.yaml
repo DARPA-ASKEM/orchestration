@@ -16,12 +16,14 @@ spec:
             - name: SIMSERVICE_RABBITMQ_ENABLED
               value: 'true'
             - name: SIMSERVICE_RABBITMQ_LOGIN
-              value: 'terarium'
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: username
             - name: SIMSERVICE_RABBITMQ_PASSWORD
-              value: 'terarium123'
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: password
             - name: SIMSERVICE_RABBITMQ_ROUTE
               value: 'sciml-queue'
-            - name: SIMSERVICE_RABBITMQ_HOST
-              value: 'message-queue'
-            - name: SIMSERVICE_RABBITMQ_PORT
-              value: '5672'
