@@ -15,3 +15,5 @@ spec:
               value: 'b-1cb71505-9454-4d81-8ca0-a0ee6faf5770.mq.us-east-1.amazonaws.com'
             - name: SIMSERVICE_RABBITMQ_PORT
               value: '5671'
+            - name: SIMSERVICE_RABBITMQ_SSL
+              value: 'true'
