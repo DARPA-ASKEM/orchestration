@@ -32,13 +32,13 @@ spec:
               path: /health
               port: 8080
             initialDelaySeconds: 3
-            periodSeconds: 3      
+            periodSeconds: 3
           startupProbe:
             httpGet:
               path: /health
               port: 8080
             failureThreshold: 30
-            periodSeconds: 30           
+            periodSeconds: 30
       imagePullSecrets:
         - name: ghcr-cred
       restartPolicy: Always
