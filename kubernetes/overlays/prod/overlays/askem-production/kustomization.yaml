@@ -10,6 +10,7 @@ resources:
   - ingress/public-web-ssl-ingress.yaml
   - secrets/secrets-adobe-api-key.yaml
   - secrets/secrets-beaker-creds.yaml
+  - secrets/secrets-data-service-cred.yaml
   - secrets/secrets-data-service-s3.yaml
   - secrets/secrets-dkg.yaml
   - secrets/secrets-es-creds.yaml
