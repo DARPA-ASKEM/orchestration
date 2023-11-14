@@ -1,7 +1,0 @@
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: hmi-host
-data:
-  host: "host.docker.internal"

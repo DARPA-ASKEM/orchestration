@@ -17,3 +17,5 @@ spec:
               value: "https://keycloak.staging.terarium.ai"
             - name: SPRING_DATA_REDIS_URL
               value: "redis://redis.staging.terarium.ai:6379"
+            - name: TERARIUM_QUEUE_SUFFIX
+              value: staging

@@ -10,18 +10,20 @@ resources:
   - ingress/private-web-grpc-ingress.yaml
   - secrets/secrets-adobe-api-key.yaml
   - secrets/secrets-beaker-creds.yaml
+  - secrets/secrets-data-service-creds.yaml
   - secrets/secrets-data-service-s3.yaml
   - secrets/secrets-dkg.yaml
   - secrets/secrets-es-creds.yaml
   - secrets/secrets-keycloak-creds.yaml
   - secrets/secrets-logging-creds.yaml
   - secrets/secrets-mit-proxy.yaml
+  - secrets/secrets-mq-creds.yaml
   - secrets/secrets-neo4j-auth.yaml
   - secrets/secrets-rds-creds.yaml
   - secrets/secrets-spicedb-shared.yaml
   - secrets/secrets-xdd-api-key.yaml
 patches:
-  - path: gateway/keycloak-deployment.yaml
+  - path: keycloak/keycloak-deployment.yaml
   - path: hmi/documentation/terarium-docs-service.yaml
   - path: hmi/server/hmi-server-deployment.yaml
   - path: services/data-service/data-service-deployment.yaml
@@ -32,13 +34,13 @@ patches:
   - path: services/funman/funman-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/beaker/beaker-service.yaml
-  - path: services/message-queue/message-queue-service.yaml
   - path: services/mit/mit-proxy-service.yaml
   - path: services/mit/mit-tr-service.yaml
   - path: services/model-service/model-service-service.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-service.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
+  - path: services/sciml-service/sciml-service-deployment.yaml
   - path: services/sciml-service/sciml-service-service.yaml
   - path: services/skema/skema-py-service.yaml
   - path: services/skema/skema-rs-service.yaml
@@ -47,12 +49,12 @@ patches:
   - path: services/skema/skema-unified-service.yaml
 configMapGenerator:
   - files:
-      - gateway/realm/Uncharted-realm.json
-      - gateway/realm/Uncharted-users-0.json
+      - keycloak/realm/Uncharted-realm.json
+      - keycloak/realm/Uncharted-users-0.json
     name: keycloak-realm
     behavior: create
 images:
-  # Gateway and Auth
+  # Auth
   - name: keycloak-admin-image
     newName: ghcr.io/unchartedsoftware/keycloak-admin
     newTag: '0.2.2'
@@ -96,11 +98,6 @@ images:
   - name: model-service-image
     newName: ghcr.io/darpa-askem/model-service
     newTag: 'latest'
-
-  # Message queue
-  - name: rabbitmq-image
-    newName: ghcr.io/darpa-askem/rabbitmq
-    newTag: '3.11.13-management-alpine'
 
   # Jupyter LLM service
   - name: beaker-image

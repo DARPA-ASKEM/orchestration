@@ -243,7 +243,7 @@ Finally, we must deploy all of this.  In order to get access to the staging envi
 
 We can deploy the service itself by running
 ```bash
-./production_deploy.sh up staging
+./deploy.sh up staging
 ```
 to create the deployment.
 
