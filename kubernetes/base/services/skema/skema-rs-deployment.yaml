@@ -25,16 +25,20 @@ spec:
           image: skema-rs-image
           imagePullPolicy: Always
           command: ['cargo']
+          env:
+            - name: SKEMA_RS_HOST
+              value: 0.0.0.0
+            - name: SKEMA_RS_PORT
+              value: 8080
+            - name: SKEMA_GRPAH_DB_HOST
+              value: "skema-memgraph"
+            - name: SKEMA_GRPAH_DB_PORT
+              value: 7687
           args:
             - 'run'
             - '--release'
             - '--bin'
             - 'skema_service'
-            - '--'
-            - '--host'
-            - '0.0.0.0'
-            - '--db-host'
-            - 'skema-memgraph'
           ports:
             - containerPort: 8080
           resources: {}
