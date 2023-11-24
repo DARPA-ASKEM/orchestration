@@ -27,13 +27,13 @@ spec:
           command: ['cargo']
           env:
             - name: SKEMA_RS_HOST
-              value: 0.0.0.0
+              value: "0.0.0.0"
             - name: SKEMA_RS_PORT
-              value: 8080
+              value: "8080"
             - name: SKEMA_GRPAH_DB_HOST
               value: "skema-memgraph"
             - name: SKEMA_GRPAH_DB_PORT
-              value: 7687
+              value: "7687"
           args:
             - 'run'
             - '--release'
