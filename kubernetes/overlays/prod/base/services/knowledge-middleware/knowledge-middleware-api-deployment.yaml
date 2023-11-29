@@ -16,11 +16,11 @@ spec:
             - name: SKEMA_RS_URL
               value: 'http://skema-rs:4040'
             - name: SKEMA_TR_URL
-              value: 'http://skema-tr:4047'
+              value: 'http://skema-text-reading:4047'
             - name: MIT_TR_URL
               value: 'http://mit-tr:4046'
             - name: TA1_UNIFIED_URL
-              value: 'https://api.askem.lum.ai'
+              value: 'https://skema-unifed:4045"'
             - name: OPENAI_API_KEY
               valueFrom:
                 secretKeyRef:

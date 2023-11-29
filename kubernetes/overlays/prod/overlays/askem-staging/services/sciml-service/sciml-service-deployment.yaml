@@ -10,13 +10,6 @@ spec:
     spec:
       containers:
         - name: sciml-service
-          resources:
-            requests:
-              memory: "2Gi"
-              cpu: "500m"
-            limits:
-              memory: "3Gi"
-              cpu: "1"
           env:
             - name: SIMSERVICE_RABBITMQ_HOST
               value: 'b-1cb71505-9454-4d81-8ca0-a0ee6faf5770.mq.us-east-1.amazonaws.com'

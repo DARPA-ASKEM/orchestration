@@ -33,9 +33,17 @@ spec:
             - name: SKEMA_RS_ADDESS
               value: http://skema-rs:4040
             - name: SKEMA_TR_ADDRESS
-              value: http://skema-tr:4047
+              value: http://skema-text-reading:4047
             - name: MIT_TR_ADDRESS
               value: http://mit-tr:4046
+            - name: SKEMA_MATHJAX_ADDRESS
+              value: http://skema-mathjax:8031
+            - name: SKEMA_GRAPH_DB_PROTO
+              value: bolt://
+            - name: SKEMA_GRAPH_DB_PROTO
+              value: skema-memgraph
+            - name: SKEMA_GRAPH_DB_PROTO
+              value: '7687'
           command: ['uvicorn']
           args: ['skema.rest.api:app', '--host', '0.0.0.0', '--port', '8000']
           ports:

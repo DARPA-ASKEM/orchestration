@@ -37,7 +37,7 @@ patches:
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
   - path: services/sciml-service/sciml-service-deployment.yaml
-  - path: services/skema/skema-tr-deployment.yaml
+  - path: services/skema/skema-text-reading-deployment.yaml
 configMapGenerator:
   - files:
       - keycloak/realm/Uncharted-realm.json
@@ -104,7 +104,7 @@ images:
   - name: skema-memgraph-image
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
-  - name: skema-tr-image
+  - name: skema-text-reading-image
     newName: lumai/askem-skema-text-reading
     newTag: 'sha-3ee47d1'
 
