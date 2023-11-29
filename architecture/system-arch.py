@@ -23,13 +23,13 @@ graph_attr = {
 	"center": "true",
 	"beautify": "true",
 	"layout": "dot",
-    "rankdir": "TB",          # Direction of graph, "TB" is top to bottom, "LR" is left to right
-    "splines": "spline",    # How edges are drawn. Other options: "ortho", "curved", etc.
-    "nodesep": "1",         # Adjust the space between nodes
-    "ranksep": "2.0",         # Adjust the space between ranks of nodes
-    "margin": "0.5",          # Margin around the graph
-    "pad": "0.5",             # Padding between the graph and the margin
-    "dpi": "120"
+	"rankdir": "TB",    # Direction of graph, "TB" is top to bottom, "LR" is left to right
+	"splines": "ortho", # How edges are drawn. Other options: "ortho", "curved", etc.
+	"nodesep": "1",     # Adjust the space between nodes
+	"ranksep": "2.0",   # Adjust the space between ranks of nodes
+	"margin": "20",     # Margin around the graph
+	"pad": "0.5",       # Padding between the graph and the margin
+	"dpi": "120"
 }
 
 node_attr = {
@@ -93,10 +93,9 @@ with Diagram("Terarium System Architecture", show=True,
 			mit_proxy = Custom("MIT Proxy", "./resources/uncharted.png")
 			mit_tr = Custom("MIT TR", "./resources/mit.jpeg")
 			skema_unified = Custom("Skema Unified", "./resources/ml4ai.png")
-			skema_py = Custom("Skema Py", "./resources/ml4ai.png")
 			skema_rs = Custom("Skema Rs", "./resources/ml4ai.png")
-			skema_tr = Custom("Skema TR", "./resources/ml4ai.png")
-			skema_eq2mml = Custom("Skema EQ2MML", "./resources/ml4ai.png")
+			skema_text_reading = Custom("Skema Text Reading", "./resources/ml4ai.png")
+			#skema_eq2mml = Custom("Skema EQ2MML", "./resources/ml4ai.png")
 			skema_mathjax = Custom("Skema MathJax", "./resources/ml4ai.png")
 			skema_memgraph = Custom("Skema Memgraph", "./resources/ml4ai.png")
 
@@ -116,9 +115,6 @@ with Diagram("Terarium System Architecture", show=True,
 	with Cluster("UWisc External Services"):
 		cosmos = Server("xDD Cosmos")
 		xdd = Server("xDD")
-
-	with Cluster("TA1 External Services"):
-		skema_unified_external = Server("TA1 Unified")
 
 	with Cluster("Web Tier"):
 		hmi_client = Client("HMI Client")
@@ -151,7 +147,6 @@ with Diagram("Terarium System Architecture", show=True,
 	knowledge_middleware_worker >> Edge() >> cosmos
 	knowledge_middleware_worker >> Edge() >> redis
 	knowledge_middleware_worker >> Edge() >> skema_unified
-	knowledge_middleware_worker >> Edge() >> skema_unified_external
 	llm >> Edge() >> openai
 	llm >> Edge() >> sciml_service
 	loki >> Edge() >> es
@@ -159,12 +154,16 @@ with Diagram("Terarium System Architecture", show=True,
 	pyciemss_api >> Edge() >> pyciemss_worker
 	pyciemss_api >> Edge() >> redis
 	pyciemss_api >> Edge() >> tds
+	pyciemss_worker >> Edge() >> message_queue
 	pyciemss_worker >> Edge() >> redis
 	pyciemss_worker >> Edge() >> tds
+	sciml_service >> Edge() >> message_queue
 	skema_rs >> Edge() >> skema_memgraph
-	skema_unified >> Edge() >> skema_py
+	skema_unified >> Edge() >> mit_tr
 	skema_unified >> Edge() >> skema_rs
-	skema_unified >> Edge() >> skema_tr
+	skema_unified >> Edge() >> skema_text_reading
+	skema_unified >> Edge() >> skema_mathjax
+	skema_unified >> Edge() >> skema_memgraph
 	tds >> Edge() >> dkg
 	tds >> Edge() >> es
 	tds >> Edge() >> graphdb
