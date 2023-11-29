@@ -51,9 +51,10 @@ edge_attr = {
 
 # Nodes
 with Diagram("Terarium System Architecture", show=True,
-	     graph_attr=graph_attr,
-		 node_attr=node_attr,
-		 edge_attr=edge_attr):
+	graph_attr=graph_attr,
+	node_attr=node_attr,
+	edge_attr=edge_attr):
+
 	with Cluster("Logging and Monitoring"):
 		grafana = Grafana("Grafana")
 		loki = Loki("Loki")
@@ -67,33 +68,37 @@ with Diagram("Terarium System Architecture", show=True,
 
 	with Cluster("TA4 Kubernetes Cluster"):
 		with Cluster("Middle Tier"):
-			hmi_server = Pod("HMI Server")
-			web_servers = [Pod("Web Server"), Pod("Docs Server")]
+			hmi_server = Custom("HMI Server", "./resources/uncharted.png")
+			web_servers = [Custom("Web Server", "./resources/uncharted.png"), Custom("Docs Server", "./resources/uncharted.png")]
 			keycloak = Custom("Keycloak", "./resources/keycloak.png")
 			message_queue = Rabbitmq("Message Queue")
-			llm = Pod("Jupyter LLM")
-			hmi_extraction_service = Pod("HMI Extraction Service")
+			llm = Custom("Jupyter LLM", "./resources/jataware.jpeg")
+			hmi_extraction_service = Custom("HMI Extraction Service", "./resources/uncharted.png")
 
 		with Cluster("Data Tier"):
-			tds = Pod("Data Service (TDS)")
+			tds = Custom("Data Service (TDS)", "./resources/jataware.jpeg")
 			graphdb = Custom("GraphDB", "./resources/graphdb.png")
 
 		with Cluster("Model Services"):
-			model_service = Pod("Model Service")
+			model_service = Custom("Model Service", "./resources/uncharted.png")
 
 		with Cluster("Simulation Services"):
-			pyciemss_api = Pod("pyciemss API")
-			pyciemss_worker = Pod("pyciemss Worker")
-			simulation_service = Pod("Simulation Service")
+			pyciemss_api = Custom("pyciemss API", "./resources/pnnl.png")
+			pyciemss_worker = Custom("pyciemss Worker", "./resources/pnnl.png")
+			sciml_service = Custom("SciML Service", "./resources/sciml.png")
 
 		with Cluster("Knowledge Services"):
-			knowledge_middleware_api = Pod("Knowledge Middleware API")
-			knowledge_middleware_worker = Pod("Knowledge Middleware Worker")
-			skema_unified = Pod("Skema Unified")
-			skema_rs = Pod("Skema RS")
-			skema_tr = Pod("Skema TR")
-			mit_tr = Pod("MIT TR")
-			skema_memgraph = Pod("Skema Memgraph")
+			knowledge_middleware_api = Custom("Knowledge Middleware API", "./resources/jataware.jpeg")
+			knowledge_middleware_worker = Custom("Knowledge Middleware Worker", "./resources/jataware.jpeg")
+			mit_proxy = Custom("MIT Proxy", "./resources/uncharted.png")
+			mit_tr = Custom("MIT TR", "./resources/mit.jpeg")
+			skema_unified = Custom("Skema Unified", "./resources/ml4ai.png")
+			skema_py = Custom("Skema Py", "./resources/ml4ai.png")
+			skema_rs = Custom("Skema Rs", "./resources/ml4ai.png")
+			skema_tr = Custom("Skema TR", "./resources/ml4ai.png")
+			skema_eq2mml = Custom("Skema EQ2MML", "./resources/ml4ai.png")
+			skema_mathjax = Custom("Skema MathJax", "./resources/ml4ai.png")
+			skema_memgraph = Custom("Skema Memgraph", "./resources/ml4ai.png")
 
 		with Cluster("Ingress"):
 			ingress_app = Ing("application")
@@ -116,48 +121,48 @@ with Diagram("Terarium System Architecture", show=True,
 		skema_unified_external = Server("TA1 Unified")
 
 	with Cluster("Web Tier"):
-		with Cluster("Users"):
-			hmi_client = Client("HMI Client")
-			docs = Client("Terarium Docs")
-		with Cluster("Admins"):
-			admin_ui = Client("Admin UI")
+		hmi_client = Client("HMI Client")
+		docs = Client("Terarium Docs")
 
 	# Connections
-	knowledge_middleware_api >> Edge() >> redis
-	knowledge_middleware_worker >> Edge() >> cosmos
-	knowledge_middleware_worker >> Edge() >> mit_tr
-	knowledge_middleware_worker >> Edge() >> redis
-	knowledge_middleware_worker >> Edge() >> skema_rs
-	knowledge_middleware_worker >> Edge() >> skema_unified_external
-	knowledge_middleware_worker << Edge() >> tds
 	grafana >> Edge() >> es
-	hmi_server << Edge() >> pyciemss_api
+	hmi_extraction_service >> Edge() >> knowledge_middleware_api
+	hmi_server >> Edge() >> pyciemss_api
 	hmi_server >> Edge() << ingress_app
-	hmi_server >> Edge() << keycloak
-	hmi_server >> Edge() << llm
-	hmi_server >> Edge() << tds
+	hmi_server >> Edge() >> keycloak
+	hmi_server >> Edge() >> llm
+	hmi_server >> Edge() >> tds
 	hmi_server >> Edge() >> github
 	hmi_server >> Edge() >> hmi_extraction_service
 	hmi_server >> Edge() >> jsdelivr
+	hmi_server >> Edge() >> knowledge_middleware_api
 	hmi_server >> Edge() >> message_queue
 	hmi_server >> Edge() >> model_service
 	hmi_server >> Edge() >> pyciemss_api
-	hmi_server >> Edge() >> simulation_service
+	hmi_server >> Edge() >> sciml_service
 	hmi_server >> Edge() >> xdd
-	hmi_extraction_service << Edge() >> knowledge_middleware_api
 	ingress_app >> Edge() << hmi_client
 	ingress_docs >> Edge() << docs
-	ingress_keycloak >> Edge() << admin_ui
 	keycloak >> Edge() << ingress_keycloak
+	knowledge_middleware_api >> Edge() >> knowledge_middleware_worker
+	knowledge_middleware_api >> Edge() >> redis
+	knowledge_middleware_worker << Edge() >> mit_proxy
+	knowledge_middleware_worker << Edge() >> tds
+	knowledge_middleware_worker >> Edge() >> cosmos
+	knowledge_middleware_worker >> Edge() >> redis
+	knowledge_middleware_worker >> Edge() >> skema_unified
+	knowledge_middleware_worker >> Edge() >> skema_unified_external
 	llm >> Edge() >> openai
-	llm >> Edge() >> simulation_service
+	llm >> Edge() >> sciml_service
 	loki >> Edge() >> es
+	mit_proxy >> Edge() >> mit_tr
+	pyciemss_api >> Edge() >> pyciemss_worker
 	pyciemss_api >> Edge() >> redis
 	pyciemss_api >> Edge() >> tds
 	pyciemss_worker >> Edge() >> redis
 	pyciemss_worker >> Edge() >> tds
 	skema_rs >> Edge() >> skema_memgraph
-	skema_unified >> Edge() >> mit_tr
+	skema_unified >> Edge() >> skema_py
 	skema_unified >> Edge() >> skema_rs
 	skema_unified >> Edge() >> skema_tr
 	tds >> Edge() >> dkg
