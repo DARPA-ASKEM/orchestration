@@ -37,7 +37,7 @@ spec:
             - name: MIT_TR_ADDRESS
               value: http://mit-tr:4046
             - name: SKEMA_MATHJAX_ADDRESS
-              value: http://skema-mathjax:8031
+              value: http://skema-mathjax:4043
             - name: SKEMA_GRAPH_DB_PROTO
               value: bolt://
             - name: SKEMA_GRAPH_DB_PROTO

@@ -20,7 +20,7 @@ spec:
             - name: MIT_TR_URL
               value: 'http://mit-tr:4046'
             - name: TA1_UNIFIED_URL
-              value: 'https://skema-unifed:4045"'
+              value: 'http://skema-unified:4045'
             - name: OPENAI_API_KEY
               valueFrom:
                 secretKeyRef:
