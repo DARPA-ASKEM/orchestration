@@ -5,15 +5,11 @@ namespace: terarium
 resources:
   - skema-rs-deployment.yaml
   - skema-rs-service.yaml
-  - skema-py-deployment.yaml
-  - skema-py-service.yaml
   - skema-memgraph-deployment.yaml
   - skema-memgraph-service.yaml
-  - skema-eq2mml-deployment.yaml
-  - skema-eq2mml-service.yaml
   - skema-mathjax-deployment.yaml
   - skema-mathjax-service.yaml
-  - skema-tr-deployment.yaml
-  - skema-tr-service.yaml
+  - skema-text-reading-deployment.yaml
+  - skema-text-reading-service.yaml
   - skema-unified-deployment.yaml
   - skema-unified-service.yaml

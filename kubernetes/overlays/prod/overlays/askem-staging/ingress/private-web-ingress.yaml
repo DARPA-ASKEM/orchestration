@@ -111,17 +111,6 @@ spec:
                 port:
                   number: 3030
 
-    - host: "skema-py.staging.terarium.ai"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: skema-py
-                port:
-                  number: 4041
-
     - host: "skema-rs.staging.terarium.ai"
       http:
         paths:
@@ -140,7 +129,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: skema-tr
+                name: skema-text-reading
                 port:
                   number: 4047
 
@@ -189,8 +178,7 @@ spec:
         - "model-service.staging.terarium.ai"
         - "pyciemss.staging.terarium.ai"
         - "sciml-service.staging.terarium.ai"
-        - "skema-py.staging.terarium.ai"
         - "skema-rs.staging.terarium.ai"
-        - "skema-tr.staging.terarium.ai"
+        - "skema-text-reading.staging.terarium.ai"
         - "skema-unified.staging.terarium.ai"
         - "knowledge-middleware.staging.terarium.ai"
