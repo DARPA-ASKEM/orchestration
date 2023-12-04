@@ -33,20 +33,20 @@ graph_attr = {
 }
 
 node_attr = {
-    "style": "filled",        # Filled color for node
-    "shape": "box",           # Shape of the node
-    "fillcolor": "lightblue", # Node fill color
-    "fontname": "Arial",      # Font type
-    "fontsize": "10",         # Font size
-    "fontcolor": "black"      # Font color
+	"style": "filled",        # Filled color for node
+	"shape": "box",           # Shape of the node
+	"fillcolor": "lightblue", # Node fill color
+	"fontname": "Arial",      # Font type
+	"fontsize": "10",         # Font size
+	"fontcolor": "black"      # Font color
 }
 
 edge_attr = {
-    "color": "darkgrey",        # Edge color
-    "style": "solid",       # Style of the edge, other options: "solid", "dotted", etc.
-    "arrowhead": "normal",      # Style of the arrowhead, other options: "normal", "dot", etc.
-    "fontname": "Arial",     # Font type
-    "fontsize": "10",        # Font size
+	"color": "darkgrey",   # Edge color
+	"style": "solid",      # Style of the edge, other options: "solid", "dotted", etc.
+	"arrowhead": "normal", # Style of the arrowhead, other options: "normal", "dot", etc.
+	"fontname": "Arial",   # Font type
+	"fontsize": "10",      # Font size
 }
 
 # Nodes
@@ -95,7 +95,6 @@ with Diagram("Terarium System Architecture", show=True,
 			skema_unified = Custom("Skema Unified", "./resources/ml4ai.png")
 			skema_rs = Custom("Skema Rs", "./resources/ml4ai.png")
 			skema_text_reading = Custom("Skema Text Reading", "./resources/ml4ai.png")
-			#skema_eq2mml = Custom("Skema EQ2MML", "./resources/ml4ai.png")
 			skema_mathjax = Custom("Skema MathJax", "./resources/ml4ai.png")
 			skema_memgraph = Custom("Skema Memgraph", "./resources/ml4ai.png")
 
