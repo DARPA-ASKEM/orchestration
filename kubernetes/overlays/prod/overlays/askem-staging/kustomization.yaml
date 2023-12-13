@@ -114,8 +114,8 @@ images:
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
   - name: skema-text-reading-image
-    newName: lumai/askem-skema-text-reading
-    newTag: 'sha-3ee47d1'
+    newName: ghcr.io/darpa-askem/skema-text-reading
+    newTag: '2023_12_06'
 
   # MIT
   - name: mit-proxy-image
