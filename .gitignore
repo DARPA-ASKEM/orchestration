@@ -37,3 +37,4 @@ nb-configuration.xml
 # Docker deployments
 secrets.env
 /docker/dev/docker/
+mi6/export
