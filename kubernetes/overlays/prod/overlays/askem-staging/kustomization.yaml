@@ -52,13 +52,6 @@ configMapGenerator:
     behavior: create
 images:
   # Auth
-  - name: keycloak-admin-image
-    newName: ghcr.io/unchartedsoftware/keycloak-admin
-    newTag: '0.2.2'
-  - name: keycloak-admin-ui-image
-    newName: ghcr.io/darpa-askem/admin-keycloak-ui
-    # newName: ghcr.io/unchartedsoftware/keycloak-admin-ui
-    newTag: '0.1.7k'
   - name: keycloak-image
     newName: ghcr.io/unchartedsoftware/keycloak
     newTag: '0.2.2'

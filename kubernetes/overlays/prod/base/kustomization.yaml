@@ -9,6 +9,7 @@ resources:
   - ../../../base/hmi/server
   - ../../../base/services/funman
   - ../../../base/services/beaker
+  - ../../../base/services/data-service
   - ../../../base/services/mit
   - ../../../base/services/model-service
   - ../../../base/services/pyciemss-service
@@ -16,8 +17,6 @@ resources:
   - ../../../base/services/skema
   - ../../../base/services/knowledge-middleware
 patches:
-  - path: keycloak/keycloak-admin-deployment.yaml
-  - path: keycloak/keycloak-admin-ui-deployment.yaml
   - path: keycloak/keycloak-deployment.yaml
   - path: keycloak/keycloak-service.yaml
   - path: hmi/client/hmi-client-deployment.yaml
