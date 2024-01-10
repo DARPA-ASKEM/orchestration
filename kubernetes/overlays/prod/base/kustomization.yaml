@@ -7,7 +7,6 @@ resources:
   - ../../../base/hmi/client
   - ../../../base/hmi/documentation
   - ../../../base/hmi/server
-  - ../../../base/services/data-service
   - ../../../base/services/funman
   - ../../../base/services/beaker
   - ../../../base/services/mit
@@ -27,7 +26,6 @@ patches:
   - path: hmi/server/hmi-server-deployment.yaml
   - path: hmi/server/spicedb-deployment.yaml
   - path: hmi/server/spicedb-service.yaml
-  - path: services/data-service/data-service-deployment.yaml
   - path: services/data-service/data-service-graphdb-deployment.yaml
   - path: services/funman/funman-deployment.yaml
   - path: services/funman/funman-service.yaml

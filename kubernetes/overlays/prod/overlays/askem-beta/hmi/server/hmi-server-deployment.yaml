@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hmi-server
+spec:
+  template:
+    spec:
+      containers:
+        - name: hmi-server
+          env:
+            - name: TGPT_APP_URL
+              value: "https://app.beta.terarium.ai/beaker/"
+            - name: TGPT_WS_URL
+              value: "wss://app.beta.terarium.ai/beaker_ws/"
+            - name: TERARIUM_KEYCLOAK_URL
+              value: "https://keycloak.beta.terarium.ai"
+            - name: SPRING_DATA_REDIS_URL
+              value: "redis://redis.beta.terarium.ai:6379"
+            - name: TERARIUM_QUEUE_SUFFIX
+              value: beta
