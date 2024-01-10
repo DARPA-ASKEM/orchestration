@@ -41,7 +41,7 @@ export)
   decrypt
 
   echo "## Applying kustomization script to Kubernetes cluster"
-  kubectl kustomize ${KUSTOMIZATION} | ${KUBECTL_CMD} apply --filename -
+  ./export_project.sh ${ID}
 
   echo "## Restoring secrets as encrypted files"
   restore

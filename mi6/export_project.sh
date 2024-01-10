@@ -1,3 +1,5 @@
+source secrets.sh
+
 function copy_s3_directory {
   DIR=$1
   ID=$2
