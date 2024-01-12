@@ -130,7 +130,7 @@ images:
   # knowledge middleware
   - name: knowledge-middleware-api-image
     newName: ghcr.io/darpa-askem/knowledge-middleware-api
-    newTag: 'latest'
+    newTag: 'tds-migration'
   - name: knowledge-middleware-worker-image
     newName: ghcr.io/darpa-askem/knowledge-middleware-worker
-    newTag: 'latest'
+    newTag: 'tds-migration'
