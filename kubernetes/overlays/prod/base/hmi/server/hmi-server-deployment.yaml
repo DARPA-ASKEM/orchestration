@@ -123,3 +123,68 @@ spec:
                 secretKeyRef:
                   name: mq-creds
                   key: password
+            - name: TERARIUM_DOWNLOAD-ENCRYPTION-KEY
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-download-encryption-key
+            - name: TERARIUM_AMAZON_CREDENTIALS_DEFAULT_ACCESS-KEY
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-access-key-id
+            - name: TERARIUM_AMAZON_CREDENTIALS_DEFAULT_SECRET-KEY
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-secret-access-key
+            - name: TERARIUM_FILE-STORAGE-S3-BUCKET-NAME
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-data-storage-path
+            - name: TERARIUM_FILE-STORAGE-S3-CLIENT-NAME
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-client-name
+            - name: TERARIUM_DATASET-PATH
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-dataset-path
+            - name: TERARIUM_RESULTS-PATH
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-results-path
+            - name: TERARIUM_ARTIFACT-PATH
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-artifact-path
+            - name: TERARIUM_DOCUMENT-PATH
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-document-path
+            - name: TERARIUM_CODE-PATH
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-code-path
+            - name: TERARIUM_AMAZON_S3_DEFAULT_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-region
+            - name: TERARIUM_AMAZON_S3_DEFAULT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-data-storage-path
+            - name: TERARIUM_AMAZON_S3_DEFAULT_CREDENTIALS-ID
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-client-name
