@@ -59,6 +59,13 @@ function copy_api_data {
         echo "${MODEL_CONFIGURATION_JSON}" > export/${PROJECT_ID}/${TYPE}/${ID}/model_configuration.json
       fi
     fi
+
+    if [ "${TYPE}" == "datasets" ]; then
+      SIM_ID=$(jq -r '.metadata.simulation_id' export/${PROJECT_ID}/${TYPE}/${ID}/${TYPE}.json)
+      JSON=$(fetch_data "/simulations/${SIM_ID}")
+      mkdir -p export/${PROJECT_ID}/${TYPE}/${ID}/sim
+      echo "${JSON}" > export/${PROJECT_ID}/${TYPE}/${ID}/sim/${SIM_ID}.json
+    fi
   done
 
 }
