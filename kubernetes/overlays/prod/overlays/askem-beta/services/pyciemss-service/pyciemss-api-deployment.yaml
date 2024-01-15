@@ -14,6 +14,6 @@ spec:
             - name: REDIS_PORT
               value: '6379'
             - name: RABBITMQ_HOST
-              value: 'b-1cb71505-9454-4d81-8ca0-a0ee6faf5770.mq.us-east-1.amazonaws.com'
+              value: 'b-9fa42fad-d3db-45da-97ca-4f474b9dd847.mq.us-east-1.amazonaws.com'
             - name: RABBITMQ_PORT
               value: '5671'

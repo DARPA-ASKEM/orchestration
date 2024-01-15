@@ -23,7 +23,7 @@ spec:
             - name: SKEMA-RS_URL
               value: "http://skema-rs:4040"
             - name: SKEMA-UNIFIED_URL
-              value: "https://skema-unified:4045"
+              value: "http://skema-unified:4045"
             - name: TERARIUM_DATASERVICE_URL
               value: "http://data-service:3020"
             - name: FUNMAN-SERVICE_URL
@@ -179,10 +179,7 @@ spec:
                   name: data-service-s3
                   key: aws-region
             - name: TERARIUM_AMAZON_S3_DEFAULT_URL
-              valueFrom:
-                secretKeyRef:
-                  name: data-service-s3
-                  key: aws-data-storage-path
+              value: ""
             - name: TERARIUM_AMAZON_S3_DEFAULT_CREDENTIALS-ID
               valueFrom:
                 secretKeyRef:
