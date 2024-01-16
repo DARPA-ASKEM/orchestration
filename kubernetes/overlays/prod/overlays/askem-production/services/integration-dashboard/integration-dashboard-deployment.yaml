@@ -45,7 +45,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: data-service-s3
-                  key: aws-dataset-bucket
+                  key: aws-data-storage-path
             - name: SKEMA_RS_URL
               value: 'http://skema-rs:4040'
             - name: TA1_UNIFIED_URL
