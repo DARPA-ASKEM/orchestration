@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SECRET_FILES=("secrets.sh")
+SECRET_FILES=("export_secrets.sh" "import_secrets.sh")
 
 source ../kubernetes/functions.sh
 

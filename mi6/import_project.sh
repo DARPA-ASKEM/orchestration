@@ -1,3 +1,6 @@
+source import_secrets.sh
+
+<<<<<<< HEAD
 SQL_UID=postgres
 SQL_PWD=postgres
 SQL_DATABASE=terarium
@@ -14,9 +17,21 @@ SPICEDB_SHARED_KEY=dev
 SPICEDB_TARGET=localhost:50051
 SPICEDB_INSECURE=true
 
-
+S3_DIR=s3://askem-beta-data-service
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_REGION=us-east-1
 
 PUBLIC_GROUP_NAME="Public"
+
+=======
+>>>>>>> 809fc04 (import with ssh potential)
+function copy_s3_directory {
+  SOURCE=$1
+  DEST=$2
+
+  AWS_REGION=${AWS_REGION} AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} aws s3 cp "${SOURCE}" "${DEST}" --quiet
+}
 
 function execute_sql() {
   local SQL=$1
@@ -134,6 +149,19 @@ function insert_project() {
   done
 }
 
+function import_es_data() {
+  INDEX=$1
+  ID=$2
+  FILE=$3
+
+  RES=$(curl -s -XPUT -H "Content-Type: application/json" http://localhost:9200/${INDEX}_doc/${ID} -d @${FILE})
+  if [ "$(echo "$RES" | jq -r '._shards.successful')" != "null" ]; then
+    if [ "$(echo "$RES" | jq -r '._shards.successful')" -eq 0 ]; then
+      echo "  ... FAILED to import into ES index ${INDEX} file ${FILE}"
+    fi
+  fi
+}
+
 function insert_datasets() {
   echo "Datasets" >&2
 
@@ -146,8 +174,20 @@ function insert_datasets() {
     $(jq --arg user_id "${USER_ID}" '. += {user_id: $user_id} | with_entries(if .key == "timestamp" then .key = "created_on" else . end) | del(.username, .timestamp) ' export/${PROJECT_ID}/datasets/${ID}/datasets.json > dataset-${ID}.json)
     echo "  ...prepared import json" >&2
 
-    curl -XPUT -H "Content-Type: application/json" http://localhost:9200/tds_dataset_tera_1.0/_doc/${ID} -d @dataset-${ID}.json
- 
+    import_es_data "tds_dataset_tera_1.0" "${ID}" "dataset-${ID}.json"
+
+    for FILE in export/${PROJECT_ID}/datasets/${ID}/files/*; do
+      FILENAME="${FILE##*/}"
+      copy_s3_directory "export/${PROJECT_ID}/datasets/${ID}/files/${FILE}" "${S3_DIR}/datasets/${ID}/${FILE}"
+    done
+
+    if [ ! -z "$(ls -A "export/${PROJECT_ID}/datasets/${ID}/sim/*" 2>/dev/null)" ]; then
+      for FILE in export/${PROJECT_ID}/datasets/${ID}/sim/*; do
+        FILENAME="${FILE##*/}"
+        import_es_data "tds_simulation_tera_1.0" "${FILENAME%.*}" "${FILE}"
+      done
+    fi
+
     rm dataset-${ID}.json
     echo "  ...imported" >&2
   done
@@ -157,9 +197,11 @@ function insert_models() {
   echo "Models" >&2
 
   local IDS=$(jq -r '.models[].id' export/${PROJECT_ID}/assets.json)
-  for ID in ${_IDS}; do
+  for ID in ${IDS}; do
     echo "  Model ${ID}" >&2
-    curl -XPUT -H "Content-Type: application/json" http://localhost:9200/tds_model_tera_1.0/_doc/${ID} -d @export/${PROJECT_ID}/models/${ID}/models.json
+    import_es_data "tds_model_tera_1.0" "${ID}" "export/${PROJECT_ID}/models/${ID}/models.json"
+    MODEL_CONFIGURATION_ID=$(jq -r '.[0].id' export/${PROJECT_ID}/models/${ID}/model_configuration.json)
+    import_es_data "tds_modelconfiguration_tera_1.0" "${MODEL_CONFIGURATION_ID}" "export/${PROJECT_ID}/models/${ID}/model_configuration.json"
     echo "  ...imported" >&2
   done
 }
@@ -168,9 +210,9 @@ function insert_workflows() {
   echo "Workflows" >&2
 
   local IDS=$(jq -r '.workflows[].id' export/${PROJECT_ID}/assets.json)
-  for ID in ${_IDS}; do
-    echo "  Model ${ID}" >&2
-    curl -XPUT -H "Content-Type: application/json" http://localhost:9200/tds_workflow_tera_1.0/_doc/${ID} -d @export/${PROJECT_ID}/workflows/${ID}/workflows.json
+  for ID in ${IDS}; do
+    echo "  WORKFLOW ${ID}" >&2
+    import_es_data "tds_workflow_tera_1.0" "${ID}" "export/${PROJECT_ID}/workflows/${ID}/workflows.json"
     echo "  ...imported" >&2
   done
 }
@@ -178,6 +220,25 @@ function insert_workflows() {
 function insert_artifacts() {
   echo "Artifacts" >&2
 
+  local IDS=$(jq -r '.artifacts[].id' export/${PROJECT_ID}/assets.json)
+  for ID in ${IDS}; do
+    echo "  Artifact ${ID}" >&2
+
+    local USERNAME=$(jq -r --arg id "${ID}" '.artifacts[] | select(.id == $id) | .username' export/${PROJECT_ID}/assets.json)
+    local USER_ID=$(get_user_id "${USERNAME}")
+    $(jq --arg id "${ID}" --arg user_id "${USER_ID}" '.artifacts[] | select(.id == $id) | . += {user_id: $user_id} | with_entries(if .key == "timestamp" then .key = "created_on" else . end) | del(.username, .timestamp) ' export/${PROJECT_ID}/assets.json > artifact-${ID}.json)
+    echo "  ...prepared import json" >&2
+
+    import_es_data "tds_artifact_tera_1.0" "${ID}" "artifact-${ID}.json"
+ 
+    for FILE in export/${PROJECT_ID}/artifacts/${ID}/files/*; do
+      FILENAME="${FILE##*/}"
+      copy_s3_directory "export/${PROJECT_ID}/artifacts/${ID}/files/${FILE}" "${S3_DIR}/artifacts/${ID}/${FILE}"
+    done
+
+    rm artifact-${ID}.json
+    echo "  ...imported" >&2
+  done
 }
 
 if [[ -z $1 ]]; then
@@ -188,9 +249,11 @@ PROJECT_ID=$1
 
 echo "Importing project ${PROJECT_ID}" >&2
 
-echo "Establish SSH session for forwarded ports" >&2
-# TODO:: explore `ssh -D <url:port>`
-#ssh -M -fN -S /tmp/.ssh-uncharted-askem-backup uncharted-askem-prod-askem-prod-kube-manager-1
+if [ ! -z "${SSH_ADDRESS}" ]; then
+  echo "Establish SSH session for forwarded ports" >&2
+  ssh -M -fN -S /tmp/.ssh-uncharted-askem-import ${SSH_ADDRESS}
+fi
+
 # Configure spicedb
 SPICEDB_SETTINGS="--endpoint ${SPICEDB_TARGET} --token ${SPICEDB_SHARED_KEY}"
 if [ "${SPICEDB_INSECURE}" = "true" ]; then
@@ -206,8 +269,8 @@ insert_datasets
 insert_models
 insert_workflows
 insert_artifacts
-#types=datasets&types=model_configurations&types=models&types=publications&types=simulations&types=workflows&types=artifacts&types=code&types=documents"
 
-echo "Disconnect SSH session" >&2
-
-#ssh -S /tmp/.ssh-uncharted-askem-backup -O exit uncharted-askem-prod-askem-prod-kube-manager-1
+if [ ! -z "${SSH_ADDRESS}" ]; then
+  echo "Disconnect SSH session" >&2
+  ssh -S /tmp/.ssh-uncharted-askem-import -O exit ${SSH_ADDRESS}
+fi

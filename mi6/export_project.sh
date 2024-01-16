@@ -1,4 +1,4 @@
-source secrets.sh
+source export_secrets.sh
 
 function copy_s3_directory {
   DIR=$1
@@ -62,9 +62,11 @@ function copy_api_data {
 
     if [ "${TYPE}" == "datasets" ]; then
       SIM_ID=$(jq -r '.metadata.simulation_id' export/${PROJECT_ID}/${TYPE}/${ID}/${TYPE}.json)
-      JSON=$(fetch_data "/simulations/${SIM_ID}")
-      mkdir -p export/${PROJECT_ID}/${TYPE}/${ID}/sim
-      echo "${JSON}" > export/${PROJECT_ID}/${TYPE}/${ID}/sim/${SIM_ID}.json
+      if [ ${SIM_ID} != "null" ]; then
+        JSON=$(fetch_data "/simulations/${SIM_ID}")
+        mkdir -p export/${PROJECT_ID}/${TYPE}/${ID}/sim
+        echo "${JSON}" > export/${PROJECT_ID}/${TYPE}/${ID}/sim/${SIM_ID}.json
+      fi
     fi
   done
 
