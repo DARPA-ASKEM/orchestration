@@ -6,7 +6,7 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: instance
-    alb.ingress.kubernetes.io/security-groups: askem-beta-web-private, askem-beta-k8s-internal
+    alb.ingress.kubernetes.io/security-groups: askem-beta-web-private, askem-beta-k8s
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
 spec:
@@ -158,7 +158,6 @@ spec:
   tls:
     - hosts:
         - "app.beta.terarium.ai"
-        - "data-service.beta.terarium.ai"
         - "documentation.beta.terarium.ai"
         - "funman.beta.terarium.ai"
         - "beaker.beta.terarium.ai"

@@ -24,8 +24,6 @@ spec:
               value: "http://skema-rs:4040"
             - name: SKEMA-UNIFIED_URL
               value: "http://skema-unified:4045"
-            - name: TERARIUM_DATASERVICE_URL
-              value: "http://data-service:3020"
             - name: FUNMAN-SERVICE_URL
               value: "http://funman:8190"
             - name: SIMULATION-SERVICE_URL
@@ -185,3 +183,29 @@ spec:
                 secretKeyRef:
                   name: data-service-s3
                   key: aws-client-name
+            - name: TERARIUM_ELASTICSEARCH_URL
+              value: https://elasticsearch.beta.terarium.ai:443
+            - name: TERARIUM_ELASTICSEARCH_AUTH-ENABLED
+              value: "true"
+            - name: TERARIUM_ELASTICSEARCH_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: es-creds
+                  key: user
+            - name: TERARIUM_ELASTICSEARCH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: es-creds
+                  key: password
+            - name: SPRING.DATA.NEO4J.URI
+              value: neo4j://data-service-graphdb:7687
+            - name: SPRING.DATA.NEO4J.AUTHENTICATION.USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: neo4j-auth
+                  key: user
+            - name: SPRING.DATA.NEO4J.AUTHENTICATION.PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: neo4j-auth
+                  key: password
