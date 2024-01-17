@@ -32,6 +32,7 @@ patches:
   - path: services/knowledge-middleware/knowledge-middleware-api-service.yaml
   - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
   - path: services/funman/funman-deployment.yaml
+  - path: services/gollm/gollm-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/beaker/beaker-service.yaml
   - path: services/mit/mit-proxy-service.yaml
