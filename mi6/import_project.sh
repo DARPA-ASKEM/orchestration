@@ -1,31 +1,5 @@
 source import_secrets.sh
 
-<<<<<<< HEAD
-SQL_UID=postgres
-SQL_PWD=postgres
-SQL_DATABASE=terarium
-SQL_HOST=localhost
-SQL_PORT=5430
-
-KEYCLOAK_ADMIN_CLIENT_ID=admin-cli
-KEYCLOAK_ADMIN_USERNAME=admin
-KEYCLOAK_ADMIN_PASSWORD=openidctest
-KEYCLOAK_URL=https://keycloak.terarium.ai
-KEYCLOAK_REALM=Uncharted
-
-SPICEDB_SHARED_KEY=dev
-SPICEDB_TARGET=localhost:50051
-SPICEDB_INSECURE=true
-
-S3_DIR=s3://askem-beta-data-service
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-AWS_REGION=us-east-1
-
-PUBLIC_GROUP_NAME="Public"
-
-=======
->>>>>>> 809fc04 (import with ssh potential)
 function copy_s3_directory {
   SOURCE=$1
   DEST=$2
