@@ -10,6 +10,3 @@ spec:
     spec:
       containers:
         - name: funman
-          env:
-            - name: FUNMAN_BASE_URL
-              value: /
