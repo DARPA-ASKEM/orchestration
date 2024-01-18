@@ -32,6 +32,7 @@ patches:
   - path: services/funman/funman-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/beaker/beaker-service.yaml
+  - path: services/data-service/data-service-graphdb-service.yaml
   - path: services/mit/mit-proxy-service.yaml
   - path: services/mit/mit-tr-service.yaml
   - path: services/model-service/model-service-service.yaml
