@@ -23,6 +23,28 @@ spec:
                 port:
                   number: 8080
 
+    - host: "server.beta.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hmi-server
+                port:
+                  number: 3000
+
+    - host: "graphdb.beta.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: data-service-graphdb
+                port:
+                  number: 7687
+
     - host: "documentation.beta.terarium.ai"
       http:
         paths:
@@ -158,6 +180,8 @@ spec:
   tls:
     - hosts:
         - "app.beta.terarium.ai"
+        - "server.beta.terarium.ai"
+        - "graphdb.beta.terarium.ai
         - "documentation.beta.terarium.ai"
         - "funman.beta.terarium.ai"
         - "beaker.beta.terarium.ai"
