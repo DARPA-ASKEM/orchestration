@@ -181,7 +181,7 @@ spec:
     - hosts:
         - "app.beta.terarium.ai"
         - "server.beta.terarium.ai"
-        - "graphdb.beta.terarium.ai
+        - "graphdb.beta.terarium.ai"
         - "documentation.beta.terarium.ai"
         - "funman.beta.terarium.ai"
         - "beaker.beta.terarium.ai"
