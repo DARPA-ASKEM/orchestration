@@ -183,6 +183,7 @@ spec:
         - "data-service.staging.terarium.ai"
         - "documentation.staging.terarium.ai"
         - "funman.staging.terarium.ai"
+        - "gollm.staging.terarium.ai"
         - "beaker.staging.terarium.ai"
         - "mit-proxy.staging.terarium.ai"
         - "mit-tr.staging.terarium.ai"
