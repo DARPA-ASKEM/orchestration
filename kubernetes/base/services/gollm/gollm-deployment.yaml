@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gollm
+  labels:
+    software.uncharted.terarium/name: gollm
+    software.uncharted.terarium/component: llm
+    software.uncharted.terarium/service: gollm
+    software.uncharted.terarium/part-of: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: gollm
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: gollm
+    spec:
+      containers:
+        - name: gollm
+          image: gollm-image
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}
