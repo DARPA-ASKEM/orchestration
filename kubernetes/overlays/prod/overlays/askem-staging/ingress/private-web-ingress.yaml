@@ -177,6 +177,17 @@ spec:
                 port:
                   number: 8190
 
+    - host: "gollm.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gollm
+                port:
+                  number: 8000
+
   tls:
     - hosts:
         - "app.staging.terarium.ai"
@@ -184,6 +195,7 @@ spec:
         - "graphdb.staging.terarium.ai"
         - "documentation.staging.terarium.ai"
         - "funman.staging.terarium.ai"
+        - "gollm.staging.terarium.ai"
         - "beaker.staging.terarium.ai"
         - "mit-proxy.staging.terarium.ai"
         - "mit-tr.staging.terarium.ai"

@@ -30,6 +30,7 @@ patches:
   - path: services/knowledge-middleware/knowledge-middleware-api-service.yaml
   - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
   - path: services/funman/funman-deployment.yaml
+  - path: services/gollm/gollm-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/beaker/beaker-service.yaml
   - path: services/data-service/data-service-graphdb-service.yaml
@@ -127,6 +128,11 @@ images:
   # Funman service
   - name: funman-image
     newName: ghcr.io/darpa-askem/funman-api
+    newTag: 'latest'
+
+  # GoLLM service
+  - name: gollm-image
+    newName: ghcr.io/darpa-askem/gollm-service
     newTag: 'latest'
 
   # knowledge middleware

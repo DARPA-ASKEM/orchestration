@@ -31,6 +31,7 @@ patches:
   - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
   - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
   - path: services/funman/funman-deployment.yaml
+  - path: services/gollm/gollm-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml

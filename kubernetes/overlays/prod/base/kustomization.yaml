@@ -8,6 +8,7 @@ resources:
   - ../../../base/hmi/documentation
   - ../../../base/hmi/server
   - ../../../base/services/funman
+  - ../../../base/services/gollm
   - ../../../base/services/beaker
   - ../../../base/services/data-service
   - ../../../base/services/mit
@@ -29,6 +30,8 @@ patches:
   - path: services/data-service/data-service-graphdb-deployment.yaml
   - path: services/funman/funman-deployment.yaml
   - path: services/funman/funman-service.yaml
+  - path: services/gollm/gollm-deployment.yaml
+  - path: services/gollm/gollm-service.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/mit/mit-proxy-deployment.yaml
   - path: services/mit/mit-tr-deployment.yaml
