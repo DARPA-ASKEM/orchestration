@@ -198,7 +198,7 @@ spec:
                   name: es-creds
                   key: password
             - name: SPRING.DATA.NEO4J.URI
-              value: neo4j://data-service-graphdb:7687
+              value: bolt://data-service-graphdb:7687
             - name: SPRING.DATA.NEO4J.AUTHENTICATION.USERNAME
               valueFrom:
                 secretKeyRef:
