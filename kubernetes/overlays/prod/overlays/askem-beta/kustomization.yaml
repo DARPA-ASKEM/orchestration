@@ -22,16 +22,18 @@ resources:
   - secrets/secrets-spicedb-shared.yaml
   - secrets/secrets-xdd-api-key.yaml
 patches:
-  - path: keycloak/keycloak-deployment.yaml
   - path: hmi/documentation/terarium-docs-service.yaml
   - path: hmi/server/hmi-server-deployment.yaml
-  - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
-  - path: services/knowledge-middleware/knowledge-middleware-api-service.yaml
-  - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
-  - path: services/funman/funman-deployment.yaml
+  - path: keycloak/keycloak-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/beaker/beaker-service.yaml
   - path: services/data-service/data-service-graphdb-service.yaml
+  - path: services/funman/funman-deployment.yaml
+  - path: services/gollm/gollm-deployment.yaml
+  - path: services/gollm/gollm-service.yaml
+  - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
+  - path: services/knowledge-middleware/knowledge-middleware-api-service.yaml
+  - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
   - path: services/mit/mit-proxy-service.yaml
   - path: services/mit/mit-tr-service.yaml
   - path: services/model-service/model-service-service.yaml
@@ -41,8 +43,8 @@ patches:
   - path: services/sciml-service/sciml-service-deployment.yaml
   - path: services/sciml-service/sciml-service-service.yaml
   - path: services/skema/skema-rs-service.yaml
-  - path: services/skema/skema-text-reading-service.yaml
   - path: services/skema/skema-text-reading-deployment.yaml
+  - path: services/skema/skema-text-reading-service.yaml
   - path: services/skema/skema-unified-service.yaml
 configMapGenerator:
   - files:
@@ -126,6 +128,11 @@ images:
   # Funman service
   - name: funman-image
     newName: ghcr.io/darpa-askem/funman-api
+    newTag: 'latest'
+
+  # GoLLM service
+  - name: gollm-image
+    newName: ghcr.io/darpa-askem/gollm-service
     newTag: 'latest'
 
   # knowledge middleware

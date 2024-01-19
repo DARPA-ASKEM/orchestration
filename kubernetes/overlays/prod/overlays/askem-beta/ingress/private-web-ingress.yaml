@@ -177,6 +177,17 @@ spec:
                 port:
                   number: 8190
 
+    - host: "gollm.beta.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gollm
+                port:
+                  number: 8000
+
   tls:
     - hosts:
         - "app.beta.terarium.ai"
@@ -184,6 +195,7 @@ spec:
         - "graphdb.beta.terarium.ai"
         - "documentation.beta.terarium.ai"
         - "funman.beta.terarium.ai"
+        - "gollm.beta.terarium.ai"
         - "beaker.beta.terarium.ai"
         - "mit-proxy.beta.terarium.ai"
         - "mit-tr.beta.terarium.ai"

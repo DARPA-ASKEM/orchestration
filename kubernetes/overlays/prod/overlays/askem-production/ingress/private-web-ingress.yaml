@@ -12,16 +12,16 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: "data-service.terarium.ai"
+    - host: "server.staging.terarium.ai"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: data-service
+                name: hmi-server
                 port:
-                  number: 3020
+                  number: 3000
   tls:
     - hosts:
-        - "data-service.terarium.ai"
+        - "server.terarium.ai"

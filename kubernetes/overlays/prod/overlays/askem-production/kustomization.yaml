@@ -25,14 +25,14 @@ resources:
   - services/integration-dashboard/integration-dashboard-deployment.yaml
   - services/integration-dashboard/integration-dashboard-service.yaml
 patches:
-  - path: keycloak/keycloak-deployment.yaml
   - path: hmi/documentation/terarium-docs-service.yaml
   - path: hmi/server/hmi-server-deployment.yaml
-  - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
-  - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
+  - path: keycloak/keycloak-deployment.yaml
+  - path: services/beaker/beaker-deployment.yaml
   - path: services/funman/funman-deployment.yaml
   - path: services/gollm/gollm-deployment.yaml
-  - path: services/beaker/beaker-deployment.yaml
+  - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
+  - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
   - path: services/sciml-service/sciml-service-deployment.yaml
@@ -119,6 +119,11 @@ images:
   # Funman service
   - name: funman-image
     newName: ghcr.io/darpa-askem/funman-api
+    newTag: 'latest'
+
+  # GoLLM service
+  - name: gollm-image
+    newName: ghcr.io/darpa-askem/gollm-service
     newTag: 'latest'
 
   # knowledge middleware

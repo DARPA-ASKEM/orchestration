@@ -31,7 +31,6 @@ patches:
   - path: services/funman/funman-deployment.yaml
   - path: services/funman/funman-service.yaml
   - path: services/gollm/gollm-deployment.yaml
-  - path: services/gollm/gollm-service.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/mit/mit-proxy-deployment.yaml
   - path: services/mit/mit-tr-deployment.yaml
