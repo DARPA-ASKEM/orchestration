@@ -1,4 +1,3 @@
-source import_secrets.sh
 
 function copy_s3_directory {
   SOURCE=$1
@@ -22,6 +21,12 @@ function execute_sql_save_csv() {
 
 function get_user_id() {
   local USER_NAME=$1
+
+  # Beta environemnt does not have users
+  if [ ${ENVIRONMENT} = "beta_" ]; then
+    USER_NAME="Emperor Adam"
+  fi
+
   local USER_JSON=$(curl -s -H "Authorization: Bearer $ACCESS_TOKEN" -H "Accept: application/json" "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}/roles/user/users")
   local USER_ID=$(echo ${USER_JSON} | jq -r --arg user_name "${USER_NAME}" '.[] | {id: .id, username: (.firstName + " " + .lastName)} | select(.username | contains($user_name) ) | .id')
   echo "${USER_ID}"
@@ -49,6 +54,7 @@ function assignGroupToProject() {
   local GROUP_FOUND=$(zed ${SPICEDB_SETTINGS} relationship read project:${PROJECT_ID} 2>/dev/null | grep "${RELATIONSHIP} group:${GROUP_ID}")
   if [ -z "${GROUP_FOUND}" ]; then
     echo "  ...creating Project ${PROJECT_ID} relationship with Group ${GROUP_ID}" >&2
+    echo "zed ${SPICEDB_SETTINGS} relationship create project:${PROJECT_ID} ${RELATIONSHIP} group:${GROUP_ID}" >&2
     zed ${SPICEDB_SETTINGS} relationship create project:${PROJECT_ID} ${RELATIONSHIP} group:${GROUP_ID} 2>/dev/null
   else
     echo "  ...Group \"${GROUP_ID}\" is a ${RELATIONSHIP} of Project \"${PROJECT_ID}\"" >&2
@@ -128,9 +134,9 @@ function import_es_data() {
   ID=$2
   FILE=$3
 
-  RES=$(curl -s -XPUT -H "Content-Type: application/json" http://localhost:9200/${INDEX}_doc/${ID} -d @${FILE})
+  RES=$(curl -s -XPUT -H "Content-Type: application/json" ${ES_URL}/${INDEX}_doc/${ID} -d @${FILE})
   if [ "$(echo "$RES" | jq -r '._shards.successful')" != "null" ]; then
-    if [ "$(echo "$RES" | jq -r '._shards.successful')" -eq 0 ]; then
+    if [ "$(echo "$RES" | jq -r '._shards.successful')" = "0" ]; then
       echo "  ... FAILED to import into ES index ${INDEX} file ${FILE}"
     fi
   fi
@@ -152,7 +158,7 @@ function insert_datasets() {
 
     for FILE in export/${PROJECT_ID}/datasets/${ID}/files/*; do
       FILENAME="${FILE##*/}"
-      copy_s3_directory "export/${PROJECT_ID}/datasets/${ID}/files/${FILE}" "${S3_DIR}/datasets/${ID}/${FILE}"
+      copy_s3_directory "${FILE}" "${S3_DIR}/datasets/${ID}/${FILENAME}"
     done
 
     if [ ! -z "$(ls -A "export/${PROJECT_ID}/datasets/${ID}/sim/*" 2>/dev/null)" ]; then
@@ -207,7 +213,7 @@ function insert_artifacts() {
  
     for FILE in export/${PROJECT_ID}/artifacts/${ID}/files/*; do
       FILENAME="${FILE##*/}"
-      copy_s3_directory "export/${PROJECT_ID}/artifacts/${ID}/files/${FILE}" "${S3_DIR}/artifacts/${ID}/${FILE}"
+      copy_s3_directory "${FILE}" "${S3_DIR}/artifacts/${ID}/${FILENAME}"
     done
 
     rm artifact-${ID}.json
@@ -220,6 +226,12 @@ if [[ -z $1 ]]; then
   exit 1
 fi
 PROJECT_ID=$1
+
+ENVIRONMENT=""
+if [[ ! -z $2 ]]; then
+  ENVIRONMENT="$2_"
+fi
+source ${ENVIRONMENT}import_secrets.sh
 
 echo "Importing project ${PROJECT_ID}" >&2
 

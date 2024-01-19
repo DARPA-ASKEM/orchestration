@@ -17,6 +17,7 @@ while [[ $# -gt 0 ]]; do
 	import)
 		COMMAND="import"
 		ID="$2"
+    ENVIRONMENT="$3"
 		shift
 		;;
 	encrypt)
@@ -40,7 +41,7 @@ export)
   echo "## Decrypting secrets"
   decrypt
 
-  echo "## Applying kustomization script to Kubernetes cluster"
+  echo "## Export data"
   ./export_project.sh ${ID}
 
   echo "## Restoring secrets as encrypted files"
@@ -50,7 +51,8 @@ import)
   echo "## Decrypting secrets"
   decrypt
 
-  echo "## TODO"
+  echo "## Import data"
+  ./import_project.sh ${ID} ${ENVIRONMENT}
   
   echo "## Restoring secrets as encrypted files"
   restore
