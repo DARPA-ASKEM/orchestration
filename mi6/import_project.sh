@@ -23,9 +23,7 @@ CACHED_USER_ID=""
 function get_user_id() {
   local USER_NAME=$1
 
-  echo "Cached User check " >&2
   if [ -z ${CACHED_USER_ID} ]; then
-    echo "No Cached User Found" >&2
     # Beta environemnt does not have users
     if [ ${ENVIRONMENT} = "beta_" ]; then
       USER_NAME="Import Test"
@@ -35,6 +33,7 @@ function get_user_id() {
     CACHED_USER_ID=$(echo ${USERS_JSON} | jq -r --arg user_name "${USER_NAME}" '.[] | {id: .id, username: (.firstName + " " + .lastName)} | select(.username | contains($user_name) ) | .id')
     if [ -z ${CACHED_USER_ID} ]; then
       echo "No User Found for ${USER_NAME}" >&2
+      exit 1
     fi
   fi
   echo "${CACHED_USER_ID}"
@@ -159,8 +158,6 @@ function import_es_data() {
       if [ "$(echo "$RES" | jq -r '._shards.successful')" = "0" ]; then
         echo "  ... FAILED to import into ES index ${INDEX} file ${FILE}"
       fi
-    else
-      echo "es response: ${RES}" >&2
     fi
   fi
 }
