@@ -150,13 +150,18 @@ function import_es_data() {
   ID=$2
   FILE=$3
 
-  RES=$(curl -s -XPUT -H "Content-Type: application/json" ${ES_URL}/${INDEX}_doc/${ID} -d @${FILE})
-  if [ "$(echo "$RES" | jq -r '._shards.successful')" != "null" ]; then
-    if [ "$(echo "$RES" | jq -r '._shards.successful')" = "0" ]; then
-      echo "  ... FAILED to import into ES index ${INDEX} file ${FILE}"
-    fi
+  local RES=$(curl -s ${ES_URL}/${INDEX}/_doc/${ID} | jq '.found')
+  if [ "${RES}" = "true" ]; then
+    echo "  ... ES document ${INDEX}  ${ID} already exists"
   else
-    echo "es response: ${RES}" >&2
+    local RES=$(curl -s -XPOST -H "Content-Type: application/json" ${ES_URL}/${INDEX}/_doc/${ID} -d @${FILE})
+    if [ "$(echo "$RES" | jq -r '._shards.successful')" != "null" ]; then
+      if [ "$(echo "$RES" | jq -r '._shards.successful')" = "0" ]; then
+        echo "  ... FAILED to import into ES index ${INDEX} file ${FILE}"
+      fi
+    else
+      echo "es response: ${RES}" >&2
+    fi
   fi
 }
 
