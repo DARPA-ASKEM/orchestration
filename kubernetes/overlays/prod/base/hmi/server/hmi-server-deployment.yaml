@@ -14,6 +14,8 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "default"
+
+
             - name: KNOWLEDGE-MIDDLEWARE_URL
               value: "http://knowledge-middleware-api:3060"
             - name: MODEL-SERVICE_URL
@@ -183,8 +185,6 @@ spec:
                 secretKeyRef:
                   name: data-service-s3
                   key: aws-client-name
-            - name: TERARIUM_ELASTICSEARCH_URL
-              value: https://elasticsearch.beta.terarium.ai:443
             - name: TERARIUM_ELASTICSEARCH_AUTH-ENABLED
               value: "true"
             - name: TERARIUM_ELASTICSEARCH_USERNAME
