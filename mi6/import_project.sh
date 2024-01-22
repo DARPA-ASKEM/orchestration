@@ -19,17 +19,25 @@ function execute_sql_save_csv() {
   PGPASSWORD=${SQL_PWD} psql -h ${SQL_HOST} -p ${SQL_PORT} -U ${SQL_UID} ${SQL_DATABASE} -t -A -F"," -c "${SQL}" > ${FILENAME}
 }
 
+CACHED_USER_ID=""
 function get_user_id() {
   local USER_NAME=$1
 
-  # Beta environemnt does not have users
-  if [ ${ENVIRONMENT} = "beta_" ]; then
-    USER_NAME="Emperor Adam"
-  fi
+  echo "Cached User check " >&2
+  if [ -z ${CACHED_USER_ID} ]; then
+    echo "No Cached User Found" >&2
+    # Beta environemnt does not have users
+    if [ ${ENVIRONMENT} = "beta_" ]; then
+      USER_NAME="Import Test"
+    fi
 
-  local USER_JSON=$(curl -s -H "Authorization: Bearer $ACCESS_TOKEN" -H "Accept: application/json" "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}/roles/user/users")
-  local USER_ID=$(echo ${USER_JSON} | jq -r --arg user_name "${USER_NAME}" '.[] | {id: .id, username: (.firstName + " " + .lastName)} | select(.username | contains($user_name) ) | .id')
-  echo "${USER_ID}"
+    USERS_JSON=$(curl -s -H "Authorization: Bearer $ACCESS_TOKEN" -H "Accept: application/json" "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}/roles/user/users")
+    CACHED_USER_ID=$(echo ${USERS_JSON} | jq -r --arg user_name "${USER_NAME}" '.[] | {id: .id, username: (.firstName + " " + .lastName)} | select(.username | contains($user_name) ) | .id')
+    if [ -z ${CACHED_USER_ID} ]; then
+      echo "No User Found for ${USER_NAME}" >&2
+    fi
+  fi
+  echo "${CACHED_USER_ID}"
 }
 
 function getGroupId() {
@@ -54,7 +62,6 @@ function assignGroupToProject() {
   local GROUP_FOUND=$(zed ${SPICEDB_SETTINGS} relationship read project:${PROJECT_ID} 2>/dev/null | grep "${RELATIONSHIP} group:${GROUP_ID}")
   if [ -z "${GROUP_FOUND}" ]; then
     echo "  ...creating Project ${PROJECT_ID} relationship with Group ${GROUP_ID}" >&2
-    echo "zed ${SPICEDB_SETTINGS} relationship create project:${PROJECT_ID} ${RELATIONSHIP} group:${GROUP_ID}" >&2
     zed ${SPICEDB_SETTINGS} relationship create project:${PROJECT_ID} ${RELATIONSHIP} group:${GROUP_ID} 2>/dev/null
   else
     echo "  ...Group \"${GROUP_ID}\" is a ${RELATIONSHIP} of Project \"${PROJECT_ID}\"" >&2
@@ -70,17 +77,18 @@ function prepare_csv_line_for_sql() {
 }
 
 function insert_project() {
+  local USER_ID=$1
   echo "Project" >&2
 
-  local USERNAME=$(jq -r '.username' export/${PROJECT_ID}/project.json)
-  local USER_ID=$(get_user_id "${USERNAME}")
-  local PROJECT_UUID=$(uuidgen)
+  local PROJECT_UUID=$(uuidgen | awk '{print tolower($0)}')
   local SQL_DATA=$(jq -r --arg user_id "${USER_ID}" --arg uuid "${PROJECT_UUID}" '{id: $uuid, name: .name, description: .description, timestamp: .timestamp, user_id: $user_id} | map([.] | .[]) | @csv' export/78/project.json)
   local VALUES=$(prepare_csv_line_for_sql "${SQL_DATA}")
   local SQL="insert into project (id, name, description, created_on, user_id) values (${VALUES})"
 
   local RES=$(execute_sql "${SQL}")
   echo "  ...added Project ${PROJECT_UUID} to database" >&2
+  echo "zed ${SPICEDB_SETTINGS} relationship create project:${PROJECT_UUID} creator user:${USER_ID}"
+  zed ${SPICEDB_SETTINGS} relationship create project:${PROJECT_UUID} creator user:${USER_ID} 2>/dev/null
 
   local PUBLIC_PROJECT=$(jq -r '.publicProject' export/${PROJECT_ID}/project.json)
   local USER_PERMISSION=$(jq -r '.userPermission' export/${PROJECT_ID}/project.json)
@@ -89,23 +97,29 @@ function insert_project() {
     assignGroupToProject ${PROJECT_UUID} ${PUBLIC_GROUP_ID} ${USER_PERMISSION}
   fi
 
+  local MISSING_TIMESTAMP=""
+
   # DATASETS
   local IDS=$(jq -r '.datasets[].id' export/${PROJECT_ID}/assets.json)
   for ID in ${IDS}; do
-    local UUID=$(uuidgen)
+    local UUID=$(uuidgen | awk '{print tolower($0)}')
     local TIMESTAMP=$(jq -r '.timestamp' export/${PROJECT_ID}/datasets/${ID}/datasets.json)
-    local SQL="insert into project_asset (id, asset_id, asset_type, project_id, created_on) values ('${UUID}','${ID}','DATASET','${PROJECT_UUID}','${TIMESTAMP}')"
+    if [ "${MISSING_TIMESTAMP}" = "" ]; then
+      MISSING_TIMESTAMP="${TIMESTAMP}"
+    fi
+    local NAME=$(jq -r '.name' export/${PROJECT_ID}/datasets/${ID}/datasets.json)
+    local SQL="insert into project_asset (id, asset_id, asset_type, project_id, created_on, asset_name) values ('${UUID}','${ID}','DATASET','${PROJECT_UUID}','${TIMESTAMP}','${NAME}')"
     local RES=$(execute_sql "${SQL}")
     echo "  ...added Project Dataset Asset ${UUID} to database" >&2
   done
 
-
   # ARTIFACTS
   local IDS=$(jq -r '.artifacts[].id' export/${PROJECT_ID}/assets.json)
   for ID in ${IDS}; do
-    local UUID=$(uuidgen)
+    local UUID=$(uuidgen | awk '{print tolower($0)}')
     local TIMESTAMP=$(jq -r --arg id "${ID}" '.artifacts[] | select(.id == $id) | .timestamp' export/${PROJECT_ID}/assets.json)
-    local SQL="insert into project_asset (id, asset_id, asset_type, project_id, created_on) values ('${UUID}','${ID}','ARTIFACT','${PROJECT_UUID}','${TIMESTAMP}')"
+    local NAME=$(jq -r --arg id "${ID}" '.artifacts[] | select(.id == $id) | .name' export/${PROJECT_ID}/assets.json)
+    local SQL="insert into project_asset (id, asset_id, asset_type, project_id, created_on, asset_name) values ('${UUID}','${ID}','ARTIFACT','${PROJECT_UUID}','${TIMESTAMP}','${NAME}')"
     local RES=$(execute_sql "${SQL}")
     echo "  ...added Project Artifact Asset ${UUID} to database" >&2
   done
@@ -113,8 +127,9 @@ function insert_project() {
   # MODELS
   local IDS=$(jq -r '.models[].id' export/${PROJECT_ID}/assets.json)
   for ID in ${IDS}; do
-    local UUID=$(uuidgen)
-    local SQL="insert into project_asset (id, asset_id, asset_type, project_id) values ('${UUID}','${ID}','MODEL','${PROJECT_UUID}')"
+    local UUID=$(uuidgen | awk '{print tolower($0)}')
+    local NAME=$(jq -r --arg id "${ID}" '.models[] | select(.id == $id) | .name' export/${PROJECT_ID}/assets.json)
+    local SQL="insert into project_asset (id, asset_id, asset_type, project_id, created_on, asset_name) values ('${UUID}','${ID}','MODEL','${PROJECT_UUID}','${MISSING_TIMESTAMP}', '${NAME}')"
     local RES=$(execute_sql "${SQL}")
     echo "  ...added Project Model Asset ${UUID} to database" >&2
   done
@@ -122,8 +137,9 @@ function insert_project() {
   # WORKFLOWS
   local IDS=$(jq -r '.workflows[].id' export/${PROJECT_ID}/assets.json)
   for ID in ${IDS}; do
-    local UUID=$(uuidgen)
-    local SQL="insert into project_asset (id, asset_id, asset_type, project_id) values ('${UUID}','${ID}','WORKFLOW','${PROJECT_UUID}')"
+    local UUID=$(uuidgen | awk '{print tolower($0)}')
+    local NAME=$(jq -r --arg id "${ID}" '.workflows[] | select(.id == $id) | .name' export/${PROJECT_ID}/assets.json)
+    local SQL="insert into project_asset (id, asset_id, asset_type, project_id, created_on, asset_name) values ('${UUID}','${ID}','WORKFLOW','${PROJECT_UUID}','${MISSING_TIMESTAMP}','${NAME}')"
     local RES=$(execute_sql "${SQL}")
     echo "  ...added Project Workflow Asset ${UUID} to database" >&2
   done
@@ -139,19 +155,21 @@ function import_es_data() {
     if [ "$(echo "$RES" | jq -r '._shards.successful')" = "0" ]; then
       echo "  ... FAILED to import into ES index ${INDEX} file ${FILE}"
     fi
+  else
+    echo "es response: ${RES}" >&2
   fi
 }
 
 function insert_datasets() {
+  USER_ID=$1
   echo "Datasets" >&2
 
   local IDS=$(jq -r '.datasets[].id' export/${PROJECT_ID}/assets.json)
   for ID in ${IDS}; do
     echo "  Dataset ${ID}" >&2
 
-    local USERNAME=$(jq -r '.username' export/${PROJECT_ID}/datasets/${ID}/datasets.json)
-    local USER_ID=$(get_user_id "${USERNAME}")
     $(jq --arg user_id "${USER_ID}" '. += {user_id: $user_id} | with_entries(if .key == "timestamp" then .key = "created_on" else . end) | del(.username, .timestamp) ' export/${PROJECT_ID}/datasets/${ID}/datasets.json > dataset-${ID}.json)
+  #echo "find group: ${GROUP_FOUND}" >2&
     echo "  ...prepared import json" >&2
 
     import_es_data "tds_dataset_tera_1.0" "${ID}" "dataset-${ID}.json"
@@ -174,6 +192,7 @@ function insert_datasets() {
 }
 
 function insert_models() {
+  USER_ID=$1
   echo "Models" >&2
 
   local IDS=$(jq -r '.models[].id' export/${PROJECT_ID}/assets.json)
@@ -187,6 +206,7 @@ function insert_models() {
 }
 
 function insert_workflows() {
+  USER_ID=$1
   echo "Workflows" >&2
 
   local IDS=$(jq -r '.workflows[].id' export/${PROJECT_ID}/assets.json)
@@ -198,14 +218,13 @@ function insert_workflows() {
 }
 
 function insert_artifacts() {
+  USER_ID=$1
   echo "Artifacts" >&2
 
   local IDS=$(jq -r '.artifacts[].id' export/${PROJECT_ID}/assets.json)
   for ID in ${IDS}; do
     echo "  Artifact ${ID}" >&2
 
-    local USERNAME=$(jq -r --arg id "${ID}" '.artifacts[] | select(.id == $id) | .username' export/${PROJECT_ID}/assets.json)
-    local USER_ID=$(get_user_id "${USERNAME}")
     $(jq --arg id "${ID}" --arg user_id "${USER_ID}" '.artifacts[] | select(.id == $id) | . += {user_id: $user_id} | with_entries(if .key == "timestamp" then .key = "created_on" else . end) | del(.username, .timestamp) ' export/${PROJECT_ID}/assets.json > artifact-${ID}.json)
     echo "  ...prepared import json" >&2
 
@@ -250,11 +269,14 @@ fi
 ACCESS_TOKEN=$(curl -s -d "client_id=${KEYCLOAK_ADMIN_CLIENT_ID}" -d "username=${KEYCLOAK_ADMIN_USERNAME}" -d "password=${KEYCLOAK_ADMIN_PASSWORD}" -d "grant_type=password" "${KEYCLOAK_URL}/realms/master/protocol/openid-connect/token" | jq -r ".access_token")
 PUBLIC_GROUP_ID=$(getGroupId ${PUBLIC_GROUP_NAME})
 
-insert_project
-insert_datasets
-insert_models
-insert_workflows
-insert_artifacts
+USERNAME=$(jq -r '.username' export/${PROJECT_ID}/project.json)
+USER_ID=$(get_user_id "${USERNAME}")
+
+insert_project ${USER_ID}
+insert_datasets ${USER_ID}
+insert_models ${USER_ID}
+insert_workflows ${USER_ID}
+insert_artifacts ${USER_ID}
 
 if [ ! -z "${SSH_ADDRESS}" ]; then
   echo "Disconnect SSH session" >&2
