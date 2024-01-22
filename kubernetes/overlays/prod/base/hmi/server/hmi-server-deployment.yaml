@@ -108,7 +108,7 @@ spec:
               value: 'spicedb:50051'
             - name: SPICEDB_LAUNCHMODE
               value: 'PLAINTEXT'
-            - name: TERARIUM_MQ-ADDRESSES
+            - name: SPRING_RABBITMQ_ADDRESSES
               valueFrom:
                 secretKeyRef:
                   name: mq-creds

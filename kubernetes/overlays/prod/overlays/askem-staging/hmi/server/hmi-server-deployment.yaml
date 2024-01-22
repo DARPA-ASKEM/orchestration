@@ -19,3 +19,5 @@ spec:
               value: "redis://redis.staging.terarium.ai:6379"
             - name: TERARIUM_QUEUE_SUFFIX
               value: staging
+            - name: TERARIUM_ELASTICSEARCH_URL
+              value: https://elasticsearch.staging.terarium.ai:443
