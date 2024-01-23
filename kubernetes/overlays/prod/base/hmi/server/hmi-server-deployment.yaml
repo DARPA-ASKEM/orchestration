@@ -14,6 +14,8 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "default"
+
+
             - name: KNOWLEDGE-MIDDLEWARE_URL
               value: "http://knowledge-middleware-api:3060"
             - name: MODEL-SERVICE_URL
@@ -106,7 +108,7 @@ spec:
               value: 'spicedb:50051'
             - name: SPICEDB_LAUNCHMODE
               value: 'PLAINTEXT'
-            - name: TERARIUM_MQ-ADDRESSES
+            - name: SPRING_RABBITMQ_ADDRESSES
               valueFrom:
                 secretKeyRef:
                   name: mq-creds
@@ -183,8 +185,6 @@ spec:
                 secretKeyRef:
                   name: data-service-s3
                   key: aws-client-name
-            - name: TERARIUM_ELASTICSEARCH_URL
-              value: https://elasticsearch.beta.terarium.ai:443
             - name: TERARIUM_ELASTICSEARCH_AUTH-ENABLED
               value: "true"
             - name: TERARIUM_ELASTICSEARCH_USERNAME
@@ -198,7 +198,7 @@ spec:
                   name: es-creds
                   key: password
             - name: SPRING.DATA.NEO4J.URI
-              value: neo4j://data-service-graphdb:7687
+              value: bolt://data-service-graphdb:7687
             - name: SPRING.DATA.NEO4J.AUTHENTICATION.USERNAME
               valueFrom:
                 secretKeyRef:

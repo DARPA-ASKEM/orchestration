@@ -19,3 +19,5 @@ spec:
               value: "redis://redis.terarium.ai:6379"
             - name: TERARIUM_QUEUE_SUFFIX
               value: production
+            - name: TERARIUM_ELASTICSEARCH_URL
+              value: https://elasticsearch.terarium.ai:443
