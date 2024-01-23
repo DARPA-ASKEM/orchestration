@@ -35,7 +35,7 @@ spec:
                   key: password
             #- name: SQL_PORT
             - name: PG_PORT
-              value: 5432
+              value: "5432"
             #- name: SQL_DB
             - name: PG_DB
               value: terarium
