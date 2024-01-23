@@ -14,8 +14,6 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "default"
-
-
             - name: KNOWLEDGE-MIDDLEWARE_URL
               value: "http://knowledge-middleware-api:3060"
             - name: MODEL-SERVICE_URL
@@ -197,14 +195,14 @@ spec:
                 secretKeyRef:
                   name: es-creds
                   key: password
-            - name: SPRING.DATA.NEO4J.URI
-              value: bolt://data-service-graphdb:7687
-            - name: SPRING.DATA.NEO4J.AUTHENTICATION.USERNAME
+            - name: SPRING_NEO4J_URI
+              value: "bolt://data-service-graphdb:7687"
+            - name: SPRING_NEO4J_AUTHENTICATION_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: neo4j-auth
                   key: user
-            - name: SPRING.DATA.NEO4J.AUTHENTICATION.PASSWORD
+            - name: SPRING_NEO4J_AUTHENTICATION_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: neo4j-auth
