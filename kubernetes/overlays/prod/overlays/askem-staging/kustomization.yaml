@@ -102,7 +102,7 @@ images:
   # Jupyter LLM service
   - name: beaker-image
     newName: ghcr.io/darpa-askem/beaker-kernel
-    newTag: 'latest'
+    newTag: 'tds-migration'
 
   # Skema
   - name: skema-py-image
