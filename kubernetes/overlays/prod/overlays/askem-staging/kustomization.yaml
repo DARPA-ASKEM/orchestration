@@ -116,7 +116,7 @@ images:
     newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
   - name: skema-text-reading-image
     newName: ghcr.io/darpa-askem/skema-text-reading
-    newTag: '2023_12_06'
+    newTag: '2024_01_24'
 
   # MIT
   - name: mit-proxy-image
