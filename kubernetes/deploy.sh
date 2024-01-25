@@ -73,7 +73,7 @@ staging)
 	SECRET_FILES+=("overlays/prod/overlays/askem-staging/keycloak/realm/*.json")
 	SECRET_FILES+=("overlays/prod/overlays/askem-staging/check-latest/check-latest-rsa" "overlays/prod/overlays/askem-staging/check-latest/secrets.yaml")
 	KUSTOMIZATION=overlays/prod/overlays/askem-staging
-	KUBECTL_CMD="ssh uncharted-askem-prod-askem-staging-kube-manager-3 sudo kubectl"
+	KUBECTL_CMD="ssh uncharted-askem-prod-askem-staging-kube-manager-1 sudo kubectl"
 	;;
 production)
 	SECRET_FILES+=("overlays/prod/base/keycloak/certificates/cert.pem" "overlays/prod/base/keycloak/certificates/key.pem")
@@ -82,6 +82,13 @@ production)
 	SECRET_FILES+=("overlays/prod/overlays/askem-production/check-latest/check-latest-rsa" "overlays/prod/overlays/askem-production/check-latest/secrets.yaml")
 	KUSTOMIZATION=overlays/prod/overlays/askem-production
 	KUBECTL_CMD="ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl"
+	;;
+beta)
+	SECRET_FILES+=("overlays/prod/base/keycloak/certificates/cert.pem" "overlays/prod/base/keycloak/certificates/key.pem")
+	SECRET_FILES+=("overlays/prod/overlays/askem-beta/secrets/*.yaml")
+	SECRET_FILES+=("overlays/prod/overlays/askem-beta/keycloak/realm/*.json")
+	KUSTOMIZATION=overlays/prod/overlays/askem-beta
+	KUBECTL_CMD="ssh uncharted-askem-prod-askem-beta-kube-manager-1 sudo kubectl"
 	;;
 esac
 
@@ -140,6 +147,7 @@ DESCRIPTION
     ENVIRONMENT        Must be supplied to indicate which environment should be processed
       staging
       production
+      beta
 
   Launch commands:
     up                Launches the entire TERArium stack

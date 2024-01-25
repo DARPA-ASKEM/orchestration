@@ -33,3 +33,5 @@ spec:
             #   value: info
             # - name: logging.level.org.hibernate.cache
             #   value: debug
+            - name: TERARIUM_ELASTICSEARCH_URL
+              value: https://elasticsearch.terarium.ai:443

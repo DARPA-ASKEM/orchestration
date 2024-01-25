@@ -13,7 +13,17 @@ spec:
         - name: pyciemss-worker
           env:
             - name: TDS_URL
-              value: http://data-service:3020
+              value: http://hmi-server:3000
+            - name: TDS_USER
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: service_username
+            - name: TDS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: service_password
             - name: STANDALONE_MODE
               value: 'False'
             - name: PYCIEMSS_OUTPUT_FILEPATH

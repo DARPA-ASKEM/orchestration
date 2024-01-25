@@ -12,7 +12,17 @@ spec:
         - name: sciml-service
           env:
             - name: SIMSERVICE_TDS_URL
-              value: http://data-service:3020
+              value: http://hmi-server:3000
+            - name: SIMSERVICE_TDS_USER
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: service_username
+            - name: SIMSERVICE_TDS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: service_password
             - name: SIMSERVICE_RABBITMQ_ENABLED
               value: 'true'
             - name: SIMSERVICE_RABBITMQ_LOGIN

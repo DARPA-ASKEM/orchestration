@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+spec:
+  template:
+    spec:
+      containers:
+        - name: keycloak
+          env:
+            - name: KC_HOSTNAME_URL
+              value: https://keycloak.beta.terarium.ai
+            - name: KC_HOSTNAME_ADMIN_URL
+              value: https://keycloak.beta.terarium.ai
+      initContainers:
+        - name: init-keycloak
+          volumeMounts:
+            - name: realm-volume
+              mountPath: /data
+      volumes:
+        - name: realm-volume
+          configMap:
+            name: keycloak-realm
