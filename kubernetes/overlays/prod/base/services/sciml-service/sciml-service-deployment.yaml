@@ -13,12 +13,12 @@ spec:
           env:
             - name: SIMSERVICE_TDS_URL
               value: http://hmi-server:3000
-            - name: SIMSERVICE_USERNAME
+            - name: SIMSERVICE_TDS_USER
               valueFrom:
                 secretKeyRef:
                   name: keycloak-creds
                   key: service_username
-            - name: SIMSERVICE_PASSWORD
+            - name: SIMSERVICE_TDS_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: keycloak-creds
