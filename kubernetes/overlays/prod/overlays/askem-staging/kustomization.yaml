@@ -65,13 +65,13 @@ images:
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: 'latest'
+    newTag: 'tds-migration'
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
     newTag: 'latest'
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: 'latest'
+    newTag: 'tds-migration'
   - name: spicedb-image
     newName: ghcr.io/authzed/spicedb
     newTag: 'v1.24.0'
@@ -116,15 +116,15 @@ images:
   # Simulation Service
   - name: sciml-service-image
     newName: ghcr.io/darpa-askem/sciml-service
-    newTag: 'latest'
+    newTag: 'tds-migration'
 
   # PyCIEMSS service
   - name: pyciemss-api-image
     newName: ghcr.io/darpa-askem/pyciemss-api
-    newTag: 'latest'
+    newTag: 'tds-migration'
   - name: pyciemss-worker-image
     newName: ghcr.io/darpa-askem/pyciemss-worker
-    newTag: 'latest'
+    newTag: 'tds-migration'
 
   # Funman service
   - name: funman-image
@@ -139,7 +139,7 @@ images:
   # knowledge middleware
   - name: knowledge-middleware-api-image
     newName: ghcr.io/darpa-askem/knowledge-middleware-api
-    newTag: 'latest'
+    newTag: 'tds-migration'
   - name: knowledge-middleware-worker-image
     newName: ghcr.io/darpa-askem/knowledge-middleware-worker
-    newTag: 'latest'
+    newTag: 'tds-migration'
