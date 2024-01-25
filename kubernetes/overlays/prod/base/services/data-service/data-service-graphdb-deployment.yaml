@@ -11,25 +11,11 @@ spec:
       containers:
         - name: data-service-graphdb
           env:
+            - name: NEO4J_PLUGINS
+              value: '["apoc"]'
+            - name: apoc.import.file.enabled
+              value: "true"
             - name: NEO4J_AUTH
-              valueFrom:
-                secretKeyRef:
-                  name: neo4j-auth
-                  key: value
+              value: none
             - name: NEO4J_dbms_memory_pagecache_size
               value: 512M
-            - name: PG_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: rds-creds
-                  key: url
-            - name: PG_USER
-              valueFrom:
-                secretKeyRef:
-                  name: rds-creds
-                  key: username
-            - name: PG_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: rds-creds
-                  key: password

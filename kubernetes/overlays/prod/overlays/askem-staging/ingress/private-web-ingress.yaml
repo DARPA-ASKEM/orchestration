@@ -6,7 +6,7 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: instance
-    alb.ingress.kubernetes.io/security-groups: askem-staging-web-private, askem-staging-k8s-internal
+    alb.ingress.kubernetes.io/security-groups: askem-staging-web-private, askem-staging-k8s
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
 spec:
@@ -23,6 +23,28 @@ spec:
                 port:
                   number: 8080
 
+    - host: "server.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hmi-server
+                port:
+                  number: 3000
+
+    - host: "graphdb.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: data-service-graphdb
+                port:
+                  number: 7687
+
     - host: "documentation.staging.terarium.ai"
       http:
         paths:
@@ -33,17 +55,6 @@ spec:
                 name: terarium-docs
                 port:
                   number: 8000
-
-    - host: "data-service.staging.terarium.ai"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: data-service
-                port:
-                  number: 3020
 
     - host: "mit-proxy.staging.terarium.ai"
       http:
@@ -180,7 +191,8 @@ spec:
   tls:
     - hosts:
         - "app.staging.terarium.ai"
-        - "data-service.staging.terarium.ai"
+        - "server.staging.terarium.ai"
+        - "graphdb.staging.terarium.ai"
         - "documentation.staging.terarium.ai"
         - "funman.staging.terarium.ai"
         - "gollm.staging.terarium.ai"

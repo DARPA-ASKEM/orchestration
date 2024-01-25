@@ -26,7 +26,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: DATA_SERVICE_URL
-              value: http://data-service:3020
+              value: http://hmi-server:3000
             - name: JUPYTER_SERVER
               value: http://beaker:3050
             - name: SIMULATION_SCHEDULER_URL
