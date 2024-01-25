@@ -147,8 +147,9 @@ function insert_project() {
   local IDS=$(jq -r '.publications[].id' export/${PROJECT_ID}/assets.json)
   for ID in ${IDS}; do
     local UUID=$(uuidgen | awk '{print tolower($0)}')
+    local ASSET_UUID=$(uuidgen | awk '{print tolower($0)}')
     local NAME=$(jq -r --arg id "${ID}" '.publications[] | select(.id == $id) | .title' export/${PROJECT_ID}/assets.json)
-    local SQL="insert into project_asset (id, asset_id, asset_type, project_id, created_on, asset_name) values ('${UUID}','${ID}','PUBLICATION','${PROJECT_UUID}','${MISSING_TIMESTAMP}','${NAME}')"
+    local SQL="insert into project_asset (id, asset_id, asset_type, project_id, created_on, asset_name) values ('${UUID}','${ASSET_UUID}','PUBLICATION','${PROJECT_UUID}','${MISSING_TIMESTAMP}','${NAME}')"
     local RES=$(execute_sql "${SQL}")
     echo "  ...added Project Publication Asset ${UUID} to database" >&2
   done
