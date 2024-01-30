@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gollm
+  labels:
+    software.uncharted.terarium/name: gollm-taskrunner
+    software.uncharted.terarium/component: gollm-taskrunner
+    software.uncharted.terarium/service: gollm-taskrunner
+    software.uncharted.terarium/part-of: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: gollm-taskrunner
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: gollm-taskrunner
+    spec:
+      containers:
+        - name: gollm-taskrunner
+          image: gollm-taskrunner-image
+          imagePullPolicy: Always
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}
