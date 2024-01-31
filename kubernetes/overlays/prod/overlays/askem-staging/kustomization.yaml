@@ -30,7 +30,6 @@ patches:
   - path: services/data-service/data-service-graphdb-service.yaml
   - path: services/funman/funman-deployment.yaml
   - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
-  - path: services/gollm-taskrunner/gollm-taskrunner-service.yaml
   - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
   - path: services/knowledge-middleware/knowledge-middleware-api-service.yaml
   - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
@@ -131,8 +130,8 @@ images:
     newTag: 'latest'
 
   # GoLLM service
-  - name: gollm-image
-    newName: ghcr.io/darpa-askem/gollm-service
+  - name: gollm-taskrunner-image
+    newName: ghcr.io/darpa-askem/gollm-taskrunner
     newTag: 'latest'
 
   # knowledge middleware

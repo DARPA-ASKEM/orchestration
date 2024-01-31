@@ -4,4 +4,3 @@ kind: Kustomization
 namespace: terarium
 resources:
   - gollm-taskrunner-deployment.yaml
-  - gollm-taskrunner-service.yaml

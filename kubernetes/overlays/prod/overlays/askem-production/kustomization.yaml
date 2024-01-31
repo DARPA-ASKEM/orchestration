@@ -121,8 +121,8 @@ images:
     newTag: 'latest'
 
   # GoLLM service
-  - name: gollm-image
-    newName: ghcr.io/darpa-askem/gollm-service
+  - name: gollm-taskrunner-image
+    newName: ghcr.io/darpa-askem/gollm-taskrunner
     newTag: 'latest'
 
   # knowledge middleware

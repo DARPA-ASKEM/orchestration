@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gollm
+  name: gollm-taskrunner
   labels:
     software.uncharted.terarium/name: gollm-taskrunner
     software.uncharted.terarium/component: taskrunner
