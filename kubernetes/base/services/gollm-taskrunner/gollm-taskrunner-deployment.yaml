@@ -5,8 +5,8 @@ metadata:
   name: gollm
   labels:
     software.uncharted.terarium/name: gollm-taskrunner
-    software.uncharted.terarium/component: gollm-taskrunner
-    software.uncharted.terarium/service: gollm-taskrunner
+    software.uncharted.terarium/component: taskrunner
+    software.uncharted.terarium/service: gollm
     software.uncharted.terarium/part-of: services
 spec:
   replicas: 1
