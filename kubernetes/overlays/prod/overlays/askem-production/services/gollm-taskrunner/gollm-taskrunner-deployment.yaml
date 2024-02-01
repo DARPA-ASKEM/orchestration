@@ -2,20 +2,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: beaker
+  name: gollm-taskrunner
 spec:
   template:
     spec:
       containers:
-        - name: beaker
+        - name: gollm-taskrunner
           env:
             - name: OPENAI_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: mit-proxy-secrets
                   key: chatgptkey
-      tolerations:
-        - key: "workload"
-          operator: "Equal"
-          value: "jupyter"
-          effect: "NoSchedule"
