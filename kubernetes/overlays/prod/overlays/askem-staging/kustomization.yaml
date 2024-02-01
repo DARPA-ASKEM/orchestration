@@ -119,10 +119,10 @@ images:
   # PyCIEMSS service
   - name: pyciemss-api-image
     newName: ghcr.io/darpa-askem/pyciemss-api
-    newTag: 'tds-migration'
+    newTag: 'latest'
   - name: pyciemss-worker-image
     newName: ghcr.io/darpa-askem/pyciemss-worker
-    newTag: 'tds-migration'
+    newTag: 'latest'
 
   # Funman service
   - name: funman-image
