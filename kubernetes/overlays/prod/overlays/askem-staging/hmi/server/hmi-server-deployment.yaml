@@ -21,3 +21,5 @@ spec:
               value: staging
             - name: TERARIUM_ELASTICSEARCH_URL
               value: https://elasticsearch.staging.terarium.ai:443
+            - name: LOGGING_LEVEL_ROOT
+              value: DEBUG
