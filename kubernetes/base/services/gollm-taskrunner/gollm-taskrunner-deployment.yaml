@@ -2,30 +2,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gollm
+  name: gollm-taskrunner
   labels:
-    software.uncharted.terarium/name: gollm
-    software.uncharted.terarium/component: llm
+    software.uncharted.terarium/name: gollm-taskrunner
+    software.uncharted.terarium/component: taskrunner
     software.uncharted.terarium/service: gollm
     software.uncharted.terarium/part-of: services
 spec:
   replicas: 1
   selector:
     matchLabels:
-      software.uncharted.terarium/name: gollm
+      software.uncharted.terarium/name: gollm-taskrunner
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        software.uncharted.terarium/name: gollm
+        software.uncharted.terarium/name: gollm-taskrunner
     spec:
       containers:
-        - name: gollm
-          image: gollm-image
+        - name: gollm-taskrunner
+          image: gollm-taskrunner-image
           imagePullPolicy: Always
-          ports:
-            - containerPort: 8000
           resources: {}
       imagePullSecrets:
         - name: ghcr-cred

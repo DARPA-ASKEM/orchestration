@@ -3,5 +3,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: terarium
 resources:
-  - gollm-deployment.yaml
-  - gollm-service.yaml
+  - gollm-taskrunner-deployment.yaml
