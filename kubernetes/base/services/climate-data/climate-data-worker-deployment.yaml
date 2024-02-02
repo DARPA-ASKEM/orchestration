@@ -24,14 +24,12 @@ spec:
         - name: climate-data-worker
           image: climate-data-image
           imagePullPolicy: Always
-          command: "nohup"
+          command: [ 'nohup' ]
           args: [
-            "sh"
-            "-c"
-            "TERARIUM_USER=\"${TERARIUM_USER}\" TERARIUM_PASS=\"${TERARIUM_PASS}\" poetry run rq worker-pool subset preview -n5 -u redis://redis-climate-data:6379"
+            'sh',
+            '-c',
+            'TERARIUM_USER=\"${TERARIUM_USER}\" TERARIUM_PASS=\"${TERARIUM_PASS}\" poetry run rq worker-pool subset preview -n5'
           ]
-          ports:
-            - containerPort: 8000
           resources: {}
       imagePullSecrets:
         - name: ghcr-cred

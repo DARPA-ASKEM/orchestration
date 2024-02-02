@@ -2,14 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: climate-data
+  name: climate-data-worker
 spec:
   strategy:
     type: RollingUpdate
   template:
     spec:
       containers:
-        - name: climate-data
+        - name: climate-data-worker
           env:
             - name: TERARIUM_URL
               value: 'http://hmi-server:3000'

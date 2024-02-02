@@ -24,15 +24,15 @@ spec:
         - name: climate-data
           image: climate-data-image
           imagePullPolicy: Always
-          command: "nohup"
+          command: ['nohup']
           args: [
-            "poetry",
-            "run",
-            "uvicorn",
-            "api.server:app",
-            "--reload",
-            "--host",
-            "0.0.0.0"
+            'poetry',
+            'run',
+            'uvicorn',
+            'api.server:app',
+            '--reload',
+            '--host',
+            '0.0.0.0'
           ]
           ports:
             - containerPort: 8000
