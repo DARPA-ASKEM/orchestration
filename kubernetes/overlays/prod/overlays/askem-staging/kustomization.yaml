@@ -142,3 +142,8 @@ images:
   - name: knowledge-middleware-worker-image
     newName: ghcr.io/darpa-askem/knowledge-middleware-worker
     newTag: 'tds-migration'
+
+  # climate data
+  - name: climate-data-image
+    newName: ghcr.io/darpa-askem/climate-data-service
+    newTag: 'latest'

@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: climate-data-worker
+  labels:
+    software.uncharted.terarium/name: climate-data-worker
+    software.uncharted.terarium/component: sift
+    software.uncharted.terarium/service: climate-data
+    software.uncharted.terarium/part-of: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: climate-data-worker
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: climate-data-worker
+    spec:
+      containers:
+        - name: climate-data-worker
+          image: climate-data-image
+          imagePullPolicy: Always
+          command: "nohup"
+          args: [
+            "sh"
+            "-c"
+            "TERARIUM_USER=\"${TERARIUM_USER}\" TERARIUM_PASS=\"${TERARIUM_PASS}\" poetry run rq worker-pool subset preview -n5 -u redis://redis-climate-data:6379"
+          ]
+          ports:
+            - containerPort: 8000
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}

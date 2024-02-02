@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: climate-data
+spec:
+  strategy:
+    type: RollingUpdate
+  template:
+    spec:
+      containers:
+        - name: climate-data
+          env:
+            - name: TERARIUM_URL
+              value: 'http://hmi-server:3000'
+            - name: TERARIUM_USER
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: service_username
+            - name: TERARIUM_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: service_password
+            - name: ESGF_URL
+              value: "https://esgf-node.llnl.gov/esg-search"
+            - name: REDIS_HOST
+              value: "redis-climate-data"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: MINIO_URL
+              value: "http://minio:9000"
+            - name: MINIO_USER
+              value: "miniouser"
+            - name: MINIO_PASS
+              value: "miniopass"
+            - name: MINIO_BUCKET_NAME
+              value: "climate-data-test-bucket"
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mit-proxy-secrets
+                  key: chatgptkey
+            - name: OPENAI_ORG_ID
+              valueFrom:
+                secretKeyRef:
+                  name: mit-proxy-secrets
+                  key: chatgptorgid

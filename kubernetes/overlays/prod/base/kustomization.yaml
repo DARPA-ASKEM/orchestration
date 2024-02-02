@@ -7,6 +7,7 @@ resources:
   - ../../../base/hmi/client
   - ../../../base/hmi/documentation
   - ../../../base/hmi/server
+  - ../../../base/services/climate-data
   - ../../../base/services/funman
   - ../../../base/services/gollm
   - ../../../base/services/beaker
@@ -28,6 +29,7 @@ patches:
   - path: hmi/server/spicedb-deployment.yaml
   - path: hmi/server/spicedb-service.yaml
   - path: services/data-service/data-service-graphdb-deployment.yaml
+  - path: services/climate-data/climate-data-deployment.yaml
   - path: services/funman/funman-deployment.yaml
   - path: services/funman/funman-service.yaml
   - path: services/gollm/gollm-deployment.yaml
