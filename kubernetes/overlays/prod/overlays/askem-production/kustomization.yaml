@@ -29,7 +29,9 @@ patches:
   - path: keycloak/keycloak-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/funman/funman-deployment.yaml
-  - path: services/gollm/gollm-deployment.yaml
+  - path: services/climate-data/climate-data-deployment.yaml
+  - path: services/climate-data/climate-data-worker-deployment.yaml
+  - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
   - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
   - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
@@ -60,7 +62,7 @@ images:
     newTag: 'latest'
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: 'latest'
+    newTag: 'sha256:c2748b4aaa261a29c610a0493f0393a73979f7d8ff8e916b9e718bcb5c467dcc'
   - name: spicedb-image
     newName: ghcr.io/authzed/spicedb
     newTag: 'v1.24.0'
@@ -121,8 +123,8 @@ images:
     newTag: 'latest'
 
   # GoLLM service
-  - name: gollm-image
-    newName: ghcr.io/darpa-askem/gollm-service
+  - name: gollm-taskrunner-image
+    newName: ghcr.io/darpa-askem/gollm-taskrunner
     newTag: 'latest'
 
   # knowledge middleware
@@ -136,4 +138,9 @@ images:
   # Integration Dashboard
   - name: integration-dashboard-image
     newName: ghcr.io/darpa-askem/integration-dashboard
+    newTag: 'latest'
+
+  # climate data
+  - name: climate-data-image
+    newName: ghcr.io/darpa-askem/climate-data-service
     newTag: 'latest'

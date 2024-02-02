@@ -207,3 +207,7 @@ spec:
                 secretKeyRef:
                   name: neo4j-auth
                   key: password
+            - name: SPRING_DATASOURCE_INITIALIZE
+              value: "true"
+            - name: SPRING_JPA_HIBERNATE_DDL-AUTO
+              value: "update"

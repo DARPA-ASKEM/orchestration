@@ -7,19 +7,18 @@ resources:
   - ../../../base/hmi/client
   - ../../../base/hmi/documentation
   - ../../../base/hmi/server
-  - ../../../base/services/funman
-  - ../../../base/services/gollm
+  - ../../../base/services/climate-data
   - ../../../base/services/beaker
   - ../../../base/services/data-service
+  - ../../../base/services/funman
+  - ../../../base/services/gollm-taskrunner
+  - ../../../base/services/knowledge-middleware
   - ../../../base/services/mit
   - ../../../base/services/model-service
   - ../../../base/services/pyciemss-service
   - ../../../base/services/sciml-service
   - ../../../base/services/skema
-  - ../../../base/services/knowledge-middleware
 patches:
-  - path: keycloak/keycloak-deployment.yaml
-  - path: keycloak/keycloak-service.yaml
   - path: hmi/client/hmi-client-deployment.yaml
   - path: hmi/client/hmi-client-service.yaml
   - path: hmi/documentation/terarium-docs-deployment.yaml
@@ -27,11 +26,17 @@ patches:
   - path: hmi/server/hmi-server-service.yaml
   - path: hmi/server/spicedb-deployment.yaml
   - path: hmi/server/spicedb-service.yaml
+  - path: keycloak/keycloak-deployment.yaml
+  - path: keycloak/keycloak-service.yaml
+  - path: services/beaker/beaker-deployment.yaml
   - path: services/data-service/data-service-graphdb-deployment.yaml
+  - path: services/climate-data/climate-data-deployment.yaml
+  - path: services/climate-data/climate-data-worker-deployment.yaml
   - path: services/funman/funman-deployment.yaml
   - path: services/funman/funman-service.yaml
-  - path: services/gollm/gollm-deployment.yaml
-  - path: services/beaker/beaker-deployment.yaml
+  - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
+  - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
+  - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
   - path: services/mit/mit-proxy-deployment.yaml
   - path: services/mit/mit-tr-deployment.yaml
   - path: services/model-service/model-service-deployment.yaml
@@ -43,8 +48,6 @@ patches:
   - path: services/skema/skema-rs-deployment.yaml
   - path: services/skema/skema-text-reading-deployment.yaml
   - path: services/skema/skema-unified-deployment.yaml
-  - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
-  - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
 
 configMapGenerator:
   - files:

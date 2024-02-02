@@ -177,14 +177,14 @@ spec:
                 port:
                   number: 8190
 
-    - host: "gollm.staging.terarium.ai"
+    - host: "climate-data.staging.terarium.ai"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: gollm
+                name: climate-data
                 port:
                   number: 8000
 
@@ -195,8 +195,8 @@ spec:
         - "graphdb.staging.terarium.ai"
         - "documentation.staging.terarium.ai"
         - "funman.staging.terarium.ai"
-        - "gollm.staging.terarium.ai"
         - "beaker.staging.terarium.ai"
+        - "climate-data.staging.terarium.ai"
         - "mit-proxy.staging.terarium.ai"
         - "mit-tr.staging.terarium.ai"
         - "model-service.staging.terarium.ai"

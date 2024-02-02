@@ -1,0 +1,15 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: climate-data
+spec:
+  strategy:
+    type: RollingUpdate
+  template:
+    spec:
+      containers:
+        - name: climate-data
+          env:
+            - name: REDIS_HOST
+              value: "redis.staging.terarium.ai"

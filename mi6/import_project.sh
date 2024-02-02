@@ -24,11 +24,6 @@ function get_user_id() {
   local USER_NAME=$1
 
   if [ -z ${CACHED_USER_ID} ]; then
-    # Beta environemnt does not have users
-    if [ ${ENVIRONMENT} = "beta_" ]; then
-      USER_NAME="Import Test"
-    fi
-
     USERS_JSON=$(curl -s -H "Authorization: Bearer $ACCESS_TOKEN" -H "Accept: application/json" "${KEYCLOAK_URL}/admin/realms/${KEYCLOAK_REALM}/roles/user/users")
     CACHED_USER_ID=$(echo ${USERS_JSON} | jq -r --arg user_name "${USER_NAME}" '.[] | {id: .id, username: (.firstName + " " + .lastName)} | select(.username | contains($user_name) ) | .id')
     if [ -z ${CACHED_USER_ID} ]; then
@@ -242,7 +237,7 @@ function insert_artifacts() {
     echo "  ...prepared import json" >&2
 
     import_es_data "tds_artifact_tera_1.0" "${ID}" "artifact-${ID}.json"
- 
+
     for FILE in export/${PROJECT_ID}/artifacts/${ID}/files/*; do
       FILENAME="${FILE##*/}"
       copy_s3_directory "${FILE}" "${S3_DIR}/artifacts/${ID}/${FILENAME}"
