@@ -29,8 +29,7 @@ patches:
   - path: services/beaker/beaker-service.yaml
   - path: services/data-service/data-service-graphdb-service.yaml
   - path: services/funman/funman-deployment.yaml
-  - path: services/gollm/gollm-deployment.yaml
-  - path: services/gollm/gollm-service.yaml
+  - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
   - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
   - path: services/knowledge-middleware/knowledge-middleware-api-service.yaml
   - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
@@ -120,10 +119,10 @@ images:
   # PyCIEMSS service
   - name: pyciemss-api-image
     newName: ghcr.io/darpa-askem/pyciemss-api
-    newTag: 'tds-migration'
+    newTag: 'latest'
   - name: pyciemss-worker-image
     newName: ghcr.io/darpa-askem/pyciemss-worker
-    newTag: 'tds-migration'
+    newTag: 'latest'
 
   # Funman service
   - name: funman-image
@@ -131,8 +130,8 @@ images:
     newTag: 'latest'
 
   # GoLLM service
-  - name: gollm-image
-    newName: ghcr.io/darpa-askem/gollm-service
+  - name: gollm-taskrunner-image
+    newName: ghcr.io/darpa-askem/gollm-taskrunner
     newTag: 'latest'
 
   # knowledge middleware

@@ -2,12 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gollm
+  name: gollm-taskrunner
 spec:
   template:
     spec:
       containers:
-        - name: gollm
+        - name: gollm-taskrunner
           env:
             - name: OPENAI_API_KEY
               valueFrom:
