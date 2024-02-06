@@ -29,6 +29,8 @@ patches:
   - path: keycloak/keycloak-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/funman/funman-deployment.yaml
+  - path: services/climate-data/climate-data-deployment.yaml
+  - path: services/climate-data/climate-data-worker-deployment.yaml
   - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
   - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
   - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
@@ -136,4 +138,9 @@ images:
   # Integration Dashboard
   - name: integration-dashboard-image
     newName: ghcr.io/darpa-askem/integration-dashboard
+    newTag: 'latest'
+
+  # climate data
+  - name: climate-data-image
+    newName: ghcr.io/darpa-askem/climate-data-service
     newTag: 'latest'
