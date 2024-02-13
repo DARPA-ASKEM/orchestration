@@ -117,7 +117,7 @@ images:
   # Simulation Service
   - name: sciml-service-image
     newName: ghcr.io/darpa-askem/sciml-service
-    newTag: 'tds-migration'
+    newTag: 'latest'
 
   # PyCIEMSS service
   - name: pyciemss-api-image
