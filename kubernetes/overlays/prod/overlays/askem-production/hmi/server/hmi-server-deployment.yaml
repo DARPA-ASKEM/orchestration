@@ -17,8 +17,6 @@ spec:
               value: "https://keycloak.terarium.ai"
             - name: SPRING_DATA_REDIS_URL
               value: "redis://redis.terarium.ai:6379"
-            - name: TERARIUM_QUEUE_SUFFIX
-              value: production
             # - name: spring.jpa.properties.hibernate.format_sql
             #   value: 'true'
             # - name: logging.level.org.hibernate
