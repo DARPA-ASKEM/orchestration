@@ -25,12 +25,8 @@ spec:
           image: beaker-image
           imagePullPolicy: Always
           env:
-            - name: DATA_SERVICE_URL
-              value: http://hmi-server:3000
             - name: JUPYTER_SERVER
               value: http://beaker:3050
-            - name: SIMULATION_SCHEDULER_URL
-              value: http://sciml-service:3030
             - name: JUPYTER_TOKEN
               value: 89f73481102c46c0bc13b2998f9a4fce
           ports:

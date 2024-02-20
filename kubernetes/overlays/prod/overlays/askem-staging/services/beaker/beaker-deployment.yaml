@@ -6,26 +6,6 @@ metadata:
 spec:
   template:
     spec:
-      containers:
-        - name: beaker
-          env:
-            - name: OPENAI_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: mit-proxy-secrets
-                  key: chatgptkey
-            - name: AUTH_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: keycloak-creds
-                  key: service_username
-            - name: AUTH_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: keycloak-creds
-                  key: service_password
-            - name: DATA_SERVICE_URL
-              value: hmi-server:3000
       tolerations:
         - key: "workload"
           operator: "Equal"

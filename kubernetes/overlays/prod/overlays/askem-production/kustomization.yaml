@@ -94,7 +94,7 @@ images:
     newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
   - name: skema-text-reading-image
     newName: ghcr.io/darpa-askem/skema-text-reading
-    newTag: '2023_12_06'
+    newTag: '2024_01_24'
 
   # MIT
   - name: mit-proxy-image
@@ -130,10 +130,10 @@ images:
   # knowledge middleware
   - name: knowledge-middleware-api-image
     newName: ghcr.io/darpa-askem/knowledge-middleware-api
-    newTag: 'latest'
+    newTag: 'tds-migration'
   - name: knowledge-middleware-worker-image
     newName: ghcr.io/darpa-askem/knowledge-middleware-worker
-    newTag: 'latest'
+    newTag: 'tds-migration'
 
   # Integration Dashboard
   - name: integration-dashboard-image
