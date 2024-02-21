@@ -9,17 +9,13 @@ See [Uncharted-Auth](https://github.com/unchartedsoftware/uncharted-auth) for de
 
 ## Requirements for Building locally
 
-### Install Ansible
+### Install Sops
 Required to encrypt/decrypt secrets.
 
-x86/64 processors:
-```shell
-brew install ansible
-```
+[Mozilla's Secret OPerationS : sops](https://github.com/mozilla/sops)
 
-ARM64 processors:
 ```shell
-arch -arm64 brew install ansible
+brew install sops
 ```
 
 
