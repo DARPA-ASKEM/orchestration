@@ -18,6 +18,16 @@ Required to encrypt/decrypt secrets.
 brew install sops
 ```
 
+### Obtain AGE key
+
+Fetch `https://drive.google.com/file/d/1DiCAxgjAgXOt72nVSktcmXDmWrcfJwSg/view?usp=drive_link` and store in your home directory.
+
+```shell
+cp kubernetes/env.template kubernetes/.env
+```
+
+edit `kubernetes/.env` changing <user> to your user directory (or if not on a Mac edit as appropriate)
+
 
 ### Enabling Kubernetes
 
