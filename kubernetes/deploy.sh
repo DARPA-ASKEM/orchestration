@@ -43,8 +43,7 @@ elif [ "$unamestr" = 'FreeBSD' ] || [ "$unamestr" = 'Darwin' ]; then
  export $(grep -v '^#' .env | xargs -0)
 fi
 
-SECRET_FILES=()
-
+source secret_files.sh
 source functions.sh
 
 while [[ $# -gt 0 ]]; do
@@ -103,18 +102,12 @@ fi
 
 case ${ENVIRONMENT} in
 staging)
-	SECRET_FILES+=("overlays/prod/base/keycloak/certificates/cert.pem" "overlays/prod/base/keycloak/certificates/key.pem")
-	SECRET_FILES+=("overlays/prod/overlays/askem-staging/secrets/*.yaml")
-	SECRET_FILES+=("overlays/prod/overlays/askem-staging/keycloak/realm/*.json")
-	SECRET_FILES+=("overlays/prod/overlays/askem-staging/check-latest/check-latest-rsa" "overlays/prod/overlays/askem-staging/check-latest/secrets.yaml")
+  SECRET_FILES=${STAGING_SECRET_FILES[@]}
 	KUSTOMIZATION=overlays/prod/overlays/askem-staging
 	KUBECTL_CMD="ssh uncharted-askem-prod-askem-staging-kube-manager-1 sudo kubectl"
 	;;
 production)
-	SECRET_FILES+=("overlays/prod/base/keycloak/certificates/cert.pem" "overlays/prod/base/keycloak/certificates/key.pem")
-	SECRET_FILES+=("overlays/prod/overlays/askem-production/secrets/*.yaml")
-	SECRET_FILES+=("overlays/prod/overlays/askem-production/keycloak/realm/*.json")
-	SECRET_FILES+=("overlays/prod/overlays/askem-production/check-latest/check-latest-rsa" "overlays/prod/overlays/askem-production/check-latest/secrets.yaml")
+  SECRET_FILES=${PRODUCTION_SECRET_FILES[@]}
 	KUSTOMIZATION=overlays/prod/overlays/askem-production
 	KUBECTL_CMD="ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl"
 	;;
