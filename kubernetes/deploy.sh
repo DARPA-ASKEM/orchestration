@@ -1,12 +1,47 @@
 #!/bin/bash
 
-## import enviroment variables (.env file)
-#unamestr=$(uname)
-#if [ "$unamestr" = 'Linux' ]; then
-#  export $(grep -v '^#' .env | xargs -d '\n')
-#elif [ "$unamestr" = 'FreeBSD' ] || [ "$unamestr" = 'Darwin' ]; then
-#  export $(grep -v '^#' .env | xargs -0)
-#fi
+help() {
+	echo "
+NAME
+    deploy.sh - deploy TERArium
+
+SYNOPSIS
+    deploy.sh [up | down | status | test | decrypt | encrypt] ENVIRONMENT
+
+DESCRIPTION
+  Environment:
+    ENVIRONMENT        Must be supplied to indicate which environment should be processed
+      staging
+      production
+
+  Launch commands:
+    up                Launches the entire TERArium stack
+    down              Tears down the entire TERArium stack
+
+  Other commands:
+    status            Displays the status of the TERArium cluster
+    encrypt           Encrypt secrets for adding to git repo
+    decrypt           Decrypt secrets for editing
+
+  Environment Variables will be read from a '.env' file, the following can be set
+    AGE_PUBLIC_KEY    the 'askem.agekey' file's public key
+    SOPS_AGE_KEY_FILE location of the file 'askem.agekey'
+  "
+}
+
+if [ ! -f .env ]; then
+  echo "Missing .env file"
+  help
+  exit 1
+fi
+
+# import enviroment variables (.env file)
+unamestr=$(uname)
+if [ "$unamestr" = 'Linux' ]; then
+ export $(grep -v '^#' .env | xargs -d '\n')
+elif [ "$unamestr" = 'FreeBSD' ] || [ "$unamestr" = 'Darwin' ]; then
+ export $(grep -v '^#' .env | xargs -0)
+fi
 
 SECRET_FILES=()
 
@@ -128,31 +163,6 @@ encrypt)
 	encrypt
 	;;
 help)
-	echo "
-NAME
-    deploy.sh - deploy TERArium
-
-SYNOPSIS
-    deploy.sh [up | down | status | test | decrypt | encrypt] ENVIRONMENT
-
-DESCRIPTION
-  Environment:
-    ENVIRONMENT        Must be supplied to indicate which environment should be processed
-      staging
-      production
-
-  Launch commands:
-    up                Launches the entire TERArium stack
-    down              Tears down the entire TERArium stack
-
-  Other commands:
-    status            Displays the status of the TERArium cluster
-    encrypt           Encrypt secrets for adding to git repo
-    decrypt           Decrypt secrets for editing
-    "
-	;;
-
-	#  Environment Variables will be read from a '.env' file, the following can be set
-	#    AGE_PUBLIC_KEY    the 'askem.agekey' file's public key
-	#    SOPS_AGE_KEY_FILE location of the file 'askem.agekey'
+  help
+  ;;
 esac
