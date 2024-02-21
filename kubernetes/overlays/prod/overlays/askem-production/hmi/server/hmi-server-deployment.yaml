@@ -17,6 +17,10 @@ spec:
               value: "https://keycloak.terarium.ai"
             - name: SPRING_DATA_REDIS_URL
               value: "redis://redis.terarium.ai:6379"
+            - name: TERARIUM_ELASTICSEARCH_URL
+              value: "https://elasticsearch.terarium.ai:443"
+            - name: LOGGING_LEVEL_ROOT
+              value: INFO
             # - name: spring.jpa.properties.hibernate.format_sql
             #   value: 'true'
             # - name: logging.level.org.hibernate
@@ -31,5 +35,3 @@ spec:
             #   value: info
             # - name: logging.level.org.hibernate.cache
             #   value: debug
-            - name: TERARIUM_ELASTICSEARCH_URL
-              value: https://elasticsearch.terarium.ai:443

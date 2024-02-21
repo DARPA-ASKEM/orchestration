@@ -6,3 +6,27 @@ metadata:
 spec:
   strategy:
     type: RollingUpdate
+  template:
+    spec:
+      containers:
+        - name: beaker
+          env:
+            - name: SIMULATION_SCHEDULER_URL
+              value: http://sciml-service:3030
+            - name: HMI_SERVER_URL
+              value: http://hmi-server:3000
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mit-proxy-secrets
+                  key: chatgptkey
+            - name: AUTH_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: service_username
+            - name: AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: service_password
