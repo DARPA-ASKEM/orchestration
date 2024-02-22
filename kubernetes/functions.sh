@@ -61,7 +61,8 @@ encrypt() {
 
 restore() {
 	for SECRET_FILE in "${DECRYPTED_FILES[@]}"; do
-		git restore "${SECRET_FILE}"
+		rm ${SECRET_FILE}
+		# git restore "${SECRET_FILE}"
 	done
 }
 
