@@ -1,0 +1,12 @@
+#Secrets
+overlays/prod/base/keycloak/certificates/*.pem
+!overlays/prod/base/keycloak/certificates/*.enc.pem
+
+overlays/prod/overlays/askem-staging/check-latest/check-latest-rsa
+overlays/prod/overlays/askem-staging/check-latest/secrets.yaml
+
+overlays/prod/overlays/askem-staging/keycloak/realm/*.json
+!overlays/prod/overlays/askem-staging/keycloak/realm/*.enc.json
+
+overlays/prod/overlays/askem-staging/secrets/*.yaml
+!overlays/prod/overlays/askem-staging/secrets/*.enc.yaml
