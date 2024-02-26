@@ -39,6 +39,8 @@ gum style \
 This script will find all the secrets for a given environment,
 decrypting them as requested.'
 
+OPERATION=$(gum choose "decrypt" "encrypt")
+
 ENVIRONMENT=$(gum choose "staging" "production")
 
 echo "Using $(gum style --foreground 212 "${ENVIRONMENT}") environment"
@@ -52,32 +54,44 @@ production)
 	;;
 esac
 
-decrypt
+select_file() {
+  # delcare array/map called FILE_LOCATIONS
+  declare -A FILE_LOCATIONS
 
-declare -A FILE_LOCATIONS
+  local FILES=()
+  for SECRET_FILE in ${SECRET_FILES[@]}; do
+    local FILE=${SECRET_FILE##*/}
+    FILE_LOCATIONS+=([${FILE}]=${SECRET_FILE})
+    FILES+=(${FILE})
+  done
 
-FILES=()
-for LOCATION in ${SECRET_FILES[@]}; do
-  FILE=${LOCATION##*/}
-  FILE_LOCATIONS+=([${FILE}]=${LOCATION})
-  FILES+=(${FILE})
-done
+  local FILE=$(gum choose ${FILES[@]})
+  echo ${FILE_LOCATIONS[${FILE}]}
+}
 
-FILE=$(gum choose ${FILES[@]})
+FILE=$(select_file)
 
 echo "Using secrets from $(gum style --foreground 212 "${FILE}")"
 
-KEYS=$(yq -o json '.data | keys' ${FILE_LOCATIONS[${FILE}]} | jq -r '@sh' | tr -d \')
+ENC_FILENAME=$(get_enc_filename ${SECRET_FILE})
+
+KEYS=$(yq -o json '.data | keys' ${ENC_FILENAME} | jq -r '@sh' | tr -d \')
 
 KEY=$(gum choose ${KEYS[@]})
 
-BASE64_VALUE=$(argkey="${KEY}" yq -o json '.data[env(argkey)]' ${FILE_LOCATIONS[${FILE}]} | tr -d \")
+decrypt_file ${SECRET_FILE}
 
-echo "For key $(gum style --foreground 212 "${KEY}")"
-echo "  Base64 Value is $(gum style --foreground 212 "${BASE64_VALUE}")"
+if [ ${OPERATION} == decrypt ]; then
+  BASE64_VALUE=$(argkey="${KEY}" yq -o json '.data[env(argkey)]' ${SECRET_FILE} | tr -d \")
 
-VALUE=$(echo ${BASE64_VALUE} | base64 -d)
+  echo "For key $(gum style --foreground 212 "${KEY}")"
+  echo "  Base64 Value is $(gum style --foreground 212 "${BASE64_VALUE}")"
 
-echo "  Value is $(gum style --foreground 212 "${VALUE}")"
+  VALUE=$(echo ${BASE64_VALUE} | base64 -d)
+
+  echo "  Value is $(gum style --foreground 212 "${VALUE}")"
+else
+  echo "TODO encrypt"
+fi
 
 restore

@@ -15,48 +15,64 @@ checkPrograms() {
 	fi
 }
 
-# SOPS
+get_enc_filename() {
+  SECRET_FILE=${1}
+
+  EXTENSION="${SECRET_FILE##*.}"
+  FILENAME="${SECRET_FILE%.*}"
+  ENC_FILENAME="${FILENAME}.enc.${EXTENSION}"
+  if [[ ${EXTENSION} == ${FILENAME} ]]; then
+    ENC_FILENAME="${FILENAME}.enc"
+  fi
+  
+  echo ${ENC_FILENAME}
+}
+
 decrypt() {
   DECRYPTED_FILES=()
   for SECRET_FILE in ${SECRET_FILES[@]}; do
-    EXTENSION="${SECRET_FILE##*.}"
-    FILENAME="${SECRET_FILE%.*}"
-    INPUT_FILENAME="${FILENAME}.enc.${EXTENSION}"
-    if [[ ${EXTENSION} == ${FILENAME} ]]; then
-      INPUT_FILENAME="${FILENAME}.enc"
-    fi
-    # echo "decrypting file ${SECRET_FILE}"
-    sops --decrypt ${INPUT_FILENAME} > ${SECRET_FILE}
-    STATUS=$?
-    if [[ ${STATUS} -eq 0 ]]; then
-      DECRYPTED_FILES+=( ${SECRET_FILE} )
-    fi
+    decrypt_file ${SECRET_FILE}
   done
 }
 
-encrypt() {
-  echo ${AGE_PUBLIC_KEY}
-  for SECRET_FILE in ${SECRET_FILES[@]}; do
-    EXTENSION="${SECRET_FILE##*.}"
-    FILENAME="${SECRET_FILE%.*}"
-    OUTPUT_FILENAME="${FILENAME}.enc.${EXTENSION}"
-    if [[ ${EXTENSION} == ${FILENAME} ]]; then
-      OUTPUT_FILENAME="${FILENAME}.enc"
-    fi
+decrypt_file() {
+  SECRET_FILE=${1}
+  ENC_FILENAME=$(get_enc_filename ${SECRET_FILE})
 
-    # echo "encrypting file ${SECRET_FILE}"
-    if [[ ${EXTENSION} == yaml ]]; then
-      # YAML
-      sops --age=${AGE_PUBLIC_KEY} --encrypt --encrypted-regex '^(data|stringData)$' ${SECRET_FILE} > ${OUTPUT_FILENAME}
-    else
-      # JSON and other
-      sops --age=${AGE_PUBLIC_KEY} --encrypt ${SECRET_FILE} > ${OUTPUT_FILENAME}
-    fi
-    STATUS=$?
-    if [[ ${STATUS} -eq 0 ]]; then
-      DECRYPTED_FILES+=( ${SECRET_FILE} )
-    fi
-  done
+  # echo "decrypting file ${SECRET_FILE}"
+  sops --decrypt ${ENC_FILENAME} > ${SECRET_FILE}
+  STATUS=$?
+  if [[ ${STATUS} -eq 0 ]]; then
+    DECRYPTED_FILES+=( ${SECRET_FILE} )
+  fi
+}
+
+encrypt() {
+  if [[ -z ${AGE_PUBLIC_KEY} ]]; then
+    echo "Encryption key not set correctly in .env"
+  else
+    for SECRET_FILE in ${SECRET_FILES[@]}; do
+      encrypt_file ${SECRET_FILE}
+    done
+  fi
+}
+
+encrypt_file() {
+  SECRET_FILE=${1}
+  ENC_FILENAME=$(get_enc_filename ${SECRET_FILE})
+
+  # echo "encrypting file ${SECRET_FILE}"
+  if [[ ${EXTENSION} == yaml ]]; then
+    # YAML
+    sops --age=${AGE_PUBLIC_KEY} --encrypt --encrypted-regex '^(data|stringData)$' ${SECRET_FILE} > ${ENC_FILENAME}
+  else
+    # JSON and other
+    sops --age=${AGE_PUBLIC_KEY} --encrypt ${SECRET_FILE} > ${ENC_FILENAME}
+  fi
+  STATUS=$?
+  if [[ ${STATUS} -eq 0 ]]; then
+    DECRYPTED_FILES+=( ${SECRET_FILE} )
+  fi
 }
 
 restore() {
