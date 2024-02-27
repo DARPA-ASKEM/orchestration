@@ -1,8 +1,8 @@
 software.uncharted.terarium/name=beaker ghcr.io/darpa-askem/beaker-kernel:latest
 software.uncharted.terarium/name=hmi-client ghcr.io/darpa-askem/hmi-client:latest
 software.uncharted.terarium/name=hmi-server ghcr.io/darpa-askem/hmi-server:latest
-software.uncharted.terarium/name=knowledge-middleware-api ghcr.io/darpa-askem/knowledge-middleware-api:tds-migration
-software.uncharted.terarium/name=knowledge-middleware-worker ghcr.io/darpa-askem/knowledge-middleware-worker:tds-migration
+software.uncharted.terarium/name=knowledge-middleware-api ghcr.io/darpa-askem/knowledge-middleware-api:latest
+software.uncharted.terarium/name=knowledge-middleware-worker ghcr.io/darpa-askem/knowledge-middleware-worker:latest
 software.uncharted.terarium/name=mit-proxy ghcr.io/darpa-askem/mit-proxy:latest
 software.uncharted.terarium/name=mit-tr ghcr.io/darpa-askem/mit-tr:latest
 software.uncharted.terarium/name=model-service ghcr.io/darpa-askem/model-service:latest
