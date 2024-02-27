@@ -2,14 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gollm-taskrunner
+  name: mirac-taskrunner
 spec:
   strategy:
     type: RollingUpdate
   template:
     spec:
       containers:
-        - name: gollm-taskrunner
+        - name: mirac-taskrunner
           imagePullPolicy: Always
           env:
             - name: SPRING_RABBITMQ_ADDRESSES
@@ -28,4 +28,4 @@ spec:
                   name: mq-creds
                   key: password
             - name: TERARIUM_TASKRUNNER_REQUEST-TYPE
-              value: "gollm"
+              value: "mirac"
