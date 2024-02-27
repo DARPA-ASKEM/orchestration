@@ -22,6 +22,18 @@ spec:
                 name: hmi-server
                 port:
                   number: 3000
+
+    - host: "beaker.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: beaker
+                port:
+                  number: 3050
   tls:
     - hosts:
         - "server.terarium.ai"
+        - "beaker.terarium.ai"
