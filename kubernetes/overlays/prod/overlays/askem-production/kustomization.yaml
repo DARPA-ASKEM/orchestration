@@ -28,6 +28,7 @@ patches:
   - path: hmi/server/hmi-server-deployment.yaml
   - path: keycloak/keycloak-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
+  - path: services/beaker/beaker-service.yaml
   - path: services/funman/funman-deployment.yaml
   - path: services/climate-data/climate-data-deployment.yaml
   - path: services/climate-data/climate-data-worker-deployment.yaml
