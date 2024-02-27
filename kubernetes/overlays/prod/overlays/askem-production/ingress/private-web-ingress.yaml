@@ -12,7 +12,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: "server.staging.terarium.ai"
+    - host: "server.terarium.ai"
       http:
         paths:
           - path: /
