@@ -30,7 +30,7 @@ spec:
             "rq",
             "worker-pool",
             "subset",
-            "preview", 
+            "preview",
             "-n5"
           ]
           resources: {}
