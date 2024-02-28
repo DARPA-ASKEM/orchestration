@@ -32,7 +32,7 @@ spec:
             "subset",
             "preview", 
             "-n5"
-            ]
+          ]
           resources: {}
       imagePullSecrets:
         - name: ghcr-cred
