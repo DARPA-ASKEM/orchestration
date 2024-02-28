@@ -24,12 +24,16 @@ spec:
         - name: climate-data-worker
           image: climate-data-image
           imagePullPolicy: Always
-          command: ['nohup']
+          command: ['poetry']
           args: [
-            'sh',
-            '-c',
-            'TERARIUM_USER=\"${TERARIUM_USER}\" TERARIUM_PASS=\"${TERARIUM_PASS}\" poetry run rq worker-pool subset preview -n5'
-          ]
+            "poetry", 
+            "run",
+            "rq",
+            "worker-pool",
+            "subset",
+            "preview", 
+            "-n5"
+            ]
           resources: {}
       imagePullSecrets:
         - name: ghcr-cred
