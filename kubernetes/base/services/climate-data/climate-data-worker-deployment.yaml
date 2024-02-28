@@ -26,7 +26,6 @@ spec:
           imagePullPolicy: Always
           command: ['poetry']
           args: [
-            "poetry", 
             "run",
             "rq",
             "worker-pool",
