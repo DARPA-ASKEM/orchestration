@@ -16,3 +16,4 @@ software.uncharted.terarium/name=gollm-taskrunner ghcr.io/darpa-askem/gollm-task
 software.uncharted.terarium/name=funman ghcr.io/darpa-askem/funman-api:latest
 software.uncharted.terarium/name=climate-data ghcr.io/darpa-askem/climate-data-service:latest
 software.uncharted.terarium/name=climate-data-worker ghcr.io/darpa-askem/climate-data-service:latest
+software.uncharted.terarium/name=mira-taskrunner ghcr.io/darpa-askem/mira-taskrunner:latest
