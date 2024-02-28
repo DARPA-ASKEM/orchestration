@@ -149,3 +149,8 @@ images:
   - name: climate-data-image
     newName: ghcr.io/darpa-askem/climate-data-service
     newTag: 'latest'
+
+  # mira taskrunner
+  - name: mira-taskrunner-image
+    newName: ghcr.io/darpa-askem/mira-taskrunner
+    newTag: 'latest'
