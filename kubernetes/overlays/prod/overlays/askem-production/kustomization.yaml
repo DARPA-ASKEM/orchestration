@@ -73,11 +73,6 @@ images:
     newName: ghcr.io/darpa-askem/neo4j
     newTag: '5.12-community'
 
-  # Model Service
-  - name: model-service-image
-    newName: ghcr.io/darpa-askem/model-service
-    newTag: 'latest'
-
   # Jupyter LLM service
   - name: beaker-image
     newName: ghcr.io/darpa-askem/beaker-kernel
