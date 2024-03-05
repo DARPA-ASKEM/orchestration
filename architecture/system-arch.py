@@ -60,7 +60,7 @@ with Diagram("Terarium System Architecture", show=True,
 		loki = Loki("Loki")
 		prometheus = Prometheus("Prometheus")
 
-	with Cluster("Data Sources"):
+	with Cluster("Managed Data Sources"):
 		postgres = Postgresql("PostgreSQL")
 		redis = Redis("Redis")
 		es = Elasticsearch("Elasticsearch")
@@ -72,11 +72,12 @@ with Diagram("Terarium System Architecture", show=True,
 			web_servers = [Custom("Web Server", "./resources/uncharted.png"), Custom("Docs Server", "./resources/uncharted.png")]
 			keycloak = Custom("Keycloak", "./resources/keycloak.png")
 			message_queue = Rabbitmq("Message Queue")
-			llm = Custom("Jupyter LLM", "./resources/jataware.jpeg")
-			hmi_extraction_service = Custom("HMI Extraction Service", "./resources/uncharted.png")
+			gollm_taskrunner = Custom("Gollm Taskrunner", "./resources/uncharted.png")
+			gollm = Custom("Gollm", "./resources/uncharted.png")
+			mira_taskrunner = Custom("MIRA Taskrunner", "./resources/uncharted.png")
 
-		with Cluster("Data Tier"):
-			tds = Custom("Data Service (TDS)", "./resources/jataware.jpeg")
+		with Cluster("Data Sources"):
+			spicedb = Database("SpiceDB")
 			graphdb = Custom("GraphDB", "./resources/graphdb.png")
 
 		with Cluster("Simulation Services"):
@@ -85,15 +86,17 @@ with Diagram("Terarium System Architecture", show=True,
 			sciml_service = Custom("SciML Service", "./resources/sciml.png")
 
 		with Cluster("Knowledge Services"):
+			beaker = Custom("Beaker", "./resources/jataware.jpeg")
+			climate_data_api = Custom("Climate Data API", "./resources/jataware.jpeg")
+			climate_data_worker = Custom("Climate Data Worker", "./resources/jataware.jpeg")
 			knowledge_middleware_api = Custom("Knowledge Middleware API", "./resources/jataware.jpeg")
 			knowledge_middleware_worker = Custom("Knowledge Middleware Worker", "./resources/jataware.jpeg")
 			mit_proxy = Custom("MIT Proxy", "./resources/uncharted.png")
 			mit_tr = Custom("MIT TR", "./resources/mit.jpeg")
 			skema_unified = Custom("Skema Unified", "./resources/ml4ai.png")
 			skema_rs = Custom("Skema Rs", "./resources/ml4ai.png")
-			skema_text_reading = Custom("Skema Text Reading", "./resources/ml4ai.png")
-			skema_mathjax = Custom("Skema MathJax", "./resources/ml4ai.png")
-			skema_memgraph = Custom("Skema Memgraph", "./resources/ml4ai.png")
+			skema_tr = Custom("Skema Text Reading", "./resources/ml4ai.png")
+			funman = Custom("Funman", "./resources/sift.jpeg")
 
 		with Cluster("Ingress"):
 			ingress_app = Ing("application")
@@ -103,10 +106,14 @@ with Diagram("Terarium System Architecture", show=True,
 	with Cluster("Jataware External Services"):
 		dkg = Server("DKG")
 
-	with Cluster("Public Eternal Services"):
+	with Cluster("Public External Services"):
 		openai = Server("OpenAI (ChatGPT)")
 		github = Server("GitHub API")
 		jsdelivr = Server("jsDelivr")
+		esgf = Server("ESGF")
+
+	with Cluster("Northwestern External Services"):
+		mira = Custom("MIRA", "./resources/northeastern.png")
 
 	with Cluster("UWisc External Services"):
 		cosmos = Server("xDD Cosmos")
@@ -117,54 +124,64 @@ with Diagram("Terarium System Architecture", show=True,
 		docs = Client("Terarium Docs")
 
 	# Connections
+	beaker >> Edge() >> mira
+	beaker >> Edge() >> openai
+	beaker >> Edge() >> sciml_service
+	climate_data_api >> Edge() >> climate_data_worker
+	climate_data_worker >> Edge() >> esgf
+	climate_data_worker >> Edge() >> openai
+	climate_data_worker >> Edge() >> redis
+	climate_data_worker >> Edge() >> s3
+	gollm_taskrunner >> Edge() >> gollm
+	gollm_taskrunner >> Edge() >> message_queue
 	grafana >> Edge() >> es
-	hmi_extraction_service >> Edge() >> knowledge_middleware_api
-	hmi_server >> Edge() >> pyciemss_api
+	hmi_server >> Edge() << beaker
+	hmi_server >> Edge() << climate_data_api
 	hmi_server >> Edge() << ingress_app
-	hmi_server >> Edge() >> keycloak
-	hmi_server >> Edge() >> llm
-	hmi_server >> Edge() >> tds
+	hmi_server >> Edge() >> dkg
+	hmi_server >> Edge() >> es
+	hmi_server >> Edge() >> funman
 	hmi_server >> Edge() >> github
-	hmi_server >> Edge() >> hmi_extraction_service
+	hmi_server >> Edge() >> gollm_taskrunner
+	hmi_server >> Edge() >> graphdb
 	hmi_server >> Edge() >> jsdelivr
+	hmi_server >> Edge() >> keycloak
 	hmi_server >> Edge() >> knowledge_middleware_api
 	hmi_server >> Edge() >> message_queue
+	hmi_server >> Edge() >> message_queue
+	hmi_server >> Edge() >> mira_taskrunner
+	hmi_server >> Edge() >> mit_proxy
+	hmi_server >> Edge() >> postgres
 	hmi_server >> Edge() >> pyciemss_api
+	hmi_server >> Edge() >> pyciemss_api
+	hmi_server >> Edge() >> redis
+	hmi_server >> Edge() >> s3
 	hmi_server >> Edge() >> sciml_service
+	hmi_server >> Edge() >> spicedb
 	hmi_server >> Edge() >> xdd
 	ingress_app >> Edge() << hmi_client
 	ingress_docs >> Edge() << docs
 	keycloak >> Edge() << ingress_keycloak
 	knowledge_middleware_api >> Edge() >> knowledge_middleware_worker
 	knowledge_middleware_api >> Edge() >> redis
-	knowledge_middleware_worker << Edge() >> mit_proxy
-	knowledge_middleware_worker << Edge() >> tds
+	knowledge_middleware_worker << Edge() >> hmi_server
+	knowledge_middleware_worker << Edge() >> mit_tr
 	knowledge_middleware_worker >> Edge() >> cosmos
-	knowledge_middleware_worker >> Edge() >> redis
+	knowledge_middleware_worker >> Edge() >> skema_rs
+	knowledge_middleware_worker >> Edge() >> skema_tr
 	knowledge_middleware_worker >> Edge() >> skema_unified
-	llm >> Edge() >> openai
-	llm >> Edge() >> sciml_service
 	loki >> Edge() >> es
+	mira_taskrunner >> Edge() >> message_queue
+	mira_taskrunner >> Edge() >> mira
 	mit_proxy >> Edge() >> mit_tr
+	pyciemss_api >> Edge() >> hmi_server
 	pyciemss_api >> Edge() >> pyciemss_worker
 	pyciemss_api >> Edge() >> redis
-	pyciemss_api >> Edge() >> tds
+	pyciemss_worker >> Edge() >> hmi_server
 	pyciemss_worker >> Edge() >> message_queue
 	pyciemss_worker >> Edge() >> redis
-	pyciemss_worker >> Edge() >> tds
 	sciml_service >> Edge() >> message_queue
-	skema_rs >> Edge() >> skema_memgraph
 	skema_unified >> Edge() >> mit_tr
 	skema_unified >> Edge() >> skema_rs
-	skema_unified >> Edge() >> skema_text_reading
-	skema_unified >> Edge() >> skema_mathjax
-	skema_unified >> Edge() >> skema_memgraph
-	tds >> Edge() >> dkg
-	tds >> Edge() >> es
-	tds >> Edge() >> graphdb
-	tds >> Edge() >> message_queue
-	tds >> Edge() >> postgres
-	tds >> Edge() >> redis
-	tds >> Edge() >> s3
 	web_servers >> Edge() << ingress_app
 	web_servers >> Edge() << ingress_docs
