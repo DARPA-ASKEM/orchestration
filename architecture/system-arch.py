@@ -79,9 +79,6 @@ with Diagram("Terarium System Architecture", show=True,
 			tds = Custom("Data Service (TDS)", "./resources/jataware.jpeg")
 			graphdb = Custom("GraphDB", "./resources/graphdb.png")
 
-		with Cluster("Model Services"):
-			model_service = Custom("Model Service", "./resources/uncharted.png")
-
 		with Cluster("Simulation Services"):
 			pyciemss_api = Custom("pyciemss API", "./resources/pnnl.png")
 			pyciemss_worker = Custom("pyciemss Worker", "./resources/pnnl.png")
@@ -132,7 +129,6 @@ with Diagram("Terarium System Architecture", show=True,
 	hmi_server >> Edge() >> jsdelivr
 	hmi_server >> Edge() >> knowledge_middleware_api
 	hmi_server >> Edge() >> message_queue
-	hmi_server >> Edge() >> model_service
 	hmi_server >> Edge() >> pyciemss_api
 	hmi_server >> Edge() >> sciml_service
 	hmi_server >> Edge() >> xdd

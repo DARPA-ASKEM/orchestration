@@ -15,7 +15,6 @@ resources:
   - ../../../base/services/knowledge-middleware
   - ../../../base/services/mira-taskrunner
   - ../../../base/services/mit
-  - ../../../base/services/model-service
   - ../../../base/services/pyciemss-service
   - ../../../base/services/sciml-service
   - ../../../base/services/skema
@@ -41,7 +40,6 @@ patches:
   - path: services/mira-taskrunner/mira-taskrunner-deployment.yaml
   - path: services/mit/mit-proxy-deployment.yaml
   - path: services/mit/mit-tr-deployment.yaml
-  - path: services/model-service/model-service-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
   - path: services/sciml-service/sciml-service-deployment.yaml
