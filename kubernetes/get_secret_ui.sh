@@ -73,16 +73,18 @@ FILE=$(select_file)
 
 echo "Using secrets from $(gum style --foreground 212 "${FILE}")"
 
-ENC_FILENAME=$(get_enc_filename ${SECRET_FILE})
+ENC_FILENAME=$(get_enc_filename ${FILE})
+
+echo ${ENC_FILENAME}
 
 KEYS=$(yq -o json '.data | keys' ${ENC_FILENAME} | jq -r '@sh' | tr -d \')
 
 KEY=$(gum choose ${KEYS[@]})
 
-decrypt_file ${SECRET_FILE}
+decrypt_file ${FILE}
 
 if [ ${OPERATION} == decrypt ]; then
-  BASE64_VALUE=$(argkey="${KEY}" yq -o json '.data[env(argkey)]' ${SECRET_FILE} | tr -d \")
+  BASE64_VALUE=$(argkey="${KEY}" yq -o json '.data[env(argkey)]' ${FILE} | tr -d \")
 
   echo "For key $(gum style --foreground 212 "${KEY}")"
   echo "  Base64 Value is $(gum style --foreground 212 "${BASE64_VALUE}")"
