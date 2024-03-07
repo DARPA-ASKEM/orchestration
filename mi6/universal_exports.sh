@@ -5,14 +5,12 @@ if [ ! -f .env ]; then
   exit 1
 fi
 
-# import enviroment variables (.env file)
 unamestr=$(uname)
 if [ "$unamestr" = 'Linux' ]; then
  export $(grep -v '^#' .env | xargs -d '\n')
 elif [ "$unamestr" = 'FreeBSD' ] || [ "$unamestr" = 'Darwin' ]; then
  export $(grep -v '^#' .env | xargs -0)
 fi
-
 
 SECRET_FILES=("export_secrets.sh" "staging_import_secrets.sh" "production_import_secrets.sh" "import_secrets.sh")
 

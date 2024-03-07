@@ -140,12 +140,17 @@ images:
   # knowledge middleware
   - name: knowledge-middleware-api-image
     newName: ghcr.io/darpa-askem/knowledge-middleware-api
-    newTag: 'tds-migration'
+    newTag: 'latest'
   - name: knowledge-middleware-worker-image
     newName: ghcr.io/darpa-askem/knowledge-middleware-worker
-    newTag: 'tds-migration'
+    newTag: 'latest'
 
   # climate data
   - name: climate-data-image
     newName: ghcr.io/darpa-askem/climate-data-service
+    newTag: 'latest'
+
+  # mira taskrunner
+  - name: mira-taskrunner-image
+    newName: ghcr.io/darpa-askem/mira-taskrunner
     newTag: 'latest'

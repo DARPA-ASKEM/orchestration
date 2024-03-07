@@ -13,6 +13,7 @@ resources:
   - ../../../base/services/funman
   - ../../../base/services/gollm-taskrunner
   - ../../../base/services/knowledge-middleware
+  - ../../../base/services/mira-taskrunner
   - ../../../base/services/mit
   - ../../../base/services/model-service
   - ../../../base/services/pyciemss-service
@@ -37,6 +38,7 @@ patches:
   - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
   - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
   - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
+  - path: services/mira-taskrunner/mira-taskrunner-deployment.yaml
   - path: services/mit/mit-proxy-deployment.yaml
   - path: services/mit/mit-tr-deployment.yaml
   - path: services/model-service/model-service-deployment.yaml

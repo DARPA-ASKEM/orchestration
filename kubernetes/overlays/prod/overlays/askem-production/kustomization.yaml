@@ -28,6 +28,7 @@ patches:
   - path: hmi/server/hmi-server-deployment.yaml
   - path: keycloak/keycloak-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
+  - path: services/beaker/beaker-service.yaml
   - path: services/funman/funman-deployment.yaml
   - path: services/climate-data/climate-data-deployment.yaml
   - path: services/climate-data/climate-data-worker-deployment.yaml
@@ -130,10 +131,10 @@ images:
   # knowledge middleware
   - name: knowledge-middleware-api-image
     newName: ghcr.io/darpa-askem/knowledge-middleware-api
-    newTag: 'tds-migration'
+    newTag: 'latest'
   - name: knowledge-middleware-worker-image
     newName: ghcr.io/darpa-askem/knowledge-middleware-worker
-    newTag: 'tds-migration'
+    newTag: 'latest'
 
   # Integration Dashboard
   - name: integration-dashboard-image
@@ -143,4 +144,9 @@ images:
   # climate data
   - name: climate-data-image
     newName: ghcr.io/darpa-askem/climate-data-service
+    newTag: 'latest'
+
+  # mira taskrunner
+  - name: mira-taskrunner-image
+    newName: ghcr.io/darpa-askem/mira-taskrunner
     newTag: 'latest'

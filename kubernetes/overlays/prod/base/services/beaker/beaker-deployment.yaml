@@ -15,6 +15,8 @@ spec:
               value: http://sciml-service:3030
             - name: HMI_SERVER_URL
               value: http://hmi-server:3000
+            - name: MIRA_REST_URL
+              value: http://34.230.33.149:8771/
             - name: OPENAI_API_KEY
               valueFrom:
                 secretKeyRef:

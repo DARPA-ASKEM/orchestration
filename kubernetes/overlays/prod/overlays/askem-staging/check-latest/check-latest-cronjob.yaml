@@ -15,10 +15,8 @@ spec:
         spec:
           containers:
             - name: check-latest
-              image: ghcr.io/darpa-askem/check-latest:0.3.2
+              image: ghcr.io/darpa-askem/check-latest:0.4.0
               imagePullPolicy: Always
-              args:
-                - -d
               env:
                 - name: NAMESPACE
                   value: terarium
