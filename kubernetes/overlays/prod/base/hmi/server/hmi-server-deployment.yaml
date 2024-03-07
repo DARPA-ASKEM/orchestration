@@ -16,8 +16,6 @@ spec:
               value: "default"
             - name: KNOWLEDGE-MIDDLEWARE_URL
               value: "http://knowledge-middleware-api:3060"
-            - name: MODEL-SERVICE_URL
-              value: "http://model-service:3010"
             - name: SKEMA-PY_URL
               value: "http://skema-py:4041"
             - name: SKEMA-RS_URL
