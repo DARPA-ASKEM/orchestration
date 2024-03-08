@@ -36,4 +36,4 @@ spec:
                   name: mq-creds
                   key: password
             - name: SIMSERVICE_RABBITMQ_ROUTE
-              value: 'sciml-queue'
+              value: 'scimlQueue'
