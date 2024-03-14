@@ -3,12 +3,18 @@
 #! nix-shell -p gum yq-go jq
 
 if [[ -z $IN_NIX_SHELL ]]; then
-  echo "Please install `nix-shell` - for Mac use:"
-  echo ""
-  echo "curl -L https://nixos.org/nix/install | sh"
-  echo ""
-  echo "For more details see: https://nix.dev/install-nix"
-  echo ""
+  echo "Please install 'nix-shell'
+
+for Mac use:
+
+  curl -L https://nixos.org/nix/install | sh
+
+for Linux
+
+  curl -L https://nixos.org/nix/install | sh -s -- --daemon
+
+For more details see: https://nix.dev/install-nix
+  "
   exit 1
 fi
 
