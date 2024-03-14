@@ -3,6 +3,38 @@
 # Orchestration
 Scripts and deployment information needed to setup and run TERArium
 
+## Common Tasks
+
+### Deploy and Environment
+In the `/kubernetes` folder, run the script `deploy.sh`
+
+To test the Staging environment's kustomize script eg:
+```shell
+/deploy.sh test staging
+```
+
+To get help about `deploy.sh`
+```shell
+/deploy.sh help
+```
+
+### Decrypt a Secret
+Secrets are encrypted using SPOS and AGE (see Requirements below for details on those).  To view a secret, in the `/kubernetes` directory, use:
+```shell
+./get_secret_ui.sh
+```
+
+NB: the first time running `get_secret_ui.sh` it will need to install a number of packages.  This can take a few moments.
+
+Caveat: `get_secret_ui.sh` is currently unable to encode a secret - this is a TODO
+
+Alternatively, to view secrets, or modify secrets one can:
+```shell
+/deploy.sh decrypt [staging|production]
+```
+but one will have to base64 decode/encode any given value by hand
+
+
 ## Authorization Gateway
 
 See [Uncharted-Auth](https://github.com/unchartedsoftware/uncharted-auth) for details about building the Gateway containers.
@@ -18,6 +50,22 @@ Required to encrypt/decrypt secrets.
 brew install sops
 ```
 
+### Install Nix-Shell
+Required to encrypt/decrypt via `get_secrets_ui.sh` (a helpful script to aid in finding the value of a secret).
+
+MacOS
+```shell
+curl -L https://nixos.org/nix/install | sh
+```
+
+Linux
+```shell
+curl -L https://nixos.org/nix/install | sh -s -- --daemon
+```
+
+For more details please visit: https://nix.dev/install-nix
+
+
 ### Obtain AGE key
 
 Fetch `https://drive.google.com/file/d/1DiCAxgjAgXOt72nVSktcmXDmWrcfJwSg/view?usp=drive_link` and store in your home directory.
@@ -27,7 +75,6 @@ cp kubernetes/env.template kubernetes/.env
 ```
 
 edit `kubernetes/.env` changing <user> to your user directory (or if not on a Mac edit as appropriate)
-
 
 ### Enabling Kubernetes
 
