@@ -1,15 +1,49 @@
 #!/bin/bash
 
-## import enviroment variables (.env file)
-#unamestr=$(uname)
-#if [ "$unamestr" = 'Linux' ]; then
-#  export $(grep -v '^#' .env | xargs -d '\n')
-#elif [ "$unamestr" = 'FreeBSD' ] || [ "$unamestr" = 'Darwin' ]; then
-#  export $(grep -v '^#' .env | xargs -0)
-#fi
+help() {
+	echo "
+NAME
+    deploy.sh - deploy TERArium
 
-SECRET_FILES=()
+SYNOPSIS
+    deploy.sh [up | down | status | test | decrypt | encrypt] ENVIRONMENT
 
+DESCRIPTION
+  Environment:
+    ENVIRONMENT        Must be supplied to indicate which environment should be processed
+      staging
+      production
+
+  Launch commands:
+    up                Launches the entire TERArium stack
+    down              Tears down the entire TERArium stack
+
+  Other commands:
+    status            Displays the status of the TERArium cluster
+    encrypt           Encrypt secrets for adding to git repo
+    decrypt           Decrypt secrets for editing
+
+  Environment Variables will be read from a '.env' file, the following can be set
+    AGE_PUBLIC_KEY    the 'askem.agekey' file's public key
+    SOPS_AGE_KEY_FILE location of the file 'askem.agekey'
+  "
+}
+
+if [ ! -f .env ]; then
+  echo "Missing .env file"
+  help
+  exit 1
+fi
+
+# import enviroment variables (.env file)
+unamestr=$(uname)
+if [ "$unamestr" = 'Linux' ]; then
+ export $(grep -v '^#' .env | xargs -d '\n')
+elif [ "$unamestr" = 'FreeBSD' ] || [ "$unamestr" = 'Darwin' ]; then
+ export $(grep -v '^#' .env | xargs -0)
+fi
+
+source secret_files.sh
 source functions.sh
 
 while [[ $# -gt 0 ]]; do
@@ -68,18 +102,12 @@ fi
 
 case ${ENVIRONMENT} in
 staging)
-	SECRET_FILES+=("overlays/prod/base/keycloak/certificates/cert.pem" "overlays/prod/base/keycloak/certificates/key.pem")
-	SECRET_FILES+=("overlays/prod/overlays/askem-staging/secrets/*.yaml")
-	SECRET_FILES+=("overlays/prod/overlays/askem-staging/keycloak/realm/*.json")
-	SECRET_FILES+=("overlays/prod/overlays/askem-staging/check-latest/check-latest-rsa" "overlays/prod/overlays/askem-staging/check-latest/secrets.yaml")
+  SECRET_FILES=${STAGING_SECRET_FILES[@]}
 	KUSTOMIZATION=overlays/prod/overlays/askem-staging
 	KUBECTL_CMD="ssh uncharted-askem-prod-askem-staging-kube-manager-1 sudo kubectl"
 	;;
 production)
-	SECRET_FILES+=("overlays/prod/base/keycloak/certificates/cert.pem" "overlays/prod/base/keycloak/certificates/key.pem")
-	SECRET_FILES+=("overlays/prod/overlays/askem-production/secrets/*.yaml")
-	SECRET_FILES+=("overlays/prod/overlays/askem-production/keycloak/realm/*.json")
-	SECRET_FILES+=("overlays/prod/overlays/askem-production/check-latest/check-latest-rsa" "overlays/prod/overlays/askem-production/check-latest/secrets.yaml")
+  SECRET_FILES=${PRODUCTION_SECRET_FILES[@]}
 	KUSTOMIZATION=overlays/prod/overlays/askem-production
 	KUBECTL_CMD="ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl"
 	;;
@@ -128,31 +156,6 @@ encrypt)
 	encrypt
 	;;
 help)
-	echo "
-NAME
-    deploy.sh - deploy TERArium
-
-SYNOPSIS
-    deploy.sh [up | down | status | test | decrypt | encrypt] ENVIRONMENT
-
-DESCRIPTION
-  Environment:
-    ENVIRONMENT        Must be supplied to indicate which environment should be processed
-      staging
-      production
-
-  Launch commands:
-    up                Launches the entire TERArium stack
-    down              Tears down the entire TERArium stack
-
-  Other commands:
-    status            Displays the status of the TERArium cluster
-    encrypt           Encrypt secrets for adding to git repo
-    decrypt           Decrypt secrets for editing
-    "
-	;;
-
-	#  Environment Variables will be read from a '.env' file, the following can be set
-	#    AGE_PUBLIC_KEY    the 'askem.agekey' file's public key
-	#    SOPS_AGE_KEY_FILE location of the file 'askem.agekey'
+  help
+  ;;
 esac

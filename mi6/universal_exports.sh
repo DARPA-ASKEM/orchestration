@@ -1,4 +1,16 @@
 #!/bin/bash
+if [ ! -f .env ]; then
+  echo "Missing .env file"
+  help
+  exit 1
+fi
+
+unamestr=$(uname)
+if [ "$unamestr" = 'Linux' ]; then
+ export $(grep -v '^#' .env | xargs -d '\n')
+elif [ "$unamestr" = 'FreeBSD' ] || [ "$unamestr" = 'Darwin' ]; then
+ export $(grep -v '^#' .env | xargs -0)
+fi
 
 SECRET_FILES=("export_secrets.sh" "staging_import_secrets.sh" "production_import_secrets.sh" "import_secrets.sh")
 

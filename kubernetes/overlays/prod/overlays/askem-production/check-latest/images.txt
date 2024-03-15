@@ -5,7 +5,6 @@ software.uncharted.terarium/name=knowledge-middleware-api ghcr.io/darpa-askem/kn
 software.uncharted.terarium/name=knowledge-middleware-worker ghcr.io/darpa-askem/knowledge-middleware-worker:latest
 software.uncharted.terarium/name=mit-proxy ghcr.io/darpa-askem/mit-proxy:latest
 software.uncharted.terarium/name=mit-tr ghcr.io/darpa-askem/mit-tr:latest
-software.uncharted.terarium/name=model-service ghcr.io/darpa-askem/model-service:latest
 software.uncharted.terarium/name=pyciemss-api ghcr.io/darpa-askem/pyciemss-api:latest
 software.uncharted.terarium/name=pyciemss-worker ghcr.io/darpa-askem/pyciemss-worker:latest
 software.uncharted.terarium/name=sciml-service ghcr.io/darpa-askem/sciml-service:latest
