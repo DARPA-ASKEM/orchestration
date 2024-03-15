@@ -9,5 +9,5 @@ spec:
       tolerations:
         - key: "workload"
           operator: "Equal"
-          value: "jupyter"
+          value: "beaker"
           effect: "NoSchedule"
