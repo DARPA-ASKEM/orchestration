@@ -18,6 +18,8 @@ resources:
   - ../../../base/services/pyciemss-service
   - ../../../base/services/sciml-service
   - ../../../base/services/skema
+  - services/beaker/beaker-persistent-volume.yaml
+  - services/beaker/beaker-pv-claim.yaml
 patches:
   - path: hmi/client/hmi-client-deployment.yaml
   - path: hmi/client/hmi-client-service.yaml
