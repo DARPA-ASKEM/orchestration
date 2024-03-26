@@ -10,6 +10,9 @@ spec:
     spec:
       containers:
         - name: beaker
+          volumeMounts:
+            - mountPath: "/home/jupyter/workspace"
+              name: beaker-pv-storage
           env:
             - name: SIMULATION_SCHEDULER_URL
               value: http://sciml-service:3030
@@ -32,3 +35,10 @@ spec:
                 secretKeyRef:
                   name: keycloak-creds
                   key: service_password
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+      volumes:
+        - name: beaker-pv-storage
+          persistentVolumeClaim:
+            claimName: beaker-pv-claim
