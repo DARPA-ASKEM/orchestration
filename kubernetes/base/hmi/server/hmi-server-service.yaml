@@ -9,7 +9,7 @@ metadata:
     software.uncharted.terarium/part-of: hmi
   annotations:
     alb.ingress.kubernetes.io/healthcheck-path: '/actuator/health'
-    alb.ingress.kubernetes.io/success-codes: '200' #w/e the return code should be
+    alb.ingress.kubernetes.io/success-codes: '200'
 spec:
   ports:
     - name: 3000-tcp
