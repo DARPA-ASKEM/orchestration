@@ -122,17 +122,6 @@ spec:
                 port:
                   number: 4040
 
-    - host: "skema-tr.staging.terarium.ai"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: skema-text-reading
-                port:
-                  number: 4047
-
     - host: "skema-unified.staging.terarium.ai"
       http:
         paths:
