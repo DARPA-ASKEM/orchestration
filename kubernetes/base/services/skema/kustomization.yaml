@@ -9,7 +9,5 @@ resources:
   - skema-memgraph-service.yaml
   - skema-rs-deployment.yaml
   - skema-rs-service.yaml
-  - skema-text-reading-deployment.yaml
-  - skema-text-reading-service.yaml
   - skema-unified-deployment.yaml
   - skema-unified-service.yaml

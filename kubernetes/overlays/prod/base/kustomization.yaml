@@ -48,7 +48,6 @@ patches:
   - path: services/skema/skema-mathjax-deployment.yaml
   - path: services/skema/skema-memgraph-deployment.yaml
   - path: services/skema/skema-rs-deployment.yaml
-  - path: services/skema/skema-text-reading-deployment.yaml
   - path: services/skema/skema-unified-deployment.yaml
 
 configMapGenerator:
