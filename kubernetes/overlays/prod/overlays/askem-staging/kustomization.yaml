@@ -33,9 +33,6 @@ patches:
   - path: services/data-service/data-service-graphdb-service.yaml
   - path: services/funman/funman-deployment.yaml
   - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
-  - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
-  - path: services/knowledge-middleware/knowledge-middleware-api-service.yaml
-  - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
   - path: services/mit/mit-proxy-service.yaml
   - path: services/mit/mit-tr-service.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
@@ -124,14 +121,6 @@ images:
   # GoLLM service
   - name: gollm-taskrunner-image
     newName: ghcr.io/darpa-askem/gollm-taskrunner
-    newTag: 'latest'
-
-  # knowledge middleware
-  - name: knowledge-middleware-api-image
-    newName: ghcr.io/darpa-askem/knowledge-middleware-api
-    newTag: 'latest'
-  - name: knowledge-middleware-worker-image
-    newName: ghcr.io/darpa-askem/knowledge-middleware-worker
     newTag: 'latest'
 
   # climate data

@@ -33,8 +33,6 @@ patches:
   - path: services/climate-data/climate-data-deployment.yaml
   - path: services/climate-data/climate-data-worker-deployment.yaml
   - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
-  - path: services/knowledge-middleware/knowledge-middleware-api-deployment.yaml
-  - path: services/knowledge-middleware/knowledge-middleware-worker-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
   - path: services/sciml-service/sciml-service-deployment.yaml
@@ -117,14 +115,6 @@ images:
   # GoLLM service
   - name: gollm-taskrunner-image
     newName: ghcr.io/darpa-askem/gollm-taskrunner
-    newTag: 'latest'
-
-  # knowledge middleware
-  - name: knowledge-middleware-api-image
-    newName: ghcr.io/darpa-askem/knowledge-middleware-api
-    newTag: 'latest'
-  - name: knowledge-middleware-worker-image
-    newName: ghcr.io/darpa-askem/knowledge-middleware-worker
     newTag: 'latest'
 
   # Integration Dashboard
