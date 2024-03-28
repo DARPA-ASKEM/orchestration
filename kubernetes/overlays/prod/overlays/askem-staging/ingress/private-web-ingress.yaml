@@ -133,17 +133,6 @@ spec:
                 port:
                   number: 4045
 
-    - host: "knowledge-middleware.staging.terarium.ai"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: knowledge-middleware-api
-                port:
-                  number: 3060
-
     - host: "funman.staging.terarium.ai"
       http:
         paths:
@@ -180,6 +169,4 @@ spec:
         - "pyciemss.staging.terarium.ai"
         - "sciml-service.staging.terarium.ai"
         - "skema-rs.staging.terarium.ai"
-        - "skema-text-reading.staging.terarium.ai"
         - "skema-unified.staging.terarium.ai"
-        - "knowledge-middleware.staging.terarium.ai"
