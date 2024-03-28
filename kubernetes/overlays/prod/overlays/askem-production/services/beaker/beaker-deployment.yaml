@@ -6,8 +6,9 @@ metadata:
 spec:
   template:
     spec:
-      tolerations:
-        - key: "workload"
-          operator: "Equal"
-          value: "beaker"
-          effect: "NoSchedule"
+      nodeName: ip-172-16-40-52.ec2.internal
+      # tolerations:
+      #   - key: "workload"
+      #     operator: "Equal"
+      #     value: "beaker"
+      #     effect: "NoSchedule"
