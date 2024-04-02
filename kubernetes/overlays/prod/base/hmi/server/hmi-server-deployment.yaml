@@ -16,10 +16,6 @@ spec:
               value: "http://climate-data:8000"
             - name: SPRING_PROFILES_ACTIVE
               value: "default"
-            - name: KNOWLEDGE-MIDDLEWARE_URL
-              value: "http://knowledge-middleware-api:3060"
-            - name: SKEMA-PY_URL
-              value: "http://skema-py:4041"
             - name: SKEMA-RS_URL
               value: "http://skema-rs:4040"
             - name: SKEMA-UNIFIED_URL
