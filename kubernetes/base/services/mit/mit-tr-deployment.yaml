@@ -28,7 +28,7 @@ spec:
             - name: GPT_KEY
               valueFrom:
                 secretKeyRef:
-                  name: mit-proxy-secrets
+                  name: chat-gpt-secrets
                   key: chatgptkey
           ports:
             - containerPort: 8000

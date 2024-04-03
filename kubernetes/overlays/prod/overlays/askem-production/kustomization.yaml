@@ -15,7 +15,7 @@ resources:
   - secrets/secrets-es-creds.yaml
   - secrets/secrets-keycloak-creds.yaml
   - secrets/secrets-logging-creds.yaml
-  - secrets/secrets-mit-proxy.yaml
+  - secrets/secrets-chatgpt.yaml
   - secrets/secrets-mq-creds.yaml
   - secrets/secrets-neo4j-auth.yaml
   - secrets/secrets-rds-creds.yaml
@@ -91,9 +91,6 @@ images:
     newTag: '2024_01_24'
 
   # MIT
-  - name: mit-proxy-image
-    newName: ghcr.io/darpa-askem/mit-proxy
-    newTag: 'latest'
   - name: mit-tr-image
     newName: ghcr.io/darpa-askem/mit-tr
     newTag: 'latest'
