@@ -37,7 +37,6 @@ patches:
   - path: services/funman/funman-service.yaml
   - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
   - path: services/mira-taskrunner/mira-taskrunner-deployment.yaml
-  - path: services/mit/mit-proxy-deployment.yaml
   - path: services/mit/mit-tr-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
