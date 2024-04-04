@@ -16,11 +16,11 @@ checkPrograms() {
 }
 
 get_enc_filename() {
-  SECRET_FILE=${1}
+  local SECRET_FILE=${1}
 
-  EXTENSION="${SECRET_FILE##*.}"
-  FILENAME="${SECRET_FILE%.*}"
-  ENC_FILENAME="${FILENAME}.enc.${EXTENSION}"
+  local EXTENSION="${SECRET_FILE##*.}"
+  local FILENAME="${SECRET_FILE%.*}"
+  local ENC_FILENAME="${FILENAME}.enc.${EXTENSION}"
   if [[ ${EXTENSION} == ${FILENAME} ]]; then
     ENC_FILENAME="${FILENAME}.enc"
   fi
@@ -51,7 +51,7 @@ get_file_by_name() {
 decrypt_file_by_name() {
   local FILE_NAME=${1}
   local FILE=$(get_file_by_name ${FILE_NAME})
-  if [ -z ${FILE} ]; then
+  if [[ -z ${FILE} ]]; then
     echo "did not find file to decrypt"
   else
     decrypt_file ${FILE}
@@ -74,10 +74,10 @@ decrypt_file() {
 encrypt_file_by_name() {
   local FILE_NAME=${1}
   local FILE=$(get_file_by_name ${FILE_NAME})
-  if [ -z ${FILE} ]; then
+  if [[ -z ${FILE} ]]; then
     echo "did not find file to encrypt"
   else
-    decrypt_file ${FILE}
+    encrypt_file ${FILE}
     echo "file encrypted"
   fi
 }
@@ -93,9 +93,10 @@ encrypt() {
 }
 
 encrypt_file() {
-  SECRET_FILE=${1}
-  ENC_FILENAME=$(get_enc_filename ${SECRET_FILE})
+  local SECRET_FILE=${1}
+  local ENC_FILENAME=$(get_enc_filename ${SECRET_FILE})
 
+  local EXTENSION="${SECRET_FILE##*.}"
   # echo "encrypting file ${SECRET_FILE}"
   if [[ ${EXTENSION} == yaml ]]; then
     # YAML
