@@ -35,6 +35,30 @@ decrypt() {
   done
 }
 
+get_file_by_name() {
+  FILE_NAME=${1}
+  for SECRET_FILE in ${SECRET_FILES[@]}; do
+    if [ ${SECRET_FILE##*/} == ${FILE_NAME} ]; then
+      echo ${SECRET_FILE}
+      local FILE=${SECRET_FILE}
+    fi
+  done
+  if [ ! -z ${FILE} ]; then
+    echo ${FILE}
+  fi
+}
+
+decrypt_file_by_name() {
+  local FILE_NAME=${1}
+  local FILE=$(get_file_by_name ${FILE_NAME})
+  if [ -z ${FILE} ]; then
+    echo "did not find file to decrypt"
+  else
+    decrypt_file ${FILE}
+    echo "file decrypted"
+  fi
+}
+
 decrypt_file() {
   SECRET_FILE=${1}
   ENC_FILENAME=$(get_enc_filename ${SECRET_FILE})
@@ -44,6 +68,17 @@ decrypt_file() {
   STATUS=$?
   if [[ ${STATUS} -eq 0 ]]; then
     DECRYPTED_FILES+=( ${SECRET_FILE} )
+  fi
+}
+
+encrypt_file_by_name() {
+  local FILE_NAME=${1}
+  local FILE=$(get_file_by_name ${FILE_NAME})
+  if [ -z ${FILE} ]; then
+    echo "did not find file to encrypt"
+  else
+    decrypt_file ${FILE}
+    echo "file encrypted"
   fi
 }
 
