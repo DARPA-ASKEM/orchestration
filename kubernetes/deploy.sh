@@ -85,6 +85,11 @@ while [[ $# -gt 0 ]]; do
 		shift
     shift
 		;;
+	restore)
+		COMMAND="restore"
+		ENVIRONMENT="$2"
+		shift
+		;;
 	*)
 		echo "deploy.sh: illegal option"
 		break
@@ -167,6 +172,9 @@ encrypt)
     encrypt_file_by_name ${FILE_NAME}
   fi
 	;;
+restore)
+  restore
+  ;;
 help)
   help
   ;;

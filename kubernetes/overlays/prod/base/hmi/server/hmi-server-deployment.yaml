@@ -19,7 +19,7 @@ spec:
             - name: SKEMA-RS_URL
               value: "http://skema-rs:4040"
             - name: SKEMA-UNIFIED_URL
-              value: "https://api.askem.lum.ai"
+              value: "https://skema-unified:4045"
             - name: FUNMAN-SERVICE_URL
               value: "http://funman:8190"
             - name: SIMULATION-SERVICE_URL
