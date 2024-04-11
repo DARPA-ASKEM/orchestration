@@ -12,29 +12,71 @@ spec:
         - name: hmi-server
           imagePullPolicy: Always
           env:
-            - name: climate-data-service.url
+            - name: ADOBE_API-KEY
+              valueFrom:
+                secretKeyRef:
+                  name: adobe-api-key
+                  key: key
+            - name: CIEMSS-SERVICE_URL
+              value: "http://pyciemss-api:3040"
+            - name: CLIMATE-DATA-SERVICE_URL
               value: "http://climate-data:8000"
-            - name: SPRING_PROFILES_ACTIVE
-              value: "default"
-            - name: KNOWLEDGE-MIDDLEWARE_URL
-              value: "http://knowledge-middleware-api:3060"
+            - name: FUNMAN-SERVICE_URL
+              value: "http://funman:8190"
+            - name: GOOGLE-ANALYTICS-ID
+              valueFrom:
+                secretKeyRef:
+                  name: logging-creds
+                  key: google-id
+            - name: MIT-PROXY_URL
+              value: "http://54.227.237.7"
+            - name: MIT-OPENAI-API-KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mit-proxy-secrets
+                  key: chatgptkey
+            - name: SIMULATION-SERVICE_URL
+              value: "http://sciml-service:3030"
             - name: SKEMA-PY_URL
               value: "http://skema-py:4041"
             - name: SKEMA-RS_URL
               value: "http://skema-rs:4040"
             - name: SKEMA-UNIFIED_URL
               value: "https://api.askem.lum.ai"
-            - name: FUNMAN-SERVICE_URL
-              value: "http://funman:8190"
-            - name: SIMULATION-SERVICE_URL
-              value: "http://sciml-service:3030"
-            - name: CIEMSS-SERVICE_URL
-              value: "http://pyciemss-api:3040"
+            - name: SPICEDB_SHARED-KEY
+              value: 'staging'
+            - name: SPICEDB_TARGET
+              value: 'spicedb:50051'
+            - name: SPICEDB_LAUNCHMODE
+              value: 'PLAINTEXT'
+            - name: SPRING_PROFILES_ACTIVE
+              value: "default"
             - name: SPRING_DATASOURCE_URL
               valueFrom:
                 secretKeyRef:
                   name: rds-creds
                   key: fqdn
+            - name: SPRING_NEO4J_URI
+              value: "bolt://data-service-graphdb:7687"
+            - name: SPRING_NEO4J_AUTHENTICATION_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: neo4j-auth
+                  key: user
+            - name: SPRING_NEO4J_AUTHENTICATION_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: neo4j-auth
+                  key: password
+            - name: SPRING_DATASOURCE_INITIALIZE
+              value: "true"
+            - name: SPRING_JPA_HIBERNATE_DDL-AUTO
+              value: "update"
+            - name: SPRING_RABBITMQ_ADDRESSES
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: address
             - name: TERARIUM_DB_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -45,21 +87,6 @@ spec:
                 secretKeyRef:
                   name: rds-creds
                   key: password
-            - name: XDD_API-KEY
-              valueFrom:
-                secretKeyRef:
-                  name: xdd-api-key
-                  key: key
-            - name: ADOBE_API-KEY
-              valueFrom:
-                secretKeyRef:
-                  name: adobe-api-key
-                  key: key
-            - name: XDD_API-ES-KEY
-              valueFrom:
-                secretKeyRef:
-                  name: xdd-api-key
-                  key: eskey
             - name: TERARIUM_KEYCLOAK_ADMIN-CLIENT-ID
               valueFrom:
                 secretKeyRef:
@@ -90,27 +117,6 @@ spec:
                 secretKeyRef:
                   name: keycloak-creds
                   key: realm
-            - name: GOOGLE-ANALYTICS-ID
-              valueFrom:
-                secretKeyRef:
-                  name: logging-creds
-                  key: google-id
-            - name: TGPT_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: beaker-creds
-                  key: tgpt-token
-            - name: SPICEDB_SHARED-KEY
-              value: 'staging'
-            - name: SPICEDB_TARGET
-              value: 'spicedb:50051'
-            - name: SPICEDB_LAUNCHMODE
-              value: 'PLAINTEXT'
-            - name: SPRING_RABBITMQ_ADDRESSES
-              valueFrom:
-                secretKeyRef:
-                  name: mq-creds
-                  key: address
             - name: TERARIUM_MQ-USERNAME
               valueFrom:
                 secretKeyRef:
@@ -195,19 +201,18 @@ spec:
                 secretKeyRef:
                   name: es-creds
                   key: password
-            - name: SPRING_NEO4J_URI
-              value: "bolt://data-service-graphdb:7687"
-            - name: SPRING_NEO4J_AUTHENTICATION_USERNAME
+            - name: TGPT_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: neo4j-auth
-                  key: user
-            - name: SPRING_NEO4J_AUTHENTICATION_PASSWORD
+                  name: beaker-creds
+                  key: tgpt-token
+            - name: XDD_API-KEY
               valueFrom:
                 secretKeyRef:
-                  name: neo4j-auth
-                  key: password
-            - name: SPRING_DATASOURCE_INITIALIZE
-              value: "true"
-            - name: SPRING_JPA_HIBERNATE_DDL-AUTO
-              value: "update"
+                  name: xdd-api-key
+                  key: key
+            - name: XDD_API-ES-KEY
+              valueFrom:
+                secretKeyRef:
+                  name: xdd-api-key
+                  key: eskey

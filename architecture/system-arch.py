@@ -3,9 +3,7 @@ from diagrams import Cluster, Diagram, Edge
 from diagrams.aws.storage import S3
 from diagrams.custom import Custom
 from diagrams.elastic.elasticsearch import Elasticsearch
-from diagrams.k8s.compute import Pod
 from diagrams.k8s.network import Ing
-from diagrams.onprem.auth import Oauth2Proxy
 from diagrams.onprem.client import Client
 from diagrams.onprem.compute import Server
 from diagrams.onprem.database import Postgresql
@@ -75,6 +73,7 @@ with Diagram("Terarium System Architecture", show=True,
 			gollm_taskrunner = Custom("Gollm Taskrunner", "./resources/uncharted.png")
 			gollm = Custom("Gollm", "./resources/uncharted.png")
 			mira_taskrunner = Custom("MIRA Taskrunner", "./resources/uncharted.png")
+			mira_local = Custom("MIRA", "./resources/uncharted.png")
 
 		with Cluster("Data Sources"):
 			spicedb = Database("SpiceDB")
@@ -89,9 +88,6 @@ with Diagram("Terarium System Architecture", show=True,
 			beaker = Custom("Beaker", "./resources/jataware.jpeg")
 			climate_data_api = Custom("Climate Data API", "./resources/jataware.jpeg")
 			climate_data_worker = Custom("Climate Data Worker", "./resources/jataware.jpeg")
-			knowledge_middleware_api = Custom("Knowledge Middleware API", "./resources/jataware.jpeg")
-			knowledge_middleware_worker = Custom("Knowledge Middleware Worker", "./resources/jataware.jpeg")
-			mit_proxy = Custom("MIT Proxy", "./resources/uncharted.png")
 			mit_tr = Custom("MIT TR", "./resources/mit.jpeg")
 			skema_unified = Custom("Skema Unified", "./resources/ml4ai.png")
 			skema_rs = Custom("Skema Rs", "./resources/ml4ai.png")
@@ -100,6 +96,7 @@ with Diagram("Terarium System Architecture", show=True,
 
 		with Cluster("Ingress"):
 			ingress_app = Ing("application")
+			ingress_beaker = Ing("beaker")
 			ingress_docs = Ing("documentation")
 			ingress_keycloak = Ing("keycloak")
 
@@ -124,6 +121,7 @@ with Diagram("Terarium System Architecture", show=True,
 		docs = Client("Terarium Docs")
 
 	# Connections
+	beaker >> Edge() << ingress_beaker
 	beaker >> Edge() >> mira
 	beaker >> Edge() >> openai
 	beaker >> Edge() >> sciml_service
@@ -135,9 +133,13 @@ with Diagram("Terarium System Architecture", show=True,
 	gollm_taskrunner >> Edge() >> gollm
 	gollm_taskrunner >> Edge() >> message_queue
 	grafana >> Edge() >> es
-	hmi_server >> Edge() << beaker
-	hmi_server >> Edge() << climate_data_api
+	hmi_client >> Edge() << ingress_beaker
+	hmi_client >> Edge() << ingress_keycloak
+	hmi_client >> Edge() >> mira
 	hmi_server >> Edge() << ingress_app
+	hmi_server >> Edge() >> beaker
+	hmi_server >> Edge() >> climate_data_api
+	hmi_server >> Edge() >> cosmos
 	hmi_server >> Edge() >> dkg
 	hmi_server >> Edge() >> es
 	hmi_server >> Edge() >> funman
@@ -146,34 +148,25 @@ with Diagram("Terarium System Architecture", show=True,
 	hmi_server >> Edge() >> graphdb
 	hmi_server >> Edge() >> jsdelivr
 	hmi_server >> Edge() >> keycloak
-	hmi_server >> Edge() >> knowledge_middleware_api
-	hmi_server >> Edge() >> message_queue
 	hmi_server >> Edge() >> message_queue
 	hmi_server >> Edge() >> mira_taskrunner
-	hmi_server >> Edge() >> mit_proxy
+	hmi_server >> Edge() >> mit_tr
 	hmi_server >> Edge() >> postgres
-	hmi_server >> Edge() >> pyciemss_api
 	hmi_server >> Edge() >> pyciemss_api
 	hmi_server >> Edge() >> redis
 	hmi_server >> Edge() >> s3
 	hmi_server >> Edge() >> sciml_service
+	hmi_server >> Edge() >> skema_rs
+	hmi_server >> Edge() >> skema_tr
+	hmi_server >> Edge() >> skema_unified
 	hmi_server >> Edge() >> spicedb
 	hmi_server >> Edge() >> xdd
 	ingress_app >> Edge() << hmi_client
 	ingress_docs >> Edge() << docs
 	keycloak >> Edge() << ingress_keycloak
-	knowledge_middleware_api >> Edge() >> knowledge_middleware_worker
-	knowledge_middleware_api >> Edge() >> redis
-	knowledge_middleware_worker << Edge() >> hmi_server
-	knowledge_middleware_worker << Edge() >> mit_tr
-	knowledge_middleware_worker >> Edge() >> cosmos
-	knowledge_middleware_worker >> Edge() >> skema_rs
-	knowledge_middleware_worker >> Edge() >> skema_tr
-	knowledge_middleware_worker >> Edge() >> skema_unified
 	loki >> Edge() >> es
 	mira_taskrunner >> Edge() >> message_queue
-	mira_taskrunner >> Edge() >> mira
-	mit_proxy >> Edge() >> mit_tr
+	mira_taskrunner >> Edge() >> mira_local
 	pyciemss_api >> Edge() >> hmi_server
 	pyciemss_api >> Edge() >> pyciemss_worker
 	pyciemss_api >> Edge() >> redis
