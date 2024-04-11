@@ -6,14 +6,16 @@ metadata:
 spec:
   template:
     spec:
-      tolerations:
-        - key: "workload"
-          operator: "Equal"
-          value: "hmi-server"
-          effect: "NoSchedule"
+      # tolerations:
+      #   - key: "workload"
+      #     operator: "Equal"
+      #     value: "hmi-server"
+      #     effect: "NoSchedule"
       containers:
         - name: hmi-server
           env:
+            - name: MIT-PROXY_URL
+              value: "http://54.227.237.7"
             - name: TGPT_BASE_URL
               value: "https://app.terarium.ai/beaker/"
             - name: TGPT_APP_URL

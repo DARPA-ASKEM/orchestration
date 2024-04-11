@@ -29,7 +29,7 @@ spec:
                   name: logging-creds
                   key: google-id
             - name: MIT-PROXY_URL
-              value: "http://54.227.237.7"
+              value: "http://mit-tr:4046"
             - name: MIT-OPENAI-API-KEY
               valueFrom:
                 secretKeyRef:

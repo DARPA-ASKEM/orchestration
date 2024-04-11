@@ -23,5 +23,3 @@ spec:
               value: "https://elasticsearch.staging.terarium.ai:443"
             - name: LOGGING_LEVEL_ROOT
               value: INFO
-            - name: MIT-PROXY_URL
-              value: "http://mit-tr:4046"
