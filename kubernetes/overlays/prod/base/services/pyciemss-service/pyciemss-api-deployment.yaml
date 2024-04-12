@@ -38,3 +38,5 @@ spec:
                 secretKeyRef:
                   name: mq-creds
                   key: password
+            - name: RABBITMQ_SSL
+              value: 'True'
