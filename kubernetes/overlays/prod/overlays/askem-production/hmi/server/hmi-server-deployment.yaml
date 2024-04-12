@@ -6,11 +6,6 @@ metadata:
 spec:
   template:
     spec:
-      # tolerations:
-      #   - key: "workload"
-      #     operator: "Equal"
-      #     value: "hmi-server"
-      #     effect: "NoSchedule"
       containers:
         - name: hmi-server
           env:
