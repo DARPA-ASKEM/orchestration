@@ -16,11 +16,11 @@ checkPrograms() {
 }
 
 get_enc_filename() {
-  SECRET_FILE=${1}
+  local SECRET_FILE=${1}
 
-  EXTENSION="${SECRET_FILE##*.}"
-  FILENAME="${SECRET_FILE%.*}"
-  ENC_FILENAME="${FILENAME}.enc.${EXTENSION}"
+  local EXTENSION="${SECRET_FILE##*.}"
+  local FILENAME="${SECRET_FILE%.*}"
+  local ENC_FILENAME="${FILENAME}.enc.${EXTENSION}"
   if [[ ${EXTENSION} == ${FILENAME} ]]; then
     ENC_FILENAME="${FILENAME}.enc"
   fi
@@ -35,6 +35,30 @@ decrypt() {
   done
 }
 
+get_file_by_name() {
+  FILE_NAME=${1}
+  for SECRET_FILE in ${SECRET_FILES[@]}; do
+    if [ ${SECRET_FILE##*/} == ${FILE_NAME} ]; then
+      echo ${SECRET_FILE}
+      local FILE=${SECRET_FILE}
+    fi
+  done
+  if [ ! -z ${FILE} ]; then
+    echo ${FILE}
+  fi
+}
+
+decrypt_file_by_name() {
+  local FILE_NAME=${1}
+  local FILE=$(get_file_by_name ${FILE_NAME})
+  if [[ -z ${FILE} ]]; then
+    echo "did not find file to decrypt"
+  else
+    decrypt_file ${FILE}
+    echo "file decrypted"
+  fi
+}
+
 decrypt_file() {
   SECRET_FILE=${1}
   ENC_FILENAME=$(get_enc_filename ${SECRET_FILE})
@@ -44,6 +68,17 @@ decrypt_file() {
   STATUS=$?
   if [[ ${STATUS} -eq 0 ]]; then
     DECRYPTED_FILES+=( ${SECRET_FILE} )
+  fi
+}
+
+encrypt_file_by_name() {
+  local FILE_NAME=${1}
+  local FILE=$(get_file_by_name ${FILE_NAME})
+  if [[ -z ${FILE} ]]; then
+    echo "did not find file to encrypt"
+  else
+    encrypt_file ${FILE}
+    echo "file encrypted"
   fi
 }
 
@@ -58,9 +93,10 @@ encrypt() {
 }
 
 encrypt_file() {
-  SECRET_FILE=${1}
-  ENC_FILENAME=$(get_enc_filename ${SECRET_FILE})
+  local SECRET_FILE=${1}
+  local ENC_FILENAME=$(get_enc_filename ${SECRET_FILE})
 
+  local EXTENSION="${SECRET_FILE##*.}"
   # echo "encrypting file ${SECRET_FILE}"
   if [[ ${EXTENSION} == yaml ]]; then
     # YAML
@@ -76,9 +112,8 @@ encrypt_file() {
 }
 
 restore() {
-	for SECRET_FILE in "${DECRYPTED_FILES[@]}"; do
+  for SECRET_FILE in ${SECRET_FILES[@]}; do
 		rm ${SECRET_FILE}
-		# git restore "${SECRET_FILE}"
 	done
 }
 

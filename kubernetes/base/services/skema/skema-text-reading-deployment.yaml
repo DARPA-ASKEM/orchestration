@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skema-text-reading
+  labels:
+    software.uncharted.terarium/name: skema-text-reading
+    software.uncharted.terarium/component: text-reading
+    software.uncharted.terarium/service: skema
+    software.uncharted.terarium/part-of: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: skema-text-reading
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: skema-text-reading
+    spec:
+      containers:
+        - name: skema-text-reading
+          image: skema-text-reading-image
+          imagePullPolicy: Always
+          env:
+            - name: secret
+              value: 8c2fb5a58ae8d9ec6f7065a25c35aac2
+            - name: SKEMA_HOSTNAME
+              value: skema.clulab.org
+            - name: _JAVA_OPTIONS
+              value: -Xmx20g -Xms20g -Dfile.encoding=UTF-8
+          ports:
+            - containerPort: 9000
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}

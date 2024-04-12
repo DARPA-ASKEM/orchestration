@@ -74,10 +74,19 @@ while [[ $# -gt 0 ]]; do
 	encrypt)
 		COMMAND="encrypt"
 		ENVIRONMENT="$2"
+    FILE_NAME="$3"
 		shift
+    shift
 		;;
 	decrypt)
 		COMMAND="decrypt"
+		ENVIRONMENT="$2"
+    FILE_NAME="$3"
+		shift
+    shift
+		;;
+	restore)
+		COMMAND="restore"
 		ENVIRONMENT="$2"
 		shift
 		;;
@@ -150,11 +159,22 @@ status)
 	${KUBECTL_CMD} get configMap,secrets,deployments,svc,po
 	;;
 decrypt)
-	decrypt
+  if [ -z ${FILE_NAME} ]; then
+    decrypt
+  else
+    decrypt_file_by_name ${FILE_NAME}
+  fi
 	;;
 encrypt)
-	encrypt
+  if [ -z ${FILE_NAME} ]; then
+    encrypt
+  else
+    encrypt_file_by_name ${FILE_NAME}
+  fi
 	;;
+restore)
+  restore
+  ;;
 help)
   help
   ;;

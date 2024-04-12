@@ -15,7 +15,7 @@ resources:
   - secrets/secrets-es-creds.yaml
   - secrets/secrets-keycloak-creds.yaml
   - secrets/secrets-logging-creds.yaml
-  - secrets/secrets-mit-proxy.yaml
+  - secrets/secrets-chatgpt.yaml
   - secrets/secrets-mq-creds.yaml
   - secrets/secrets-neo4j-auth.yaml
   - secrets/secrets-rds-creds.yaml
@@ -33,7 +33,6 @@ patches:
   - path: services/data-service/data-service-graphdb-service.yaml
   - path: services/funman/funman-deployment.yaml
   - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
-  - path: services/mit/mit-proxy-service.yaml
   - path: services/mit/mit-tr-service.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-service.yaml
@@ -41,6 +40,8 @@ patches:
   - path: services/sciml-service/sciml-service-deployment.yaml
   - path: services/sciml-service/sciml-service-service.yaml
   - path: services/skema/skema-rs-service.yaml
+  - path: services/skema/skema-text-reading-deployment.yaml
+  - path: services/skema/skema-text-reading-service.yaml
   - path: services/skema/skema-unified-service.yaml
 configMapGenerator:
   - files:
@@ -91,11 +92,11 @@ images:
   - name: skema-memgraph-image
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
+  - name: skema-text-reading-image
+    newName: ghcr.io/darpa-askem/skema-text-reading
+    newTag: '2024_04_02'
 
   # MIT
-  - name: mit-proxy-image
-    newName: ghcr.io/darpa-askem/mit-proxy
-    newTag: 'latest'
   - name: mit-tr-image
     newName: ghcr.io/darpa-askem/mit-tr
     newTag: 'latest'

@@ -23,7 +23,7 @@ spec:
             - name: OPENAI_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: mit-proxy-secrets
+                  name: chat-gpt-secrets
                   key: chatgptkey
             - name: AUTH_USERNAME
               valueFrom:

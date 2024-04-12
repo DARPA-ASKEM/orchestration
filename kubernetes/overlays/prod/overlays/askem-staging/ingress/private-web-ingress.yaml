@@ -56,17 +56,6 @@ spec:
                 port:
                   number: 8000
 
-    - host: "mit-proxy.staging.terarium.ai"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: mit-proxy
-                port:
-                  number: 3981
-
     - host: "mit-tr.staging.terarium.ai"
       http:
         paths:
@@ -121,6 +110,17 @@ spec:
                 name: skema-rs
                 port:
                   number: 4040
+
+    - host: "skema-tr.staging.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: skema-test-reading
+                port:
+                  number: 4047
 
     - host: "skema-unified.staging.terarium.ai"
       http:
