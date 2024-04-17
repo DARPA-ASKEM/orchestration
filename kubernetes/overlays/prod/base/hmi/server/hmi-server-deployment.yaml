@@ -42,7 +42,8 @@ spec:
             - name: SKEMA-RS_URL
               value: "http://skema-rs:4040"
             - name: SKEMA-UNIFIED_URL
-              value: "https://api.askem.lum.ai"
+              value: "http://skema-unified:4045"
+              # value: "https://api.askem.lum.ai"
             - name: SPICEDB_SHARED-KEY
               value: 'staging'
             - name: SPICEDB_TARGET
