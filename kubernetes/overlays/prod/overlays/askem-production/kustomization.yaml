@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: terarium
 resources:
   - ../../base
-  - check-latest
   - ingress/private-web-ingress.yaml
   - ingress/public-web-ingress.yaml
   - ingress/public-web-ssl-ingress.yaml
