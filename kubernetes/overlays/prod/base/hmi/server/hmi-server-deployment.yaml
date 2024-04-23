@@ -21,6 +21,8 @@ spec:
               value: "http://pyciemss-api:3040"
             - name: CLIMATE-DATA-SERVICE_URL
               value: "http://climate-data:8000"
+            - name: COSMOS-SERVICE_URL
+              value: "http://cosmos:4048"
             - name: FUNMAN-SERVICE_URL
               value: "http://funman:8190"
             - name: GOOGLE-ANALYTICS-ID
