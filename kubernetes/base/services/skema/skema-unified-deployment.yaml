@@ -30,7 +30,7 @@ spec:
                 secretKeyRef:
                   name: chat-gpt-secrets
                   key: chatgptkey
-            - name: SKEMA_RS_ADDESS
+            - name: SKEMA_RS_ADDRESS
               value: http://skema-rs:4040
             - name: SKEMA_TR_ADDRESS
               value: http://skema-text-reading:4047
