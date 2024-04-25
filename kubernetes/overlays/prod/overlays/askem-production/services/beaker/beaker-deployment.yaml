@@ -7,8 +7,12 @@ spec:
   template:
     spec:
       nodeName: ip-172-16-40-52.ec2.internal
-      # tolerations:
-      #   - key: "workload"
-      #     operator: "Equal"
-      #     value: "beaker"
-      #     effect: "NoSchedule"
+      containers:
+        - name: beaker
+          resources:
+            requests:
+              memory: "16Gi"
+              cpu: "2000m"
+            limits:
+              memory: "28Gi"
+              cpu: "7000m"
