@@ -138,4 +138,4 @@ images:
   # mira taskrunner
   - name: cosmos-image
     newName: ghcr.io/darpa-askem/cosmos-service
-    newTag: '2024_04_17'
+    newTag: 'cpu-2024_04_19'
