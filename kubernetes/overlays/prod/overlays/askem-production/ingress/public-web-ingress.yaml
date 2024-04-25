@@ -37,6 +37,13 @@ spec:
             pathType: Prefix
             backend:
               service:
+                name: ssl-redirect
+                port:
+                  name: use-annotation
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
                 name: terarium-docs
                 port:
                   number: 8000
@@ -44,6 +51,13 @@ spec:
     - host: "integration-dashboard.terarium.ai"
       http:
         paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ssl-redirect
+                port:
+                  name: use-annotation
           - path: /
             pathType: Prefix
             backend:
