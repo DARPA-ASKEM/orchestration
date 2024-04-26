@@ -71,6 +71,8 @@ spec:
                   key: password
             - name: SPRING_DATASOURCE_INITIALIZE
               value: "true"
+            - name: SPRING_FLYWAY_ENABLED
+              value: "true"
             - name: SPRING_JPA_HIBERNATE_DDL-AUTO
               value: "update"
             - name: SPRING_RABBITMQ_ADDRESSES
