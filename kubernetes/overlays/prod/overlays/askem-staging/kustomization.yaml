@@ -133,3 +133,8 @@ images:
   - name: mira-taskrunner-image
     newName: ghcr.io/darpa-askem/mira-taskrunner
     newTag: 'latest'
+
+  # funman taskrunner
+  - name: funman-taskrunner-image
+    newName: ghcr.io/darpa-askem/funman-taskrunner
+    newTag: 'latest'
