@@ -97,7 +97,7 @@ images:
   # Simulation Service
   - name: sciml-service-image
     newName: ghcr.io/darpa-askem/sciml-service
-    newTag: '1.0.0'
+    newTag: 'latest'
 
   # PyCIEMSS service
   - name: pyciemss-api-image
@@ -110,7 +110,7 @@ images:
   # Funman service
   - name: funman-image
     newName: ghcr.io/darpa-askem/funman-api
-    newTag: '1.8.0'
+    newTag: 'latest'
 
   # GoLLM service
   - name: gollm-taskrunner-image
