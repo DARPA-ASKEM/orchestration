@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: terarium
 resources:
   - ../../base
+  - check-latest
   - ingress/private-web-ingress.yaml
   - ingress/public-web-ingress.yaml
   - ingress/public-web-ssl-ingress.yaml
@@ -97,7 +98,7 @@ images:
   # Simulation Service
   - name: sciml-service-image
     newName: ghcr.io/darpa-askem/sciml-service
-    newTag: 'latest'
+    newTag: '1.0.0'
 
   # PyCIEMSS service
   - name: pyciemss-api-image
