@@ -137,4 +137,3 @@ images:
   - name: funman-taskrunner-image
     newName: ghcr.io/darpa-askem/funman-taskrunner
     newTag: '2.9.1'
-
