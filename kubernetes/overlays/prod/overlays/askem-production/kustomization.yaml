@@ -29,7 +29,6 @@ patches:
   - path: keycloak/keycloak-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/beaker/beaker-service.yaml
-  - path: services/funman/funman-deployment.yaml
   - path: services/climate-data/climate-data-deployment.yaml
   - path: services/climate-data/climate-data-worker-deployment.yaml
   - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
@@ -107,11 +106,6 @@ images:
   - name: pyciemss-worker-image
     newName: ghcr.io/darpa-askem/pyciemss-worker
     newTag: '1.8.0'
-
-  # Funman service
-  - name: funman-image
-    newName: ghcr.io/darpa-askem/funman-api
-    newTag: 'latest'
 
   # GoLLM service
   - name: gollm-taskrunner-image
