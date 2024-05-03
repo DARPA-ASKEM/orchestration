@@ -30,6 +30,11 @@ spec:
                 secretKeyRef:
                   name: chat-gpt-secrets
                   key: chatgptkey
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: chat-gpt-secrets
+                  key: chatgptkey
           ports:
             - containerPort: 8000
           resources: {}
