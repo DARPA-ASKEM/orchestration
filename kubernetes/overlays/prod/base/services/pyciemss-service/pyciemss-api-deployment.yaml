@@ -27,16 +27,23 @@ spec:
               value: 'False'
             - name: PYCIEMSS_OUTPUT_FILEPATH
               value: result.csv
+            - name: RABBITMQ_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: host
+            - name: RABBITMQ_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: port
             - name: RABBITMQ_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: mq-creds
-                  key:
-                    username
+                  key: username
             - name: RABBITMQ_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mq-creds
                   key: password
-            - name: RABBITMQ_SSL
-              value: 'True'
