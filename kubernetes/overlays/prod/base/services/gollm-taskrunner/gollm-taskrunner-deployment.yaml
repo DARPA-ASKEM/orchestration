@@ -12,6 +12,11 @@ spec:
         - name: gollm-taskrunner
           imagePullPolicy: Always
           env:
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: chat-gpt-secrets
+                  key: chatgptkey
             - name: SPRING_RABBITMQ_ADDRESSES
               valueFrom:
                 secretKeyRef:
