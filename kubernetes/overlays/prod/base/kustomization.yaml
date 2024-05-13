@@ -15,6 +15,7 @@ resources:
   - ../../../base/services/funman-taskrunner
   - ../../../base/services/mit
   - ../../../base/services/pyciemss-service
+  - ../../../base/services/redis
   - ../../../base/services/sciml-service
   - ../../../base/services/skema
   - services/beaker/beaker-persistent-volume.yaml
@@ -39,6 +40,7 @@ patches:
   - path: services/mit/mit-tr-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
+  - path: services/redis/redis-deployment.yaml
   - path: services/sciml-service/sciml-service-deployment.yaml
   - path: services/skema/skema-mathjax-deployment.yaml
   - path: services/skema/skema-memgraph-deployment.yaml

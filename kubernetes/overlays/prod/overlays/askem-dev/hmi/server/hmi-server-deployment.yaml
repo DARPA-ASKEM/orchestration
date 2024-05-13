@@ -16,10 +16,10 @@ spec:
             - name: TGPT_WS_URL
               value: "ws://app.dev.terarium.ai/beaker_ws/"
             - name: TERARIUM_KEYCLOAK_URL
-              value: "https://keycloak.dev.terarium.ai"
+              value: "http://keycloak:8080"
             - name: SPRING_DATA_REDIS_URL
               value: "redis://redis:6379"
             - name: TERARIUM_ELASTICSEARCH_URL
-              value: "https://elasticsearch.dev.terarium.ai:443"
+              value: "http://10.0.2.113:9200"
             - name: LOGGING_LEVEL_ROOT
               value: INFO

@@ -10,9 +10,9 @@ spec:
         - name: keycloak
           env:
             - name: KC_HOSTNAME_URL
-              value: https://keycloak.dev.terarium.ai
+              value: http://keycloak:8080
             - name: KC_HOSTNAME_ADMIN_URL
-              value: https://keycloak.dev.terarium.ai
+              value: http://keycloak:8080
       initContainers:
         - name: init-keycloak
           volumeMounts:

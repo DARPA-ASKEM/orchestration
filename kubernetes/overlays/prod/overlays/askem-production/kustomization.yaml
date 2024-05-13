@@ -131,3 +131,8 @@ images:
   - name: funman-taskrunner-image
     newName: ghcr.io/darpa-askem/funman-taskrunner
     newTag: 'chi-demo-2'
+
+  # Redis
+  - name: redis-image
+    newName: ghcr.io/darpa-askem/redis
+    newTag: '7.2.4-alpine'
