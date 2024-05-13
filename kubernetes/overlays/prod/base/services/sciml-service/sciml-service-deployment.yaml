@@ -25,6 +25,16 @@ spec:
                   key: service_password
             - name: SIMSERVICE_RABBITMQ_ENABLED
               value: 'true'
+            - name: SIMSERVICE_RABBITMQ_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: host
+            - name: SIMSERVICE_RABBITMQ_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: port
             - name: SIMSERVICE_RABBITMQ_LOGIN
               valueFrom:
                 secretKeyRef:
