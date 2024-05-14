@@ -23,3 +23,10 @@ spec:
               value: "https://elasticsearch.staging.terarium.ai:443"
             - name: LOGGING_LEVEL_ROOT
               value: INFO
+            - name: TERARIUM_AMAZON_S3_DEFAULT_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-region
+            - name: TERARIUM_AMAZON_S3_DEFAULT_URL
+              value: ""

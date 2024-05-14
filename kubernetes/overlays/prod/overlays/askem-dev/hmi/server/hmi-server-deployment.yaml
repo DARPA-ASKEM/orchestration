@@ -23,3 +23,8 @@ spec:
               value: "http://10.64.20.114:9200"
             - name: LOGGING_LEVEL_ROOT
               value: INFO
+            - name: AWS-URL
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-url

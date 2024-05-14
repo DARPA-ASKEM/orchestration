@@ -13,8 +13,13 @@ spec:
               value: http://keycloak:8080
             - name: KC_HOSTNAME_ADMIN_URL
               value: http://keycloak:8080
+            - name: KC_DB_URL
+              value: "jdbc:postgresql://10.64.22.49:5432/keycloak"
       initContainers:
         - name: init-keycloak
+          env:
+            - name: KC_DB_URL
+              value: "jdbc:postgresql://10.64.22.49:5432/keycloak"
           volumeMounts:
             - name: realm-volume
               mountPath: /data

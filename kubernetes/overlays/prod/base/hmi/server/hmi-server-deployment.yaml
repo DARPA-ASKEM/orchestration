@@ -178,13 +178,6 @@ spec:
                 secretKeyRef:
                   name: data-service-s3
                   key: aws-code-path
-            - name: TERARIUM_AMAZON_S3_DEFAULT_REGION
-              valueFrom:
-                secretKeyRef:
-                  name: data-service-s3
-                  key: aws-region
-            - name: TERARIUM_AMAZON_S3_DEFAULT_URL
-              value: ""
             - name: TERARIUM_AMAZON_S3_DEFAULT_CREDENTIALS-ID
               valueFrom:
                 secretKeyRef:
