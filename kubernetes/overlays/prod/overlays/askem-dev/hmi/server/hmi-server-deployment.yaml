@@ -20,6 +20,6 @@ spec:
             - name: SPRING_DATA_REDIS_URL
               value: "redis://redis:6379"
             - name: TERARIUM_ELASTICSEARCH_URL
-              value: "http://10.0.2.113:9200"
+              value: "http://10.64.20.114:9200"
             - name: LOGGING_LEVEL_ROOT
               value: INFO
