@@ -10,11 +10,13 @@ spec:
         - name: keycloak
           env:
             - name: KC_HOSTNAME_URL
-              value: http://keycloak:8080
+              value: https://keycloak:443
             - name: KC_HOSTNAME_ADMIN_URL
-              value: http://keycloak:8080
+              value: https://keycloak:443
             - name: KC_DB_URL
               value: "jdbc:postgresql://10.64.22.49:5432/keycloak"
+            - name: KC_HOSTNAME_PORT
+              value: "8443"
       initContainers:
         - name: init-keycloak
           env:
