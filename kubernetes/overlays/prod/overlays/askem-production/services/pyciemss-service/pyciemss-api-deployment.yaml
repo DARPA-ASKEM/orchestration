@@ -14,4 +14,4 @@ spec:
             - name: REDIS_PORT
               value: '6379'
             - name: RABBITMQ_SSL
-              value: 'True'
+              value: 'False'
