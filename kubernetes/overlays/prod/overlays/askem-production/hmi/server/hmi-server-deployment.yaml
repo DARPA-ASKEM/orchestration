@@ -10,9 +10,9 @@ spec:
         - name: hmi-server
           env:
             - name: TGPT_BASE_URL
-              value: "https://app.terarium.ai/beaker/"
+              value: "/beaker/"
             - name: TGPT_APP_URL
-              value: "https://app.terarium.ai/beaker/"
+              value: "/beaker/"
             - name: TGPT_WS_URL
               value: "wss://app.terarium.ai/beaker_ws/"
             - name: TERARIUM_KEYCLOAK_URL
