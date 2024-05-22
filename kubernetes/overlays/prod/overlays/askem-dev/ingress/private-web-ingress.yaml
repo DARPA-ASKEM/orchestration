@@ -138,6 +138,24 @@ spec:
                 port:
                   number: 3040
 
+    - host: "redis.dev.terarium.ai"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ssl-redirect
+                port:
+                  name: use-annotation
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: redis
+                port:
+                  number: 6379
+
     - host: "sciml-service.dev.terarium.ai"
       http:
         paths:
@@ -231,15 +249,16 @@ spec:
   tls:
     - hosts:
         - "app.dev.terarium.ai"
-        - "server.dev.terarium.ai"
-        - "graphdb.dev.terarium.ai"
-        - "documentation.dev.terarium.ai"
-        - "funman.dev.terarium.ai"
         - "beaker.dev.terarium.ai"
         - "climate-data.dev.terarium.ai"
+        - "documentation.dev.terarium.ai"
+        - "funman.dev.terarium.ai"
+        - "graphdb.dev.terarium.ai"
         - "mit-proxy.dev.terarium.ai"
         - "mit-tr.dev.terarium.ai"
         - "pyciemss.dev.terarium.ai"
+        - "redis.dev.terarium.ai"
         - "sciml-service.dev.terarium.ai"
+        - "server.dev.terarium.ai"
         - "skema-rs.dev.terarium.ai"
         - "skema-unified.dev.terarium.ai"
