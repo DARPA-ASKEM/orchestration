@@ -4,4 +4,4 @@ kind: Service
 metadata:
   name: pyciemss-api
 spec:
-  type: NodePort
+  type: ClusterIP

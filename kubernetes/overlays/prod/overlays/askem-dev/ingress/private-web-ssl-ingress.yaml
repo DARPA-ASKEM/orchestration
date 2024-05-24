@@ -3,15 +3,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: private-web-ssl-ingress
-  annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: instance
-    alb.ingress.kubernetes.io/security-groups: askem-dev-web-private, askem-dev-k8s
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
-    alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
-    alb.ingress.kubernetes.io/backend-protocol: HTTPS
 spec:
-  ingressClassName: alb
+  ingressClassName: nginx
   rules:
     - host: "keycloak.dev.terarium.ai"
       http:
@@ -27,3 +20,4 @@ spec:
   tls:
     - hosts:
         - "keycloak.dev.terarium.ai"
+      secretName: dev-terarium

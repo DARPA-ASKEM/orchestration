@@ -3,25 +3,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: private-web-ingress
-  annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: instance
-    alb.ingress.kubernetes.io/security-groups: askem-dev-web-private
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
-    alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
 spec:
-  ingressClassName: alb
+  ingressClassName: nginx
   rules:
     - host: "app.dev.terarium.ai"
       http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: ssl-redirect
-                port:
-                  name: use-annotation
           - path: /
             pathType: Prefix
             backend:
@@ -37,13 +24,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: ssl-redirect
-                port:
-                  name: use-annotation
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
                 name: hmi-server
                 port:
                   number: 3000
@@ -51,13 +31,6 @@ spec:
     - host: "graphdb.dev.terarium.ai"
       http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: ssl-redirect
-                port:
-                  name: use-annotation
           - path: /
             pathType: Prefix
             backend:
@@ -73,13 +46,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: ssl-redirect
-                port:
-                  name: use-annotation
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
                 name: terarium-docs
                 port:
                   number: 8000
@@ -87,13 +53,6 @@ spec:
     - host: "mit-tr.dev.terarium.ai"
       http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: ssl-redirect
-                port:
-                  name: use-annotation
           - path: /
             pathType: Prefix
             backend:
@@ -109,13 +68,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: ssl-redirect
-                port:
-                  name: use-annotation
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
                 name: beaker
                 port:
                   number: 3050
@@ -123,13 +75,6 @@ spec:
     - host: "pyciemss.dev.terarium.ai"
       http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: ssl-redirect
-                port:
-                  name: use-annotation
           - path: /
             pathType: Prefix
             backend:
@@ -145,13 +90,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: ssl-redirect
-                port:
-                  name: use-annotation
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
                 name: redis
                 port:
                   number: 6379
@@ -159,13 +97,6 @@ spec:
     - host: "sciml-service.dev.terarium.ai"
       http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: ssl-redirect
-                port:
-                  name: use-annotation
           - path: /
             pathType: Prefix
             backend:
@@ -181,13 +112,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: ssl-redirect
-                port:
-                  name: use-annotation
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
                 name: skema-rs
                 port:
                   number: 4040
@@ -195,13 +119,6 @@ spec:
     - host: "skema-tr.dev.terarium.ai"
       http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: ssl-redirect
-                port:
-                  name: use-annotation
           - path: /
             pathType: Prefix
             backend:
@@ -217,13 +134,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: ssl-redirect
-                port:
-                  name: use-annotation
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
                 name: skema-unified
                 port:
                   number: 4045
@@ -231,13 +141,6 @@ spec:
     - host: "climate-data.dev.terarium.ai"
       http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: ssl-redirect
-                port:
-                  name: use-annotation
           - path: /
             pathType: Prefix
             backend:

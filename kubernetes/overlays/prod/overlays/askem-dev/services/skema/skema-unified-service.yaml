@@ -4,4 +4,4 @@ kind: Service
 metadata:
   name: skema-unified
 spec:
-  type: NodePort
+  type: ClusterIP

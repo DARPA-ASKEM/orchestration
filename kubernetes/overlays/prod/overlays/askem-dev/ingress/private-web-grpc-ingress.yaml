@@ -3,13 +3,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: private-web-grpc-ingress
-  annotations:
-    alb.ingress.kubernetes.io/backend-protocol-version: GRPC
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: instance
 spec:
-  ingressClassName: alb
+  ingressClassName: nginx
   rules:
     - host: "spicedb.dev.terarium.ai"
       http:
@@ -24,3 +19,4 @@ spec:
   tls:
     - hosts:
         - "spicedb.dev.terarium.ai"
+      secretName: dev-terarium

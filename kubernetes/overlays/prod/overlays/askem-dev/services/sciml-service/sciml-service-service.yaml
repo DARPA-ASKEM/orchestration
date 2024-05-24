@@ -4,4 +4,4 @@ kind: Service
 metadata:
   name: sciml-service
 spec:
-  type: NodePort
+  type: ClusterIP

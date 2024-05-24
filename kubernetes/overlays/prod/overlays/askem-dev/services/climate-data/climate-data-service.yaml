@@ -4,4 +4,4 @@ kind: Service
 metadata:
   name: climate-data
 spec:
-  type: NodePort
+  type: ClusterIP

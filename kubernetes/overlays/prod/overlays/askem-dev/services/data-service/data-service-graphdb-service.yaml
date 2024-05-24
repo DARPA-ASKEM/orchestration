@@ -4,4 +4,4 @@ kind: Service
 metadata:
   name: data-service-graphdb
 spec:
-  type: NodePort
+  type: ClusterIP

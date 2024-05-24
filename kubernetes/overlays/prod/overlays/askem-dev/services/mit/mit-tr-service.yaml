@@ -4,4 +4,4 @@ kind: Service
 metadata:
   name: mit-tr
 spec:
-  type: NodePort
+  type: ClusterIP

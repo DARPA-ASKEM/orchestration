@@ -4,4 +4,4 @@ kind: Service
 metadata:
   name: redis
 spec:
-  type: NodePort
+  type: ClusterIP
