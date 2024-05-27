@@ -123,7 +123,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: skema-test-reading
+                name: skema-text-reading
                 port:
                   number: 4047
 
