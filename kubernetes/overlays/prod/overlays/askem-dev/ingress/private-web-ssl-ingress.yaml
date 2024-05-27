@@ -20,4 +20,4 @@ spec:
   tls:
     - hosts:
         - "keycloak.dev.terarium.ai"
-      secretName: dev-terarium
+      secretName: terarium-dev-tls

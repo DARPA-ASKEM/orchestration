@@ -19,4 +19,4 @@ spec:
   tls:
     - hosts:
         - "spicedb.dev.terarium.ai"
-      secretName: dev-terarium
+      secretName: terarium-dev-tls
