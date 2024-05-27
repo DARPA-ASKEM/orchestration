@@ -14,6 +14,12 @@ spec:
             - mountPath: "/home/jupyter/workspace"
               name: beaker-pv-storage
           env:
+            - name: TOOL_ENABLED_ASK_USER
+              value: "false"
+            - name: TOOL_ENABLED_RUN_CODE
+              value: "false"
+            - name: ENABLE_CHECKPOINTS
+              value: "false"
             - name: SIMULATION_SCHEDULER_URL
               value: http://sciml-service:3030
             - name: HMI_SERVER_URL
