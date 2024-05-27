@@ -16,11 +16,13 @@ spec:
             - name: TGPT_WS_URL
               value: "ws://app.dev.terarium.ai/beaker_ws/"
             - name: TERARIUM_KEYCLOAK_URL
-              value: "https://keycloak:443"
+              value: "https://keycloak.dev.terarium.ai"
             - name: SPRING_DATA_REDIS_URL
               value: "redis://redis:6379"
             - name: TERARIUM_ELASTICSEARCH_URL
               value: "http://10.64.20.114:9200"
+            - name: TERARIUM_SWAGGER_SERVER-URL
+              value: "https://server.dev.terarium.ai"
             - name: LOGGING_LEVEL_ROOT
               value: INFO
             - name: AWS-URL
@@ -29,8 +31,8 @@ spec:
                   name: data-service-s3
                   key: aws-url
             - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER-URI
-              value: "https://keycloak:443/realms/Uncharted"
+              value: "https://keycloak.dev.terarium.ai/realms/Uncharted"
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_KEYCLOAK_CLIENT-ID
               value: "app"
             - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER-URI
-              value: "https://keycloak:443/realms/Uncharted"
+              value: "https://keycloak.dev.terarium.ai/realms/Uncharted"
