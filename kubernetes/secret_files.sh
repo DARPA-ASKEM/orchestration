@@ -64,8 +64,8 @@ DEV_YAML=(
 	"overlays/prod/overlays/askem-dev/check-latest/secrets.yaml"
 )
 DEV_ADDITIONAL=(
-  "overlays/prod/overlays/askem-dev/keycloak/realm/Uncharted-realm.json"
-  "overlays/prod/overlays/askem-dev/keycloak/realm/Uncharted-users-0.json"
+  "overlays/prod/overlays/askem-dev/keycloak/realm/terarium-realm.json"
+  "overlays/prod/overlays/askem-dev/keycloak/realm/terarium-users-0.json"
   "overlays/prod/overlays/askem-dev/check-latest/check-latest-rsa"
 )
 

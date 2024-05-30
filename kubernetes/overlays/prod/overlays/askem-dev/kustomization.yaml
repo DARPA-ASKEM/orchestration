@@ -44,8 +44,8 @@ patches:
   - path: services/skema/skema-unified-service.yaml
 configMapGenerator:
   - files:
-      - keycloak/realm/Uncharted-realm.json
-      - keycloak/realm/Uncharted-users-0.json
+      - keycloak/realm/terarium-realm.json
+      - keycloak/realm/terarium-users-0.json
     name: keycloak-realm
     behavior: create
 images:
