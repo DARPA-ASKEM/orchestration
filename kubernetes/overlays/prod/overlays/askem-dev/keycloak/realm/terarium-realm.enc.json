@@ -39,7 +39,6 @@
 	"editUsernameAllowed": "ENC[AES256_GCM,data:pmX7PnU=,iv:788LT70e8i9B+Kxk3ZSJPOHu/iJkIqNbbXRxealUQcY=,tag:jQcC4u2k7CS8xjH1x70LSQ==,type:bool]",
 	"bruteForceProtected": "ENC[AES256_GCM,data:uRwvoco=,iv:GNeQja7WmBJ/yKM09ekeXh3NDIr9nONHKKc2Kqhl4Is=,tag:NgJ926otRpXp2XI8hK+zEA==,type:bool]",
 	"permanentLockout": "ENC[AES256_GCM,data:y8Aft/Q=,iv:U8x3pR5XClApTo8Q4yYPXmsKOOmjDDrpCIMmL2a+nVo=,tag:OKguQZW6eN2F7ZxJ4cA9Dw==,type:bool]",
-	"maxTemporaryLockouts": "ENC[AES256_GCM,data:Gg==,iv:Rm53mLJYsGFlz0bhEByadsMH5GVTByBd1ACDC3JMNM4=,tag:1wFX+rhdi/4UfSVDxClHOw==,type:float]",
 	"maxFailureWaitSeconds": "ENC[AES256_GCM,data:MQfA,iv:jUk4bVE1YRW3MepLg6eF7Q5LXkSyAJcEfJf4AJ+Xr+A=,tag:qbmo2ym2TTOZy9KIZkOikA==,type:float]",
 	"minimumQuickLoginWaitSeconds": "ENC[AES256_GCM,data:0Ls=,iv:IZz/7NarrLQMO02H8bGyEnesV4EZXMebNcArFSxc6OM=,tag:g40sbPhougZw0NPOc6Jt+Q==,type:float]",
 	"waitIncrementSeconds": "ENC[AES256_GCM,data:fJo=,iv:wSzx+OwD0EbflMX5vBJsG4O3wAKzmerAmX/zehJ5ZKc=,tag:0URZlYFJbUqt16fqeM/qzA==,type:float]",
