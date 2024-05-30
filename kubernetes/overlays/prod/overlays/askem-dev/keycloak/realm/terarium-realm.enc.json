@@ -486,7 +486,6 @@
 	"webAuthnPolicyCreateTimeout": "ENC[AES256_GCM,data:Sw==,iv:Es1xr5N8RA6G3NEcFj5x0lm9DGEApKcwG47iAKwCEWQ=,tag:bHV25d9msuHqSfCjdWnUuQ==,type:float]",
 	"webAuthnPolicyAvoidSameAuthenticatorRegister": "ENC[AES256_GCM,data:T4rkn2M=,iv:J4+MqV5RTSPbSr5owzk98zDqv3kvklN9xNE2XEZXlO8=,tag:jFAdXsRjhPWcnaAL7e5PhQ==,type:bool]",
 	"webAuthnPolicyAcceptableAaguids": [],
-	"webAuthnPolicyExtraOrigins": [],
 	"webAuthnPolicyPasswordlessRpEntityName": "ENC[AES256_GCM,data:R/4m2LNeIUg=,iv:6ivuUoX5FyqfdZXAnkPQoEKUhtfEX+CpXWxWmqgpK10=,tag:encfzwgp0a89Tq7vBa+83g==,type:str]",
 	"webAuthnPolicyPasswordlessSignatureAlgorithms": [
 		"ENC[AES256_GCM,data:5gJ3EVQ=,iv:RbyRmvNgK6JAp916b3+9by7n7RQYBIAQVhENr5Uz6DI=,tag:cfdkxcrxlxJFpGohYSor6w==,type:str]"
@@ -499,7 +498,6 @@
 	"webAuthnPolicyPasswordlessCreateTimeout": "ENC[AES256_GCM,data:sg==,iv:BwVlYFbElGUtXu6yBrLHUBXkXLpCeRXeh5XK8JBff1U=,tag:1hDDuUAuHsbJlm3MW1Sfkw==,type:float]",
 	"webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister": "ENC[AES256_GCM,data:G9IUNRk=,iv:JuRTx04IoOTq+EBg9A9eEh5b/3k9P0Y4U0au2kdIdYU=,tag:SRggik44gAnZH3k6wqKu3A==,type:bool]",
 	"webAuthnPolicyPasswordlessAcceptableAaguids": [],
-	"webAuthnPolicyPasswordlessExtraOrigins": [],
 	"scopeMappings": [
 		{
 			"clientScope": "ENC[AES256_GCM,data:fkki1sJfHDf78mjSKew=,iv:RcAk39u6ThrdvBURH9dTyj2/zTQxPQZJtTJIyTGGGQM=,tag:F5zuiNynZpi/CwFjhQqHyA==,type:str]",
