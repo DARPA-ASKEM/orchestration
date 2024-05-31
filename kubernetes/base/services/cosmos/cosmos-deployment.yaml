@@ -26,7 +26,23 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8089
-          resources: {}
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8089
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8089
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            resources: {}
       imagePullSecrets:
         - name: ghcr-cred
       restartPolicy: Always
