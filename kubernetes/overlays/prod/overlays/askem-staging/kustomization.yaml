@@ -5,17 +5,18 @@ namespace: terarium
 resources:
   - ../../base
   - check-latest
-  - ingress/private-web-ingress.yaml
-  - ingress/private-web-ssl-ingress.yaml
   - ingress/private-web-grpc-ingress.yaml
+  - ingress/private-web-ingress.yaml
+  - ingress/public-web-ingress.yaml
+  - ingress/public-web-ssl-ingress.yaml
   - secrets/secrets-adobe-api-key.yaml
   - secrets/secrets-beaker-creds.yaml
+  - secrets/secrets-chatgpt.yaml
   - secrets/secrets-data-service-s3.yaml
   - secrets/secrets-dkg.yaml
   - secrets/secrets-es-creds.yaml
   - secrets/secrets-keycloak-creds.yaml
   - secrets/secrets-logging-creds.yaml
-  - secrets/secrets-chatgpt.yaml
   - secrets/secrets-mq-creds.yaml
   - secrets/secrets-neo4j-auth.yaml
   - secrets/secrets-rds-creds.yaml
