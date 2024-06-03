@@ -41,13 +41,13 @@ gum style \
 	--foreground 212 --border-foreground 212 --border double \
 	--margin "1 2" --padding "2 4" \
 	'Extract Secret.
- 
+
 This script will find all the secrets for a given environment,
 decrypting them as requested.'
 
 OPERATION=$(gum choose "decrypt" "encrypt")
 
-ENVIRONMENT=$(gum choose "staging" "production")
+ENVIRONMENT=$(gum choose "staging" "production" "dev")
 
 echo "Using $(gum style --foreground 212 "${ENVIRONMENT}") environment"
 
@@ -57,6 +57,9 @@ staging)
 	;;
 production)
   SECRET_FILES=(${PRODUCTION_YAML[@]})
+	;;
+dev)
+	SECRET_FILES=(${DEV_YAML[@]})
 	;;
 esac
 

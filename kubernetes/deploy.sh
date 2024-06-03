@@ -13,6 +13,7 @@ DESCRIPTION
     ENVIRONMENT        Must be supplied to indicate which environment should be processed
       staging
       production
+      dev
 
   Launch commands:
     up                Launches the entire TERArium stack
@@ -119,6 +120,11 @@ production)
   SECRET_FILES=${PRODUCTION_SECRET_FILES[@]}
 	KUSTOMIZATION=overlays/prod/overlays/askem-production
 	KUBECTL_CMD="ssh uncharted-askem-prod-askem-prod-kube-manager-1 sudo kubectl"
+	;;
+dev)
+  SECRET_FILES=${DEV_SECRET_FILES[@]}
+	KUSTOMIZATION=overlays/prod/overlays/askem-dev
+	KUBECTL_CMD="ssh askem-dev-kube-manager-1 sudo kubectl"
 	;;
 esac
 

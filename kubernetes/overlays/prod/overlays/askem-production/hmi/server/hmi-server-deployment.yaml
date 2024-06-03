@@ -25,3 +25,10 @@ spec:
               value: INFO
             - name: TERARIUM_SWAGGER_SERVER-URL
               value: "https://server.terarium.ai"
+            - name: TERARIUM_AMAZON_S3_DEFAULT_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: data-service-s3
+                  key: aws-region
+            - name: TERARIUM_AMAZON_S3_DEFAULT_URL
+              value: ""

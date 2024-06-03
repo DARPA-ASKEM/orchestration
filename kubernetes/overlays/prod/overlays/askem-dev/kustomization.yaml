@@ -5,9 +5,9 @@ namespace: terarium
 resources:
   - ../../base
   - check-latest
+  - ingress/private-web-grpc-ingress.yaml
   - ingress/private-web-ingress.yaml
   - ingress/private-web-ssl-ingress.yaml
-  - ingress/private-web-grpc-ingress.yaml
   - secrets/secrets-adobe-api-key.yaml
   - secrets/secrets-beaker-creds.yaml
   - secrets/secrets-data-service-s3.yaml
@@ -31,7 +31,6 @@ patches:
   - path: services/climate-data/climate-data-service.yaml
   - path: services/climate-data/climate-data-worker-deployment.yaml
   - path: services/data-service/data-service-graphdb-service.yaml
-  - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
   - path: services/mit/mit-tr-service.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-service.yaml
@@ -45,8 +44,8 @@ patches:
   - path: services/skema/skema-unified-service.yaml
 configMapGenerator:
   - files:
-      - keycloak/realm/Uncharted-realm.json
-      - keycloak/realm/Uncharted-users-0.json
+      - keycloak/realm/terarium-realm.json
+      - keycloak/realm/terarium-users-0.json
     name: keycloak-realm
     behavior: create
 images:

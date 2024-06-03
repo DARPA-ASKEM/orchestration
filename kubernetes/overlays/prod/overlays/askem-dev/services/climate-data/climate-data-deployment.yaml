@@ -2,11 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: funman
+  name: climate-data
 spec:
   strategy:
     type: RollingUpdate
   template:
     spec:
       containers:
-        - name: funman
+        - name: climate-data
+          env:
+            - name: REDIS_HOST
+              value: "redis"

@@ -2,11 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: funman
+  name: redis
 spec:
   strategy:
     type: RollingUpdate
-  template:
-    spec:
-      containers:
-        - name: funman

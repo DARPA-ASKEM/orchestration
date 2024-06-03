@@ -10,7 +10,7 @@ metadata:
 spec:
   ports:
     - name: keycloak-svc-port
-      port: 8081
+      port: 8080
       protocol: TCP
       targetPort: 8080
   selector:
