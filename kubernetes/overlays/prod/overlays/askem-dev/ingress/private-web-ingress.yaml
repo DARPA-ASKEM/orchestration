@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: "app.dev.terarium.ai"
+    - host: 'app.dev.terarium.ai'
       http:
         paths:
           - path: /
@@ -17,7 +17,7 @@ spec:
                 port:
                   number: 8080
 
-    - host: "server.dev.terarium.ai"
+    - host: 'server.dev.terarium.ai'
       http:
         paths:
           - path: /
@@ -28,7 +28,7 @@ spec:
                 port:
                   number: 3000
 
-    - host: "graphdb.dev.terarium.ai"
+    - host: 'graphdb.dev.terarium.ai'
       http:
         paths:
           - path: /
@@ -39,7 +39,7 @@ spec:
                 port:
                   number: 7687
 
-    - host: "documentation.dev.terarium.ai"
+    - host: 'documentation.dev.terarium.ai'
       http:
         paths:
           - path: /
@@ -50,7 +50,7 @@ spec:
                 port:
                   number: 8000
 
-    - host: "mit-tr.dev.terarium.ai"
+    - host: 'mit-tr.dev.terarium.ai'
       http:
         paths:
           - path: /
@@ -61,7 +61,7 @@ spec:
                 port:
                   number: 4046
 
-    - host: "beaker.dev.terarium.ai"
+    - host: 'beaker.dev.terarium.ai'
       http:
         paths:
           - path: /
@@ -72,7 +72,7 @@ spec:
                 port:
                   number: 3050
 
-    - host: "pyciemss.dev.terarium.ai"
+    - host: 'pyciemss.dev.terarium.ai'
       http:
         paths:
           - path: /
@@ -83,7 +83,7 @@ spec:
                 port:
                   number: 3040
 
-    - host: "redis.dev.terarium.ai"
+    - host: 'redis.dev.terarium.ai'
       http:
         paths:
           - path: /
@@ -94,7 +94,7 @@ spec:
                 port:
                   number: 6379
 
-    - host: "sciml-service.dev.terarium.ai"
+    - host: 'sciml-service.dev.terarium.ai'
       http:
         paths:
           - path: /
@@ -105,7 +105,7 @@ spec:
                 port:
                   number: 3030
 
-    - host: "skema-rs.dev.terarium.ai"
+    - host: 'skema-rs.dev.terarium.ai'
       http:
         paths:
           - path: /
@@ -116,7 +116,7 @@ spec:
                 port:
                   number: 4040
 
-    - host: "skema-tr.dev.terarium.ai"
+    - host: 'skema-tr.dev.terarium.ai'
       http:
         paths:
           - path: /
@@ -127,7 +127,7 @@ spec:
                 port:
                   number: 4047
 
-    - host: "skema-unified.dev.terarium.ai"
+    - host: 'skema-unified.dev.terarium.ai'
       http:
         paths:
           - path: /
@@ -138,7 +138,7 @@ spec:
                 port:
                   number: 4045
 
-    - host: "climate-data.dev.terarium.ai"
+    - host: 'climate-data.dev.terarium.ai'
       http:
         paths:
           - path: /
@@ -151,18 +151,18 @@ spec:
 
   tls:
     - hosts:
-        - "app.dev.terarium.ai"
-        - "beaker.dev.terarium.ai"
-        - "climate-data.dev.terarium.ai"
-        - "documentation.dev.terarium.ai"
-        - "funman.dev.terarium.ai"
-        - "graphdb.dev.terarium.ai"
-        - "mit-proxy.dev.terarium.ai"
-        - "mit-tr.dev.terarium.ai"
-        - "pyciemss.dev.terarium.ai"
-        - "redis.dev.terarium.ai"
-        - "sciml-service.dev.terarium.ai"
-        - "server.dev.terarium.ai"
-        - "skema-rs.dev.terarium.ai"
-        - "skema-unified.dev.terarium.ai"
+        - 'app.dev.terarium.ai'
+        - 'beaker.dev.terarium.ai'
+        - 'climate-data.dev.terarium.ai'
+        - 'documentation.dev.terarium.ai'
+        - 'funman.dev.terarium.ai'
+        - 'graphdb.dev.terarium.ai'
+        - 'mit-proxy.dev.terarium.ai'
+        - 'mit-tr.dev.terarium.ai'
+        - 'pyciemss.dev.terarium.ai'
+        - 'redis.dev.terarium.ai'
+        - 'sciml-service.dev.terarium.ai'
+        - 'server.dev.terarium.ai'
+        - 'skema-rs.dev.terarium.ai'
+        - 'skema-unified.dev.terarium.ai'
       secretName: terarium-dev-tls

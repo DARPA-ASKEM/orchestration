@@ -4,7 +4,7 @@ kind: PersistentVolume
 metadata:
   name: beaker-pv-volume
   annotations:
-    pv.beta.kubernetes.io/gid: "1000"
+    pv.beta.kubernetes.io/gid: '1000'
   labels:
     type: local
 spec:
@@ -14,4 +14,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/beaker"
+    path: '/mnt/beaker'

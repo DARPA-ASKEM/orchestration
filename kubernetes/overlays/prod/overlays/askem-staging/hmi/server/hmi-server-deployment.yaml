@@ -10,17 +10,17 @@ spec:
         - name: hmi-server
           env:
             - name: TGPT_BASE_URL
-              value: "/beaker/"
+              value: '/beaker/'
             - name: TGPT_APP_URL
-              value: "/beaker/"
+              value: '/beaker/'
             - name: TGPT_WS_URL
-              value: "wss://app.staging.terarium.ai/beaker_ws/"
+              value: 'wss://app.staging.terarium.ai/beaker_ws/'
             - name: TERARIUM_KEYCLOAK_URL
-              value: "https://keycloak.staging.terarium.ai"
+              value: 'https://keycloak.staging.terarium.ai'
             - name: SPRING_DATA_REDIS_URL
-              value: "redis://redis.staging.terarium.ai:6379"
+              value: 'redis://redis:6379'
             - name: TERARIUM_ELASTICSEARCH_URL
-              value: "https://elasticsearch.staging.terarium.ai:443"
+              value: 'https://elasticsearch.staging.terarium.ai:443'
             - name: LOGGING_LEVEL_ROOT
               value: INFO
             - name: TERARIUM_AMAZON_S3_DEFAULT_REGION
@@ -29,4 +29,4 @@ spec:
                   name: data-service-s3
                   key: aws-region
             - name: TERARIUM_AMAZON_S3_DEFAULT_URL
-              value: ""
+              value: ''

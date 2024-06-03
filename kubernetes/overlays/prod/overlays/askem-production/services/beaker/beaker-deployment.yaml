@@ -11,8 +11,8 @@ spec:
         - name: beaker
           resources:
             requests:
-              memory: "1Gi"
-              cpu: "2000m"
+              memory: '1Gi'
+              cpu: '2000m'
             limits:
-              memory: "28Gi"
-              cpu: "7000m"
+              memory: '28Gi'
+              cpu: '7000m'

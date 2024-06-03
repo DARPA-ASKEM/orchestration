@@ -14,7 +14,7 @@ spec:
             - name: NEO4J_PLUGINS
               value: '["apoc"]'
             - name: apoc.import.file.enabled
-              value: "true"
+              value: 'true'
             - name: NEO4J_AUTH
               value: none
             - name: NEO4J_dbms_memory_pagecache_size

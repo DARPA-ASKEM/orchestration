@@ -12,7 +12,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: "spicedb.staging.terarium.ai"
+    - host: 'spicedb.staging.terarium.ai'
       http:
         paths:
           - backend:
@@ -24,4 +24,4 @@ spec:
             pathType: Prefix
   tls:
     - hosts:
-        - "spicedb.staging.terarium.ai"
+        - 'spicedb.staging.terarium.ai'

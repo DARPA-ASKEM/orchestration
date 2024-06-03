@@ -12,7 +12,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: "app.staging.terarium.ai"
+    - host: 'app.staging.terarium.ai'
       http:
         paths:
           - path: /
@@ -30,7 +30,7 @@ spec:
                 port:
                   number: 8080
 
-    - host: "documentation.staging.terarium.ai"
+    - host: 'documentation.staging.terarium.ai'
       http:
         paths:
           - path: /
@@ -50,5 +50,5 @@ spec:
 
   tls:
     - hosts:
-        - "app.staging.terarium.ai"
-        - "documentation.staging.terarium.ai"
+        - 'app.staging.terarium.ai'
+        - 'documentation.staging.terarium.ai'

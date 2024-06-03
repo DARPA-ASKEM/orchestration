@@ -12,7 +12,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: "server.terarium.ai"
+    - host: 'server.terarium.ai'
       http:
         paths:
           - path: /
@@ -23,7 +23,7 @@ spec:
                 port:
                   number: 3000
 
-    - host: "beaker.terarium.ai"
+    - host: 'beaker.terarium.ai'
       http:
         paths:
           - path: /
@@ -35,5 +35,5 @@ spec:
                   number: 3050
   tls:
     - hosts:
-        - "server.terarium.ai"
-        - "beaker.terarium.ai"
+        - 'server.terarium.ai'
+        - 'beaker.terarium.ai'

@@ -7,7 +7,7 @@ spec:
   template:
     spec:
       tolerations:
-        - key: "workload"
-          operator: "Equal"
-          value: "beaker"
-          effect: "NoSchedule"
+        - key: 'workload'
+          operator: 'Equal'
+          value: 'beaker'
+          effect: 'NoSchedule'

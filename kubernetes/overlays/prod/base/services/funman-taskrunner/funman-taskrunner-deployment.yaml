@@ -28,4 +28,4 @@ spec:
                   name: mq-creds
                   key: password
             - name: TERARIUM_TASKRUNNER_REQUEST-TYPE
-              value: "funman"
+              value: 'funman'

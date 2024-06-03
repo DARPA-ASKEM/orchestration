@@ -18,29 +18,29 @@ spec:
                   name: adobe-api-key
                   key: key
             - name: CIEMSS-SERVICE_URL
-              value: "http://pyciemss-api:3040"
+              value: 'http://pyciemss-api:3040'
             - name: CLIMATE-DATA-SERVICE_URL
-              value: "http://climate-data:8000"
+              value: 'http://climate-data:8000'
             - name: GOOGLE-ANALYTICS-ID
               valueFrom:
                 secretKeyRef:
                   name: logging-creds
                   key: google-id
             - name: MIT-PROXY_URL
-              value: "http://mit-tr:4046"
+              value: 'http://mit-tr:4046'
             - name: MIT-OPENAI-API-KEY
               valueFrom:
                 secretKeyRef:
                   name: chat-gpt-secrets
                   key: chatgptkey
             - name: SIMULATION-SERVICE_URL
-              value: "http://sciml-service:3030"
+              value: 'http://sciml-service:3030'
             - name: SKEMA-PY_URL
-              value: "http://skema-py:4041"
+              value: 'http://skema-py:4041'
             - name: SKEMA-RS_URL
-              value: "http://skema-rs:4040"
+              value: 'http://skema-rs:4040'
             - name: SKEMA-UNIFIED_URL
-              value: "http://skema-unified:4045"
+              value: 'http://skema-unified:4045'
             - name: SPICEDB_SHARED-KEY
               value: 'staging'
             - name: SPICEDB_TARGET
@@ -48,14 +48,14 @@ spec:
             - name: SPICEDB_LAUNCHMODE
               value: 'PLAINTEXT'
             - name: SPRING_PROFILES_ACTIVE
-              value: "default"
+              value: 'default'
             - name: SPRING_DATASOURCE_URL
               valueFrom:
                 secretKeyRef:
                   name: rds-creds
                   key: fqdn
             - name: SPRING_NEO4J_URI
-              value: "bolt://data-service-graphdb:7687"
+              value: 'bolt://data-service-graphdb:7687'
             - name: SPRING_NEO4J_AUTHENTICATION_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -67,11 +67,11 @@ spec:
                   name: neo4j-auth
                   key: password
             - name: SPRING_DATASOURCE_INITIALIZE
-              value: "true"
+              value: 'true'
             - name: SPRING_FLYWAY_ENABLED
-              value: "true"
+              value: 'true'
             - name: SPRING_JPA_HIBERNATE_DDL-AUTO
-              value: "update"
+              value: 'update'
             - name: SPRING_RABBITMQ_ADDRESSES
               valueFrom:
                 secretKeyRef:
@@ -183,7 +183,7 @@ spec:
                   name: data-service-s3
                   key: aws-client-name
             - name: TERARIUM_ELASTICSEARCH_AUTH-ENABLED
-              value: "true"
+              value: 'true'
             - name: TERARIUM_ELASTICSEARCH_USERNAME
               valueFrom:
                 secretKeyRef:

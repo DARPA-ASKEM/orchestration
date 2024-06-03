@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: terarium
 resources:
   - ../../base
-  - check-latest
   - ingress/private-web-ingress.yaml
   - ingress/public-web-ingress.yaml
   - ingress/public-web-ssl-ingress.yaml
@@ -131,3 +130,8 @@ images:
   - name: funman-taskrunner-image
     newName: ghcr.io/darpa-askem/funman-taskrunner
     newTag: '2.12.0'
+
+  # Redis
+  - name: redis-image
+    newName: ghcr.io/darpa-askem/redis
+    newTag: '7.2.4-alpine'

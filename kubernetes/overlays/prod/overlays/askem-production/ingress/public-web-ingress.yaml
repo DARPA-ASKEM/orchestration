@@ -12,7 +12,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: "app.terarium.ai"
+    - host: 'app.terarium.ai'
       http:
         paths:
           - path: /
@@ -30,7 +30,7 @@ spec:
                 port:
                   number: 8080
 
-    - host: "documentation.terarium.ai"
+    - host: 'documentation.terarium.ai'
       http:
         paths:
           - path: /
@@ -48,7 +48,7 @@ spec:
                 port:
                   number: 8000
 
-    - host: "integration-dashboard.terarium.ai"
+    - host: 'integration-dashboard.terarium.ai'
       http:
         paths:
           - path: /
@@ -67,6 +67,6 @@ spec:
                   number: 8501
   tls:
     - hosts:
-        - "app.terarium.ai"
-        - "documentation.terarium.ai"
-        - "integration-dashboard.terarium.ai"
+        - 'app.terarium.ai'
+        - 'documentation.terarium.ai'
+        - 'integration-dashboard.terarium.ai'

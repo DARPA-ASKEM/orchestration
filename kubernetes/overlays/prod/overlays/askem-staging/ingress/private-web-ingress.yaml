@@ -12,7 +12,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: "server.staging.terarium.ai"
+    - host: 'server.staging.terarium.ai'
       http:
         paths:
           - path: /
@@ -30,7 +30,7 @@ spec:
                 port:
                   number: 3000
 
-    - host: "graphdb.staging.terarium.ai"
+    - host: 'graphdb.staging.terarium.ai'
       http:
         paths:
           - path: /
@@ -48,7 +48,7 @@ spec:
                 port:
                   number: 7687
 
-    - host: "mit-tr.staging.terarium.ai"
+    - host: 'mit-tr.staging.terarium.ai'
       http:
         paths:
           - path: /
@@ -66,7 +66,7 @@ spec:
                 port:
                   number: 4046
 
-    - host: "beaker.staging.terarium.ai"
+    - host: 'beaker.staging.terarium.ai'
       http:
         paths:
           - path: /
@@ -84,7 +84,7 @@ spec:
                 port:
                   number: 3050
 
-    - host: "pyciemss.staging.terarium.ai"
+    - host: 'pyciemss.staging.terarium.ai'
       http:
         paths:
           - path: /
@@ -102,7 +102,7 @@ spec:
                 port:
                   number: 3040
 
-    - host: "redis.staging.terarium.ai"
+    - host: 'redis.staging.terarium.ai'
       http:
         paths:
           - path: /
@@ -120,7 +120,7 @@ spec:
                 port:
                   number: 6379
 
-    - host: "sciml-service.staging.terarium.ai"
+    - host: 'sciml-service.staging.terarium.ai'
       http:
         paths:
           - path: /
@@ -138,7 +138,7 @@ spec:
                 port:
                   number: 3030
 
-    - host: "skema-rs.staging.terarium.ai"
+    - host: 'skema-rs.staging.terarium.ai'
       http:
         paths:
           - path: /
@@ -156,7 +156,7 @@ spec:
                 port:
                   number: 4040
 
-    - host: "skema-tr.staging.terarium.ai"
+    - host: 'skema-tr.staging.terarium.ai'
       http:
         paths:
           - path: /
@@ -174,7 +174,7 @@ spec:
                 port:
                   number: 4047
 
-    - host: "skema-unified.staging.terarium.ai"
+    - host: 'skema-unified.staging.terarium.ai'
       http:
         paths:
           - path: /
@@ -192,7 +192,7 @@ spec:
                 port:
                   number: 4045
 
-    - host: "climate-data.staging.terarium.ai"
+    - host: 'climate-data.staging.terarium.ai'
       http:
         paths:
           - path: /
@@ -212,15 +212,15 @@ spec:
 
   tls:
     - hosts:
-        - "beaker.staging.terarium.ai"
-        - "climate-data.staging.terarium.ai"
-        - "funman.staging.terarium.ai"
-        - "graphdb.staging.terarium.ai"
-        - "mit-proxy.staging.terarium.ai"
-        - "mit-tr.staging.terarium.ai"
-        - "pyciemss.staging.terarium.ai"
-        - "redis.staging.terarium.ai"
-        - "sciml-service.staging.terarium.ai"
-        - "server.staging.terarium.ai"
-        - "skema-rs.staging.terarium.ai"
-        - "skema-unified.staging.terarium.ai"
+        - 'beaker.staging.terarium.ai'
+        - 'climate-data.staging.terarium.ai'
+        - 'funman.staging.terarium.ai'
+        - 'graphdb.staging.terarium.ai'
+        - 'mit-proxy.staging.terarium.ai'
+        - 'mit-tr.staging.terarium.ai'
+        - 'pyciemss.staging.terarium.ai'
+        - 'redis.staging.terarium.ai'
+        - 'sciml-service.staging.terarium.ai'
+        - 'server.staging.terarium.ai'
+        - 'skema-rs.staging.terarium.ai'
+        - 'skema-unified.staging.terarium.ai'
