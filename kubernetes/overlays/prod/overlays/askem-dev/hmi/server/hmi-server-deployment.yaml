@@ -14,7 +14,7 @@ spec:
             - name: TGPT_APP_URL
               value: '/beaker/'
             - name: TGPT_WS_URL
-              value: 'ws://app.dev.terarium.ai/beaker_ws/'
+              value: 'wss://app.dev.terarium.ai/beaker_ws/'
             - name: TERARIUM_KEYCLOAK_URL
               value: 'https://keycloak.dev.terarium.ai'
             - name: SPRING_DATA_REDIS_URL
