@@ -5,6 +5,7 @@ namespace: terarium
 resources:
   - ../../base
   - ingress/private-web-ingress.yaml
+  - ingress/private-web-non-ssl-ingress.yaml
   - ingress/public-web-ingress.yaml
   - ingress/public-web-ssl-ingress.yaml
   - secrets/secrets-adobe-api-key.yaml
