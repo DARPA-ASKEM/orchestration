@@ -25,7 +25,6 @@ resources:
 patches:
   - path: hmi/documentation/terarium-docs-service.yaml
   - path: hmi/server/hmi-server-deployment.yaml
-  - path: keycloak/keycloak-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/beaker/beaker-service.yaml
   - path: services/climate-data/climate-data-deployment.yaml
@@ -44,21 +43,7 @@ patches:
   - path: services/skema/skema-text-reading-deployment.yaml
   - path: services/skema/skema-text-reading-service.yaml
   - path: services/skema/skema-unified-service.yaml
-configMapGenerator:
-  - files:
-      - keycloak/realm/Uncharted-realm.json
-      - keycloak/realm/Uncharted-users-0.json
-    name: keycloak-realm
-    behavior: create
 images:
-  # Auth
-  - name: keycloak-image
-    newName: ghcr.io/unchartedsoftware/keycloak
-    newTag: '0.2.2'
-  - name: terarium-login-theme-image
-    newName: ghcr.io/darpa-askem/terarium-login-theme
-    newTag: 'latest'
-
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
