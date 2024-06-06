@@ -53,13 +53,13 @@ images:
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: '2.12.1'
+    newTag: '2.12.2'
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
     newTag: 'latest'
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: '2.12.1'
+    newTag: '2.12.2'
   - name: spicedb-image
     newName: ghcr.io/authzed/spicedb
     newTag: 'v1.24.0'
