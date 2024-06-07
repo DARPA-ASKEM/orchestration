@@ -42,7 +42,7 @@ spec:
                   name: rds-creds
                   key: password
             - name: KC_HOSTNAME_PORT
-              value: "443"
+              value: '443'
             - name: KC_HOSTNAME_ADMIN_URL
               value: https://localhost:8443
             - name: KC_HOSTNAME_PATH
@@ -69,7 +69,7 @@ spec:
             - --dir
             - /data
             - --override
-            - "false"
+            - 'false'
           env:
             - name: PROXY_ADDRESS_FORWARDING
               value: '"true"'

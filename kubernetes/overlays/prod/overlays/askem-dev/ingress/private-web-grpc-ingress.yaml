@@ -1,0 +1,22 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: private-web-grpc-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: 'spicedb.dev.terarium.ai'
+      http:
+        paths:
+          - backend:
+              service:
+                name: spicedb
+                port:
+                  number: 50051
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - 'spicedb.dev.terarium.ai'
+      secretName: terarium-dev-tls

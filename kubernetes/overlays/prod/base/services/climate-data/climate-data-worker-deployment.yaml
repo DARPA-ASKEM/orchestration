@@ -24,17 +24,17 @@ spec:
                   name: keycloak-creds
                   key: service_password
             - name: ESGF_URL
-              value: "https://esgf-node.llnl.gov/esg-search"
+              value: 'https://esgf-node.llnl.gov/esg-search'
             - name: REDIS_PORT
-              value: "6379"
+              value: '6379'
             - name: MINIO_URL
-              value: "http://minio:9000"
+              value: 'http://minio:9000'
             - name: MINIO_USER
-              value: "miniouser"
+              value: 'miniouser'
             - name: MINIO_PASS
-              value: "miniopass"
+              value: 'miniopass'
             - name: MINIO_BUCKET_NAME
-              value: "climate-data-test-bucket"
+              value: 'climate-data-test-bucket'
             - name: OPENAI_API_KEY
               valueFrom:
                 secretKeyRef:

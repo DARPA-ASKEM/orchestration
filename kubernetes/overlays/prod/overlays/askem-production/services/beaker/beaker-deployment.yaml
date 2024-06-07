@@ -7,8 +7,19 @@ spec:
   template:
     spec:
       nodeName: ip-172-16-40-52.ec2.internal
-      # tolerations:
-      #   - key: "workload"
-      #     operator: "Equal"
-      #     value: "beaker"
-      #     effect: "NoSchedule"
+      containers:
+        - name: beaker
+          env:
+            - name: APP_URL
+              value: https://beaker.terarium.ai
+            - name: JUPYTER_BASE_URL
+              value: https://beaker.terarium.ai
+            - name: JUPYTER_WS_URL
+              value: wss://beaker.terarium.ai
+          resources:
+            requests:
+              memory: '1Gi'
+              cpu: '2000m'
+            limits:
+              memory: '28Gi'
+              cpu: '7000m'

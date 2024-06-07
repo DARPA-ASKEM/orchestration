@@ -9,6 +9,6 @@ metadata:
     software.uncharted.terarium/service: waitfor
     software.uncharted.terarium/part-of: utils
 rules:
-  - apiGroups: [""]
-    resources: ["services", "pods", "jobs"]
-    verbs: ["get", "watch", "list"]
+  - apiGroups: ['']
+    resources: ['services', 'pods', 'jobs']
+    verbs: ['get', 'watch', 'list']

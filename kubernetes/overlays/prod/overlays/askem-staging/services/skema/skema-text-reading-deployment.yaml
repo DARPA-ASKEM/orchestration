@@ -7,7 +7,7 @@ spec:
   template:
     spec:
       tolerations:
-        - key: "workload"
-          operator: "Equal"
-          value: "skema-text-reading"
-          effect: "NoSchedule"
+        - key: 'workload'
+          operator: 'Equal'
+          value: 'skema-text-reading'
+          effect: 'NoSchedule'

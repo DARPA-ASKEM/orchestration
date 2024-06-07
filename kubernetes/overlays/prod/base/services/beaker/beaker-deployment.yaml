@@ -11,9 +11,15 @@ spec:
       containers:
         - name: beaker
           volumeMounts:
-            - mountPath: "/home/jupyter/workspace"
+            - mountPath: '/home/jupyter/workspace'
               name: beaker-pv-storage
           env:
+            - name: TOOL_ENABLED_ASK_USER
+              value: 'false'
+            - name: TOOL_ENABLED_RUN_CODE
+              value: 'false'
+            - name: ENABLE_CHECKPOINTS
+              value: 'false'
             - name: SIMULATION_SCHEDULER_URL
               value: http://sciml-service:3030
             - name: HMI_SERVER_URL
@@ -39,7 +45,7 @@ spec:
         runAsUser: 1000
         runAsGroup: 1000
         fsGroup: 1000
-        fsGroupChangePolicy: "OnRootMismatch"
+        fsGroupChangePolicy: 'OnRootMismatch'
       volumes:
         - name: beaker-pv-storage
           persistentVolumeClaim:

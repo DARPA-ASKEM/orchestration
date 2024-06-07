@@ -5,17 +5,18 @@ namespace: terarium
 resources:
   - ../../base
   - check-latest
-  - ingress/private-web-ingress.yaml
-  - ingress/private-web-ssl-ingress.yaml
   - ingress/private-web-grpc-ingress.yaml
+  - ingress/private-web-ingress.yaml
+  - ingress/public-web-ingress.yaml
+  - ingress/public-web-ssl-ingress.yaml
   - secrets/secrets-adobe-api-key.yaml
   - secrets/secrets-beaker-creds.yaml
+  - secrets/secrets-chatgpt.yaml
   - secrets/secrets-data-service-s3.yaml
   - secrets/secrets-dkg.yaml
   - secrets/secrets-es-creds.yaml
   - secrets/secrets-keycloak-creds.yaml
   - secrets/secrets-logging-creds.yaml
-  - secrets/secrets-chatgpt.yaml
   - secrets/secrets-mq-creds.yaml
   - secrets/secrets-neo4j-auth.yaml
   - secrets/secrets-rds-creds.yaml
@@ -32,12 +33,12 @@ patches:
   - path: services/climate-data/climate-data-worker-deployment.yaml
   - path: services/cosmos/cosmos-service.yaml
   - path: services/data-service/data-service-graphdb-service.yaml
-  - path: services/funman/funman-deployment.yaml
   - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
   - path: services/mit/mit-tr-service.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-service.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
+  - path: services/redis/redis-service.yaml
   - path: services/sciml-service/sciml-service-deployment.yaml
   - path: services/sciml-service/sciml-service-service.yaml
   - path: services/skema/skema-rs-service.yaml
@@ -115,11 +116,6 @@ images:
     newName: ghcr.io/darpa-askem/pyciemss-worker
     newTag: 'latest'
 
-  # Funman service
-  - name: funman-image
-    newName: ghcr.io/darpa-askem/funman-api
-    newTag: 'latest'
-
   # GoLLM service
   - name: gollm-taskrunner-image
     newName: ghcr.io/darpa-askem/gollm-taskrunner
@@ -139,3 +135,13 @@ images:
   - name: cosmos-image
     newName: ghcr.io/darpa-askem/cosmos-service
     newTag: 'cpu-2024_04_19'
+
+  # funman taskrunner
+  - name: funman-taskrunner-image
+    newName: ghcr.io/darpa-askem/funman-taskrunner
+    newTag: 'latest'
+
+  # Redis
+  - name: redis-image
+    newName: ghcr.io/darpa-askem/redis
+    newTag: '7.2.4-alpine'

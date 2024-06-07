@@ -28,7 +28,6 @@ patches:
   - path: keycloak/keycloak-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/beaker/beaker-service.yaml
-  - path: services/funman/funman-deployment.yaml
   - path: services/climate-data/climate-data-deployment.yaml
   - path: services/climate-data/climate-data-worker-deployment.yaml
   - path: services/cosmos/cosmos-service.yaml
@@ -50,18 +49,18 @@ images:
     newTag: '0.2.2'
   - name: terarium-login-theme-image
     newName: ghcr.io/darpa-askem/terarium-login-theme
-    newTag: 'latest'
+    newTag: '1.4.0'
 
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: 'latest'
+    newTag: '2.12.2'
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
     newTag: 'latest'
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: 'latest'
+    newTag: '2.12.2'
   - name: spicedb-image
     newName: ghcr.io/authzed/spicedb
     newTag: 'v1.24.0'
@@ -74,49 +73,44 @@ images:
   # Jupyter LLM service
   - name: beaker-image
     newName: ghcr.io/darpa-askem/beaker-kernel
-    newTag: 'latest'
+    newTag: '1.5.0'
 
   # Skema
   - name: skema-py-image
     newName: ghcr.io/darpa-askem/skema-py
-    newTag: 'latest'
+    newTag: '1.0.0'
   - name: skema-rs-image
     newName: ghcr.io/darpa-askem/skema-rs
-    newTag: 'latest'
+    newTag: '1.0.0'
   - name: skema-memgraph-image
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
   - name: skema-text-reading-image
     newName: ghcr.io/darpa-askem/skema-text-reading
-    newTag: '2024_01_24'
+    newTag: '2024_04_02'
 
   # MIT
   - name: mit-tr-image
     newName: ghcr.io/darpa-askem/mit-tr
-    newTag: 'latest'
+    newTag: '1.0.0'
 
   # Simulation Service
   - name: sciml-service-image
     newName: ghcr.io/darpa-askem/sciml-service
-    newTag: 'latest'
+    newTag: '1.0.0'
 
   # PyCIEMSS service
   - name: pyciemss-api-image
     newName: ghcr.io/darpa-askem/pyciemss-api
-    newTag: 'latest'
+    newTag: '1.10.0'
   - name: pyciemss-worker-image
     newName: ghcr.io/darpa-askem/pyciemss-worker
-    newTag: 'latest'
-
-  # Funman service
-  - name: funman-image
-    newName: ghcr.io/darpa-askem/funman-api
-    newTag: 'latest'
+    newTag: '1.10.0'
 
   # GoLLM service
   - name: gollm-taskrunner-image
     newName: ghcr.io/darpa-askem/gollm-taskrunner
-    newTag: 'latest'
+    newTag: '2.12.0'
 
   # Integration Dashboard
   - name: integration-dashboard-image
@@ -126,13 +120,24 @@ images:
   # climate data
   - name: climate-data-image
     newName: ghcr.io/darpa-askem/climate-data-service
-    newTag: 'latest'
+    newTag: '1.0.0'
 
   # mira taskrunner
   - name: mira-taskrunner-image
     newName: ghcr.io/darpa-askem/mira-taskrunner
-    newTag: 'latest'
+    newTag: '2.12.0'
 
+  # cosmos (xdd)
   - name: cosmos-image
     newName: ghcr.io/darpa-askem/cosmos-service
     newTag: 'cpu-2024_04_19'
+
+  # funman taskrunner
+  - name: funman-taskrunner-image
+    newName: ghcr.io/darpa-askem/funman-taskrunner
+    newTag: '2.12.0'
+
+  # Redis
+  - name: redis-image
+    newName: ghcr.io/darpa-askem/redis
+    newTag: '7.2.4-alpine'

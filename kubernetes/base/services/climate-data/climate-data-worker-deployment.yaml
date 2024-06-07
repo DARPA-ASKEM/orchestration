@@ -26,12 +26,12 @@ spec:
           imagePullPolicy: Always
           command: ['poetry']
           args: [
-            "run",
-            "rq",
-            "worker-pool",
-            "subset",
-            "preview",
-            "-n5"
+            'run',
+            'rq',
+            'worker-pool',
+            'subset',
+            'preview',
+            '-n5'
           ]
           resources: {}
       imagePullSecrets:

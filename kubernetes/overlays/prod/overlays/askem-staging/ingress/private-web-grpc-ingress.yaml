@@ -7,11 +7,12 @@ metadata:
     alb.ingress.kubernetes.io/backend-protocol-version: GRPC
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
     alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/security-groups: askem-staging-k8s
     alb.ingress.kubernetes.io/target-type: instance
 spec:
   ingressClassName: alb
   rules:
-    - host: "spicedb.staging.terarium.ai"
+    - host: 'spicedb.staging.terarium.ai'
       http:
         paths:
           - backend:
@@ -23,4 +24,4 @@ spec:
             pathType: Prefix
   tls:
     - hosts:
-        - "spicedb.staging.terarium.ai"
+        - 'spicedb.staging.terarium.ai'

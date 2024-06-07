@@ -10,10 +10,8 @@ spec:
         - name: pyciemss-worker
           env:
             - name: REDIS_HOST
-              value: redis.terarium.ai
+              value: 'redis'
             - name: REDIS_PORT
               value: '6379'
-            - name: RABBITMQ_HOST
-              value: 'b-68052fee-712b-461b-81c3-7a82a8112d50.mq.us-east-1.amazonaws.com'
-            - name: RABBITMQ_PORT
-              value: '5671'
+            - name: RABBITMQ_SSL
+              value: 'False'

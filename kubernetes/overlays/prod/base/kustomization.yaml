@@ -11,11 +11,12 @@ resources:
   - ../../../base/services/cosmos
   - ../../../base/services/beaker
   - ../../../base/services/data-service
-  - ../../../base/services/funman
   - ../../../base/services/gollm-taskrunner
   - ../../../base/services/mira-taskrunner
+  - ../../../base/services/funman-taskrunner
   - ../../../base/services/mit
   - ../../../base/services/pyciemss-service
+  - ../../../base/services/redis
   - ../../../base/services/sciml-service
   - ../../../base/services/skema
   - services/beaker/beaker-persistent-volume.yaml
@@ -35,13 +36,13 @@ patches:
   - path: services/data-service/data-service-graphdb-deployment.yaml
   - path: services/climate-data/climate-data-deployment.yaml
   - path: services/climate-data/climate-data-worker-deployment.yaml
-  - path: services/funman/funman-deployment.yaml
-  - path: services/funman/funman-service.yaml
   - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
   - path: services/mira-taskrunner/mira-taskrunner-deployment.yaml
+  - path: services/funman-taskrunner/funman-taskrunner-deployment.yaml
   - path: services/mit/mit-tr-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
+  - path: services/redis/redis-deployment.yaml
   - path: services/sciml-service/sciml-service-deployment.yaml
   - path: services/skema/skema-mathjax-deployment.yaml
   - path: services/skema/skema-memgraph-deployment.yaml

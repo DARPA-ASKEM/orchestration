@@ -1,0 +1,139 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: terarium
+resources:
+  - ../../base
+  - check-latest
+  - ingress/private-web-grpc-ingress.yaml
+  - ingress/private-web-ingress.yaml
+  - ingress/private-web-ssl-ingress.yaml
+  - secrets/secrets-adobe-api-key.yaml
+  - secrets/secrets-beaker-creds.yaml
+  - secrets/secrets-data-service-s3.yaml
+  - secrets/secrets-dkg.yaml
+  - secrets/secrets-es-creds.yaml
+  - secrets/secrets-keycloak-creds.yaml
+  - secrets/secrets-logging-creds.yaml
+  - secrets/secrets-chatgpt.yaml
+  - secrets/secrets-mq-creds.yaml
+  - secrets/secrets-neo4j-auth.yaml
+  - secrets/secrets-rds-creds.yaml
+  - secrets/secrets-spicedb-shared.yaml
+  - secrets/secrets-xdd-api-key.yaml
+patches:
+  - path: hmi/documentation/terarium-docs-service.yaml
+  - path: hmi/server/hmi-server-deployment.yaml
+  - path: keycloak/keycloak-deployment.yaml
+  - path: services/beaker/beaker-deployment.yaml
+  - path: services/beaker/beaker-service.yaml
+  - path: services/climate-data/climate-data-deployment.yaml
+  - path: services/climate-data/climate-data-service.yaml
+  - path: services/climate-data/climate-data-worker-deployment.yaml
+  - path: services/data-service/data-service-graphdb-service.yaml
+  - path: services/mit/mit-tr-service.yaml
+  - path: services/pyciemss-service/pyciemss-api-deployment.yaml
+  - path: services/pyciemss-service/pyciemss-api-service.yaml
+  - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
+  - path: services/redis/redis-service.yaml
+  - path: services/sciml-service/sciml-service-deployment.yaml
+  - path: services/sciml-service/sciml-service-service.yaml
+  - path: services/skema/skema-rs-service.yaml
+  - path: services/skema/skema-text-reading-deployment.yaml
+  - path: services/skema/skema-text-reading-service.yaml
+  - path: services/skema/skema-unified-service.yaml
+configMapGenerator:
+  - files:
+      - keycloak/realm/terarium-realm.json
+      - keycloak/realm/terarium-users-0.json
+    name: keycloak-realm
+    behavior: create
+images:
+  # Auth
+  - name: keycloak-image
+    newName: ghcr.io/unchartedsoftware/keycloak
+    newTag: '0.2.2'
+  - name: terarium-login-theme-image
+    newName: ghcr.io/darpa-askem/terarium-login-theme
+    newTag: 'latest'
+
+  # Terarium HMI
+  - name: hmi-client-image
+    newName: ghcr.io/darpa-askem/hmi-client
+    newTag: 'latest'
+  - name: terarium-docs-image
+    newName: ghcr.io/darpa-askem/terarium-docs
+    newTag: 'latest'
+  - name: hmi-server-image
+    newName: ghcr.io/darpa-askem/hmi-server
+    newTag: 'latest'
+  - name: spicedb-image
+    newName: ghcr.io/authzed/spicedb
+    newTag: 'v1.24.0'
+
+  # Data Service
+  - name: data-service-graphdb-image
+    newName: ghcr.io/darpa-askem/neo4j
+    newTag: '5.12-community'
+
+  # Jupyter LLM service
+  - name: beaker-image
+    newName: ghcr.io/darpa-askem/beaker-kernel
+    newTag: 'latest'
+
+  # Skema
+  - name: skema-py-image
+    newName: ghcr.io/darpa-askem/skema-py
+    newTag: 'latest'
+  - name: skema-rs-image
+    newName: ghcr.io/darpa-askem/skema-rs
+    newTag: 'latest'
+  - name: skema-memgraph-image
+    newName: ghcr.io/darpa-askem/memgraph-platform
+    newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
+  - name: skema-text-reading-image
+    newName: ghcr.io/darpa-askem/skema-text-reading
+    newTag: '2024_04_02'
+
+  # MIT
+  - name: mit-tr-image
+    newName: ghcr.io/darpa-askem/mit-tr
+    newTag: 'latest'
+
+  # Simulation Service
+  - name: sciml-service-image
+    newName: ghcr.io/darpa-askem/sciml-service
+    newTag: 'latest'
+
+  # PyCIEMSS service
+  - name: pyciemss-api-image
+    newName: ghcr.io/darpa-askem/pyciemss-api
+    newTag: 'latest'
+  - name: pyciemss-worker-image
+    newName: ghcr.io/darpa-askem/pyciemss-worker
+    newTag: 'latest'
+
+  # GoLLM service
+  - name: gollm-taskrunner-image
+    newName: ghcr.io/darpa-askem/gollm-taskrunner
+    newTag: 'latest'
+
+  # climate data
+  - name: climate-data-image
+    newName: ghcr.io/darpa-askem/climate-data-service
+    newTag: 'latest'
+
+  # mira taskrunner
+  - name: mira-taskrunner-image
+    newName: ghcr.io/darpa-askem/mira-taskrunner
+    newTag: 'latest'
+
+  # funman taskrunner
+  - name: funman-taskrunner-image
+    newName: ghcr.io/darpa-askem/funman-taskrunner
+    newTag: 'latest'
+
+  # Redis
+  - name: redis-image
+    newName: ghcr.io/darpa-askem/redis
+    newTag: '7.2.4-alpine'
