@@ -10,7 +10,7 @@ spec:
         - name: pyciemss-api
           env:
             - name: REDIS_HOST
-              value: redis.staging.terarium.ai
+              value: redis
             - name: REDIS_PORT
               value: '6379'
             - name: RABBITMQ_SSL
