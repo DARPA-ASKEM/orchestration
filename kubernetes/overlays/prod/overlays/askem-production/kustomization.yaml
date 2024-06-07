@@ -30,7 +30,6 @@ patches:
   - path: services/beaker/beaker-service.yaml
   - path: services/climate-data/climate-data-deployment.yaml
   - path: services/climate-data/climate-data-worker-deployment.yaml
-  - path: services/cosmos/cosmos-service.yaml
   - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
