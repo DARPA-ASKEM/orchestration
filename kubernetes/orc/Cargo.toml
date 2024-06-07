@@ -1,0 +1,11 @@
+[package]
+name = "orc"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap={version="4", features=["derive"]}
+serde_yaml={version="0.9.34"}
+base64={version="0.22.1"}
+colored={version="2.1.0"}
+thiserror = "1.0"
