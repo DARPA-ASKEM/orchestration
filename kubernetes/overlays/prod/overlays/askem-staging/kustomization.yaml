@@ -135,7 +135,7 @@ images:
     newName: ghcr.io/darpa-askem/mira-taskrunner
     newTag: 'latest'
 
-  # mira taskrunner
+  # cosmos (xdd)
   - name: cosmos-image
     newName: ghcr.io/darpa-askem/cosmos-service
     newTag: 'cpu-2024_04_19'
