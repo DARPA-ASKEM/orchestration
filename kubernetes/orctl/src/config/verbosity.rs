@@ -1,20 +1,20 @@
 use clap::ValueEnum;
 
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum)]
-pub(crate) enum Debug {
+pub(crate) enum Verbosity {
     NONE,
     INFO,
     TRACE,
 }
 
-pub(crate) fn get_debug_mode(debug: u8) -> Debug {
+pub(crate) fn get_verbosity(debug: u8) -> Verbosity {
     match debug {
-        0 => Debug::NONE,
-        1 => Debug::INFO,
-        2 => Debug::TRACE,
+        0 => Verbosity::NONE,
+        1 => Verbosity::INFO,
+        2 => Verbosity::TRACE,
         _ => {
             println!("Don't be crazy");
-            Debug::TRACE
+            Verbosity::TRACE
         }
     }
 }

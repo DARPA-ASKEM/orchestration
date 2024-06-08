@@ -1,14 +1,14 @@
 use std::process::Command;
 use std::str::Utf8Error;
-use crate::config::debug_mode::Debug;
+use crate::config::verbosity::Verbosity;
 use crate::models::deployment_environment::Environment;
 
-pub(crate) fn get_status(env: Environment, debug_mode: Debug, pod: &bool, svc: &bool) -> Result<(), Utf8Error> {
+pub(crate) fn get_status(env: Environment, debug_mode: Verbosity, pod: &bool, svc: &bool) -> Result<(), Utf8Error> {
     if *pod {
         println!("Status pod only");
     } else {
         let ssh_cmd_arg = format!("sudo kubectl get pod -o wide");
-        if debug_mode >= Debug::INFO {
+        if debug_mode >= Verbosity::INFO {
             println!("Status to be fetched {}", ssh_cmd_arg);
         }
         let output = Command::new("ssh")
