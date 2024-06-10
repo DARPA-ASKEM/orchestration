@@ -9,6 +9,13 @@ spec:
       nodeName: ip-172-16-40-52.ec2.internal
       containers:
         - name: beaker
+          env:
+            - name: APP_URL
+              value: https://beaker.terarium.ai
+            - name: JUPYTER_BASE_URL
+              value: https://beaker.terarium.ai
+            - name: JUPYTER_WS_URL
+              value: wss://beaker.terarium.ai
           resources:
             requests:
               memory: '1Gi'

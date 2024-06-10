@@ -23,6 +23,8 @@ spec:
               value: 'https://elasticsearch.staging.terarium.ai:443'
             - name: LOGGING_LEVEL_ROOT
               value: INFO
+            - name: TERARIUM_SWAGGER_SERVER-URL
+              value: 'https://server.staging.terarium.ai'
             - name: TERARIUM_AMAZON_S3_DEFAULT_REGION
               valueFrom:
                 secretKeyRef:

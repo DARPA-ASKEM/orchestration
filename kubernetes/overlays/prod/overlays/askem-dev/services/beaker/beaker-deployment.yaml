@@ -6,6 +6,22 @@ metadata:
 spec:
   template:
     spec:
+      containers:
+        - name: beaker
+          env:
+            - name: APP_URL
+              value: https://beaker.dev.terarium.ai
+            - name: JUPYTER_BASE_URL
+              value: https://beaker.dev.terarium.ai
+            - name: JUPYTER_WS_URL
+              value: wss://beaker.dev.terarium.ai
+          resources:
+            requests:
+              memory: '1Gi'
+              cpu: '2000m'
+            limits:
+              memory: '28Gi'
+              cpu: '7000m'
       tolerations:
         - key: 'workload'
           operator: 'Equal'
