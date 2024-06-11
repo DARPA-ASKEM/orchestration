@@ -4,11 +4,11 @@ kind: Ingress
 metadata:
   name: private-web-ingress
   annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: instance
-    alb.ingress.kubernetes.io/security-groups: askem-prod-web-private, askem-prod-k8s
+    alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
-    alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/security-groups: askem-prod-web-private, askem-prod-k8s
+    alb.ingress.kubernetes.io/target-type: instance
 spec:
   ingressClassName: alb
   rules:
@@ -19,10 +19,16 @@ spec:
             pathType: Prefix
             backend:
               service:
+                name: ssl-redirect
+                port:
+                  name: use-annotation
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
                 name: hmi-server
                 port:
                   number: 3000
-
     - host: 'beaker.terarium.ai'
       http:
         paths:
@@ -30,9 +36,17 @@ spec:
             pathType: Prefix
             backend:
               service:
+                name: ssl-redirect
+                port:
+                  name: use-annotation
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
                 name: beaker
                 port:
                   number: 3050
+
   tls:
     - hosts:
         - 'server.terarium.ai'
