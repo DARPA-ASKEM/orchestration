@@ -19,27 +19,40 @@ pub fn put_secret(env: Environment, env_vars: HashMap<String, String>, verbosity
     let yaml_content = common::get_yaml_contents_from_file(env.secrets_path, file.enc_name, env_vars.clone(), verbosity)?;
 
     if verbosity >= Verbosity::TRACE {
-        println!("Getting data object");
+        println!("Replacing value");
     }
-
     let yaml_content = replace_key_value(yaml_content, key_to_find, new_value)?;
 
     let dec_file_name = format!("{0}/{1}", env.secrets_path, file.dec_name);
     let buffer = File::create(dec_file_name.clone());
     match buffer {
         Ok(buffer) => {
+
+            if verbosity >= Verbosity::TRACE {
+                println!("Generating new yaml content");
+            }
              let res = serde_yaml::to_writer(buffer, &yaml_content);
             match res {
                 Ok(_) => {
-                    let enc_file_name = format!("{0}/{1}", env.secrets_path, file.dec_name);
+                    if verbosity >= Verbosity::TRACE {
+                        println!("Encrypting yaml content");
+                    }
+                    let enc_file_name = format!("{0}/{1}", env.secrets_path, file.enc_name);
                     let encrypted_contents = encrypt_file(dec_file_name, verbosity, env_vars)?;
 
-                    let buffer = File::create(enc_file_name);
+                    let buffer = File::create(enc_file_name.clone());
                     match buffer {
                         Ok(mut buffer) => {
+                            if verbosity >= Verbosity::TRACE {
+                                println!("Writing encrypted yaml to file: {}", enc_file_name);
+                            }
                             let res = buffer.write_all(encrypted_contents.as_ref());
                             match res {
-                                Ok(_) => {},
+                                Ok(_) => {
+                                    if verbosity >= Verbosity::TRACE {
+                                        println!("Success");
+                                    }
+                                },
                                 Err(error) => {
                                     return Err(OperateOnSecretsError::FileError { error: error });
                                 }
