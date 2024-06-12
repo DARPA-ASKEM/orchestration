@@ -39,9 +39,12 @@ fn main() -> Result<(), Box<dyn Error>> {
         Some(Commands::Status { pod, svc }) => {
             get_status(env, verbosity, pod, svc)?
         },
-        Some(Commands::Secrets { operation, file }) => {
-            operate_on_secrets(env, env_vars, verbosity, operation, file)?
+        Some(Commands::Secrets { command }) => {
+            operate_on_secrets(command, env, env_vars, verbosity)?
         },
+        // Some(Commands::Secrets { operation, file, key, value }) => {
+        //     operate_on_secrets(env, env_vars, verbosity, operation, file, key, value)?
+        // },
         None => {
             panic!("Missing Command.");
         }

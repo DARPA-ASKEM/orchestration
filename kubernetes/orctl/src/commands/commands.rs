@@ -12,13 +12,30 @@ pub(crate) enum Commands {
     },
     /// get secret values for a deployment
     Secrets {
-        /// What operation to perform
-        #[arg(value_enum)]
-        operation: Operation,
+        #[command(subcommand)]
+        command: SecretCommand,
+    },
+}
 
+#[derive(Subcommand)]
+pub(crate) enum SecretCommand {
+    /// Decrypt
+    Decrypt {
         /// What secret file to operate on
         #[arg(value_enum)]
         file: SecretFiles,
+    },
+    /// Encrypt
+    Encrypt {
+        /// What secret file to operate on
+        #[arg(value_enum)]
+        file: SecretFiles,
+
+        /// What key to operate on
+        key: String,
+
+        /// If decrypt what value to encode
+        value: String,
     },
 }
 
