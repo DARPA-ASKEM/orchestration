@@ -32,7 +32,7 @@ pub fn put_secret(env: Environment, env_vars: HashMap<String, String>, verbosity
             match res {
                 Ok(_) => {
                     let enc_file_name = format!("{0}/{1}", env.secrets_path, file.dec_name);
-                    let encrypted_contents = encryt_file(dec_file_name, verbosity, env_vars)?;
+                    let encrypted_contents = encrypt_file(dec_file_name, verbosity, env_vars)?;
 
                     let buffer = File::create(enc_file_name);
                     match buffer {
@@ -63,13 +63,15 @@ pub fn put_secret(env: Environment, env_vars: HashMap<String, String>, verbosity
     Ok(())
 }
 
-fn encryt_file(dec_file_name: String, verbosity: Verbosity, env_vars: HashMap<String, String>) -> Result<String, OperateOnSecretsError> {
+fn encrypt_file(dec_file_name: String, verbosity: Verbosity, env_vars: HashMap<String, String>) -> Result<String, OperateOnSecretsError> {
+    let age_public_key_arg = format!("--age={}", env_vars.get("AGE_PUBLIC_KEY").unwrap());
+
     if verbosity >= Verbosity::TRACE {
-        println!("decrypting file: {}", dec_file_name.clone());
+        println!("encrypting file: {}\n  using AGE_PUBLIC_KEY:{}", dec_file_name.clone(), age_public_key_arg.clone());
     }
     let output = Command::new("sops")
-        .arg("--age=${AGE_PUBLIC_KEY}")
-        .arg("--decrypt")
+        .arg(age_public_key_arg)
+        .arg("--encrypt")
         .arg("--encrypted-regex")
         .arg("'^(data|stringData)$'")
         .arg(dec_file_name.clone())
@@ -86,7 +88,7 @@ fn encryt_file(dec_file_name: String, verbosity: Verbosity, env_vars: HashMap<St
         Ok(file_contents.unwrap().to_owned())
     } else {
         io::stderr().write_all(&output.stderr).unwrap();
-        return Err(OperateOnSecretsError::FailedToDecrypt { file: dec_file_name});
+        return Err(OperateOnSecretsError::FailedToEncrypt { file: dec_file_name});
     }
 }
 

@@ -13,6 +13,8 @@ mod encrypt;
 pub(crate) enum OperateOnSecretsError {
     #[error("Failed to decrypt (file {file:?})")]
     FailedToDecrypt { file: String, },
+    #[error("Failed to decrypt (file {file:?})")]
+    FailedToEncrypt { file: String, },
     #[error("Failed to convert from utf8 (file {file:?})")]
     FailedToConvertFileFromUtf8 { file: String, },
     #[error("Failed to convert file contents to yaml")]
