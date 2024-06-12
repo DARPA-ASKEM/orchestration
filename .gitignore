@@ -38,3 +38,4 @@ nb-configuration.xml
 secrets.env
 /docker/dev/docker/
 mi6/export
+kubernetes/.idea
