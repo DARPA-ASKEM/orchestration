@@ -83,10 +83,10 @@ fn encrypt_file(dec_file_name: String, verbosity: Verbosity, env_vars: HashMap<S
         println!("encrypting file: {}\n  using AGE_PUBLIC_KEY:{}", dec_file_name.clone(), age_public_key_arg.clone());
     }
     let output = Command::new("sops")
-        .arg(age_public_key_arg)
         .arg("--encrypt")
+        .arg(age_public_key_arg)
         .arg("--encrypted-regex")
-        .arg("'^(data|stringData)$'")
+        .arg("^(data|stringData)$")
         .arg(dec_file_name.clone())
         .envs(&env_vars)
         .output()
