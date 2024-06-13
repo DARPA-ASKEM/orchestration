@@ -6,7 +6,7 @@ use crate::config::verbosity::Verbosity;
 use crate::models::deployment_environment::Environment;
 use crate::models::secret_files::{SecretFile, SecretFiles};
 
-pub fn get_secrets(env: Environment, env_vars: HashMap<String, String>, verbosity: Verbosity, file_type: &SecretFiles) -> Result<(), OperateOnSecretsError> {
+pub(crate) fn get_secrets(env: Environment, env_vars: HashMap<String, String>, verbosity: Verbosity, file_type: &SecretFiles) -> Result<(), OperateOnSecretsError> {
     let file = SecretFile::by_type(file_type);
     if verbosity >= Verbosity::INFO {
         println!("Secrets op:decrypt, file:{}", file.dec_name);

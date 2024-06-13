@@ -32,7 +32,7 @@ fn decrypt_file(enc_file_name: String, env_vars: HashMap<String, String>, verbos
     }
 }
 
-pub fn decode_row(key: &Value, value: &Value) -> Result<(String, String), OperateOnSecretsError> {
+pub(crate) fn decode_row(key: &Value, value: &Value) -> Result<(String, String), OperateOnSecretsError> {
     let val_base64 = value.as_str();
     if val_base64.is_none() { return Err(OperateOnSecretsError::ValueMissing()) }
     let val_base64 = val_base64.unwrap().to_string();

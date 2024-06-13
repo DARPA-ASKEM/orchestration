@@ -36,7 +36,7 @@ pub(crate) struct SecretFile<'a> {
 }
 
 impl<'a> SecretFile<'a> {
-    pub fn by_type(file: &SecretFiles) -> SecretFile {
+    pub(crate) fn by_type(file: &SecretFiles) -> SecretFile {
         match file {
             SecretFiles::Dkg => DKG,
             SecretFiles::Beaker => BEAKER,

@@ -11,7 +11,7 @@ use crate::config::verbosity::Verbosity;
 use crate::models::deployment_environment::Environment;
 use crate::models::secret_files::{SecretFile, SecretFiles};
 
-pub fn put_secret(env: Environment, env_vars: HashMap<String, String>, verbosity: Verbosity, file_type: &SecretFiles, key_to_find: &String, new_value: &String) -> Result<(), OperateOnSecretsError> {
+pub(crate) fn put_secret(env: Environment, env_vars: HashMap<String, String>, verbosity: Verbosity, file_type: &SecretFiles, key_to_find: &String, new_value: &String) -> Result<(), OperateOnSecretsError> {
     let file = SecretFile::by_type(file_type);
     if verbosity >= Verbosity::INFO {
         println!("Secrets op:encrypt, file:{}, key:{}, value:{}", file.dec_name, key_to_find, new_value);
