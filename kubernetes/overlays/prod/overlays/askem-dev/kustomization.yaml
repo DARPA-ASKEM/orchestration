@@ -51,8 +51,8 @@ configMapGenerator:
 images:
   # Auth
   - name: keycloak-image
-    newName: ghcr.io/unchartedsoftware/keycloak
-    newTag: '0.2.2'
+    newName: quay.io/keycloak/keycloak
+    newTag: '25.0.0'
   - name: terarium-login-theme-image
     newName: ghcr.io/darpa-askem/terarium-login-theme
     newTag: 'latest'

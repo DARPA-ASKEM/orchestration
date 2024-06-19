@@ -23,6 +23,9 @@ spec:
         - name: keycloak
           image: keycloak-image
           imagePullPolicy: Always
+          env:
+            - name: KC_DB
+              value: postgres
           args:
             - start
           ports:
@@ -48,6 +51,9 @@ spec:
             - import
             - --dir
             - /data
+          env:
+            - name: KC_DB
+              value: postgres
           ports:
             - containerPort: 8080
               protocol: TCP
