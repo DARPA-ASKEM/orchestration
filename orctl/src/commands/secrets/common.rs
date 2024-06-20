@@ -1,12 +1,34 @@
 use std::collections::HashMap;
+use std::env::VarError;
 use std::process::Command;
-use std::io;
+use std::{env, io};
 use std::io::Write;
+use std::string::ToString;
 use serde_yaml::Value;
 use base64::engine::general_purpose::STANDARD as BASE64_STANDARD;
 use base64::Engine;
 use crate::commands::secrets::OperateOnSecretsError;
 use crate::config::verbosity::Verbosity;
+use crate::models::secret_files::SecretFile;
+
+pub(crate) const AGE_PUBLIC_KEY: &str = "AGE_PUBLIC_KEY";
+const SOPS_AGE_KEY_FILE: &str = "SOPS_AGE_KEY_FILE";
+
+pub(crate) fn age_env_vars() -> HashMap<String, String> {
+    let mut env_vars: HashMap<String, String> = HashMap::new();
+    env_vars.insert(AGE_PUBLIC_KEY.to_string(), get_env_value(AGE_PUBLIC_KEY));
+    env_vars.insert(SOPS_AGE_KEY_FILE.to_string(), get_env_value(SOPS_AGE_KEY_FILE));
+    env_vars
+}
+
+pub(crate) fn get_env_value(key: &str) -> String {
+    match env::var(key) {
+        Ok(value) => value,
+        Err(VarError::NotPresent) | Err(VarError::NotUnicode(_)) => {
+            panic!("Environment Variable {} is missing", key);
+        },
+    }
+}
 
 fn decrypt_file(enc_file_name: String, env_vars: HashMap<String, String>, verbosity: Verbosity) -> Result<String, OperateOnSecretsError> {
     if verbosity >= Verbosity::TRACE {
@@ -65,8 +87,8 @@ fn read_yaml(file_contents: String, verbosity: Verbosity) -> Result<Value, Opera
     Ok(secret_contents.unwrap())
 }
 
-pub(crate) fn get_yaml_contents_from_file(path: &str, file_name: &str, env_vars: HashMap<String, String>, verbosity: Verbosity) -> Result<Value, OperateOnSecretsError> {
-    let enc_file_name = format!("{0}/{1}", path, file_name);
-    let file_contents = decrypt_file(enc_file_name, env_vars, verbosity)?;
+pub(crate) fn get_yaml_contents_from_file(path: &str, file: SecretFile, verbosity: Verbosity) -> Result<Value, OperateOnSecretsError> {
+    let enc_file_name = format!("{0}{1}{2}", path, file.folder,  file.enc_name);
+    let file_contents = decrypt_file(enc_file_name, age_env_vars(), verbosity)?;
     read_yaml(file_contents, verbosity)
 }

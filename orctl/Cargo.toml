@@ -9,3 +9,4 @@ serde_yaml={version="0.9.34"}
 base64={version="0.22.1"}
 colored={version="2.1.0"}
 thiserror = "1.0"
+dotenv = "0.15.0"

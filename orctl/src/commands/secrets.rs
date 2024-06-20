@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use std::io;
 use thiserror::Error;
 use crate::commands::commands::SecretCommand;
@@ -40,13 +39,13 @@ pub(crate) enum OperateOnSecretsError {
     KeyMissing(),
 }
 
-pub(crate) fn operate_on_secrets(commands: &SecretCommand, env: Environment, env_vars: HashMap<String, String>, verbosity: Verbosity) -> Result<(), OperateOnSecretsError> {
+pub(crate) fn operate_on_secrets(commands: &SecretCommand, env: Environment, verbosity: Verbosity) -> Result<(), OperateOnSecretsError> {
     match commands {
         SecretCommand::Decrypt { file } => {
-            decrypt::get_secrets(env, env_vars, verbosity, file)
+            decrypt::get_secrets(env, verbosity, file)
         }
         SecretCommand::Encrypt { file, key, value } => {
-            encrypt::put_secret(env, env_vars, verbosity, file, key, value)
+            encrypt::put_secret(env, verbosity, file, key, value)
         }
     }
 }

@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use serde_yaml::Value;
 use colored::Colorize;
 use crate::commands::secrets::{common, OperateOnSecretsError};
@@ -6,12 +5,12 @@ use crate::config::verbosity::Verbosity;
 use crate::models::deployment_environment::Environment;
 use crate::models::secret_files::{SecretFile, SecretFiles};
 
-pub(crate) fn get_secrets(env: Environment, env_vars: HashMap<String, String>, verbosity: Verbosity, file_type: &SecretFiles) -> Result<(), OperateOnSecretsError> {
+pub(crate) fn get_secrets(env: Environment, verbosity: Verbosity, file_type: &SecretFiles) -> Result<(), OperateOnSecretsError> {
     let file = SecretFile::by_type(file_type);
     if verbosity >= Verbosity::INFO {
         println!("Secrets op:decrypt, file:{}", file.dec_name);
     }
-    let yaml_content = common::get_yaml_contents_from_file(env.secrets_path, file.enc_name, env_vars, verbosity)?;
+    let yaml_content = common::get_yaml_contents_from_file(env.secrets_path, file, verbosity)?;
 
     if verbosity >= Verbosity::TRACE {
         println!("Getting data object");

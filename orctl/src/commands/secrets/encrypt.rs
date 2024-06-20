@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use std::fs::File;
 use std::io;
 use std::io::Write;
@@ -7,23 +6,24 @@ use base64::Engine;
 use base64::prelude::BASE64_STANDARD;
 use serde_yaml::Value;
 use crate::commands::secrets::{common, OperateOnSecretsError};
+use crate::commands::secrets::common::{AGE_PUBLIC_KEY, get_env_value};
 use crate::config::verbosity::Verbosity;
 use crate::models::deployment_environment::Environment;
 use crate::models::secret_files::{SecretFile, SecretFiles};
 
-pub(crate) fn put_secret(env: Environment, env_vars: HashMap<String, String>, verbosity: Verbosity, file_type: &SecretFiles, key_to_find: &String, new_value: &String) -> Result<(), OperateOnSecretsError> {
+pub(crate) fn put_secret(env: Environment, verbosity: Verbosity, file_type: &SecretFiles, key_to_find: &String, new_value: &String) -> Result<(), OperateOnSecretsError> {
     let file = SecretFile::by_type(file_type);
     if verbosity >= Verbosity::INFO {
         println!("Secrets op:encrypt, file:{}, key:{}, value:{}", file.dec_name, key_to_find, new_value);
     }
-    let yaml_content = common::get_yaml_contents_from_file(env.secrets_path, file.enc_name, env_vars.clone(), verbosity)?;
+    let yaml_content = common::get_yaml_contents_from_file(env.secrets_path, file.clone(), verbosity)?;
 
     if verbosity >= Verbosity::TRACE {
         println!("Replacing value");
     }
     let yaml_content = replace_key_value(yaml_content, key_to_find, new_value)?;
 
-    let dec_file_name = format!("{0}/{1}", env.secrets_path, file.dec_name);
+    let dec_file_name = format!("{0}{1}{2}", env.secrets_path, file.folder, file.dec_name);
     let buffer = File::create(dec_file_name.clone());
     match buffer {
         Ok(buffer) => {
@@ -37,8 +37,8 @@ pub(crate) fn put_secret(env: Environment, env_vars: HashMap<String, String>, ve
                     if verbosity >= Verbosity::TRACE {
                         println!("Encrypting yaml content");
                     }
-                    let enc_file_name = format!("{0}/{1}", env.secrets_path, file.enc_name);
-                    let encrypted_contents = encrypt_file(dec_file_name, verbosity, env_vars)?;
+                    let enc_file_name = format!("{0}{1}{2}", env.secrets_path, file.folder, file.enc_name);
+                    let encrypted_contents = encrypt_file(dec_file_name, verbosity)?;
 
                     let buffer = File::create(enc_file_name.clone());
                     match buffer {
@@ -76,11 +76,11 @@ pub(crate) fn put_secret(env: Environment, env_vars: HashMap<String, String>, ve
     Ok(())
 }
 
-fn encrypt_file(dec_file_name: String, verbosity: Verbosity, env_vars: HashMap<String, String>) -> Result<String, OperateOnSecretsError> {
-    let age_public_key_arg = format!("--age={}", env_vars.get("AGE_PUBLIC_KEY").unwrap());
+fn encrypt_file(dec_file_name: String, verbosity: Verbosity) -> Result<String, OperateOnSecretsError> {
+    let age_public_key_arg = format!("--age={}", get_env_value(AGE_PUBLIC_KEY));
 
     if verbosity >= Verbosity::TRACE {
-        println!("encrypting file: {}\n  using AGE_PUBLIC_KEY:{}", dec_file_name.clone(), age_public_key_arg.clone());
+        println!("encrypting file: {}", dec_file_name.clone());
     }
     let output = Command::new("sops")
         .arg("--encrypt")
@@ -88,7 +88,7 @@ fn encrypt_file(dec_file_name: String, verbosity: Verbosity, env_vars: HashMap<S
         .arg("--encrypted-regex")
         .arg("^(data|stringData)$")
         .arg(dec_file_name.clone())
-        .envs(&env_vars)
+        .envs(&common::age_env_vars())
         .output()
         .expect("failed to execute");
 
