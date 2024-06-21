@@ -72,7 +72,7 @@ images:
   # Jupyter LLM service
   - name: beaker-image
     newName: ghcr.io/darpa-askem/beaker-kernel
-    newTag: '1.6.0'
+    newTag: 'latest'
 
   # Skema
   - name: skema-py-image
