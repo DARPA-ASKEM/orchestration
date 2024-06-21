@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ -f ../orctl/target/debug/orctl ]]; then
+  ../orctl/target/debug/orctl "$@"
+else
+  echo "Please build orctl, consult the README.md in ../orctl"
+fi
