@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cosmos
+  labels:
+    software.uncharted.terarium/name: cosmos
+    software.uncharted.terarium/component: cosmos
+    software.uncharted.terarium/service: cosmos
+    software.uncharted.terarium/part-of: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: cosmos
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: cosmos
+    spec:
+      containers:
+        - name: cosmos
+          image: cosmos-image
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8089
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8089
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8089
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}
