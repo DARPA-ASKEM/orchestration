@@ -53,13 +53,13 @@ images:
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: '2.12.2'
+    newTag: '2.13.0'
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
     newTag: 'latest'
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: '2.12.2'
+    newTag: '2.13.0'
   - name: spicedb-image
     newName: ghcr.io/authzed/spicedb
     newTag: 'v1.24.0'
@@ -72,15 +72,15 @@ images:
   # Jupyter LLM service
   - name: beaker-image
     newName: ghcr.io/darpa-askem/beaker-kernel
-    newTag: '1.5.0'
+    newTag: '1.6.0'
 
   # Skema
   - name: skema-py-image
     newName: ghcr.io/darpa-askem/skema-py
-    newTag: '1.0.0'
+    newTag: '1.1.0'
   - name: skema-rs-image
     newName: ghcr.io/darpa-askem/skema-rs
-    newTag: '1.0.0'
+    newTag: '1.1.0'
   - name: skema-memgraph-image
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
@@ -96,20 +96,20 @@ images:
   # Simulation Service
   - name: sciml-service-image
     newName: ghcr.io/darpa-askem/sciml-service
-    newTag: '1.0.0'
+    newTag: '1.1.0'
 
   # PyCIEMSS service
   - name: pyciemss-api-image
     newName: ghcr.io/darpa-askem/pyciemss-api
-    newTag: '1.10.0'
+    newTag: '1.11.0'
   - name: pyciemss-worker-image
     newName: ghcr.io/darpa-askem/pyciemss-worker
-    newTag: '1.10.0'
+    newTag: '1.11.0'
 
   # GoLLM service
   - name: gollm-taskrunner-image
     newName: ghcr.io/darpa-askem/gollm-taskrunner
-    newTag: '2.12.0'
+    newTag: '2.13.0'
 
   # Integration Dashboard
   - name: integration-dashboard-image
@@ -124,7 +124,7 @@ images:
   # mira taskrunner
   - name: mira-taskrunner-image
     newName: ghcr.io/darpa-askem/mira-taskrunner
-    newTag: '2.12.0'
+    newTag: '2.13.0'
 
   # cosmos (xdd)
   - name: cosmos-image
@@ -134,7 +134,7 @@ images:
   # funman taskrunner
   - name: funman-taskrunner-image
     newName: ghcr.io/darpa-askem/funman-taskrunner
-    newTag: '2.12.0'
+    newTag: '2.13.0'
 
   # Redis
   - name: redis-image

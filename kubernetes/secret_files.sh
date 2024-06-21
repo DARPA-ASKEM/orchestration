@@ -20,8 +20,6 @@ STAGING_YAML=(
 	"overlays/prod/overlays/askem-staging/check-latest/secrets.yaml"
 )
 STAGING_ADDITIONAL=(
-  "overlays/prod/overlays/askem-staging/keycloak/realm/Uncharted-realm.json"
-  "overlays/prod/overlays/askem-staging/keycloak/realm/Uncharted-users-0.json"
   "overlays/prod/overlays/askem-staging/check-latest/check-latest-rsa"
 )
 
