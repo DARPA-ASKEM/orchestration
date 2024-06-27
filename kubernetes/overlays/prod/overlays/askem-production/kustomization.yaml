@@ -4,6 +4,8 @@ kind: Kustomization
 namespace: terarium
 resources:
   - ../../base
+  - keycloak/keycloak-deployment.yaml
+  - keycloak/keycloak-service.yaml
   - ingress/private-web-ingress.yaml
   - ingress/public-web-ingress.yaml
   - ingress/public-web-ssl-ingress.yaml
