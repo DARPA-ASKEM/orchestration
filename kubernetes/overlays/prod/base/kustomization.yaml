@@ -3,7 +3,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: terarium
 resources:
-  - ../../../base/keycloak
   - ../../../base/hmi/client
   - ../../../base/hmi/documentation
   - ../../../base/hmi/server
@@ -28,8 +27,6 @@ patches:
   - path: hmi/server/hmi-server-service.yaml
   - path: hmi/server/spicedb-deployment.yaml
   - path: hmi/server/spicedb-service.yaml
-  - path: keycloak/keycloak-deployment.yaml
-  - path: keycloak/keycloak-service.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/data-service/data-service-graphdb-deployment.yaml
   - path: services/climate-data/climate-data-deployment.yaml
