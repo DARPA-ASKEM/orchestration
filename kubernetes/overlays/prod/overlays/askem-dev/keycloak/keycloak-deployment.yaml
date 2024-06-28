@@ -162,4 +162,3 @@ spec:
         - emptyDir: {}
           name: theme-volume
 status: {}
-
