@@ -5,6 +5,8 @@ namespace: terarium
 resources:
   - ../../base
   - check-latest
+  - keycloak/keycloak-deployment.yaml
+  - keycloak/keycloak-service.yaml
   - ingress/private-web-grpc-ingress.yaml
   - ingress/private-web-ingress.yaml
   - ingress/private-web-ssl-ingress.yaml
@@ -24,7 +26,6 @@ resources:
 patches:
   - path: hmi/documentation/terarium-docs-service.yaml
   - path: hmi/server/hmi-server-deployment.yaml
-  - path: keycloak/keycloak-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/beaker/beaker-service.yaml
   - path: services/climate-data/climate-data-deployment.yaml

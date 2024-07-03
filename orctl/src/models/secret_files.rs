@@ -2,33 +2,33 @@ use clap::ValueEnum;
 
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum)]
 pub(crate) enum SecretFiles {
-    /// DKG
+    /// secrets-dkg.yaml
     Dkg,
-    /// BEAKER
+    /// secrets-beaker-creds.yaml
     Beaker,
-    /// ES
+    /// secrets-es-creds.yaml
     Es,
-    /// ADOBE
+    /// secrets-adobe-api-key.yaml
     Adobe,
-    /// S3
+    /// secrets-data-service-s3.yaml
     S3,
-    /// RDS
+    /// secrets-rds-creds.yaml
     Rds,
-    /// LOGGING
+    /// secrets-logging-creds.yaml
     Logging,
-    /// MQ
+    /// secrets-mq-creds.yaml
     Mq,
-    /// CHATGPT
+    /// secrets-chatgpt.yaml
     Chatgpt,
-    /// SPICEDB
+    /// secrets-spicedb-shared.yaml
     Spicedb,
-    /// XDD
+    /// secrets-xdd-api-key.yaml
     Xdd,
-    /// KEYCLOAK
+    /// secrets-keycloak-creds.yaml
     Keycloak,
-    /// NEO4J
+    /// secrets-neo4j-auth.yaml
     Neo4j,
-    /// CHECK-LATEST
+    /// check-latest secrets.yaml
     CheckLatest
 }
 
