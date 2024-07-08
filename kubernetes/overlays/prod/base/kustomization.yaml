@@ -28,8 +28,6 @@ patches:
   - path: hmi/server/hmi-server-service.yaml
   - path: hmi/server/spicedb-deployment.yaml
   - path: hmi/server/spicedb-service.yaml
-  - path: keycloak/keycloak-deployment.yaml
-  - path: keycloak/keycloak-service.yaml
   - path: services/cosmos/cosmos-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/data-service/data-service-graphdb-deployment.yaml
