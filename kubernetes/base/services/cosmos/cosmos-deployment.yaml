@@ -42,7 +42,7 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 10
             timeoutSeconds: 5
-            resources: {}
+          resources: {}
       imagePullSecrets:
         - name: ghcr-cred
       restartPolicy: Always
