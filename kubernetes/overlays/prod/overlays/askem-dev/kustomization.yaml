@@ -41,8 +41,6 @@ patches:
   - path: services/sciml-service/sciml-service-deployment.yaml
   - path: services/sciml-service/sciml-service-service.yaml
   - path: services/skema/skema-rs-service.yaml
-  - path: services/skema/skema-text-reading-deployment.yaml
-  - path: services/skema/skema-text-reading-service.yaml
   - path: services/skema/skema-unified-service.yaml
 configMapGenerator:
   - files:
