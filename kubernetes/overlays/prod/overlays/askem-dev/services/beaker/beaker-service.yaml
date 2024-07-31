@@ -4,4 +4,4 @@ kind: Service
 metadata:
   name: beaker
 spec:
-  type: ClusterIP
+  type: NodePort

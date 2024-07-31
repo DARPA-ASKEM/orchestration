@@ -4,4 +4,4 @@ kind: Service
 metadata:
   name: cosmos
 spec:
-  type: ClusterIP
+  type: NodePort

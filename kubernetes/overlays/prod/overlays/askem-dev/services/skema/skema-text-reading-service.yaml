@@ -4,4 +4,4 @@ kind: Service
 metadata:
   name: skema-text-reading
 spec:
-  type: ClusterIP
+  type: NodePort
