@@ -4,8 +4,6 @@ kind: Kustomization
 namespace: terarium
 resources:
   - ../../base
-  - keycloak/keycloak-deployment.yaml
-  - keycloak/keycloak-service.yaml
   - ingress/private-web-ingress.yaml
   - ingress/public-web-ingress.yaml
   - ingress/public-web-ssl-ingress.yaml
@@ -14,7 +12,6 @@ resources:
   - secrets/secrets-data-service-s3.yaml
   - secrets/secrets-dkg.yaml
   - secrets/secrets-es-creds.yaml
-  - secrets/secrets-keycloak-creds.yaml
   - secrets/secrets-logging-creds.yaml
   - secrets/secrets-chatgpt.yaml
   - secrets/secrets-mq-creds.yaml
@@ -27,7 +24,6 @@ resources:
 patches:
   - path: hmi/documentation/terarium-docs-service.yaml
   - path: hmi/server/hmi-server-deployment.yaml
-  - path: keycloak/keycloak-deployment.yaml
   - path: services/beaker/beaker-deployment.yaml
   - path: services/beaker/beaker-service.yaml
   - path: services/climate-data/climate-data-deployment.yaml
@@ -36,21 +32,7 @@ patches:
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
   - path: services/sciml-service/sciml-service-deployment.yaml
-configMapGenerator:
-  - files:
-      - keycloak/realm/Uncharted-realm.json
-      - keycloak/realm/Uncharted-users-0.json
-    name: keycloak-realm
-    behavior: create
 images:
-  # Auth
-  - name: keycloak-image
-    newName: ghcr.io/unchartedsoftware/keycloak
-    newTag: '0.2.2'
-  - name: terarium-login-theme-image
-    newName: ghcr.io/darpa-askem/terarium-login-theme
-    newTag: '1.4.0'
-
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
