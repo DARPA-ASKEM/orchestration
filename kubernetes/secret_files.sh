@@ -40,8 +40,6 @@ PRODUCTION_YAML=(
 	"overlays/prod/overlays/askem-production/check-latest/secrets.yaml"
 )
 PRODUCTION_ADDITIONAL=(
-  "overlays/prod/overlays/askem-production/keycloak/realm/Uncharted-realm.json"
-  "overlays/prod/overlays/askem-production/keycloak/realm/Uncharted-users-0.json"
   "overlays/prod/overlays/askem-production/check-latest/check-latest-rsa"
 )
 
