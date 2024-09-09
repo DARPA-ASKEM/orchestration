@@ -91,9 +91,6 @@ images:
   - name: skema-memgraph-image
     newName: ghcr.io/darpa-askem/memgraph-platform
     newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
-  - name: skema-text-reading-image
-    newName: ghcr.io/darpa-askem/skema-text-reading
-    newTag: '2024_04_02'
 
   # MIT
   - name: mit-tr-image
