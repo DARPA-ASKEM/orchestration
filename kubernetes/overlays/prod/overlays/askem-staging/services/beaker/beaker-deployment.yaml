@@ -15,10 +15,6 @@ spec:
               value: https://beaker.staging.terarium.ai
             - name: JUPYTER_WS_URL
               value: wss://beaker.staging.terarium.ai
-            - name: TOOL_ENABLED_RUN_CODE
-              value: 'true'
-            - name: ENABLE_CHECKPOINTS
-              value: 'true'
           resources:
             requests:
               memory: '1Gi'

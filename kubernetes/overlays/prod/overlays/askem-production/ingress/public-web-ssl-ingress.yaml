@@ -10,6 +10,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/security-groups: askem-prod-web, askem-prod-k8s
     alb.ingress.kubernetes.io/target-type: instance
+    alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=300
 spec:
   ingressClassName: alb
   rules:
