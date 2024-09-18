@@ -9,7 +9,6 @@ software.uncharted.terarium/name=mira-taskrunner ghcr.io/darpa-askem/mira-taskru
 software.uncharted.terarium/name=mit-tr ghcr.io/darpa-askem/mit-tr:latest
 software.uncharted.terarium/name=pyciemss-api ghcr.io/darpa-askem/pyciemss-api:latest
 software.uncharted.terarium/name=pyciemss-worker ghcr.io/darpa-askem/pyciemss-worker:latest
-software.uncharted.terarium/name=sciml-service ghcr.io/darpa-askem/sciml-service:latest
 software.uncharted.terarium/name=skema-mathjax ghcr.io/darpa-askem/skema-py:latest
 software.uncharted.terarium/name=skema-rs ghcr.io/darpa-askem/skema-rs:latest
 software.uncharted.terarium/name=skema-unified ghcr.io/darpa-askem/skema-py:latest

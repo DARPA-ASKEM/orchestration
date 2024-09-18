@@ -20,8 +20,6 @@ spec:
               value: 'false'
             - name: ENABLE_CHECKPOINTS
               value: 'false'
-            - name: SIMULATION_SCHEDULER_URL
-              value: http://sciml-service:3030
             - name: HMI_SERVER_URL
               value: http://hmi-server:3000
             - name: MIRA_REST_URL

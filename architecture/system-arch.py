@@ -82,7 +82,6 @@ with Diagram("Terarium System Architecture", show=True,
 		with Cluster("Simulation Services"):
 			pyciemss_api = Custom("pyciemss API", "./resources/pnnl.png")
 			pyciemss_worker = Custom("pyciemss Worker", "./resources/pnnl.png")
-			sciml_service = Custom("SciML Service", "./resources/sciml.png")
 
 		with Cluster("Knowledge Services"):
 			beaker = Custom("Beaker", "./resources/jataware.jpeg")
@@ -124,7 +123,6 @@ with Diagram("Terarium System Architecture", show=True,
 	beaker >> Edge() << ingress_beaker
 	beaker >> Edge() >> mira
 	beaker >> Edge() >> openai
-	beaker >> Edge() >> sciml_service
 	climate_data_api >> Edge() >> climate_data_worker
 	climate_data_worker >> Edge() >> esgf
 	climate_data_worker >> Edge() >> openai
@@ -155,7 +153,6 @@ with Diagram("Terarium System Architecture", show=True,
 	hmi_server >> Edge() >> pyciemss_api
 	hmi_server >> Edge() >> redis
 	hmi_server >> Edge() >> s3
-	hmi_server >> Edge() >> sciml_service
 	hmi_server >> Edge() >> skema_rs
 	hmi_server >> Edge() >> skema_tr
 	hmi_server >> Edge() >> skema_unified
@@ -173,7 +170,6 @@ with Diagram("Terarium System Architecture", show=True,
 	pyciemss_worker >> Edge() >> hmi_server
 	pyciemss_worker >> Edge() >> message_queue
 	pyciemss_worker >> Edge() >> redis
-	sciml_service >> Edge() >> message_queue
 	skema_unified >> Edge() >> mit_tr
 	skema_unified >> Edge() >> skema_rs
 	web_servers >> Edge() << ingress_app

@@ -35,8 +35,6 @@ spec:
                 secretKeyRef:
                   name: chat-gpt-secrets
                   key: chatgptkey
-            - name: SIMULATION-SERVICE_URL
-              value: 'http://sciml-service:3030'
             - name: SKEMA-PY_URL
               value: 'http://skema-py:4041'
             - name: SKEMA-RS_URL
