@@ -17,6 +17,11 @@ spec:
                 secretKeyRef:
                   name: adobe-api-key
                   key: key
+            - name: ADOBE_API-LOCALHOST-KEY
+              valueFrom:
+                secretKeyRef:
+                  name: adobe-api-key
+                  key: localhost
             - name: CIEMSS-SERVICE_URL
               value: 'http://pyciemss-api:3040'
             - name: CLIMATE-DATA-SERVICE_URL
