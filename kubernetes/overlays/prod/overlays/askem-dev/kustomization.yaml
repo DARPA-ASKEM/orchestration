@@ -123,7 +123,7 @@ images:
   # mira taskrunner
   - name: mira-taskrunner-image
     newName: ghcr.io/darpa-askem/mira-taskrunner
-    newTag: 'latest'
+    newTag: 'latest--amd64'
 
   # cosmos (xdd)
   - name: cosmos-image
