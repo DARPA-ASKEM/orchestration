@@ -115,6 +115,11 @@ images:
     newName: ghcr.io/darpa-askem/gollm-taskrunner
     newTag: 'latest'
 
+  # Equation extraction (CPU)
+  - name: equation-extraction-taskrunner-image
+    newName: ghcr.io/darpa-askem/equation-extraction-taskrunner
+    newTag: 'latest'
+
   # climate data
   - name: climate-data-image
     newName: ghcr.io/darpa-askem/climate-data-service

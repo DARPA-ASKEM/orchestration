@@ -74,6 +74,9 @@ with Diagram("Terarium System Architecture", show=True,
 			gollm = Custom("Gollm", "./resources/uncharted.png")
 			mira_taskrunner = Custom("MIRA Taskrunner", "./resources/uncharted.png")
 			mira_local = Custom("MIRA", "./resources/uncharted.png")
+			equation_extraction_cpu_taskrunner = Custom("Equation Extraction (CPU) Taskrunner", "./resources/uncharted.png")
+			equation_extraction_cpu = Custom("Equation Extraction (CPU)", "./resources/uncharted.png")
+			funman_taskrunner = Custom("Funman Taskrunner", "./resources/uncharted.png")
 
 		with Cluster("Data Sources"):
 			spicedb = Database("SpiceDB")
@@ -130,6 +133,10 @@ with Diagram("Terarium System Architecture", show=True,
 	climate_data_worker >> Edge() >> openai
 	climate_data_worker >> Edge() >> redis
 	climate_data_worker >> Edge() >> s3
+	equation_extraction_cpu_taskrunner >> Edge() >> equation_extraction_cpu
+	equation_extraction_cpu_taskrunner >> Edge() >> message_queue
+	funman_taskrunner >> Edge() >> funman
+	funman_taskrunner >> Edge() >> message_queue
 	gollm_taskrunner >> Edge() >> gollm
 	gollm_taskrunner >> Edge() >> message_queue
 	grafana >> Edge() >> es

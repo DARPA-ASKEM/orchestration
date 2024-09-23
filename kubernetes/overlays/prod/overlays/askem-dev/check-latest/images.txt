@@ -1,6 +1,7 @@
 software.uncharted.terarium/name=beaker ghcr.io/darpa-askem/beaker-kernel:latest
 software.uncharted.terarium/name=climate-data ghcr.io/darpa-askem/climate-data-service:latest
 software.uncharted.terarium/name=climate-data-worker ghcr.io/darpa-askem/climate-data-service:latest
+software.uncharted.terarium/name=equation-extraction-taskrunner ghcr.io/darpa-askem/equation-extraction-taskrunner:latest
 software.uncharted.terarium/name=funman-taskrunner ghcr.io/darpa-askem/funman-taskrunner:latest
 software.uncharted.terarium/name=gollm-taskrunner ghcr.io/darpa-askem/gollm-taskrunner:latest
 software.uncharted.terarium/name=hmi-client ghcr.io/darpa-askem/hmi-client:latest
