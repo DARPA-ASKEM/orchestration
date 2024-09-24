@@ -120,6 +120,11 @@ images:
     newName: ghcr.io/darpa-askem/equation-extraction-taskrunner
     newTag: 'latest'
 
+  # Text extraction (CPU)
+  - name: text-extraction-taskrunner-image
+    newName: ghcr.io/darpa-askem/text-extraction-taskrunner
+    newTag: 'latest'
+
   # climate data
   - name: climate-data-image
     newName: ghcr.io/darpa-askem/climate-data-service

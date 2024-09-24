@@ -11,7 +11,6 @@ from diagrams.onprem.inmemory import Redis
 from diagrams.onprem.logging import Loki
 from diagrams.onprem.monitoring import Grafana
 from diagrams.onprem.monitoring import Prometheus
-from diagrams.onprem.network import Apache
 from diagrams.onprem.queue import Rabbitmq
 from diagrams.programming.flowchart import Database
 
@@ -66,17 +65,19 @@ with Diagram("Terarium System Architecture", show=True,
 
 	with Cluster("TA4 Kubernetes Cluster"):
 		with Cluster("Middle Tier"):
+			equation_extraction = Custom("Equation Extraction", "./resources/uncharted.png")
+			equation_extraction_taskrunner = Custom("Equation Extraction Taskrunner", "./resources/uncharted.png")
+			funman_taskrunner = Custom("Funman Taskrunner", "./resources/uncharted.png")
+			gollm = Custom("Gollm", "./resources/uncharted.png")
+			gollm_taskrunner = Custom("Gollm Taskrunner", "./resources/uncharted.png")
 			hmi_server = Custom("HMI Server", "./resources/uncharted.png")
-			web_servers = [Custom("Web Server", "./resources/uncharted.png"), Custom("Docs Server", "./resources/uncharted.png")]
 			keycloak = Custom("Keycloak", "./resources/keycloak.png")
 			message_queue = Rabbitmq("Message Queue")
-			gollm_taskrunner = Custom("Gollm Taskrunner", "./resources/uncharted.png")
-			gollm = Custom("Gollm", "./resources/uncharted.png")
-			mira_taskrunner = Custom("MIRA Taskrunner", "./resources/uncharted.png")
 			mira_local = Custom("MIRA", "./resources/uncharted.png")
-			equation_extraction_cpu_taskrunner = Custom("Equation Extraction (CPU) Taskrunner", "./resources/uncharted.png")
-			equation_extraction_cpu = Custom("Equation Extraction (CPU)", "./resources/uncharted.png")
-			funman_taskrunner = Custom("Funman Taskrunner", "./resources/uncharted.png")
+			mira_taskrunner = Custom("MIRA Taskrunner", "./resources/uncharted.png")
+			text_extraction = Custom("Text Extraction", "./resources/uncharted.png")
+			text_extraction_taskrunner = Custom("Text Extraction Taskrunner", "./resources/uncharted.png")
+			web_servers = [Custom("Web Server", "./resources/uncharted.png"), Custom("Docs Server", "./resources/uncharted.png")]
 
 		with Cluster("Data Sources"):
 			spicedb = Database("SpiceDB")
@@ -133,8 +134,8 @@ with Diagram("Terarium System Architecture", show=True,
 	climate_data_worker >> Edge() >> openai
 	climate_data_worker >> Edge() >> redis
 	climate_data_worker >> Edge() >> s3
-	equation_extraction_cpu_taskrunner >> Edge() >> equation_extraction_cpu
-	equation_extraction_cpu_taskrunner >> Edge() >> message_queue
+	equation_extraction_taskrunner >> Edge() >> equation_extraction
+	equation_extraction_taskrunner >> Edge() >> message_queue
 	funman_taskrunner >> Edge() >> funman
 	funman_taskrunner >> Edge() >> message_queue
 	gollm_taskrunner >> Edge() >> gollm
@@ -148,6 +149,7 @@ with Diagram("Terarium System Architecture", show=True,
 	hmi_server >> Edge() >> climate_data_api
 	hmi_server >> Edge() >> cosmos
 	hmi_server >> Edge() >> dkg
+	hmi_server >> Edge() >> equation_extraction_taskrunner
 	hmi_server >> Edge() >> es
 	hmi_server >> Edge() >> funman
 	hmi_server >> Edge() >> github
@@ -167,6 +169,7 @@ with Diagram("Terarium System Architecture", show=True,
 	hmi_server >> Edge() >> skema_tr
 	hmi_server >> Edge() >> skema_unified
 	hmi_server >> Edge() >> spicedb
+	hmi_server >> Edge() >> text_extraction_taskrunner
 	hmi_server >> Edge() >> xdd
 	ingress_app >> Edge() << hmi_client
 	ingress_docs >> Edge() << docs
@@ -183,5 +186,7 @@ with Diagram("Terarium System Architecture", show=True,
 	sciml_service >> Edge() >> message_queue
 	skema_unified >> Edge() >> mit_tr
 	skema_unified >> Edge() >> skema_rs
+	text_extraction_taskrunner >> Edge() >> message_queue
+	text_extraction_taskrunner >> Edge() >> text_extraction
 	web_servers >> Edge() << ingress_app
 	web_servers >> Edge() << ingress_docs

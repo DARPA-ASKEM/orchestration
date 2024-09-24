@@ -19,6 +19,7 @@ resources:
   - ../../../base/services/redis
   - ../../../base/services/sciml-service
   - ../../../base/services/skema
+  - ../../../base/services/text-extraction-taskrunner
   - services/beaker/beaker-persistent-volume.yaml
   - services/beaker/beaker-pv-claim.yaml
 patches:
@@ -47,6 +48,7 @@ patches:
   - path: services/skema/skema-memgraph-deployment.yaml
   - path: services/skema/skema-rs-deployment.yaml
   - path: services/skema/skema-unified-deployment.yaml
+  - path: services/text-extraction-taskrunner/text-extraction-taskrunner-deployment.yaml
 
 configMapGenerator:
   - files:
