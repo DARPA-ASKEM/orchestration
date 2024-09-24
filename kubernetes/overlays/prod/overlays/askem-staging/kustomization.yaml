@@ -37,8 +37,6 @@ patches:
   - path: services/pyciemss-service/pyciemss-api-service.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
   - path: services/redis/redis-service.yaml
-  - path: services/sciml-service/sciml-service-deployment.yaml
-  - path: services/sciml-service/sciml-service-service.yaml
   - path: services/skema/skema-rs-service.yaml
   - path: services/skema/skema-unified-service.yaml
 images:
@@ -80,11 +78,6 @@ images:
   # MIT
   - name: mit-tr-image
     newName: ghcr.io/darpa-askem/mit-tr
-    newTag: 'latest'
-
-  # Simulation Service
-  - name: sciml-service-image
-    newName: ghcr.io/darpa-askem/sciml-service
     newTag: 'latest'
 
   # PyCIEMSS service

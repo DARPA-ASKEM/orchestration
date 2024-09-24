@@ -102,24 +102,6 @@ spec:
                 port:
                   number: 6379
 
-    - host: 'sciml-service.staging.terarium.ai'
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: ssl-redirect
-                port:
-                  name: use-annotation
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: sciml-service
-                port:
-                  number: 3030
-
     - host: 'skema-rs.staging.terarium.ai'
       http:
         paths:
@@ -221,7 +203,6 @@ spec:
         - 'mit-tr.staging.terarium.ai'
         - 'pyciemss.staging.terarium.ai'
         - 'redis.staging.terarium.ai'
-        - 'sciml-service.staging.terarium.ai'
         - 'server.staging.terarium.ai'
         - 'skema-rs.staging.terarium.ai'
         - 'skema-unified.staging.terarium.ai'

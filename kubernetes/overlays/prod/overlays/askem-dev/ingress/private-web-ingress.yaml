@@ -100,17 +100,6 @@ spec:
                 port:
                   number: 6379
 
-    - host: 'sciml-service.dev.terarium.ai'
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: sciml-service
-                port:
-                  number: 3030
-
     - host: 'skema-rs.dev.terarium.ai'
       http:
         paths:
@@ -168,7 +157,6 @@ spec:
         - 'mit-tr.dev.terarium.ai'
         - 'pyciemss.dev.terarium.ai'
         - 'redis.dev.terarium.ai'
-        - 'sciml-service.dev.terarium.ai'
         - 'server.dev.terarium.ai'
         - 'skema-rs.dev.terarium.ai'
         - 'skema-unified.dev.terarium.ai'

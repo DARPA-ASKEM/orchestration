@@ -31,7 +31,6 @@ patches:
   - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
-  - path: services/sciml-service/sciml-service-deployment.yaml
 images:
   # Terarium HMI
   - name: hmi-client-image
@@ -72,11 +71,6 @@ images:
   - name: mit-tr-image
     newName: ghcr.io/darpa-askem/mit-tr
     newTag: '1.0.0'
-
-  # Simulation Service
-  - name: sciml-service-image
-    newName: ghcr.io/darpa-askem/sciml-service
-    newTag: '1.2.0'
 
   # PyCIEMSS service
   - name: pyciemss-api-image
