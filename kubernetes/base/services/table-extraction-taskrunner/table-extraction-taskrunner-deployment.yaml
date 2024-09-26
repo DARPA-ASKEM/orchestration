@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: table-extraction-taskrunner
+  labels:
+    software.uncharted.terarium/name: table-extraction-taskrunner
+    software.uncharted.terarium/component: taskrunner
+    software.uncharted.terarium/service: table-extraction
+    software.uncharted.terarium/part-of: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      software.uncharted.terarium/name: table-extraction-taskrunner
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        software.uncharted.terarium/name: table-extraction-taskrunner
+    spec:
+      containers:
+        - name: table-extraction-taskrunner
+          image: table-extraction-taskrunner-image
+          imagePullPolicy: Always
+          resources: {}
+      imagePullSecrets:
+        - name: ghcr-cred
+      restartPolicy: Always
+status: {}

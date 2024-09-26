@@ -95,6 +95,11 @@ images:
     newName: ghcr.io/darpa-askem/text-extraction-taskrunner
     newTag: '2.21.3'
 
+  # Table extraction (CPU)
+  - name: table-extraction-taskrunner-image
+    newName: ghcr.io/darpa-askem/table-extraction-taskrunner
+    newTag: 'latest'
+
   # Integration Dashboard
   - name: integration-dashboard-image
     newName: ghcr.io/darpa-askem/integration-dashboard

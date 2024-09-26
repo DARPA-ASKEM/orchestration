@@ -46,6 +46,7 @@ patches:
   - path: services/skema/skema-memgraph-deployment.yaml
   - path: services/skema/skema-rs-deployment.yaml
   - path: services/skema/skema-unified-deployment.yaml
+  - path: services/table-extraction-taskrunner/table-extraction-taskrunner-deployment.yaml
   - path: services/text-extraction-taskrunner/text-extraction-taskrunner-deployment.yaml
 
 configMapGenerator:
