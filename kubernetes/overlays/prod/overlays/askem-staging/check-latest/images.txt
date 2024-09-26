@@ -14,4 +14,5 @@ software.uncharted.terarium/name=skema-mathjax ghcr.io/darpa-askem/skema-py:late
 software.uncharted.terarium/name=skema-rs ghcr.io/darpa-askem/skema-rs:latest
 software.uncharted.terarium/name=skema-unified ghcr.io/darpa-askem/skema-py:latest
 software.uncharted.terarium/name=terarium-docs ghcr.io/darpa-askem/terarium-docs:latest
+software.uncharted.terarium/name=table-extraction-taskrunner ghcr.io/darpa-askem/table-extraction-taskrunner:latest
 software.uncharted.terarium/name=text-extraction-taskrunner ghcr.io/darpa-askem/text-extraction-taskrunner:latest

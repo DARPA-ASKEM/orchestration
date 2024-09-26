@@ -18,6 +18,7 @@ resources:
   - ../../../base/services/pyciemss-service
   - ../../../base/services/redis
   - ../../../base/services/skema
+  - ../../../base/services/table-extraction-taskrunner
   - ../../../base/services/text-extraction-taskrunner
   - services/beaker/beaker-persistent-volume.yaml
   - services/beaker/beaker-pv-claim.yaml
