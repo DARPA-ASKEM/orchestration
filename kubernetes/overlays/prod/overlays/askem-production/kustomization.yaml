@@ -35,13 +35,13 @@ images:
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: '2.21.3'
+    newTag: '2.22.0'
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
     newTag: 'latest'
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: '2.21.3'
+    newTag: '2.22.0'
   - name: spicedb-image
     newName: ghcr.io/authzed/spicedb
     newTag: 'v1.24.0'
@@ -54,7 +54,7 @@ images:
   # Jupyter LLM service
   - name: beaker-image
     newName: ghcr.io/darpa-askem/beaker-kernel
-    newTag: '1.11.0'
+    newTag: '1.12.0'
 
   # Skema
   - name: skema-py-image
@@ -75,30 +75,30 @@ images:
   # PyCIEMSS service
   - name: pyciemss-api-image
     newName: ghcr.io/darpa-askem/pyciemss-api
-    newTag: '1.18.1'
+    newTag: '1.19.0'
   - name: pyciemss-worker-image
     newName: ghcr.io/darpa-askem/pyciemss-worker
-    newTag: '1.18.1'
+    newTag: '1.19.0'
 
   # GoLLM service
   - name: gollm-taskrunner-image
     newName: ghcr.io/darpa-askem/gollm-taskrunner
-    newTag: '2.21.3'
+    newTag: '2.22.0'
 
   # Equation extraction (CPU)
   - name: equation-extraction-taskrunner-image
     newName: ghcr.io/darpa-askem/equation-extraction-taskrunner
-    newTag: '2.21.3'
+    newTag: '2.22.0'
 
   # Text extraction (CPU)
   - name: text-extraction-taskrunner-image
     newName: ghcr.io/darpa-askem/text-extraction-taskrunner
-    newTag: '2.21.3'
+    newTag: '2.22.0'
 
   # Table extraction (CPU)
   - name: table-extraction-taskrunner-image
     newName: ghcr.io/darpa-askem/table-extraction-taskrunner
-    newTag: 'latest'
+    newTag: '2.22.0'
 
   # Integration Dashboard
   - name: integration-dashboard-image
@@ -113,7 +113,7 @@ images:
   # mira taskrunner
   - name: mira-taskrunner-image
     newName: ghcr.io/darpa-askem/mira-taskrunner
-    newTag: '2.21.3'
+    newTag: '2.22.0'
 
   # cosmos (xdd)
   - name: cosmos-image
@@ -123,7 +123,7 @@ images:
   # funman taskrunner
   - name: funman-taskrunner-image
     newName: ghcr.io/darpa-askem/funman-taskrunner
-    newTag: '2.21.3'
+    newTag: '2.22.0'
 
   # Redis
   - name: redis-image
