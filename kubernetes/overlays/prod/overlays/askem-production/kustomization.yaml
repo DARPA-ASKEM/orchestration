@@ -115,11 +115,6 @@ images:
     newName: ghcr.io/darpa-askem/mira-taskrunner
     newTag: '2.22.0'
 
-  # cosmos (xdd)
-  - name: cosmos-image
-    newName: ghcr.io/darpa-askem/cosmos-service
-    newTag: 'cpu-2024_04_19'
-
   # funman taskrunner
   - name: funman-taskrunner-image
     newName: ghcr.io/darpa-askem/funman-taskrunner

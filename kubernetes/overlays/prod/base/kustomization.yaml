@@ -8,7 +8,6 @@ resources:
   - ../../../base/hmi/server
   - ../../../base/services/beaker
   - ../../../base/services/climate-data
-  - ../../../base/services/cosmos
   - ../../../base/services/data-service
   - ../../../base/services/equation-extraction-taskrunner
   - ../../../base/services/funman-taskrunner
@@ -33,7 +32,6 @@ patches:
   - path: services/beaker/beaker-deployment.yaml
   - path: services/climate-data/climate-data-deployment.yaml
   - path: services/climate-data/climate-data-worker-deployment.yaml
-  - path: services/cosmos/cosmos-deployment.yaml
   - path: services/data-service/data-service-graphdb-deployment.yaml
   - path: services/equation-extraction-taskrunner/equation-extraction-taskrunner-deployment.yaml
   - path: services/funman-taskrunner/funman-taskrunner-deployment.yaml
