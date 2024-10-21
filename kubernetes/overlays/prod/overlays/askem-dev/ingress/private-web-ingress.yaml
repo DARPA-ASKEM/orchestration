@@ -133,23 +133,11 @@ spec:
                 port:
                   number: 8000
 
-    - host: 'cosmos.dev.terarium.ai'
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: cosmos
-                port:
-                  number: 4048
-
   tls:
     - hosts:
         - 'app.dev.terarium.ai'
         - 'beaker.dev.terarium.ai'
         - 'climate-data.dev.terarium.ai'
-        - 'cosmos.dev.terarium.ai'
         - 'documentation.dev.terarium.ai'
         - 'funman.dev.terarium.ai'
         - 'graphdb.dev.terarium.ai'

@@ -115,10 +115,6 @@ with Diagram("Terarium System Architecture", show=True,
 	with Cluster("Northwestern External Services"):
 		mira = Custom("MIRA", "./resources/northeastern.png")
 
-	with Cluster("UWisc External Services"):
-		cosmos = Server("xDD Cosmos")
-		xdd = Server("xDD")
-
 	with Cluster("Web Tier"):
 		hmi_client = Client("HMI Client")
 		docs = Client("Terarium Docs")
@@ -145,7 +141,6 @@ with Diagram("Terarium System Architecture", show=True,
 	hmi_server >> Edge() << ingress_app
 	hmi_server >> Edge() >> beaker
 	hmi_server >> Edge() >> climate_data_api
-	hmi_server >> Edge() >> cosmos
 	hmi_server >> Edge() >> dkg
 	hmi_server >> Edge() >> equation_extraction_taskrunner
 	hmi_server >> Edge() >> es

@@ -31,7 +31,6 @@ patches:
   - path: services/climate-data/climate-data-deployment.yaml
   - path: services/climate-data/climate-data-service.yaml
   - path: services/climate-data/climate-data-worker-deployment.yaml
-  - path: services/cosmos/cosmos-service.yaml
   - path: services/data-service/data-service-graphdb-service.yaml
   - path: services/mit/mit-tr-service.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
@@ -132,11 +131,6 @@ images:
   - name: mira-taskrunner-image
     newName: ghcr.io/darpa-askem/mira-taskrunner
     newTag: 'latest'
-
-  # cosmos (xdd)
-  - name: cosmos-image
-    newName: ghcr.io/darpa-askem/cosmos-service
-    newTag: 'cpu-2024_04_19'
 
   # funman taskrunner
   - name: funman-taskrunner-image
