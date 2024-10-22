@@ -26,6 +26,22 @@ spec:
           ports:
             - containerPort: 3000
           resources: {}
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 3000
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 3000
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 3000
+            failureThreshold: 30
+            periodSeconds: 10
       imagePullSecrets:
         - name: ghcr-cred
       restartPolicy: Always
