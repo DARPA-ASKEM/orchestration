@@ -35,13 +35,13 @@ images:
   # Terarium HMI
   - name: hmi-client-image
     newName: ghcr.io/darpa-askem/hmi-client
-    newTag: '2.23.0'
+    newTag: '2.23.1'
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
     newTag: 'latest'
   - name: hmi-server-image
     newName: ghcr.io/darpa-askem/hmi-server
-    newTag: '2.23.0'
+    newTag: '2.23.1'
   - name: spicedb-image
     newName: ghcr.io/authzed/spicedb
     newTag: 'v1.24.0'
@@ -83,22 +83,22 @@ images:
   # GoLLM service
   - name: gollm-taskrunner-image
     newName: ghcr.io/darpa-askem/gollm-taskrunner
-    newTag: '2.23.0'
+    newTag: '2.23.1'
 
   # Equation extraction (CPU)
   - name: equation-extraction-taskrunner-image
     newName: ghcr.io/darpa-askem/equation-extraction-taskrunner
-    newTag: '2.23.0'
+    newTag: '2.23.1'
 
   # Text extraction (CPU)
   - name: text-extraction-taskrunner-image
     newName: ghcr.io/darpa-askem/text-extraction-taskrunner
-    newTag: '2.23.0'
+    newTag: '2.23.1'
 
   # Table extraction (CPU)
   - name: table-extraction-taskrunner-image
     newName: ghcr.io/darpa-askem/table-extraction-taskrunner
-    newTag: '2.23.0'
+    newTag: '2.23.1'
 
   # Integration Dashboard
   - name: integration-dashboard-image
@@ -113,12 +113,12 @@ images:
   # mira taskrunner
   - name: mira-taskrunner-image
     newName: ghcr.io/darpa-askem/mira-taskrunner
-    newTag: '2.23.0'
+    newTag: '2.23.1'
 
   # funman taskrunner
   - name: funman-taskrunner-image
     newName: ghcr.io/darpa-askem/funman-taskrunner
-    newTag: '2.23.0'
+    newTag: '2.23.1'
 
   # Redis
   - name: redis-image
