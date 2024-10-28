@@ -16,6 +16,7 @@ spec:
       port: 3000
       protocol: TCP
       targetPort: 3000
+      nodePort: 31606
   selector:
     software.uncharted.terarium/name: hmi-server
 status:

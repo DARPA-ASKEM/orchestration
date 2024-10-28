@@ -13,6 +13,7 @@ spec:
       port: 8080
       protocol: TCP
       targetPort: 80
+      nodePort: 30245
   selector:
     software.uncharted.terarium/name: hmi-client
 status:

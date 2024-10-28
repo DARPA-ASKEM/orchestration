@@ -16,6 +16,7 @@ spec:
       port: 4046
       protocol: TCP
       targetPort: 8000
+      nodePort: 32310
   selector:
     software.uncharted.terarium/name: mit-tr
 status:

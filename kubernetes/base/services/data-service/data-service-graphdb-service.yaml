@@ -14,10 +14,12 @@ spec:
       port: 7474
       protocol: TCP
       targetPort: 7474
+      nodePort: 30706
     - name: 7687-tcp
       port: 7687
       protocol: TCP
       targetPort: 7687
+      nodePort: 30695
   selector:
     software.uncharted.terarium/name: data-service-graphdb
 status:

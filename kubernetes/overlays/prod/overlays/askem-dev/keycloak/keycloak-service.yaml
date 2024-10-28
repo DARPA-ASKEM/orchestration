@@ -14,10 +14,12 @@ spec:
       port: 443
       protocol: TCP
       targetPort: 8443
+      nodePort: 31573
     - name: keycloak-svc-port
       port: 8080
       protocol: TCP
       targetPort: 8080
+      nodePort: 31810
   selector:
     software.uncharted.terarium/name: keycloak
   type: NodePort

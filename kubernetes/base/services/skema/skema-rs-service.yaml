@@ -16,6 +16,7 @@ spec:
       port: 4040
       protocol: TCP
       targetPort: 8080
+      nodePort: 30140
   selector:
     software.uncharted.terarium/name: skema-rs
 status:

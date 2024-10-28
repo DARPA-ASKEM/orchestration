@@ -16,6 +16,7 @@ spec:
       port: 4045
       protocol: TCP
       targetPort: 8000
+      nodePort: 30916
   selector:
     software.uncharted.terarium/name: skema-unified
 status:

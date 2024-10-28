@@ -16,6 +16,7 @@ spec:
       port: 3040
       protocol: TCP
       targetPort: 8000
+      nodePort: 30134
   selector:
     software.uncharted.terarium/name: pyciemss-api
 status:

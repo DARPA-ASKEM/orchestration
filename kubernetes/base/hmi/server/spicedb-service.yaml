@@ -18,6 +18,7 @@ spec:
       port: 50051
       protocol: TCP
       targetPort: 50051
+      nodePort: 31879
   selector:
     software.uncharted.terarium/name: spicedb
 status:

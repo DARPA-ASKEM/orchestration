@@ -13,6 +13,7 @@ spec:
       port: 8000
       protocol: TCP
       targetPort: 80
+      nodePort: 30482
   selector:
     software.uncharted.terarium/name: terarium-docs
 status:

@@ -13,6 +13,7 @@ spec:
       port: 6379
       protocol: TCP
       targetPort: 6379
+      nodePort: 31131
   selector:
     software.uncharted.terarium/name: redis
 status:

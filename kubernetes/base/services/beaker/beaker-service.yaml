@@ -14,6 +14,7 @@ spec:
       port: 3050
       protocol: TCP
       targetPort: 8888
+      nodePort: 30402
   selector:
     software.uncharted.terarium/name: beaker
 status:
