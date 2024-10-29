@@ -23,7 +23,7 @@ spec:
             - name: HMI_SERVER_URL
               value: http://hmi-server:3000
             - name: MIRA_REST_URL
-              value: http://mira-epi-dkg-lb-c7b58edea41524e6.elb.us-east-1.amazonaws.com/
+              value: http://mira-epi-dkg-lb-dc1e19b273dedaa2.elb.us-east-1.amazonaws.com/
             - name: OPENAI_API_KEY
               valueFrom:
                 secretKeyRef:
