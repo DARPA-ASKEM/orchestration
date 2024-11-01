@@ -4,6 +4,7 @@ kind: Deployment
 metadata:
   name: equation-extraction-taskrunner
 spec:
+  replicas: 3
   strategy:
     type: RollingUpdate
   template:
