@@ -132,6 +132,21 @@ spec:
                 secretKeyRef:
                   name: mq-creds
                   key: password
+            - name: TERARIUM_TASKRUNNER_RABBITMQ_DEFAULT_ADDRESSES
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: address
+            - name: TERARIUM_TASKRUNNER_RABBITMQ_DEFAULT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: username
+            - name: TERARIUM_TASKRUNNER_RABBITMQ_DEFAULT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: password
             - name: TERARIUM_DOWNLOAD-ENCRYPTION-KEY
               valueFrom:
                 secretKeyRef:
