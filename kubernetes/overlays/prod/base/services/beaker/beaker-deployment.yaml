@@ -39,6 +39,13 @@ spec:
                 secretKeyRef:
                   name: keycloak-creds
                   key: service_password
+          resources:
+            requests:
+              memory: '1Gi'
+              cpu: '2000m'
+            limits:
+              memory: '28Gi'
+              cpu: '7000m'
       securityContext:
         runAsUser: 1000
         runAsGroup: 1000
@@ -48,3 +55,8 @@ spec:
         - name: beaker-pv-storage
           persistentVolumeClaim:
             claimName: beaker-pv-claim
+      tolerations:
+        - key: 'workload'
+          operator: 'Equal'
+          value: 'beaker'
+          effect: 'NoSchedule'

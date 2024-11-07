@@ -44,24 +44,11 @@ PRODUCTION_ADDITIONAL=(
 )
 
 DEV_YAML=(
-  "overlays/prod/overlays/askem-dev/secrets/secrets-adobe-api-key.yaml"
-  "overlays/prod/overlays/askem-dev/secrets/secrets-beaker-creds.yaml"
-  "overlays/prod/overlays/askem-dev/secrets/secrets-data-service-s3.yaml"
-  "overlays/prod/overlays/askem-dev/secrets/secrets-dkg.yaml"
-  "overlays/prod/overlays/askem-dev/secrets/secrets-es-creds.yaml"
-  "overlays/prod/overlays/askem-dev/secrets/secrets-keycloak-creds.yaml"
-  "overlays/prod/overlays/askem-dev/secrets/secrets-logging-creds.yaml"
   "overlays/prod/overlays/askem-dev/secrets/secrets-chatgpt.yaml"
   "overlays/prod/overlays/askem-dev/secrets/secrets-mq-creds.yaml"
-  "overlays/prod/overlays/askem-dev/secrets/secrets-neo4j-auth.yaml"
-  "overlays/prod/overlays/askem-dev/secrets/secrets-rds-creds.yaml"
-  "overlays/prod/overlays/askem-dev/secrets/secrets-spicedb-shared.yaml"
-  "overlays/prod/overlays/askem-dev/secrets/secrets-xdd-api-key.yaml"
-	"overlays/prod/overlays/askem-dev/check-latest/secrets.yaml"
+  "overlays/prod/overlays/askem-dev/check-latest/secrets.yaml"
 )
 DEV_ADDITIONAL=(
-  "overlays/prod/overlays/askem-dev/keycloak/realm/terarium-realm.json"
-  "overlays/prod/overlays/askem-dev/keycloak/realm/terarium-users-0.json"
   "overlays/prod/overlays/askem-dev/check-latest/check-latest-rsa"
 )
 

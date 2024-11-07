@@ -6,7 +6,8 @@ metadata:
 spec:
   template:
     spec:
-      nodeName: ip-172-16-40-52.ec2.internal
+      nodeSelector:
+        kubernetes.io/hostname: ip-172-16-40-52.ec2.internal
       containers:
         - name: beaker
           env:
@@ -16,10 +17,3 @@ spec:
               value: https://beaker.terarium.ai
             - name: JUPYTER_WS_URL
               value: wss://beaker.terarium.ai
-          resources:
-            requests:
-              memory: '1Gi'
-              cpu: '2000m'
-            limits:
-              memory: '28Gi'
-              cpu: '7000m'

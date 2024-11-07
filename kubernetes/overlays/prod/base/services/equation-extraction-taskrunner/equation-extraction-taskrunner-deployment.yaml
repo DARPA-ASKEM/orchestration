@@ -30,3 +30,8 @@ spec:
                   key: password
             - name: TERARIUM_TASKRUNNER_REQUEST-TYPE
               value: 'equation_extraction'
+      tolerations:
+        - key: 'workload'
+          operator: 'Equal'
+          value: 'equation'
+          effect: 'NoSchedule'

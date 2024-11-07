@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: equation-extraction-taskrunner
 spec:
-  replicas: 2
+  replicas: 3
   strategy:
     type: RollingUpdate
   template:
@@ -30,3 +30,11 @@ spec:
                   key: password
             - name: TERARIUM_TASKRUNNER_REQUEST-TYPE
               value: 'equation_extraction'
+          resources:
+            requests:
+              memory: '28Gi'
+      tolerations:
+        - key: 'workload'
+          operator: 'Equal'
+          value: 'equation'
+          effect: 'NoSchedule'
