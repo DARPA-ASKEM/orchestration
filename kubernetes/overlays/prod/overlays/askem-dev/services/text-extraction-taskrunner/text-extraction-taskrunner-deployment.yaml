@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: text-extraction-taskrunner
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+    spec:
+      containers:
+        - name: text-extraction-taskrunner
+          imagePullPolicy: Always
+          env:
+            - name: SPRING_RABBITMQ_ADDRESSES
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: address
+            - name: TERARIUM_MQ-USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: username
+            - name: TERARIUM_MQ-PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: password
+            - name: TERARIUM_TASKRUNNER_REQUEST-TYPE
+              value: 'text_extraction'

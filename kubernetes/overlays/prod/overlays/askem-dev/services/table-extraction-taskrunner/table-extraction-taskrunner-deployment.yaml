@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: table-extraction-taskrunner
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+    spec:
+      containers:
+        - name: table-extraction-taskrunner
+          imagePullPolicy: Always
+          env:
+            - name: ASKEM_DOC_AI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: chat-gpt-secrets
+                  key: chatgptkey
+            - name: SPRING_RABBITMQ_ADDRESSES
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: address
+            - name: TERARIUM_MQ-USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: username
+            - name: TERARIUM_MQ-PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mq-creds
+                  key: password
+            - name: TERARIUM_TASKRUNNER_REQUEST-TYPE
+              value: 'table_extraction'
