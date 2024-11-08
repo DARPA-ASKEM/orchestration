@@ -6,6 +6,8 @@ metadata:
 spec:
   template:
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: ip-172-16-40-142.ec2.internal
       containers:
         - name: hmi-server
           env:

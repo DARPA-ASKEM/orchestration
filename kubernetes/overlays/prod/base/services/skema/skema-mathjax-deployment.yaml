@@ -6,10 +6,3 @@ metadata:
 spec:
   strategy:
     type: RollingUpdate
-  template:
-    spec:
-      tolerations:
-        - key: 'workload'
-          operator: 'Equal'
-          value: 'skema-text-reading'
-          effect: 'NoSchedule'
