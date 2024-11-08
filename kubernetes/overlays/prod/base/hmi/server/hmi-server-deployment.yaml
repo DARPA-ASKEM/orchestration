@@ -127,6 +127,11 @@ spec:
                 secretKeyRef:
                   name: keycloak-creds
                   key: service_username
+            - name: TERARIUM_KEYCLOAK_ADMIN-API-SERVICE-NAME
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: admin_service_username
             - name: TERARIUM_MQ-USERNAME
               valueFrom:
                 secretKeyRef:
