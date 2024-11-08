@@ -2,15 +2,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: equation-extraction-taskrunner
+  name: mira-taskrunner
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
     type: RollingUpdate
   template:
     spec:
       containers:
-        - name: equation-extraction-taskrunner
+        - name: mira-taskrunner
           imagePullPolicy: Always
           env:
             - name: SPRING_RABBITMQ_ADDRESSES
@@ -29,9 +29,4 @@ spec:
                   name: mq-creds
                   key: password
             - name: TERARIUM_TASKRUNNER_REQUEST-TYPE
-              value: 'equation_extraction'
-      tolerations:
-        - key: 'workload'
-          operator: 'Equal'
-          value: 'equation'
-          effect: 'NoSchedule'
+              value: 'mira'

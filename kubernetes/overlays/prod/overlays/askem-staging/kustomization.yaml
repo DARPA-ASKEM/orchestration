@@ -30,13 +30,18 @@ patches:
   - path: services/climate-data/climate-data-service.yaml
   - path: services/climate-data/climate-data-worker-deployment.yaml
   - path: services/data-service/data-service-graphdb-service.yaml
+  - path: services/equation-extraction-taskrunner/equation-extraction-taskrunner-deployment.yaml
   - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
   - path: services/mit/mit-tr-service.yaml
   - path: services/pyciemss-service/pyciemss-api-deployment.yaml
   - path: services/pyciemss-service/pyciemss-api-service.yaml
   - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
   - path: services/redis/redis-service.yaml
+  - path: services/skema/skema-mathjax-deployment.yaml
+  - path: services/skema/skema-memgraph-deployment.yaml
+  - path: services/skema/skema-rs-deployment.yaml
   - path: services/skema/skema-rs-service.yaml
+  - path: services/skema/skema-unified-deployment.yaml
   - path: services/skema/skema-unified-service.yaml
 images:
   # Terarium HMI

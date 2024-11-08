@@ -2,17 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: equation-extraction-taskrunner
+  name: table-extraction-taskrunner
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
     type: RollingUpdate
   template:
     spec:
       containers:
-        - name: equation-extraction-taskrunner
+        - name: table-extraction-taskrunner
           imagePullPolicy: Always
           env:
+            - name: ASKEM_DOC_AI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: chat-gpt-secrets
+                  key: chatgptkey
             - name: SPRING_RABBITMQ_ADDRESSES
               valueFrom:
                 secretKeyRef:
@@ -29,9 +34,4 @@ spec:
                   name: mq-creds
                   key: password
             - name: TERARIUM_TASKRUNNER_REQUEST-TYPE
-              value: 'equation_extraction'
-      tolerations:
-        - key: 'workload'
-          operator: 'Equal'
-          value: 'equation'
-          effect: 'NoSchedule'
+              value: 'table_extraction'

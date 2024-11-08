@@ -1,0 +1,10 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: equation-extraction-taskrunner
+spec:
+  template:
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: ip-172-16-60-234.ec2.internal

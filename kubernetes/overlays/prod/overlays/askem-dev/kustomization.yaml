@@ -3,103 +3,38 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: terarium
 resources:
-  - ../../base
+  - ../../../../base/hmi/documentation
+  - ../../../../base/services/equation-extraction-taskrunner
+  - ../../../../base/services/funman-taskrunner
+  - ../../../../base/services/gollm-taskrunner
+  - ../../../../base/services/mira-taskrunner
+  - ../../../../base/services/mit
+  - ../../../../base/services/redis
+  - ../../../../base/services/table-extraction-taskrunner
+  - ../../../../base/services/text-extraction-taskrunner
   - check-latest
-  - keycloak/keycloak-deployment.yaml
-  - keycloak/keycloak-service.yaml
-  - ingress/private-web-grpc-ingress.yaml
   - ingress/private-web-ingress.yaml
-  - ingress/private-web-ssl-ingress.yaml
-  - secrets/secrets-adobe-api-key.yaml
-  - secrets/secrets-beaker-creds.yaml
-  - secrets/secrets-data-service-s3.yaml
-  - secrets/secrets-dkg.yaml
-  - secrets/secrets-es-creds.yaml
-  - secrets/secrets-keycloak-creds.yaml
-  - secrets/secrets-logging-creds.yaml
   - secrets/secrets-chatgpt.yaml
   - secrets/secrets-mq-creds.yaml
-  - secrets/secrets-neo4j-auth.yaml
-  - secrets/secrets-rds-creds.yaml
-  - secrets/secrets-spicedb-shared.yaml
-  - secrets/secrets-xdd-api-key.yaml
 patches:
+  - path: hmi/documentation/terarium-docs-deployment.yaml
   - path: hmi/documentation/terarium-docs-service.yaml
-  - path: hmi/server/hmi-server-deployment.yaml
-  - path: services/beaker/beaker-deployment.yaml
-  - path: services/beaker/beaker-service.yaml
-  - path: services/climate-data/climate-data-deployment.yaml
-  - path: services/climate-data/climate-data-service.yaml
-  - path: services/climate-data/climate-data-worker-deployment.yaml
-  - path: services/data-service/data-service-graphdb-service.yaml
+  - path: services/equation-extraction-taskrunner/equation-extraction-taskrunner-deployment.yaml
+  - path: services/funman-taskrunner/funman-taskrunner-deployment.yaml
+  - path: services/gollm-taskrunner/gollm-taskrunner-deployment.yaml
+  - path: services/mira-taskrunner/mira-taskrunner-deployment.yaml
+  - path: services/mit/mit-tr-deployment.yaml
   - path: services/mit/mit-tr-service.yaml
-  - path: services/pyciemss-service/pyciemss-api-deployment.yaml
-  - path: services/pyciemss-service/pyciemss-api-service.yaml
-  - path: services/pyciemss-service/pyciemss-worker-deployment.yaml
-  - path: services/redis/redis-service.yaml
-  - path: services/skema/skema-rs-service.yaml
-  - path: services/skema/skema-unified-service.yaml
-configMapGenerator:
-  - files:
-      - keycloak/realm/terarium-realm.json
-      - keycloak/realm/terarium-users-0.json
-    name: keycloak-realm
-    behavior: create
+  - path: services/table-extraction-taskrunner/table-extraction-taskrunner-deployment.yaml
+  - path: services/text-extraction-taskrunner/text-extraction-taskrunner-deployment.yaml
 images:
-  # Auth
-  - name: keycloak-image
-    newName: quay.io/keycloak/keycloak
-    newTag: '25.0.0'
-  - name: terarium-login-theme-image
-    newName: ghcr.io/darpa-askem/terarium-login-theme
-    newTag: 'latest'
-
-  # Terarium HMI
-  - name: hmi-client-image
-    newName: ghcr.io/darpa-askem/hmi-client
-    newTag: 'latest'
   - name: terarium-docs-image
     newName: ghcr.io/darpa-askem/terarium-docs
     newTag: 'latest'
-  - name: hmi-server-image
-    newName: ghcr.io/darpa-askem/hmi-server
-    newTag: 'latest'
-  - name: spicedb-image
-    newName: ghcr.io/authzed/spicedb
-    newTag: 'v1.24.0'
-
-  # Data Service
-  - name: data-service-graphdb-image
-    newName: ghcr.io/darpa-askem/neo4j
-    newTag: '5.12-community'
-
-  # Jupyter LLM service
-  - name: beaker-image
-    newName: ghcr.io/darpa-askem/beaker-kernel
-    newTag: 'latest'
-
-  # Skema
-  - name: skema-py-image
-    newName: ghcr.io/darpa-askem/skema-py
-    newTag: 'latest'
-  - name: skema-rs-image
-    newName: ghcr.io/darpa-askem/skema-rs
-    newTag: 'latest'
-  - name: skema-memgraph-image
-    newName: ghcr.io/darpa-askem/memgraph-platform
-    newTag: '2.6.5-memgraph2.5.2-lab2.4.0-mage1.6'
 
   # MIT
   - name: mit-tr-image
     newName: ghcr.io/darpa-askem/mit-tr
-    newTag: 'latest'
-
-  # PyCIEMSS service
-  - name: pyciemss-api-image
-    newName: ghcr.io/darpa-askem/pyciemss-api
-    newTag: 'latest'
-  - name: pyciemss-worker-image
-    newName: ghcr.io/darpa-askem/pyciemss-worker
     newTag: 'latest'
 
   # GoLLM service
