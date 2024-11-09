@@ -12,6 +12,7 @@ resources:
   - secrets/secrets-data-service-s3.yaml
   - secrets/secrets-dkg.yaml
   - secrets/secrets-es-creds.yaml
+  - secrets/secrets-keycloak-creds.yaml
   - secrets/secrets-logging-creds.yaml
   - secrets/secrets-chatgpt.yaml
   - secrets/secrets-mq-creds.yaml
