@@ -122,6 +122,16 @@ spec:
                 secretKeyRef:
                   name: keycloak-creds
                   key: realm
+            - name: TERARIUM_KEYCLOAK_API-SERVICE-NAME
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: service_username
+            - name: TERARIUM_KEYCLOAK_ADMIN-API-SERVICE-NAME
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-creds
+                  key: admin_service_username
             - name: TERARIUM_MQ-USERNAME
               valueFrom:
                 secretKeyRef:
@@ -229,3 +239,8 @@ spec:
                 secretKeyRef:
                   name: xdd-api-key
                   key: eskey
+      tolerations:
+        - key: 'workload'
+          operator: 'Equal'
+          value: 'server'
+          effect: 'NoSchedule'
