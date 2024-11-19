@@ -7,4 +7,4 @@ spec:
   template:
     spec:
       nodeSelector:
-        kubernetes.io/hostname: ip-172-16-60-234.ec2.internal
+        kubernetes.io/hostname: ip-172-16-60-9.ec2.internal
