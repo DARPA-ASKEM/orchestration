@@ -29,3 +29,5 @@ spec:
                   key: password
             - name: TERARIUM_TASKRUNNER_REQUEST-TYPE
               value: 'mira'
+            - name: MIRA_REST_URL
+              value: 'http://mira-epi-dkg-lb-dc1e19b273dedaa2.elb.us-east-1.amazonaws.com/'
